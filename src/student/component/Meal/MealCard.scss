@@ -16,7 +16,8 @@
             height: 21.875rem;
     
             & p {
-                display: block;
+                opacity: 1;
+                transform: perspective(1000px) rotate3d(1,0,0,0);
                 font-size: 1.5rem;
             }
     
@@ -29,6 +30,10 @@
 
     &--header {
         font-size: 0;
+        opacity: 0;
+        transition: opacity 1s, transform 1s;
+        transform: perspective(1000px) rotate3d(1,0,0,90deg);
+        transform-origin: 0% 100%;
         color: white;
         font-family: 'NanumSquareB';
         text-align: center;
