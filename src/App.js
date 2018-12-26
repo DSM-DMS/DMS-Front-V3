@@ -3,7 +3,7 @@ import { BrowserRouter, Switch, Route } from "react-router-dom";
 import { Provider } from 'react-redux';
 import { createStore } from "redux";
 import dmsApp from "./reducers";
-import './App.css';
+import './App.scss';
 
 import MainContainer from "./student/container/Main/MainContainer";
 
