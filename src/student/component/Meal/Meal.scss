@@ -1,0 +1,15 @@
+.meal {
+    &--wrapper {
+        display: flex;
+        width: 100%;
+        height: 100%;
+        justify-content: center;
+        background-image: linear-gradient(to bottom, #078f91, #19b6b6);
+    }
+
+    &--inner--wrapper {
+        width: 1200px;
+        height: 100vh;
+        background-color: white;
+    }
+}

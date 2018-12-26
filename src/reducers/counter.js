@@ -14,7 +14,6 @@ const initialState = Map({
 
 function counter(state=initialState, action) {
     const Lists = state.get('examList');
-
     switch(action.type) {
         case INCREMENT:
             return state.set('examList', Lists.update(

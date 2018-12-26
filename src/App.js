@@ -5,6 +5,8 @@ import { createStore } from "redux";
 import dmsApp from "./reducers";
 import './App.css';
 
+import MainContainer from "./student/container/Main/MainContainer";
+
 const store = createStore(dmsApp);
 
 class App extends Component {
@@ -13,8 +15,8 @@ class App extends Component {
       <Provider store={store}>
         <BrowserRouter>
           <Switch>
-            <Route path="/" component=""></Route>
-            <Route path="/admin" component=""></Route>
+            <Route path="/" component={MainContainer} exact/>
+            {/* <Route path="/admin" component={} exact/> */}
           </Switch>
         </BrowserRouter>
       </Provider>
