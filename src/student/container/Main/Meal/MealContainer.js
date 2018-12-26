@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from 'react';
 
-import Meal from "../../component/Meal/Meal";
+import Meal from "../../../component/Meal/Meal";
 
 const dateList = ['일요일','월요일','화요일','수요일','목요일','금요일','토요일'];
 

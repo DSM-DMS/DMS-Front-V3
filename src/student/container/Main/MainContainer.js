@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import MealContainer from '../Meal/MealContainer';
+import MealContainer from './Meal/MealContainer';
 
 class MainContainer extends Component {
     render() {

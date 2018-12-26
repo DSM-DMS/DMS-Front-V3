@@ -36,6 +36,10 @@
         font-family: 'NanumSquareB';
         box-shadow: 0px 5px 5px 0 rgba(0, 0, 0, 0.2);
         background-color: #19b6b6;
+        &:hover {
+            box-shadow: none;
+            transition: 0.7s;
+        }
 
         &--list {
             display: flex; 

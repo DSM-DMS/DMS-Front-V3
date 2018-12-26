@@ -10,4 +10,12 @@
     color: #19b6b6;
     margin-right: 2.5rem;
     cursor: pointer;
+    transition: 0.3s;
+
+    &:hover {
+        width: 9.8rem;
+        height: 3.5rem;
+        transition: 0.3s;
+        margin-right: 2.075rem;
+    }
 }

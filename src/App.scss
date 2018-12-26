@@ -22,3 +22,9 @@
   font-family: 'NanumSquareR';
   src: url('./assets/font/NANUMSQUARER.TTF') format('truetype')
 }
+
+@media screen and (max-width: 1500px) {
+  html {
+    font-size: 12px;
+  }
+}

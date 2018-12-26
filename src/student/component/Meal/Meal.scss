@@ -55,13 +55,18 @@
             height: 21.875rem;
             justify-content: space-between;
             align-items: center;
-            background-color: beige;
         }
 
 
         &--right--img {
             width: 29.375rem;
             height: auto;   
+        }
+
+        &--button--list {
+            height: 3.5rem;
+            display:flex;
+            align-items: center;
         }
     }
 }
