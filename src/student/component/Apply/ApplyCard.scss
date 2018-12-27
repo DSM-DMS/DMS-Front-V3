@@ -1,5 +1,6 @@
 .apply--card {
     &--wrapper {
+        position: relative;
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -33,20 +34,46 @@
                 }
             }
 
-            & .extension--icon {
-                background-image: url("../../../assets/icon/ic_pencil_act.png");
+            & .extension{
+                &--illust {
+                    transition: opacity 0.5s;
+                    opacity: 1;
+                    width: 14.75rem;
+                }
+                &--icon {
+                    background-image: url("../../../assets/icon/ic_pencil_act.png");
+                }
+            }
+            & .goingout{
+                &--illust {
+                    transition: opacity 0.5s;
+                    width: 7.0625rem;
+                    opacity: 1;
+                }
+                &--icon {
+                    background-image: url("../../../assets/icon/ic_bike_act.png");
+                }
+            }
+            & .stay{
+                &--illust {
+                    transition: opacity 0.5s;
+                    width: 17.8125rem;
+                    opacity: 1;
+                }
+                &--icon {
+                    background-image: url("../../../assets/icon/ic_bed_act.png");
+                }
             }
             
-            & .goingout--icon {
-                background-image: url("../../../assets/icon/ic_bike_act.png");
-            }
-            
-            & .stay--icon {
-                background-image: url("../../../assets/icon/ic_bed_act.png");
-            }
-            
-            & .music--icon {
-                background-image: url("../../../assets/icon/ic_music_act.png")
+            & .music{
+                &--illust {
+                    transition: opacity 0.5s;
+                    opacity: 1;
+                    width: 9.875rem;
+                }
+                &--icon {
+                    background-image: url("../../../assets/icon/ic_music_act.png")
+                }
             }
         }
     }
@@ -119,21 +146,49 @@
 
 .extension{
     &--illust {
-        width: 14.75rem;
+        top: -6.7rem;
+        width: 0;
+        opacity: 0;
     }
     &--icon {
         background-image: url("../../../assets/icon/ic_pencil.png");
     }
 }
 
-.goingout--icon {
-    background-image: url("../../../assets/icon/ic_bike.png");
+.goingout{
+    &--illust {
+        left: -8.8rem;
+        bottom: 0;
+        opacity: 0;
+        width: 0;
+    }
+
+    &--icon {
+        background-image: url("../../../assets/icon/ic_bike.png");
+    }
 }
 
-.stay--icon {
-    background-image: url("../../../assets/icon/ic_bed.png");
+.stay{
+    &--illust {
+        left: -11.1875rem;
+        bottom: -3.75rem;
+        opacity: 0;
+        width: 0;
+    }
+    &--icon {
+        background-image: url("../../../assets/icon/ic_bed.png");
+    }
 }
 
-.music--icon {
-    background-image: url("../../../assets/icon/ic_music.png")
+.music{
+    &--illust {
+        right: -8.125rem;
+        bottom: 0;
+        opacity: 0;
+        width: 0;
+    }
+
+    &--icon {
+        background-image: url("../../../assets/icon/ic_music.png")
+    }
 }
