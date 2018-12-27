@@ -2,14 +2,14 @@
     &--wrapper {
         display: flex;
         width: 100%;
-        height: 100%;
+        height: 100vh;
         justify-content: center;
         background-image: linear-gradient(to bottom, #078f91, #19b6b6);
     }
 
     &--inner--wrapper {
         width: 75rem;
-        height: 100vh;
+        height: 100%;
     }
     
     &--menu {
@@ -30,9 +30,12 @@
         }
 
         &--title {
-            font-size: 3rem;
-            font-family: 'NanumSquareEB';
             color: white;
+
+            font: {
+                size: 3rem;
+                family: 'NanumSquareEB';
+            }
 
             &--wrapper {
                 display: flex;
@@ -44,8 +47,11 @@
 
             &--date {
                 color: rgba(255, 255, 255, 0.7);
-                font-size: 1.5rem;
-                font-family: 'NanumSquareB';
+
+                font: {
+                    size: 1.5rem;
+                    family: 'NanumSquareB';
+                }
             }
         }
 

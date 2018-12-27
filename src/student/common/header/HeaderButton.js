@@ -6,7 +6,7 @@ const HeaderButton = ({title, scroll, location, history}) => {
     return (
         <span onClick={() => {
             if(location.pathname === '/') {
-                document.querySelector('#' + scroll).scrollIntoView()
+                document.querySelector('#' + scroll).scrollIntoView({ behavior: 'smooth' })
             } else {
                 console.log(location.pathname);
                 history.push('/'+scroll);

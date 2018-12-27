@@ -3,7 +3,7 @@ import React from 'react';
 import './MealCard.scss';
 
 const MealCard = ({time, list}) => {
-    const mealList = list.map(data => <span className="meal--card--content">{data}</span>)
+    const mealList = list.map(data => <span className="meal--card--content" key={data}>{data}</span>)
     return (
         <div className="meal--card--wrapper">
             <p className="meal--card--header">{time}</p>

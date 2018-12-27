@@ -9,8 +9,8 @@ class HeaderContainer extends Component {
     state = {
         buttonList : [
             {title: '신청화면', page: 'apply'},
-            {title: '공지사항', page:'notice'}, 
-            {title: '부가사항', page:'extra'}
+            {title: '공지사항', page: 'notice'}, 
+            {title: '부가사항', page: 'extra'}
         ]
     }
 

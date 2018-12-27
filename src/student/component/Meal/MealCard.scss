@@ -32,7 +32,7 @@
         font-size: 0;
         opacity: 0;
         transition: opacity 1s, transform 1s;
-        transform: perspective(1000px) rotate3d(1,0,0,90deg);
+        transform: perspective(1000px) rotate3d(1,0,0,60deg);
         transform-origin: 0% 100%;
         color: white;
         font-family: 'NanumSquareB';
@@ -42,9 +42,10 @@
 
     &--content {
         color: white;
-        font-size: 1.25rem;
-        font-family: 'NanumSquareR';
-
+        font: {
+            size: 1.25rem;
+            family: 'NanumSquareR';
+        }
 
         &--wrapper {
             display: flex;

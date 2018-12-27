@@ -18,10 +18,13 @@
         }
         
         &--title {
-            font-size:1.875rem;
-            font-family: 'NanumSquareEB';
             color: white;
             margin-left: 3.125rem;
+
+            font: {
+                size:1.875rem;
+                family: 'NanumSquareEB';
+            }
         }
     }
 
@@ -29,13 +32,16 @@
         width: 9.375rem;
         height: 3.125rem;
         border-radius: 1.5625rem;
-        font-size: 1rem;
         border: none;
         cursor: pointer;
         color: white;
-        font-family: 'NanumSquareB';
         box-shadow: 0px 5px 5px 0 rgba(0, 0, 0, 0.2);
         background-color: #19b6b6;
+        font: {
+            size: 1rem;
+            family: 'NanumSquareB';
+        }
+
         &:hover {
             box-shadow: none;
             transition: 0.7s;
@@ -50,10 +56,12 @@
         }
 
         &--link{
-            font-size: 1rem;
-            font-family: 'NanumSquareB';
             color: white;
             cursor: pointer;
+            font: {
+                size: 1rem;
+                family: 'NanumSquareB';
+            }
         }
     }
 }
