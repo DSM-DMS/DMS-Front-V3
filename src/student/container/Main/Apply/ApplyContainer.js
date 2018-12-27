@@ -7,6 +7,11 @@ import goingoutIllust from '../../../../assets/icon/goingout-illust.png';
 import stayIllust from '../../../../assets/icon/stay-illust.png';
 import musicIllust from '../../../../assets/icon/music-illust.png';
 
+import extensionImg from '../../../../assets/img/img_study.png';
+import goingoutImg from '../../../../assets/img/img_outing.png';
+import stayImg from '../../../../assets/img/img_room.png';
+import musicImg from '../../../../assets/img/img_school.png';
+
 class ApplyContainer extends Component {
 
     state = {
@@ -51,6 +56,22 @@ class ApplyContainer extends Component {
         });
     }
 
+    hoverImg = () => {
+        const { hovered } = this.state;
+        switch (hovered){
+            case 'extension':
+                return <img src={extensionImg} alt="" className="apply--background--img"/>
+            case 'goingout':
+                return <img src={goingoutImg} alt="" className="apply--background--img"/>;
+            case 'stay':
+                return <img src={stayImg} alt="" className="apply--background--img"/>
+            case 'music':
+                return <img src={musicImg} alt="" className="apply--background--img"/>;
+            default:
+                return '';
+        }
+    }
+
     render() {
         const {cardDataList} = this.state;
         const cardList = cardDataList.map(data => (
@@ -58,7 +79,7 @@ class ApplyContainer extends Component {
         ))
         return (
             <Fragment>
-                <Apply cardList={cardList}/>
+                <Apply cardList={cardList} hoverImg={this.hoverImg}/>
             </Fragment>
         );
     }

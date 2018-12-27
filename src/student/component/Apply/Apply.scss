@@ -1,3 +1,14 @@
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    
+    to {
+        opacity: 1;
+    }
+}
+
+
 .apply {
     &--wrapper {
         display: flex;
@@ -49,5 +60,13 @@
         width: 100%;
         height: 31.25rem;
         justify-content: space-between;
+    }
+
+    &--background--img {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        z-index: -2;
+        animation: fadeIn 0.5s ease-in-out;
     }
 }

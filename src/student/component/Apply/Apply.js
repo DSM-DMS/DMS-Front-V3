@@ -2,9 +2,10 @@ import React from 'react';
 
 import './Apply.scss';
 
-const Apply = ({cardList}) => {
+const Apply = ({cardList, hoverImg}) => {
     return (
         <div className="apply--wrapper" id="apply">
+            {hoverImg()}
             <div className="apply--inner--wrapper">
                 <div className="apply--title--wrapper">
                     <span className="apply--title">신청화면</span>
