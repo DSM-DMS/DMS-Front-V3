@@ -14,37 +14,6 @@ class MainContainer extends Component {
   }
 
   componentDidMount() {
-    
-    window.addEventListener("scroll", throttle(1500,() => {
-      console.log(this.state.scrollScope);
-
-      let scrolled = window.pageYOffset || document.documentElement.scrollTop;
-      if (scrolled > this.state.lastScrollTop) {
-        this.setState((prevState) => {
-          return {
-            scrollScope: prevState.scrollScope + 1
-          }
-        })
-        document
-        .querySelector(this.idList[this.state.scrollScope])
-        .scrollIntoView({ behavior: "smooth" });
-      } else if (scrolled < this.state.lastScrollTop){
-        this.setState((prevState) => {
-          return {
-            scrollScope: prevState.scrollScope + 1
-          }
-        })
-        document
-        .querySelector(this.idList[this.state.scrollScope])
-      } else {
-        console.warn('error');
-      }
-      this.setState({
-        lastScrollTop: scrolled <= 0 ? 0 : this.idList[this.state.scrollScope]
-      })
-    }));
-
-
     const { location } = this.props;
     
     if (location.pathname !== "/") {
