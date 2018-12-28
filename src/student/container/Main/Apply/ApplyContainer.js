@@ -2,6 +2,8 @@ import React, { Component, Fragment } from 'react';
 
 import Apply from "../../../component/Apply/Apply";
 import ApplyCard from '../../../component/Apply/ApplyCard';
+import ApplyBackImg from '../../../component/Apply/ApplyBackImg';
+
 import ExtensionIllust from '../../../../assets/icon/extension-illust.png';
 import goingoutIllust from '../../../../assets/icon/goingout-illust.png';
 import stayIllust from '../../../../assets/icon/stay-illust.png';
@@ -41,6 +43,12 @@ class ApplyContainer extends Component {
                 illust: musicIllust
             }
         ],
+        backgroundImg: [
+            {kind: 'extension',src: extensionImg},
+            {kind: 'goingout',src: goingoutImg},
+            {kind: 'stay',src: stayImg},
+            {kind: 'music',src: musicImg}
+        ],
         hovered: ''
     }
 
@@ -57,19 +65,9 @@ class ApplyContainer extends Component {
     }
 
     hoverImg = () => {
-        const { hovered } = this.state;
-        switch (hovered){
-            case 'extension':
-                return <img src={extensionImg} alt="" className="apply--background--img"/>
-            case 'goingout':
-                return <img src={goingoutImg} alt="" className="apply--background--img"/>;
-            case 'stay':
-                return <img src={stayImg} alt="" className="apply--background--img"/>
-            case 'music':
-                return <img src={musicImg} alt="" className="apply--background--img"/>;
-            default:
-                return '';
-        }
+
+        const { hovered,backgroundImg } = this.state;
+        return backgroundImg.map(data =>             <ApplyBackImg kind={data.kind} src={data.src} hovered={hovered} key={data.kind + '--background'}/>)
     }
 
     render() {
