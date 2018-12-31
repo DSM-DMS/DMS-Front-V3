@@ -3,8 +3,6 @@ import MealContainer from "./Meal/MealContainer";
 import ApplyContainer from "./Apply/ApplyContainer";
 import NoticeContainer from "./Notice/NoticeContainer";
 
-import { throttle } from 'throttle-debounce';
-
 class MainContainer extends Component {
   idList = ["#meal", "#apply", "#notice", "#extra"];
 
