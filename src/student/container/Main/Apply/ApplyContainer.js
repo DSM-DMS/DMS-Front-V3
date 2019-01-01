@@ -4,10 +4,10 @@ import Apply from "../../../component/Apply/Apply";
 import ApplyCard from '../../../component/Apply/ApplyCard';
 import ApplyBackImg from '../../../component/Apply/ApplyBackImg';
 
-import ExtensionIllust from '../../../../assets/icon/extension-illust.png';
-import goingoutIllust from '../../../../assets/icon/goingout-illust.png';
-import stayIllust from '../../../../assets/icon/stay-illust.png';
-import musicIllust from '../../../../assets/icon/music-illust.png';
+import ExtensionIllust from '../../../../assets/illust/extension-illust.png';
+import goingoutIllust from '../../../../assets/illust/goingout-illust.png';
+import stayIllust from '../../../../assets/illust/stay-illust.png';
+import musicIllust from '../../../../assets/illust/music-illust.png';
 
 import extensionImg from '../../../../assets/img/img_study.png';
 import goingoutImg from '../../../../assets/img/img_outing.png';

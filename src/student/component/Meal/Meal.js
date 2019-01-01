@@ -5,12 +5,12 @@ import HeaderContainer from '../../common/header/HeaderContainer';
 import MealButton from './MealButton';
 import MealCard from './MealCard';
 
-import mealMan from '../../../assets/icon/meal-man.png'
+import mealMan from '../../../assets/illust/meal-man.png'
 
 const Meal = ({selectedDate, prevDate, nextDate}) => {
     return (
         <div className="meal--wrapper" id="meal">
-            <div className="meal--inner--wrapper">
+            <div className="inner--wrapper">
                 <HeaderContainer />
                 <div className="meal--menu--wrapper">
                     <div className="meal--menu--left--wrapper">

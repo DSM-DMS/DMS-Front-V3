@@ -1,10 +1,11 @@
 import React, { Component } from "react";
 import MealContainer from "./Meal/MealContainer";
 import ApplyContainer from "./Apply/ApplyContainer";
-import NoticeContainer from "./Notice/NoticeContainer";
+import PostContainer from "./Post/PostContainer";
+import ExtraContainer from './Extra/ExtraContainer';
 
 class MainContainer extends Component {
-  idList = ["#meal", "#apply", "#notice", "#extra"];
+  idList = ["#meal", "#apply", "#post", "#extra"];
 
   state ={
     lastScrollTop: 0,
@@ -26,7 +27,8 @@ class MainContainer extends Component {
       <div style={{ width: window.screen.width }} id="main">
         <MealContainer />
         <ApplyContainer />
-        <NoticeContainer />
+        <PostContainer />
+        <ExtraContainer />
       </div>
     );
   }

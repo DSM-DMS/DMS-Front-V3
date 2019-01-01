@@ -1,4 +1,4 @@
-.notice--card {
+.post--card {
     &--wrapper {
         display: inline-block;
         position: relative;
@@ -6,12 +6,12 @@
         height: 100%;
         
         &:hover {
-            & .notice--card--cover {
+            & .post--card--cover {
                 opacity: 0;
                 transition: opacity 0.5s;
             }
 
-            & .notice--card--title {
+            & .post--card--title {
 
                 transition: bottom 0.5s;
                 bottom: 5.625rem;

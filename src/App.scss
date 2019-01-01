@@ -2,6 +2,15 @@
   text-align: center;
 }
 
+.inner--wrapper {
+  display: flex;
+  width: 75rem;
+  height: 100%;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
 @font-face {
   font-family: 'NanumSquareEB';
   src: url('./assets/font/NANUMSQUAREEB.TTF') format('truetype')

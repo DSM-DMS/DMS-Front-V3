@@ -13,7 +13,7 @@ const ApplyCard = ({cardData, cardHoverOn, cardHoverOff}) => {
                 <span className="apply--card--title">{cardData.title}</span>
                 <p className="apply--card--title--explain">{cardData.subTitle.split('\n').map(line => <span key={line}>{line}<br/></span>)}</p>
             </div>
-            <Link to={'/'+cardData.kind} className="apply--card--link">신청하기</Link>
+            <Link to={'/apply/'+cardData.kind} className="apply--card--link">신청하기</Link>
         </div>
     );
 };
