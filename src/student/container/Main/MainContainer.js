@@ -3,6 +3,7 @@ import MealContainer from "./Meal/MealContainer";
 import ApplyContainer from "./Apply/ApplyContainer";
 import PostContainer from "./Post/PostContainer";
 import ExtraContainer from './Extra/ExtraContainer';
+import FooterContainer from './Footer/FooterContainer';
 
 class MainContainer extends Component {
   idList = ["#meal", "#apply", "#post", "#extra"];
@@ -29,6 +30,7 @@ class MainContainer extends Component {
         <ApplyContainer />
         <PostContainer />
         <ExtraContainer />
+        <FooterContainer />
       </div>
     );
   }
