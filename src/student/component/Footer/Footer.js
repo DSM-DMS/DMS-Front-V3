@@ -8,7 +8,7 @@ import icFacebook from '../../../assets/icon/ic-facebook.png';
 
 const Footer = ({cardList}) => {
     return (
-        <div className="footer--wrapper">
+        <div className="footer--wrapper" id="footer">
             <div className="footer--inner--wrapper">
                 <div className="footer--content--wrapper">
                     <div className="footer--content--inner--wrapper">
