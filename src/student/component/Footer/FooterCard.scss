@@ -1,0 +1,24 @@
+.footer--card {
+    &--wrapper {
+        display: flex;
+        flex-direction: column;
+    }
+
+    &--team {
+        color: #616161;
+        margin-bottom: 1.25rem;
+        font: {
+            size: 1.125rem;
+            family: 'NanumSquareEB';
+        }
+    }
+
+    &--members {
+        color: #9e9e9e;
+        margin-top: 2rem;
+        font: {
+            size: 1.125rem;
+            family: 'NanumSquareB';
+        }
+    }
+}
