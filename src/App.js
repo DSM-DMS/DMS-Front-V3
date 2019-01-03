@@ -6,6 +6,7 @@ import dmsApp from "./reducers";
 import './App.scss';
 
 import MainContainer from "./student/container/Main/MainContainer";
+import AdminMainContainer from "./admin/container/Main/AdminMainContainer"
 
 const store = createStore(dmsApp);
 
@@ -19,6 +20,7 @@ class App extends Component {
             <Route path="/apply" component={MainContainer} exact/>
             <Route path="/post" component={MainContainer} exact/>
             <Route path="/extra" component={MainContainer} exact/>
+            <Route path="/admin" component={AdminMainContainer} exact/>
             {/* <Route path="/admin" component={} exact/> */}
           </Switch>
         </BrowserRouter>
