@@ -30,7 +30,7 @@ class ExtraContainer extends Component {
 
     render() {
         const { extracardList } = this.state;
-        const cardList = extracardList.map(data => <ExtraCard type={data.type} src={data.src} title={data.title}/>)
+        const cardList = extracardList.map(data => <ExtraCard type={data.type} src={data.src} title={data.title} key={data.type + '-extra-card'}/>)
         return (
             <Fragment>
                 <Extra cardList={cardList}/>

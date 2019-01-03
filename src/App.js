@@ -8,7 +8,7 @@ import './App.scss';
 import MainContainer from "./student/container/Main/MainContainer";
 import AdminMainContainer from "./admin/container/Main/AdminMainContainer"
 
-const store = createStore(dmsApp);
+const store = createStore(dmsApp, window.devToolsExtension && window.devToolsExtension());
 
 class App extends Component {
   render() {
