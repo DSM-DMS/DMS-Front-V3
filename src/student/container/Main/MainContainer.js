@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from 'react-redux';
-import { setScroll } from '../../../actions';
+import { setSection } from '../../../actions';
 
 import MealContainer from "./Meal/MealContainer";
 import ApplyContainer from "./Apply/ApplyContainer";
@@ -14,28 +14,46 @@ let throttleBool;
 class MainContainer extends Component {
   idList = ["meal", "apply", "post", "extra", "footer"];
 
-  pageList = {
-    meal: 0,
-    apply: 1,
-    post: 2,
-    extra: 3
-  }
-
-  scrollScope = 0;
-
   scrolling = (e) => {
     const upDown = e.wheelDelta || -e.detail
+    let nowScroll = this.props.section.currentSection;
+    console.log('now : ' + nowScroll);
     if(upDown < 0) {
-      if(this.scrollScope !== 4){
-        console.log("down")
-        this.props.setScroll(this.idList[++this.scrollScope])
-        console.log("down2")
+      switch(nowScroll){
+        case 'meal':
+          this.props.setSection('apply');
+          break;
+        case 'apply':
+          console.log("apply");
+          this.props.setSection('post');
+          break;
+        case 'post':
+          console.log("fuck !");
+          this.props.setSection('extra');
+          break;
+        case 'extra':
+          console.log('extra');
+          this.props.setSection('footer');
+          break;
+        default:
+          break;
       }
     } else {
-      if(this.scrollScope !== 0){
-        console.log("up")
-        this.props.setScroll(this.idList[--this.scrollScope])
-        console.log("up2")
+      switch(nowScroll){
+        case 'apply':
+          this.props.setSection('meal');
+          break;
+        case 'post':
+          this.props.setSection('apply');
+          break;
+        case 'extra':
+          this.props.setSection('post');
+          break;
+        case 'footer':
+          this.props.setSection('extra');
+          break;
+        default:
+          break;
       }
     }
   }
@@ -52,7 +70,9 @@ class MainContainer extends Component {
     }
   }
 
+
   componentDidMount() {
+    console.log('123');
     const { location } = this.props;
 
     document.addEventListener("DOMMouseScroll", (e) => {
@@ -64,18 +84,19 @@ class MainContainer extends Component {
     
     if (location.pathname !== "/") {
       const place = location.pathname.replace("/", "");
-      // console.log(location.pathname.replace("/", ""));
+      console.log(location.pathname.replace("/", ""));
       this.props.setScroll(place);
-      
-      this.scrollScope = this.pageList[place];
     }
-    console.log(this.scrollScope)
+  }
+  
+  componentWillUnmount() {
+    document.removeEventListener()
   }
 
   render() {
-    const { scroll } = this.props;
+    const { section } = this.props;
     return (
-      <div style={{ width: window.screen.width}} className={'scroll--' + scroll.get('scroll')} id="main">
+      <div style={{ width: window.screen.width}} className={`scroll--${section.currentSection}`} id="main">
         <MealContainer />
         <ApplyContainer />
         <PostContainer />
@@ -86,15 +107,15 @@ class MainContainer extends Component {
   }
 }
 
-let mapStateToProps = (state) => {
+const mapStateToProps = (state) => {
   return {
-    scroll: state.scroll
+    section: state.section
   }
 }
 
-let mapDispatchToProps = (dispatch) => {
+const mapDispatchToProps = (dispatch) => {
   return {
-    setScroll: (value) => dispatch(setScroll(value))
+    setSection: (value) => dispatch(setSection(value))
   }
 }
 

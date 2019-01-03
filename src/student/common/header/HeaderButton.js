@@ -3,13 +3,13 @@ import React from 'react';
 import { withRouter } from "react-router-dom";
 
 import { connect } from 'react-redux';
-import { setScroll } from '../../../actions';
+import { setSection } from '../../../actions';
 
-const HeaderButton = ({title, scroll, location, history, setScroll}) => {
+const HeaderButton = ({title, scroll, location, history, setSection}) => {
     return (
         <span onClick={() => {
             if(location.pathname === '/' || location.pathname === '/apply' || location.pathname === '/post' || location.pathname === '/extra') {
-                setScroll(scroll)
+                setSection(scroll)
             } else {
                 console.log(location.pathname);
                 history.push('/'+scroll);
@@ -20,9 +20,9 @@ const HeaderButton = ({title, scroll, location, history, setScroll}) => {
     );
 };
 
-let mapDispatchToProps = (dispatch) => {
+const mapDispatchToProps = (dispatch) => {
     return {
-        setScroll: (value) => dispatch(setScroll(value))
+        setSection: (value) => dispatch(setSection(value))
     }
 }
 

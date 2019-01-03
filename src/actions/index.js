@@ -1,9 +1,10 @@
-export const SET_SCROLL = 'SET_SCROLL';
+export const SET_SECTION = 'SET_SECTION';
 
-export function setScroll(value) {
+export function setSection(value) {
+    console.log(value);
     return {
-        type: SET_SCROLL,
-        scroll: value
+        type: SET_SECTION,
+        currentSection: value
     }
 }
 
