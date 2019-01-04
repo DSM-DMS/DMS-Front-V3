@@ -1,11 +1,11 @@
 import React from 'react';
 import './Meal.scss';
 
-import HeaderContainer from '../../common/header/HeaderContainer';
+import HeaderContainer from '../../../common/header/HeaderContainer';
 import MealButton from './MealButton';
 import MealCard from './MealCard';
 
-import mealMan from '../../../assets/illust/meal-man.png'
+import mealMan from '../../../../assets/illust/meal-man.png'
 
 const Meal = ({selectedDate, prevDate, nextDate}) => {
     return (

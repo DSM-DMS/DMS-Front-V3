@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from 'react';
 
-import Post from '../../../component/Post/Post';
-import PostCard from '../../../component/Post/PostCard';
+import Post from '../../../component/Main/Post/Post';
+import PostCard from '../../../component/Main/Post/PostCard';
 
 import ImgNotice from '../../../../assets/img/img_notice.png'
 import ImgRule from '../../../../assets/img/img_rule.png'

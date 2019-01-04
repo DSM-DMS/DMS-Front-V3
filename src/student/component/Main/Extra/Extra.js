@@ -2,10 +2,10 @@ import React from 'react';
 
 import './Extra.scss'
 
-import subBackground from '../../../assets/illust/sub-background.png';
-import phonePerson from '../../../assets/illust/phone-person.png';
-import structure from '../../../assets/illust/structure.png';
-import buildingPerson from '../../../assets/illust/building-person.png';
+import subBackground from '../../../../assets/illust/sub-background.png';
+import phonePerson from '../../../../assets/illust/phone-person.png';
+import structure from '../../../../assets/illust/structure.png';
+import buildingPerson from '../../../../assets/illust/building-person.png';
 
 const Extra = ({cardList}) => {
     return (

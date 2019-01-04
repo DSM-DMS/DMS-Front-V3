@@ -41,7 +41,7 @@
                     width: 14.75rem;
                 }
                 &--icon {
-                    background-image: url("../../../assets/icon/ic_pencil_act.png");
+                    background-image: url("../../../../assets/icon/ic_pencil_act.png");
                 }
             }
             & .goingout{
@@ -51,7 +51,7 @@
                     opacity: 1;
                 }
                 &--icon {
-                    background-image: url("../../../assets/icon/ic_bike_act.png");
+                    background-image: url("../../../../assets/icon/ic_bike_act.png");
                 }
             }
             & .stay{
@@ -61,7 +61,7 @@
                     opacity: 1;
                 }
                 &--icon {
-                    background-image: url("../../../assets/icon/ic_bed_act.png");
+                    background-image: url("../../../../assets/icon/ic_bed_act.png");
                 }
             }
             
@@ -72,7 +72,7 @@
                     width: 9.875rem;
                 }
                 &--icon {
-                    background-image: url("../../../assets/icon/ic_music_act.png")
+                    background-image: url("../../../../assets/icon/ic_music_act.png")
                 }
             }
         }
@@ -150,7 +150,7 @@
         opacity: 0;
     }
     &--icon {
-        background-image: url("../../../assets/icon/ic_pencil.png");
+        background-image: url("../../../../assets/icon/ic_pencil.png");
     }
 }
 
@@ -163,7 +163,7 @@
     }
 
     &--icon {
-        background-image: url("../../../assets/icon/ic_bike.png");
+        background-image: url("../../../../assets/icon/ic_bike.png");
     }
 }
 
@@ -175,7 +175,7 @@
         width: 0;
     }
     &--icon {
-        background-image: url("../../../assets/icon/ic_bed.png");
+        background-image: url("../../../../assets/icon/ic_bed.png");
     }
 }
 
@@ -188,6 +188,6 @@
     }
 
     &--icon {
-        background-image: url("../../../assets/icon/ic_music.png")
+        background-image: url("../../../../assets/icon/ic_music.png")
     }
 }

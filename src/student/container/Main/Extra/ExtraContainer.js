@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from 'react';
 
-import Extra from '../../../component/Extra/Extra';
-import ExtraCard from '../../../component/Extra/ExtraCard';
+import Extra from '../../../component/Main/Extra/Extra';
+import ExtraCard from '../../../component/Main/Extra/ExtraCard';
 
 import imgSurvey from '../../../../assets/img/img_survey.png';
 import imgBug from '../../../../assets/img/img_bug.png';

@@ -31,10 +31,6 @@ class App extends Component {
             <Switch>
               <Route path="/" component={MainContainer} exact/>
               <Route path="/apply" component={MainContainer} exact/>
-<<<<<<< HEAD
-=======
-              <Route path="/apply/extension" component={ApplyMainContainer} />
->>>>>>> b8022dec6ca8ecf1ca815ed6cd8d16cd000119ad
               <Route path="/post" component={MainContainer} exact/>
               <Route path="/extra" component={MainContainer} exact/>
               <Route path="/admin" component={AdminMainContainer} exact/>

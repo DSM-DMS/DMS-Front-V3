@@ -41,6 +41,15 @@
         opacity: 0.5;
         transition: opacity 0.5s;
         z-index:0;
+
+        &--notice {
+            border-top-left-radius: 13px;
+            border-bottom-left-radius: 13px;
+        }
+        &--question {
+            border-top-left-radius: 13px;
+            border-bottom-left-radius: 13px;
+        }
     }
 
     &--title {

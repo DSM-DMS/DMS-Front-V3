@@ -1,8 +1,8 @@
 import React, { Component, Fragment } from 'react';
 
-import Apply from "../../../component/Apply/Apply";
-import ApplyCard from '../../../component/Apply/ApplyCard';
-import ApplyBackImg from '../../../component/Apply/ApplyBackImg';
+import Apply from "../../../component/Main/Apply/Apply";
+import ApplyCard from '../../../component/Main/Apply/ApplyCard';
+import ApplyBackImg from '../../../component/Main/Apply/ApplyBackImg';
 
 import ExtensionIllust from '../../../../assets/illust/extension-illust.png';
 import goingoutIllust from '../../../../assets/illust/goingout-illust.png';

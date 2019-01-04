@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from "react";
 
-import Meal from "../../../component/Meal/Meal";
+import Meal from "../../../component/Main/Meal/Meal";
 
 class MealContainer extends Component {
   dateList = [

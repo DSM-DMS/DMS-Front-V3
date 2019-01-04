@@ -1,7 +1,7 @@
 import React from 'react';
 
-import postLeftBackground from '../../../assets/illust/left_illustration.png'
-import postRightBackground from '../../../assets/illust/right_illustration.png'
+import postLeftBackground from '../../../../assets/illust/left_illustration.png'
+import postRightBackground from '../../../../assets/illust/right_illustration.png'
 
 import './Post.scss';
 
