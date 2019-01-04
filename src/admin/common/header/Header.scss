@@ -1,0 +1,78 @@
+.admin_header{
+    &--wrapper {
+        display: flex;
+        width: 100%;
+        padding-left: 10.4375rem;
+        padding-right: 10.4375rem;
+        height: 9.375rem;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    &--logo {
+        text-decoration: none;
+        display: flex;
+        align-items: center;
+
+        &--icon {
+            width: 3.4375rem;
+            height: 3.4375rem;
+        }
+        
+        &--title {
+            color: white;
+            margin-left: 3.125rem;
+
+            font: {
+                size:1.875rem;
+                family: 'NanumSquareEB';
+            }
+        }
+    }
+
+    &--button {
+        width: 9.375rem;
+        height: 3.125rem;
+        border-radius: 1.5625rem;
+        border: none;
+        cursor: pointer;
+        color: white;
+        box-shadow: 0px 5px 5px 0 rgba(0, 0, 0, 0.2);
+        background-color: #19b6b6;
+        font: {
+            size: 1.3125rem;
+            family: 'NanumSquareB';
+        }
+
+        &:hover {
+            box-shadow: none;
+            transition: 0.7s;
+        }
+
+        &--list {
+            display: flex;
+            height: 100%;
+            align-items: center;
+        }
+
+        &--link{
+            margin-left: 3.81875rem;
+            color: white;
+            cursor: pointer;
+            font: {
+                size: 1.3125rem;
+                family: 'NanumSquareB';
+            }
+
+            &:before {
+                position: relative;
+                top: 0.4rem;
+                right: 0.7125rem;
+                content: url('../../../assets/icon/account_add.png');
+                width: 28px;
+                height: 28px;
+                display: inline-block;
+            }
+        }
+    }
+}
