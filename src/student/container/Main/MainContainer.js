@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from 'react-redux';
 import { setSection } from '../../../actions';
+// import throttle from 'lodash.throttle';
 
 import MealContainer from "./Meal/MealContainer";
 import ApplyContainer from "./Apply/ApplyContainer";
@@ -13,7 +14,6 @@ import './MainContainer.scss';
 let throttleBool;
 class MainContainer extends Component {
   idList = ["meal", "apply", "post", "extra", "footer"];
-
   scrolling = (e) => {
     const upDown = e.wheelDelta || -e.detail
     let nowScroll = this.props.section.currentSection;
@@ -24,15 +24,12 @@ class MainContainer extends Component {
           this.props.setSection('apply');
           break;
         case 'apply':
-          console.log("apply");
           this.props.setSection('post');
           break;
         case 'post':
-          console.log("fuck !");
           this.props.setSection('extra');
           break;
         case 'extra':
-          console.log('extra');
           this.props.setSection('footer');
           break;
         default:
@@ -75,13 +72,18 @@ class MainContainer extends Component {
     console.log('123');
     const { location } = this.props;
 
-    document.addEventListener("DOMMouseScroll", (e) => {
+    document.addEventListener("DOMMouseScroll", 
+      // throttle((e) => this.scrolling(e), 700)
+    (e) => {
       this.throttle(e, this.scrolling, 700)()
     })
-    document.addEventListener("mousewheel", (e) => {
+    document.addEventListener("mousewheel", 
+      // throttle((e) => this.scrolling(e), 700)
+    (e) => {
       this.throttle(e, this.scrolling, 700)()
+      
     })
-    
+
     if (location.pathname !== "/") {
       const place = location.pathname.replace("/", "");
       console.log(location.pathname.replace("/", ""));
@@ -89,9 +91,6 @@ class MainContainer extends Component {
     }
   }
   
-  componentWillUnmount() {
-    document.removeEventListener()
-  }
 
   render() {
     const { section } = this.props;
