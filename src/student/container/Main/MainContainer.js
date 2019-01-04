@@ -67,6 +67,9 @@ class MainContainer extends Component {
     }
   }
 
+  testing = () => {
+    console.log(this.props.section.currentSection);
+  }
 
   componentDidMount() {
     console.log('123');
@@ -96,10 +99,10 @@ class MainContainer extends Component {
     const { section } = this.props;
     return (
       <div style={{ width: window.screen.width}} className={`scroll--${section.currentSection}`} id="main">
-        <MealContainer />
-        <ApplyContainer />
-        <PostContainer />
-        <ExtraContainer />
+        <MealContainer /><button onClick={this.testing}>button</button>
+        <ApplyContainer /><button onClick={this.testing}>button</button>
+        <PostContainer /><button onClick={this.testing}>button</button>
+        <ExtraContainer /><button onClick={this.testing}>button</button>
         <FooterContainer />
       </div>
     );
