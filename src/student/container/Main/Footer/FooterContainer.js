@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from 'react';
 
-import Footer from '../../../component/Footer/Footer';
-import FooterCard from '../../../component/Footer/FooterCard';
+import Footer from '../../../component/Main/Footer/Footer';
+import FooterCard from '../../../component/Main/Footer/FooterCard';
 
 class FooterContainer extends Component {
 
