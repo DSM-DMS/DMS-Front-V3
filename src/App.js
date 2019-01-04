@@ -34,6 +34,10 @@ class App extends Component {
               <Route path="/post" component={MainContainer} exact/>
               <Route path="/extra" component={MainContainer} exact/>
               <Route path="/admin" component={AdminMainContainer} exact/>
+              <Route path="/apply/extension" component={ApplyMainContainer} exact/>
+              <Route path="/apply/goingout" component={ApplyMainContainer} exact/>
+              <Route path="/apply/stay" component={ApplyMainContainer} exact/>
+              <Route path="/apply/music" component={ApplyMainContainer} exact/>
               {/* <Route path="/admin" component={} exact/> */}
             </Switch>
           </BrowserRouter>
