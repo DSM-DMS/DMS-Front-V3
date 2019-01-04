@@ -18,6 +18,7 @@ class MainContainer extends Component {
     const upDown = e.wheelDelta || -e.detail
     let nowScroll = this.props.section.currentSection;
     console.log('now : ' + nowScroll);
+    console.log(this.props);
     if(upDown < 0) {
       switch(nowScroll){
         case 'meal':
@@ -55,7 +56,7 @@ class MainContainer extends Component {
     }
   }
 
-  throttle(e, func, wait) {
+  throttle = (e, func, wait) => {
     return () => {
       if(!throttleBool) {
         throttleBool = true;
@@ -68,19 +69,20 @@ class MainContainer extends Component {
   }
 
   testing = () => {
-    console.log(this.props.section.currentSection);
+    console.log(this.props.section.currentSection)
+    console.log(this.props);
   }
 
   componentDidMount() {
     console.log('123');
     const { location } = this.props;
-
-    document.addEventListener("DOMMouseScroll", 
+    const mainPage = document.getElementById("main");
+    mainPage.addEventListener("DOMMouseScroll", 
       // throttle((e) => this.scrolling(e), 700)
     (e) => {
       this.throttle(e, this.scrolling, 700)()
     })
-    document.addEventListener("mousewheel", 
+    mainPage.addEventListener("mousewheel", 
       // throttle((e) => this.scrolling(e), 700)
     (e) => {
       this.throttle(e, this.scrolling, 700)()
@@ -98,11 +100,11 @@ class MainContainer extends Component {
   render() {
     const { section } = this.props;
     return (
-      <div style={{ width: window.screen.width}} className={`scroll--${section.currentSection}`} id="main">
-        <MealContainer /><button onClick={this.testing}>button</button>
-        <ApplyContainer /><button onClick={this.testing}>button</button>
-        <PostContainer /><button onClick={this.testing}>button</button>
-        <ExtraContainer /><button onClick={this.testing}>button</button>
+      <div style={{ width: window.screen.width}} className={`scroll--${section.currentSection}` } id="main">
+        <MealContainer />
+        <ApplyContainer />
+        <PostContainer />
+        <ExtraContainer />
         <FooterContainer />
       </div>
     );
