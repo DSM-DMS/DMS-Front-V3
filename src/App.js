@@ -8,7 +8,8 @@ import { routerMiddleware, ConnectedRouter } from 'connected-react-router';
 import { createBrowserHistory } from 'history';
 
 import MainContainer from "./student/container/Main/MainContainer";
-import AdminMainContainer from "./admin/container/Main/AdminMainContainer"
+import AdminMainContainer from "./admin/container/Main/AdminMainContainer";
+import ApplyMainContainer from "./student/container/Apply/ApplyMainContainer";
 
 const history = createBrowserHistory();
 const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
@@ -30,7 +31,7 @@ class App extends Component {
             <Switch>
               <Route path="/" component={MainContainer} exact/>
               <Route path="/apply" component={MainContainer} exact/>
-              <Route path="/apply/extension" component={AdminMainContainer} />
+              <Route path="/apply/extension" component={ApplyMainContainer} />
               <Route path="/post" component={MainContainer} exact/>
               <Route path="/extra" component={MainContainer} exact/>
               <Route path="/admin" component={AdminMainContainer} exact/>
