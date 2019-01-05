@@ -1,9 +1,161 @@
 .main {
+    &--inner--wrapper {
+        display: flex;
+        width: calc(100% - 20.875rem);
+        height: 100%;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+      }
+
     &--wrapper {
         display: flex;
         width: 100%;
         height: 43vh;
         justify-content: center;
         background-image: linear-gradient(to right, #0a9395, #099394 20%, #099293 31%, #099294 42%, #099394 51%, #099394 55%, #0c9a9b 64%, #0e9e9f 72%, #12a6a7 80%, #14abab);
+    }
+
+    &--download {
+
+        &--illust {
+            position: absolute;
+            left: calc(50% + 20.59375rem);
+            width: 4.6875rem;
+        }
+
+        &--wrapper {
+            position: relative;
+            display: flex;
+            width: 100%;
+            height: 23.5625rem;
+            justify-content: center;
+            align-items: center;
+            padding-bottom: 2.96875rem;
+        }
+
+        &--button {
+            &--wrapper { 
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                padding-left: 2.0625rem;
+                padding-right: 2.0625rem;
+                width: 9.28125rem;
+                height: calc(100% - 1.25rem);
+                border-left: 0.0625rem solid #10a3a4;
+                border-top-right-radius: 0.5rem;
+                border-bottom-right-radius: 0.5rem;
+                background-color: white;
+            }
+
+            &--icon {
+                width: 1.75rem;
+                height: 1.75rem;
+            }
+
+            &--text {
+                font : {
+                    size: 1.5rem;
+                    family: Roboto;
+                }
+                color: #10a3a4;
+            }
+        }
+
+        &--content--wrapper {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 39.9375rem;
+            height: 6.5625rem;
+            flex-direction: column;
+        }
+
+        &--description {
+            color: white;
+
+            font: {
+                size: 1.75rem;
+                family: 'NanumSquareR';
+            }
+        }
+
+        &--selectbox {
+            &--wrapper {
+                display: flex;
+                width: 100%;
+                height: 4.625rem;
+                align-items: flex-end;
+            }
+
+            &--content--wrapper {
+                width: 26.53125rem;
+                height: calc(100% - 1.25rem);
+                z-index: 3;
+            }
+
+            &--content {
+                display: flex;
+                justify-content: space-between;
+                padding-top: 1rem;
+                padding-bottom: 1rem;
+                padding-left: 1.1875rem;
+                padding-right: 1.1875rem;
+                width: calc(100% - 2.375rem);
+                height: calc(100% - 2rem);
+                border-top-left-radius: 0.5rem;
+                border-bottom-left-radius: 0.5rem;
+                background-color: white;
+
+                z-index: 3;
+                font: {
+                    family: 'NanumSquareB';
+                    size: 1.25rem;
+                }
+            }
+
+            &--list--wrapper {
+                animation: smooth 1s;
+                position: relative;
+                width: 26.0625rem;
+                height: 11.0625rem;
+                border: 0.0625rem solid #10a3a4;
+                background-color: #ffffff;
+                left: 0.25rem;
+                z-index: 3;
+            }
+
+            &--list--wrapper--off {
+                animation: smoothout .3s;
+                position: relative;
+                width: 26.0625rem;
+                height: 0;
+                border: 0.0625rem solid #10a3a4;
+                background-color: #ffffff;
+                left: 0.25rem;  
+                z-index: 3; 
+            }
+        }
+    }
+}
+
+@keyframes smooth {
+    0% {
+        height: 0rem;
+    }
+
+    100% {
+        height: 11.0625rem;
+    }
+}
+
+@keyframes smoothout {
+    0% {
+        height: 11.0625rem;
+    }
+
+    100% {
+        height: 0rem;
     }
 }
