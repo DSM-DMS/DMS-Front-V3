@@ -1,0 +1,53 @@
+.manage {
+    &--wrapper {
+        display: flex;
+        width: 100%;
+        height: 57vh;
+        background-color: #ebebeb;
+        justify-content: center;
+    }
+
+    &--inner--wrapper {
+        display: flex;
+        justify-content: space-between;
+        width: calc(100% - 20.875rem);
+        height: calc(57vh - 10.25rem);
+        flex-direction: column;
+        padding-top: 4rem;
+        padding-bottom: 6.25rem;
+    }
+
+    &--logo {
+        &--wrapper {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            font : {
+                size: 1.5rem;
+                family: 'Roboto';
+            }
+            padding-left: 2.25rem;
+            padding-right: 2.25rem;
+            width: 11.9rem;
+            height: 2.875rem;
+            border-radius: 2.5rem;
+            background-color: #ffffff;
+            color: #10a3a4;
+        }
+
+        &--icon {
+            width: 2.5rem;
+            height: 2.5rem;
+        }
+    }
+
+
+
+    &--card {
+        &--wrapper {
+            display: flex;
+            width: 100%;
+            justify-content: space-between;
+        }
+    }
+}
