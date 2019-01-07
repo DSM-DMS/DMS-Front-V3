@@ -30,9 +30,9 @@ class Login extends Component {
     render() {
         return (
             <div className="login--wrapper">
-                <input type="text" placeholder="아이디" className="login--input" onChange={this.idHandler} value={this.state.id}/>
-                <input type="password" placeholder="비밀번호" className="login--input" onChange={this.pwHandler} value={this.state.pw}/>
-                <button className="login--submit">로그인</button>
+                <input type="text" placeholder="아이디" className="modal--input" onChange={this.idHandler} value={this.state.id}/>
+                <input type="password" placeholder="비밀번호" className="modal--input" onChange={this.pwHandler} value={this.state.pw}/>
+                <button className="modal--submit">로그인</button>
                 <div className="login--bottom--wrapper">
                     <span className="login--checkbox--wrapper">
                         <input type="checkbox" className="login--checkbox" id="login--checkbox" onChange={this.checkboxHandler} value={this.state.checkbox}/>
