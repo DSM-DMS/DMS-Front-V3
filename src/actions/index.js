@@ -1,13 +1,21 @@
 export const SET_SECTION = 'SET_SECTION';
 
 export function setSection(value) {
-    console.log(value);
     return {
         type: SET_SECTION,
         currentSection: value
     }
 }
 
+
+export const SET_MODAL = 'SET_MODAL';
+
+export function setModal(value) {
+    return {
+        type: SET_MODAL,
+        modalState: value
+    }
+}
 
 // 아래는 예제
 export const INCREMENT = 'INCREMENT'; // 이와같이 액션 명 정의

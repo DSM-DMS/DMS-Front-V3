@@ -67,7 +67,7 @@ class ApplyContainer extends Component {
     hoverImg = () => {
 
         const { hovered,backgroundImg } = this.state;
-        return backgroundImg.map(data =>             <ApplyBackImg kind={data.kind} src={data.src} hovered={hovered} key={data.kind + '--background'}/>)
+        return backgroundImg.map(data =>             <ApplyBackImg kind={data.kind} src={data.src} hovered={hovered} key={`${data.kind}--background`}/>)
     }
 
     render() {

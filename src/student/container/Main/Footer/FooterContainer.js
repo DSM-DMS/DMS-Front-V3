@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from 'react';
 
-import Footer from '../../../component/Footer/Footer';
-import FooterCard from '../../../component/Footer/FooterCard';
+import Footer from '../../../component/Main/Footer/Footer';
+import FooterCard from '../../../component/Main/Footer/FooterCard';
 
 class FooterContainer extends Component {
 
@@ -51,7 +51,7 @@ class FooterContainer extends Component {
 
     render() {
         const { peopleList } = this.state;
-        const cardList = peopleList.map(data => <FooterCard team={data.team} members={data.members} key={data.team + '-' + data.members + '-footer'}/>)
+        const cardList = peopleList.map(data => <FooterCard team={data.team} members={data.members} key={`${data.team}-${data.members}-footer`}/>)
 
         return (
             <Fragment>

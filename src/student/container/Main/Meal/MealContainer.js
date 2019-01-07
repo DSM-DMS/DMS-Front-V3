@@ -40,14 +40,10 @@ class MealContainer extends Component {
     return (
       <Fragment>
         <Meal
-          selectedDate={
-            selectedDate.getFullYear() +
-            "년 " +
-            (selectedDate.getMonth() + 1) +
-            "월 " +
-            selectedDate.getDate() +
-            "일 " +
-            this.dateList[selectedDate.getDay()]
+          selectedDate={`${selectedDate.getFullYear()}년
+            ${selectedDate.getMonth() + 1}월
+            ${selectedDate.getDate()}일
+            ${this.dateList[selectedDate.getDay()]}`
           }
           prevDate={this.prevDate}
           nextDate={this.nextDate}
