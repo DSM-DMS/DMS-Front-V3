@@ -1,12 +1,12 @@
 import React, { Component,Fragment } from 'react';
 
-import LoginModal from '../../common/Login/LoginContainer';
+import Modal from '../../common/Modal/ModalContainer';
 
 class DefaultLayout extends Component {
     render() {
         return (
             <Fragment>
-                <LoginModal />
+                <Modal />
             </Fragment>
         );
     }

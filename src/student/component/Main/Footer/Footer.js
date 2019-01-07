@@ -3,8 +3,8 @@ import React from 'react';
 import './Footer.scss';
 
 import logo from '../../../../assets/logo/logo.png';
-import icGithub from '../../../../assets/icon/ic-github.png';
-import icFacebook from '../../../../assets/icon/ic-facebook.png';
+import icGithub from '../../../../assets/icon/ic_github.png';
+import icFacebook from '../../../../assets/icon/ic_facebook.png';
 
 const Footer = ({cardList}) => {
     return (
