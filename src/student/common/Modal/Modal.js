@@ -7,7 +7,7 @@ import './Modal.scss';
 const Login = ({title, component, subTitle, link, setModal}) => {
     return (
         <div className="modal--wrapper">
-            <img src={exitImg} alt="exit" className="modal--exit--icon" />
+            <img src={exitImg} alt="exit" className="modal--exit--icon" onClick={() => setModal("")}/>
             <div className="modal--logo--wrapper">
                 <img src={logoImg} alt="" className="modal--logo"/>
                 <span className="modal--logo--title">{title}</span>

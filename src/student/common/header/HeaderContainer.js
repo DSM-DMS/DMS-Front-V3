@@ -1,4 +1,6 @@
 import React, { Component, Fragment } from 'react';
+import { connect } from 'react-redux';
+import { setModal } from '../../../actions';
 
 import HeaderButton from './HeaderButton';
 
@@ -14,6 +16,11 @@ class HeaderContainer extends Component {
         ]
     }
 
+    changeModal = (value) => {
+        const { setModal } = this.props;
+        setModal(value);
+    }
+
     render() {
         const buttonList = this.state.buttonList.map(data => (
             <HeaderButton title={data.title} scroll={data.page} key={data.page}/>
@@ -21,11 +28,16 @@ class HeaderContainer extends Component {
 
         return (
             <Fragment>
-                <Header buttonList={buttonList}/>
+                <Header buttonList={buttonList} setModal={this.changeModal}/>
             </Fragment>
         );
     }
 }
 
+const mapDispatchToProps = (dispatch) => {
+    return {
+        setModal: (value) => dispatch(setModal(value))
+    }
+}
 
-export default HeaderContainer;
+export default connect(null, mapDispatchToProps)(HeaderContainer);

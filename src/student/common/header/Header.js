@@ -5,7 +5,7 @@ import logo from '../../../assets/logo/logo-white.png';
 
 import './Header.scss';
 
-const Header = ({buttonList}) => {
+const Header = ({buttonList, setModal}) => {
     return (
         <div className="header--wrapper">
             <Link to="/" className="header--logo">
@@ -14,7 +14,7 @@ const Header = ({buttonList}) => {
             </Link>
             <div className="header--button--list">
                 {buttonList}
-                <button className="header--button">
+                <button className="header--button" onClick={() => setModal("로그인")}>
                     로그인  
                 </button>
             </div>
