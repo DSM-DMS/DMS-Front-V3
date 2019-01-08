@@ -1,6 +1,7 @@
 import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
 import { setModal } from '../../../actions';
+import { withRouter } from 'react-router-dom';
 
 import HeaderButton from './HeaderButton';
 
@@ -21,6 +22,25 @@ class HeaderContainer extends Component {
         setModal(value);
     }
 
+    variableButton = () => {
+        const { location } = this.props;
+        console.log(location.pathname)
+        if(location.pathname === '/') {
+            return (
+                <button className="header--button" onClick={() => this.changeModal("로그인")}>
+                로그인  
+                </button>
+            )
+        }
+        else {
+            return (
+                <button className="header--button">
+                    급식메뉴
+                </button>
+            )
+        }
+    }
+
     render() {
         const buttonList = this.state.buttonList.map(data => (
             <HeaderButton title={data.title} scroll={data.page} key={data.page}/>
@@ -28,7 +48,7 @@ class HeaderContainer extends Component {
 
         return (
             <Fragment>
-                <Header buttonList={buttonList} setModal={this.changeModal}/>
+                <Header buttonList={buttonList} setModal={this.changeModal} variableButton={this.variableButton}/>
             </Fragment>
         );
     }
@@ -40,4 +60,4 @@ const mapDispatchToProps = (dispatch) => {
     }
 }
 
-export default connect(null, mapDispatchToProps)(HeaderContainer);
+export default connect(null, mapDispatchToProps)(withRouter(HeaderContainer));
