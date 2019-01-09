@@ -14,7 +14,7 @@ import './MainContainer.scss';
 
 let throttleBool;
 class MainContainer extends Component {
-  idList = ["meal", "apply", "post", "extra", "footer"];
+
   scrolling = (e) => {
     const { history } = this.props;
     const upDown = e.wheelDelta || -e.detail
@@ -66,10 +66,12 @@ class MainContainer extends Component {
   throttle = (e, func, wait) => {
     return () => {
       if(!throttleBool) {
+        console.log(23)
         throttleBool = true;
         func(e)
         setTimeout(()=>{
           throttleBool = false;
+          console.log(13)
         }, wait)
       }
     }
@@ -81,12 +83,11 @@ class MainContainer extends Component {
     const mainPage = document.getElementById("main");
     mainPage.addEventListener("DOMMouseScroll", 
     (e) => {
-      this.throttle(e, this.scrolling, 700)()
+      this.throttle(e, this.scrolling, 1300)()
     })
     mainPage.addEventListener("mousewheel", 
     (e) => {
-      this.throttle(e, this.scrolling, 700)()
-      
+      this.throttle(e, this.scrolling, 1300)()
     })
 
     if (location.pathname !== "/") {
