@@ -23,7 +23,7 @@ class HeaderContainer extends Component {
     }
 
     variableButton = () => {
-        const { location } = this.props;
+        const { location, history } = this.props;
         console.log(location.pathname)
         if(location.pathname === '/') {
             return (
@@ -34,8 +34,10 @@ class HeaderContainer extends Component {
         }
         else {
             return (
-                <button className="header--button">
-                    급식메뉴
+                <button className="header--meal--button" onClick={()=>{
+                    history.push('/')
+                }}>
+                    급식 메뉴
                 </button>
             )
         }
