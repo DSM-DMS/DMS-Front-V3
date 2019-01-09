@@ -10,6 +10,11 @@ import { createBrowserHistory } from 'history';
 import MainContainer from "./student/container/Main/MainContainer";
 import AdminMainContainer from "./admin/container/Main/AdminMainContainer";
 import ApplyMainContainer from "./student/container/Apply/ApplyMainContainer";
+import DomitoryRuleContainer from "./admin/container/DomitoryRule/DomitoryRuleContainer"
+import CommonDesign from "./admin/common/commonDesign/CommonDesign"
+import ShowDomitoryRuleContainer from "./admin/container/DomitoryRule/ShowDomitoryRuleContainer"
+import NoticeContainer from './admin/container/Notice/NoticeContainer';
+import NoticeWriteContainer from './admin/container/Notice/NoticeWriteContainer';
 
 const history = createBrowserHistory();
 const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
@@ -34,6 +39,15 @@ class App extends Component {
               <Route path="/post" component={MainContainer} exact/>
               <Route path="/extra" component={MainContainer} exact/>
               <Route path="/admin" component={AdminMainContainer} exact/>
+              <Route render={()=>
+                <CommonDesign>
+                  <Switch>
+                    <Route path="/admin/domitoryrule" component={DomitoryRuleContainer} exact/>
+                    <Route path="/admin/domitoryrule/:postId" component={ShowDomitoryRuleContainer}/>
+                    <Route path="/admin/notice" component={NoticeContainer} exact/>
+                    <Route path="/admin/notice/write" component={NoticeWriteContainer} exact/>
+                  </Switch>
+                </CommonDesign>}/>
               {/* <Route path="/admin" component={} exact/> */}
             </Switch>
           </BrowserRouter>
