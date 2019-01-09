@@ -11,6 +11,7 @@ import MainContainer from "./student/container/Main/MainContainer";
 import AdminMainContainer from "./admin/container/Main/AdminMainContainer";
 import ApplyMainContainer from "./student/container/Apply/ApplyMainContainer";
 import StudentDefaultLayout from './student/component/DefaultLayout/DefaultLayout';
+import MyPageContainer from "./student/container/MyPage/MyPageContainer";
 
 const history = createBrowserHistory();
 const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
@@ -31,6 +32,7 @@ class App extends Component {
           <BrowserRouter>
             <Switch>
               <Route path="/admin" component={AdminMainContainer} exact/>
+              <Route path="/mypage" component={MyPageContainer} exact/>
               <Route render={() => 
                 <Fragment>
                   <StudentDefaultLayout/>

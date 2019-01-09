@@ -29,11 +29,7 @@ class ModalContainer extends Component {
                     <Modal title="회원가입" component={<Register />} subTitle="이미 DMS 회원이시라면?"  link="로그인" setModal={this.changeModal}/>
                 </Fragment>
             );
-        return (
-            <Fragment>
-                <Modal title="로그인" component={<Login />} subTitle="아직 DMS 회원이 아니시라면?"  link="회원가입" setModal={this.changeModal}/>
-            </Fragment>
-        );
+        else return null
     }
 }
 
