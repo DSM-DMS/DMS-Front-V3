@@ -7,7 +7,6 @@ const initialState = {
 function scroll(state = initialState, action) {
     switch(action.type) {
         case SET_SECTION:
-            console.log('ac : ' + action.currentSection);
             return {...state, currentSection: action.currentSection}
         default:
             return state;

@@ -51,7 +51,7 @@ class FooterContainer extends Component {
 
     render() {
         const { peopleList } = this.state;
-        const cardList = peopleList.map(data => <FooterCard team={data.team} members={data.members} key={data.team + '-' + data.members + '-footer'}/>)
+        const cardList = peopleList.map(data => <FooterCard team={data.team} members={data.members} key={`${data.team}-${data.members}-footer`}/>)
 
         return (
             <Fragment>

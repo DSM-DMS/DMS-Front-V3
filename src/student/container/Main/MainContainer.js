@@ -9,25 +9,28 @@ import PostContainer from "./Post/PostContainer";
 import ExtraContainer from './Extra/ExtraContainer';
 import FooterContainer from './Footer/FooterContainer';
 
+
 import './MainContainer.scss';
 
 let throttleBool;
 class MainContainer extends Component {
-  idList = ["meal", "apply", "post", "extra", "footer"];
+
   scrolling = (e) => {
+    const { history } = this.props;
     const upDown = e.wheelDelta || -e.detail
     let nowScroll = this.props.section.currentSection;
-    console.log('now : ' + nowScroll);
-    console.log(this.props);
     if(upDown < 0) {
       switch(nowScroll){
         case 'meal':
+          history.push('apply');
           this.props.setSection('apply');
           break;
         case 'apply':
+          history.push('post');
           this.props.setSection('post');
           break;
         case 'post':
+          history.push('extra');
           this.props.setSection('extra');
           break;
         case 'extra':
@@ -39,15 +42,19 @@ class MainContainer extends Component {
     } else {
       switch(nowScroll){
         case 'apply':
+          history.push('/');
           this.props.setSection('meal');
           break;
-        case 'post':
+        case 'post':          
+          history.push('apply');
           this.props.setSection('apply');
           break;
         case 'extra':
+          history.push('post');
           this.props.setSection('post');
           break;
         case 'footer':
+          history.push('extra');
           this.props.setSection('extra');
           break;
         default:
@@ -59,40 +66,33 @@ class MainContainer extends Component {
   throttle = (e, func, wait) => {
     return () => {
       if(!throttleBool) {
+        console.log(23)
         throttleBool = true;
         func(e)
         setTimeout(()=>{
           throttleBool = false;
+          console.log(13)
         }, wait)
       }
     }
   }
 
-  testing = () => {
-    console.log(this.props.section.currentSection)
-    console.log(this.props);
-  }
 
   componentDidMount() {
-    console.log('123');
     const { location } = this.props;
     const mainPage = document.getElementById("main");
     mainPage.addEventListener("DOMMouseScroll", 
-      // throttle((e) => this.scrolling(e), 700)
     (e) => {
-      this.throttle(e, this.scrolling, 700)()
+      this.throttle(e, this.scrolling, 1300)()
     })
     mainPage.addEventListener("mousewheel", 
-      // throttle((e) => this.scrolling(e), 700)
     (e) => {
-      this.throttle(e, this.scrolling, 700)()
-      
+      this.throttle(e, this.scrolling, 1300)()
     })
 
     if (location.pathname !== "/") {
       const place = location.pathname.replace("/", "");
-      console.log(location.pathname.replace("/", ""));
-      this.props.setScroll(place);
+      this.props.setSection(place);
     }
   }
   

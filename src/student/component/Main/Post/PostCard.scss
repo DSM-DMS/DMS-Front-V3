@@ -27,6 +27,15 @@
     &--img {
         width: 100%;
         height: 100%;
+        &--notice {
+            border-top-left-radius: 8px;
+            border-bottom-left-radius: 8px;
+        }
+        
+        &--question {
+            border-top-right-radius: 8px;
+            border-bottom-right-radius: 8px;
+        }
     }
 
     
@@ -42,14 +51,6 @@
         transition: opacity 0.5s;
         z-index:0;
 
-        &--notice {
-            border-top-left-radius: 13px;
-            border-bottom-left-radius: 13px;
-        }
-        &--question {
-            border-top-left-radius: 13px;
-            border-bottom-left-radius: 13px;
-        }
     }
 
     &--title {

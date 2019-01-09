@@ -5,7 +5,7 @@ import logo from '../../../assets/logo/logo-white.png';
 
 import './Header.scss';
 
-const Header = ({buttonList}) => {
+const Header = ({buttonList, variableButton}) => {
     return (
         <div className="header--wrapper">
             <Link to="/" className="header--logo">
@@ -14,9 +14,7 @@ const Header = ({buttonList}) => {
             </Link>
             <div className="header--button--list">
                 {buttonList}
-                <button className="header--button">
-                    로그인  
-                </button>
+                {variableButton()}
             </div>
         </div>
     );
