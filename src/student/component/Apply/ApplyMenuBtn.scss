@@ -1,0 +1,22 @@
+.apply--detail--btn {
+    display: flex;
+    height: 4.25rem;
+    align-items: center;
+    margin-top: 1.75rem;
+    padding-left: 1rem;
+
+    &:hover {
+        opacity: 0.36;
+    }
+
+    &--icon {
+        width: 2.25rem;
+        height: 2.25rem;
+    }
+
+    &--title {
+        margin-left: 2.25rem;
+        font-size: 1.5rem;
+        color: #fff;
+    }
+}

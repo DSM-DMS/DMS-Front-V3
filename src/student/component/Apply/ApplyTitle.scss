@@ -1,0 +1,17 @@
+.apply--main--title--wrapper {
+    display: flex;
+    align-items: center;
+    width: 23.75rem;
+    margin: 3.125rem auto;
+}
+
+.apply--main--title {
+    margin-left: 2.25rem;
+    font-family: NanumSquareEB;
+    font-size: 1.875rem;
+    color: #fff;
+    &--img {
+        width: 3.375rem;
+        height: 3.375rem;
+    }
+}

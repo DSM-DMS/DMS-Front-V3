@@ -1,10 +1,12 @@
 import React, { Component } from 'react'
 
-import MenuContainer from './Menu/MenuContainer';
+import ApplyMenuContainer from './Menu/ApplyMenuContainer';
 import ExtensionApplyContainer from './Content/ExtensionApplyContainer'
 import GoingoutApplyContainer from './Content/GoingoutApplyContainer'
 import MusicApplyContainer from './Content/MusicApplyContainer'
 import StayApplyContainer from './Content/StayApplyContainer'
+
+import './ApplyMainContainer.scss'
 
 class ApplyMainContainer extends Component {
     constructor(props) {
@@ -27,7 +29,7 @@ class ApplyMainContainer extends Component {
 
         return (
             <div style={{ width: window.screen.width}} className="apply--main--wrapper">
-                <MenuContainer/>
+                <ApplyMenuContainer/>
                 {content}
             </div>
         )

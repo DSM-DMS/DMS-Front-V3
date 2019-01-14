@@ -1,7 +1,7 @@
 import React from 'react';
-import './ApplyBtn.scss';
+import './ApplyMenuBtn.scss';
 
-const ApplyBtn = ({ iconSrc, title }) => {
+const ApplyMenuBtn = ({ iconSrc, title }) => {
     return (
         <div className="apply--detail--btn">
             <img className="apply--detail--btn--icon" src={iconSrc} alt="icon"/>
@@ -10,4 +10,4 @@ const ApplyBtn = ({ iconSrc, title }) => {
     )
 }
 
-export default ApplyBtn;
+export default ApplyMenuBtn;
