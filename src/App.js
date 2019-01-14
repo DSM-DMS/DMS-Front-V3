@@ -17,6 +17,8 @@ import NoticeContainer from './admin/container/Notice/NoticeContainer';
 import NoticeWriteContainer from './admin/container/Notice/NoticeWriteContainer';
 import StudentDefaultLayout from './student/component/DefaultLayout/DefaultLayout';
 import MyPageContainer from "./student/container/MyPage/MyPageContainer";
+import QnaContainer from './admin/container/Qna/QnaContainer'
+import QnaWriteContainer from './admin/container/Qna/QnaWriteContainer'
 
 const history = createBrowserHistory();
 const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
@@ -46,6 +48,8 @@ class App extends Component {
                     <Route path="/admin/domitoryrule/:postId" component={ShowDomitoryRuleContainer}/>
                     <Route path="/admin/notice" component={NoticeContainer} exact/>
                     <Route path="/admin/notice/write" component={NoticeWriteContainer} exact/>
+                    <Route path="/admin/qna" component={QnaContainer} exact/>
+                    <Route path="/admin/qna/write" component={QnaWriteContainer} exact/>
                   </Switch>
                 </CommonDesign>
               }
