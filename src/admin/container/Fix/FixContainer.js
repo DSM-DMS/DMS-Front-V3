@@ -13,7 +13,35 @@ class FixContainer extends Component {
                 content : '승우형의 발냄새가 너무 심해요.',
                 room : '421',
                 id : this.id
-            }
+            },
+
+            {
+                name : '이주용',
+                content : '승우형의 발냄새가 너무 심해요.',
+                room : '421',
+                id : this.id
+            },
+
+            {
+                name : '이주용',
+                content : '승우형의 발냄새가 너무 심해요.',
+                room : '421',
+                id : this.id
+            },
+            
+            {
+                name : '이주용',
+                content : '승우형의 발냄새가 너무 심해요.',
+                room : '421',
+                id : this.id
+            },
+            
+            {
+                name : '이주용',
+                content : '승우형의 발냄새가 너무 심해요.',
+                room : '421',
+                id : this.id
+            },
         ]
     }
 

@@ -1,5 +1,6 @@
 .fix {
     &--list {
+
         &--footer {
             &--wrapper {
                 padding-right: 3rem;
@@ -32,6 +33,7 @@
         }
 
         &--wrapper {
+            margin-right: 3.5rem;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
@@ -46,9 +48,9 @@
             height: 15.625rem;
             color: #000000;
             text-decoration: none;
-    
-            & + & {
-                margin-top: 2.5rem;
+
+            &:nth-child(n+3) {
+                margin-top: 3.5rem;
             }
         }
         &--header {

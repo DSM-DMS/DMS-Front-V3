@@ -14,7 +14,9 @@ const Fix = ({fixList}) => {
                 </div>
             </div>
             <div className = "fix--wrapper">
-                {fixList}
+                <div className = "fix--content--wrapper">
+                    {fixList}
+                </div>
             </div>
         </React.Fragment>
     );
