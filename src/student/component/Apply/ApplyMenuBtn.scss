@@ -4,10 +4,7 @@
     align-items: center;
     margin-top: 1.75rem;
     padding-left: 1rem;
-
-    &:hover {
-        opacity: 0.36;
-    }
+    border-radius: 0.5rem;
 
     &--icon {
         width: 2.25rem;
@@ -18,5 +15,9 @@
         margin-left: 2.25rem;
         font-size: 1.5rem;
         color: #fff;
+    }
+
+    &--selected {
+        background: rgba(255, 255, 255, 0.36);
     }
 }
