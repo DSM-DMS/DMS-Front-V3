@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 import './Qna.scss'
 
@@ -10,7 +11,7 @@ const Qna = ({postList}) => {
             <div className = "qna--button--wrapper">
                 <div className = "qna--button--detail qna">
                     <div className = "qna--button">자주하는 질문</div>
-                    <div style = {{opacity: '0.4'}} className = "qna--button">글쓰기</div>
+                    <Link to = "/admin/qna/write" style = {{opacity: '0.4'}} className = "qna--button">글작성</Link>
                     <img src = {Woman} alt = "qna" className = "qna--button--illust"/>
                 </div>
             </div>

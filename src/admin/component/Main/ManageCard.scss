@@ -10,6 +10,8 @@
         align-items: center;
         justify-content: center;
         transition: all .3s;
+        text-decoration: none;
+        color: #000000;
 
         &:hover {
             background-color: #10a3a4;
@@ -65,7 +67,7 @@
     }
 }
 
-.question {
+.qna {
     &--admin--icon {
         background-image: url('../../../assets/icon/ic_question.png');
     }

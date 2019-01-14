@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 import Woman from '../../../assets/illust/woman2.png'
 
@@ -9,8 +10,8 @@ const noticeWrite = () => {
         <React.Fragment>
             <div className = "notice-write--button--wrapper">
                 <div className = "notice-write--button--detail notice-write">
-                    <div className = "notice-write--button"  style = {{opacity: '0.4'}}>공지사항</div>
-                    <div className = "notice-write--button">글쓰기</div>
+                    <Link to = "/admin/notice" className = "notice-write--button"  style = {{opacity: '0.4'}}>공지사항</Link>
+                    <div className = "notice-write--button">글작성</div>
                     <img src = {Woman} alt = "notice-write" className = "notice-write--button--illust"/>
                 </div>
             </div>

@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 import Woman from '../../../assets/illust/woman2.png'
 
@@ -9,8 +10,8 @@ const QnaWrite = () => {
         <React.Fragment>
             <div className = "qna-write--button--wrapper">
                 <div className = "qna-write--button--detail qna-write">
-                    <div className = "qna-write--button"  style = {{opacity: '0.4'}}>자주하는 질문</div>
-                    <div className = "qna-write--button">글쓰기</div>
+                    <Link to = "/admin/qna/" className = "qna-write--button"  style = {{opacity: '0.4'}}>자주하는 질문</Link>
+                    <div className = "qna-write--button">글작성</div>
                     <img src = {Woman} alt = "qna-write" className = "qna-write--button--illust"/>
                 </div>
             </div>

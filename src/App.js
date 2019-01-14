@@ -19,6 +19,7 @@ import StudentDefaultLayout from './student/component/DefaultLayout/DefaultLayou
 import MyPageContainer from "./student/container/MyPage/MyPageContainer";
 import QnaContainer from './admin/container/Qna/QnaContainer'
 import QnaWriteContainer from './admin/container/Qna/QnaWriteContainer'
+import FixContainer from './admin/container/Fix/FixContainer';
 
 const history = createBrowserHistory();
 const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
@@ -50,6 +51,7 @@ class App extends Component {
                     <Route path="/admin/notice/write" component={NoticeWriteContainer} exact/>
                     <Route path="/admin/qna" component={QnaContainer} exact/>
                     <Route path="/admin/qna/write" component={QnaWriteContainer} exact/>
+                    <Route path="/admin/fix" component={FixContainer} exact/>
                   </Switch>
                 </CommonDesign>
               }

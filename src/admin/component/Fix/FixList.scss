@@ -1,0 +1,100 @@
+.fix {
+    &--list {
+        &--footer {
+            &--wrapper {
+                padding-right: 3rem;
+                padding-left: 2.25rem;
+                height: 3.40625rem;
+                box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
+                background-color: #0a9395;
+                border-bottom-left-radius: 1.125rem;
+                border-bottom-right-radius: 1.125rem;
+                color: #ffffff;
+                display: flex;
+                justify-content: flex-end;
+                align-items: center;
+
+                font: {
+                    size: 1.75rem;
+                    family: 'NanumSquareB';
+                }
+            }
+        }
+
+        &--content--wrapper {
+            height: 7.15625rem;
+            padding-right: 3rem;
+            padding-left: 2.25rem;
+            font : {
+                size: 1.5rem;
+                family: 'NanumSquareR';
+            }
+        }
+
+        &--wrapper {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
+            border-radius: 1.125rem;
+    
+            font : {
+                size: 1.25rem;
+                family: 'NanumSquareB';
+            }       
+            width: 26.9rem;
+            height: 15.625rem;
+            color: #000000;
+            text-decoration: none;
+    
+            & + & {
+                margin-top: 2.5rem;
+            }
+        }
+        &--header {
+            &--wrapper {
+                margin-top: 1.75rem;
+                margin-bottom: 1.125rem;
+                padding-right: 3rem;
+                padding-left: 2.25rem;
+                display: flex;
+                justify-content: space-between;
+                font : {
+                    size: 3rem;
+                    family: 'NanumSquareB';
+                }
+            }
+
+            &--content {
+                &--wrapper {
+                    display: flex;
+                    width: 5.5rem;
+                    justify-content: space-between;
+                }
+            }
+        }
+    }
+}
+
+.icon {
+    &--edit {
+        width: 2rem;
+        height: 2rem;
+        background-image: url('../../../assets/icon/ic_edit.png');
+        background-size: contain;
+    }
+
+    &--preview {
+        width: 2rem;
+        height: 2rem;
+        background-image: url('../../../assets/icon/ic_search.png');
+        background-size: cover;
+    }
+
+    &--delete {
+        width: 2rem;
+        height: 2rem;
+        background-image: url('../../../assets/icon/ic_trash.png');
+        background-size: cover;
+    }
+}

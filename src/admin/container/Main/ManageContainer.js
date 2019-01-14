@@ -17,7 +17,7 @@ class ManagerContainer extends Component {
                 description: '기숙사 규칙을 작성, 관리합니다.'
             },
             {
-                kind: 'question',
+                kind: 'qna',
                 title: '자주하는 질문',
                 description: '자주하는 질문을 작성, 관리합니다.'
             },
