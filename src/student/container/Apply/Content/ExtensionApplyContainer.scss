@@ -1,5 +1,9 @@
 .apply--extension--wrapper {
     flex-grow: 1;
+    position: relative;
+    background-image: url('../../../../assets/img/img_apply_extension_background.png');
+    background-position: right;
+    background-size: cover;
 }
 
 .apply--extension--btnlist {
