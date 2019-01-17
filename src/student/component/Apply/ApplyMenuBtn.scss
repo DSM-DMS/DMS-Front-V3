@@ -5,6 +5,13 @@
     margin-top: 1.75rem;
     padding-left: 1rem;
     border-radius: 0.5rem;
+    
+    -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+     -khtml-user-select: none; /* Konqueror HTML */
+       -moz-user-select: none; /* Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+            user-select: none;
 
     &--icon {
         width: 2.25rem;
@@ -15,6 +22,7 @@
         margin-left: 2.25rem;
         font-size: 1.5rem;
         color: #fff;
+        text-decoration: none;
     }
 
     &--selected {

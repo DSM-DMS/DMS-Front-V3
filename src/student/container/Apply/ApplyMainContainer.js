@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { withRouter } from 'react-router-dom';
 
 import ApplyMenuContainer from './Menu/ApplyMenuContainer';
 import ExtensionApplyContainer from './Content/ExtensionApplyContainer'
@@ -14,6 +15,12 @@ class ApplyMainContainer extends Component {
         this.state = {
             path: this.props.location.pathname
         }
+
+        this.props.history.listen((location, action) => {
+            this.setState({
+                path:location.pathname
+            })
+        });
     }
 
     render() {
