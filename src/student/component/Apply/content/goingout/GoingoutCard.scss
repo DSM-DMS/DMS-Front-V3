@@ -1,0 +1,34 @@
+.apply--goingout--card {
+    width: 37.5rem;
+    background: #fff;
+    border-radius: 1rem;
+    box-sizing: border-box;
+    padding: 1.875rem;
+    margin-bottom: 3.125rem;
+    box-shadow: 0 5px 10px 0 #29000000;
+
+    &:nth-child(2n-1) {
+        margin-right: 6.25rem;
+    }
+
+    &--title {
+        font-size: 1.5rem;
+        font-family: NanumSquareR;
+        color: #505050;
+        margin: 0;
+    }
+
+    &--time {
+        margin-top: 1rem;
+        font-size: 1.25rem;
+        font-family: NanumSquareR;
+        color: #606060;
+    }
+
+    &--selected {
+        background: #19b6b6;
+        &>p {
+            color: #fff;
+        }
+    }
+}
