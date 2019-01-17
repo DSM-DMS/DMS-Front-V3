@@ -1,0 +1,22 @@
+.apply--stay--card {
+    width: 16.5625rem;
+    border: 1px solid black;
+    padding: 3.75rem 1.875rem;
+    box-sizing: border-box;
+    border-radius: 1rem;
+
+    &>p {
+        font-family: NanumSquareR;
+    }
+
+    &--title {
+        text-align: center;
+        color: #19b6b6;
+        font-size: 1.5rem;
+    }
+
+    &--content {
+        font-size: 0.875rem;
+        line-height: 1.5rem;
+    }
+}
