@@ -36,7 +36,7 @@ class ApplyMainContainer extends Component {
 
         return (
             <div style={{ width: window.screen.width}} className="apply--main--wrapper">
-                <ApplyMenuContainer/>
+                <ApplyMenuContainer selectedMenu = {type}/>
                 {content}
             </div>
         )
