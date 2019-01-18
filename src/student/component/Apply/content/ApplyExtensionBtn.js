@@ -3,9 +3,9 @@ import './ApplyExtensionBtn.scss'
 
 export default class ApplyExtensionBtn extends Component {
     render() {
-        const {content, type} = this.props;
+        const {content, seleted} = this.props;
         return (
-            <div className = {`apply--extens--btn ${type}`} >{content}</div>
+            <div className = {`apply--extens--btn ${seleted}`} >{content}</div>
         )
     }
 }
