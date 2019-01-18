@@ -10,6 +10,7 @@ const GoingoutCard = ({gooutDate, returnDate, reason}) => {
         <div className = 'apply--goingout--card'>
             <p className = 'apply--goingout--card--title'>외출 신청서</p>
             <p className = 'apply--goingout--card--time'>{`${date} ${gooutTime} ~ ${returnTime}`}</p>
+            <p className = 'apply--goingout--card--reason'>{reason}</p>
         </div>
     )
 }
