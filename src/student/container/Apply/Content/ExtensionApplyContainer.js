@@ -1,15 +1,24 @@
 import React, { Component } from 'react';
-import './ExtensionApplyContainer.scss'
+import { connect } from 'react-redux';
+import { setExtensionRoom } from '../../../../actions/index';
 
-import ApplyExtensionBtn from '../../../component/Apply/content/ApplyExtensionBtn'
-import ApplyExtensionMap from '../../../component/Apply/content/ApplyExtensionMap'
+import './ExtensionApplyContainer.scss';
+
+import ApplyExtensionBtn from '../../../component/Apply/content/ApplyExtensionBtn';
+import ApplyExtensionMap from '../../../component/Apply/content/ApplyExtensionMap';
 import ApplyAcceptBtn from '../../../component/Apply/content/ApplyAcceptBtn';
 
-export default class ExtensionApplyContainer extends Component {
+class ExtensionApplyContainer extends Component {
     render() {
         const btns = ['가온실', '나온실', '다온실', '라온실', '2층 여자 독서실', '3층 계단측 독서실', '3층 학교측 독서실', '4층 계단측 독서실', '4층 학교측 독서실', '5층 열린 교실'];
 
-        const btnList = btns.map((content, i) => (<ApplyExtensionBtn content={content} key = {i}/>));
+        const btnList = btns.map((content, i) => {
+            const {room, onChangeRoom} = this.props;
+            let selectedClass = undefined;
+            if(room === content)
+                selectedClass = selectedClass = 'apply--extens--btn--selected';
+            return (<ApplyExtensionBtn content={content} key = {i} selected = {selectedClass} onChangeType = {onChangeRoom}/>);
+        });
 
         return (
             <div className = 'apply--extension--wrapper'>
@@ -26,3 +35,13 @@ export default class ExtensionApplyContainer extends Component {
         )
     }
 }
+
+const mapStateToProps = (state) => ({
+    room: state.ApplyTypeSwitch.room
+});
+
+const mapDispatchToProps = (dispatch) => ({
+    onChangeRoom: (room) => dispatch(setExtensionRoom(room))
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(ExtensionApplyContainer)
