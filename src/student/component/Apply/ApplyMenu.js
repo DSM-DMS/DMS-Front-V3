@@ -21,7 +21,8 @@ const ApplyMenu = () => {
             <ApplyMenuBtn 
                 iconSrc = {info.iconSrc} 
                 title = {info.title}
-                url = {info.url}/>        
+                url = {info.url}
+                key = {i}/>        
         )
     );
     return (

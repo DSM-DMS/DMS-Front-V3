@@ -33,8 +33,8 @@ class MusicApplyContainer extends Component {
     }
 
     render() {
-        const musicBtnList = this.state.dayType.map((type) => {
-            return (<ApplyExtensionBtn content = {type}/>)
+        const musicBtnList = this.state.dayType.map((type, i) => {
+            return (<ApplyExtensionBtn content = {type} key = {i}/>)
         })
         return (
             <div className = 'apply--music--wrapper'>

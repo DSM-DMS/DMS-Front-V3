@@ -33,8 +33,8 @@ const StayCardContainer = () => {
         }
     ]
 
-    const cardList = cardInfoList.map((info) => {
-        return (<StayCard content = {info.content} title = {info.title} iconSrc = {info.iconSrc}/>)
+    const cardList = cardInfoList.map((info, i) => {
+        return (<StayCard content = {info.content} title = {info.title} iconSrc = {info.iconSrc} key = {i}/>)
     })
 
     return (

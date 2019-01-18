@@ -9,7 +9,7 @@ export default class ExtensionApplyContainer extends Component {
     render() {
         const btns = ['가온실', '나온실', '다온실', '라온실', '2층 여자 독서실', '3층 계단측 독서실', '3층 학교측 독서실', '4층 계단측 독서실', '4층 학교측 독서실', '5층 열린 교실'];
 
-        const btnList = btns.map((content) => (<ApplyExtensionBtn content={content}/>));
+        const btnList = btns.map((content, i) => (<ApplyExtensionBtn content={content} key = {i}/>));
 
         return (
             <div className = 'apply--extension--wrapper'>
