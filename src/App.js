@@ -37,6 +37,10 @@ class App extends Component {
           <BrowserRouter>
             <Switch>
               <Route path="/admin" component={AdminMainContainer} exact/>
+              <Route path="/apply/extension" component={ApplyMainContainer} exact/>
+              <Route path="/apply/goingout" component={ApplyMainContainer} exact/>
+              <Route path="/apply/stay" component={ApplyMainContainer} exact/>
+              <Route path="/apply/music" component={ApplyMainContainer} exact/>
               
               <Route path="/mypage" component={MyPageContainer} exact/>
               <Route path="/admin/:uri?" render={()=>
@@ -64,7 +68,6 @@ class App extends Component {
               
             }/>
               <Redirect to="/"/>
-              {/* <Route path="/admin" component={} exact/> */}
             </Switch>
           </BrowserRouter>
         </ConnectedRouter>
