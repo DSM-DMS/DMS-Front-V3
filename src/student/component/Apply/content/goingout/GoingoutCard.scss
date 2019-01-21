@@ -29,8 +29,14 @@
 
     &--selected {
         background: #19b6b6;
-        &>p {
+        & > p{
             color: #fff;
+        }
+        & > .apply--goingout--card--time {
+            opacity: 0.8;
+        }
+        & > .apply--goingout--card--reson {
+            opacity: 0.6;
         }
     }
 

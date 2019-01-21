@@ -29,3 +29,13 @@ export const setMusicDate = (date) => ({
     type: types.SET_MUSIC_DATE,
     date
 });
+
+export const selectGoingoutCard = (cardIndex) => ({
+    type: types.SELECT_GOINGOUT_CARD,
+    goingoutCard: cardIndex
+});
+
+export const selectMusicCard = (cardIndex) => ({
+    type: types.SELECT_MUSIC_CARD,
+    musicCard: cardIndex
+});
