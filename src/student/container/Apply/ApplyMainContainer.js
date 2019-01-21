@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import { withRouter } from 'react-router-dom';
 
 import ApplyMenuContainer from './Menu/ApplyMenuContainer';
 import ExtensionApplyContainer from './Content/ExtensionApplyContainer'
