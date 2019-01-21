@@ -1,3 +1,4 @@
 export const SET_EXTENSION_ROOM = 'SET_EXTENSION_ROOM';
 export const SET_GOOUT_DATE = 'SET_GOOUT_DATE';
+export const SET_STAY_TYPE = 'SET_STAY_TYPE';
 export const SET_MUSIC_DATE = 'SET_MUSIC_DATE';

@@ -3,6 +3,7 @@ import * as types from '../../../actions/ActionTypes';
 const initialState = {
     room: '가온실',
     gooutDate: '토요일',
+    stayType: '',
     musicDate: '월요일'
 };
 
@@ -23,6 +24,11 @@ export default function ApplyTypeSwitch (state = initialState, action) {
                 ...state,
                 musicDate: action.date
             };
+        case types.SET_STAY_TYPE:
+            return {
+                ...state,
+                stayType: action.stayType
+            }
         default:
             return state;
     }

@@ -20,7 +20,12 @@ export const setGooutDate = (date) => ({
     date
 });
 
+export const setStayType = (type) => ({
+    type: types.SET_STAY_TYPE,
+    stayType: type
+})
+
 export const setMusicDate = (date) => ({
     type: types.SET_MUSIC_DATE,
     date
-})
+});
