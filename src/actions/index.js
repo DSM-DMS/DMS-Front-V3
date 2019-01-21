@@ -17,7 +17,6 @@ export const setGooutDate = (date) => ({
     date
 })
 
-#=== about modal ===
 export const SET_MODAL = 'SET_MODAL';
 
 export const setModal = (value) => ({
@@ -45,7 +44,6 @@ export const selectMusicCard = (cardIndex) => ({
     musicCard: cardIndex
 });
 
-# === about domitory rule list ===
 export const DOMITORY_RULE_LIST_ADD = 'DOMITORY_RULE_LIST_ADD';
 
 export const domitoyRuleListAdd = ({ index, list }) => ({
