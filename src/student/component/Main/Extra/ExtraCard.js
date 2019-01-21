@@ -5,7 +5,7 @@ import './ExtraCard.scss'
 
 const ExtraCard = ({type, src, title}) => {
     return (
-        <Link className="extra--card--wrapper" to={'/extra/' + type}>
+        <Link className="extra--card--wrapper" to={`/extra/${type}`}>
            <div className="extra--card--img--wrapper">
                 <div className="extra--card--img--cover"></div>
                 <img src={src} alt="" className="extra--card--img"/>

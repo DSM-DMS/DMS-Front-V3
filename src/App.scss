@@ -46,3 +46,12 @@
     font-size: 11.383px;
   }
 }
+
+::-webkit-scrollbar {
+  width: 0.8125rem;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 1rem;
+  background-color: #10a3a4;
+}

@@ -4,6 +4,8 @@ import { connectRouter } from 'connected-react-router'
 import section from './section';
 import ApplyTypeSwitch from './student/apply/ApplyTypeSwitch';
 import ApplyCardSwitch from './student/apply/ApplyCardSwitch';
+import domitoryrule from './domitoryRule';
+import modal from './modal';
 
 
 const dmsApp = (history) => combineReducers({
@@ -12,6 +14,8 @@ const dmsApp = (history) => combineReducers({
     section,
     ApplyTypeSwitch,
     ApplyCardSwitch,
+    domitoryrule,
+    modal,
     router: connectRouter(history)
 })
 
