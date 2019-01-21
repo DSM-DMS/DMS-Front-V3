@@ -1,23 +1,23 @@
-import React, { Component } from "react";
-import axios from "axios";
+import React, { Component } from 'react';
+import axios from 'axios';
 
-import "./ForgotPassword.scss";
+import './ForgotPassword.scss';
 
 class ForgotPassword extends Component {
   state = {
-    id: "",
-    email: ""
+    id: '',
+    email: '',
   };
 
   idHandler = e => {
     this.setState({
-      id: e.target.value
+      id: e.target.value,
     });
   };
 
   emailHandler = e => {
     this.setState({
-      email: e.target.value
+      email: e.target.value,
     });
   };
 
@@ -25,15 +25,15 @@ class ForgotPassword extends Component {
     const { id, email } = this.state;
     if (id && email) {
       axios
-        .post("/account/pw", {
+        .post('http://ec2.istruly.sexy:5000/account/pw', {
           id: id,
-          email: email
+          email: email,
         })
         .then(response => {
           if (response.status === 201) {
-            alert("이메일을 발송하였습니다. 학교 이메일을 확인하세요.");
+            alert('이메일을 발송하였습니다. 학교 이메일을 확인하세요.');
           } else if (response.status === 204) {
-            alert("잘못된 아이디 혹은 이메일입니다.");
+            alert('잘못된 아이디 혹은 이메일입니다.');
           }
         });
     }
