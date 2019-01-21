@@ -44,7 +44,7 @@ class MusicApplyContainer extends Component {
         })
         return (
             <div className = 'apply--music--wrapper'>
-                <p className = 'apply--title'>기상음악 신청</p>
+                <p className = 'unselectable apply--title'>기상음악 신청</p>
                 <div className = 'apply--music--btnlist'>
                     {musicBtnList}
                 </div>

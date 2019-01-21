@@ -11,7 +11,7 @@ class StayApplyContainer extends Component {
     render() {
         return (
             <div className = 'apply--stay--wrapper'>
-                <p className = 'apply--title'>잔류 신청</p>
+                <p className = 'unselectable apply--title'>잔류 신청</p>
                 <StayCardContainer />
                 {
                     this.isChecked && <div className = 'apply--extension--accept--btnlist'>

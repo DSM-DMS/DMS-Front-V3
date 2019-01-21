@@ -22,7 +22,7 @@ class ExtensionApplyContainer extends Component {
 
         return (
             <div className = 'apply--extension--wrapper'>
-                <p className = 'apply--title'>연장학습 신청</p>
+                <p className = 'unselectable apply--title'>연장학습 신청</p>
                 <div className = 'apply--extension--btnlist'>
                     {btnList}
                 </div>

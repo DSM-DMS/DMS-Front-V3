@@ -3,7 +3,7 @@ import './ApplyAcceptBtn.scss';
 
 const ApplyAcceptBtn = ({type, title}) => {
     return (
-        <div className = {`apply--extension--btn ${type}`}> {title} </div>
+        <div className = {`unselectable apply--extension--btn ${type}`}> {title} </div>
     )
 }
 

@@ -1,10 +1,10 @@
-import React, { Component } from 'react'
+import React from 'react'
 
 import './AppliedMusicCard.scss'
 
 const AppliedMusicCard = ({title, singer, author}) => {
     return (
-        <div className = 'apply--music--card'>
+        <div className = 'unselectable apply--music--card'>
             <p className = 'apply--music--card--title'>{title}</p>
             <p className = 'apply--music--card--singer'>{singer}</p>
             <p className = 'apply--music--card--author'>{author}</p>

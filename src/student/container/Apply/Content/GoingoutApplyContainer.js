@@ -42,7 +42,7 @@ class GoingoutApplyContainer extends Component {
     }
 
     render() {
-        const {gooutType, selectedBtn} = this.state;
+        const {gooutType} = this.state;
         const {gooutDate, onChangeDate} = this.props;
 
         const gooutBtnList = gooutType.map((type, i) => {
@@ -54,7 +54,7 @@ class GoingoutApplyContainer extends Component {
         })
 
         return (
-            <div className = 'apply--goingout--wrapper'>
+            <div className = 'unselectable apply--goingout--wrapper'>
                 <p className = 'apply--title'>외출 신청</p>
                 <div className = 'apply--extension--btnlist'>
                     {gooutBtnList}

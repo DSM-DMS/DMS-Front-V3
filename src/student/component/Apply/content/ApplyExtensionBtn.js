@@ -3,7 +3,7 @@ import './ApplyExtensionBtn.scss'
 
 const ApplyExtensionBtn = ({content, selected, onChangeType}) => {
     return (
-        <div className = {`apply--extens--btn ${selected}`} onClick = {onChangeType.bind(null, content)}>{content}</div>
+        <div className = {`unselectable apply--extens--btn ${selected}`} onClick = {onChangeType.bind(null, content)}>{content}</div>
     )
 }
 
