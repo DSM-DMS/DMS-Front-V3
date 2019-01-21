@@ -1,4 +1,7 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux';
+import { setGooutDate } from '../../../../actions/index';
+
 import './GoingoutApplyContainer.scss'
 
 import ApplyExtensionBtn from '../../../component/Apply/content/ApplyExtensionBtn'
@@ -31,17 +34,23 @@ class GoingoutApplyContainer extends Component {
         ]
     };
 
+    onSelectedChanged = (newBtn) => {
+        console.log(newBtn);
+        this.setState({
+            selectedBtn: newBtn
+        });
+    }
+
     render() {
-        const {gooutType} = this.state
+        const {gooutType, selectedBtn} = this.state;
+        const {gooutDate, onChangeDate} = this.props;
+
         const gooutBtnList = gooutType.map((type, i) => {
-            let isSeletedBtn = 'apply--extens--btn--selected';
-            if(i%5 !== 2) {
-                console.log('111');
-                isSeletedBtn = undefined;
-            }else {
-                console.log('2222');
-            }
-            return (<ApplyExtensionBtn content = {type} seleted = {isSeletedBtn} key = {i}/>)   
+            let selectedClass = undefined;
+            if(type === gooutDate)
+                selectedClass = 'apply--extens--btn--selected';
+
+            return (<ApplyExtensionBtn content = {type} selected = {selectedClass} key = {i} onChangeType = {onChangeDate}/>)
         })
 
         return (
@@ -56,4 +65,12 @@ class GoingoutApplyContainer extends Component {
     }
 }
 
-export default GoingoutApplyContainer;
+const mapStateToProps = (state) => ({
+    gooutDate: state.ApplyTypeSwitch.gooutDate
+});
+
+const mapDispatchToProps = (dispatch) =>({
+    onChangeDate: (gooutDate) => dispatch(setGooutDate(gooutDate))
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(GoingoutApplyContainer);

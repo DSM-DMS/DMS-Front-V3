@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { setMusicDate } from '../../../../actions/index';
 
 import './MusicApplyContainer.scss'
 
@@ -33,8 +35,12 @@ class MusicApplyContainer extends Component {
     }
 
     render() {
+        const {musicDate, onChangeDate} = this.props;
         const musicBtnList = this.state.dayType.map((type, i) => {
-            return (<ApplyExtensionBtn content = {type} key = {i}/>)
+            let selectedClass = undefined;
+            if(type === musicDate)
+                selectedClass = 'apply--extens--btn--selected';
+            return (<ApplyExtensionBtn content = {type} key = {i} selected = {selectedClass} onChangeType = {onChangeDate}/>)
         })
         return (
             <div className = 'apply--music--wrapper'>
@@ -48,4 +54,12 @@ class MusicApplyContainer extends Component {
     }
 }
 
-export default MusicApplyContainer;
+const mapStateToProps = (state) => ({
+    musicDate: state.ApplyTypeSwitch.musicDate
+});
+
+const mapDispatchToProps = (dispatch) => ({
+    onChangeDate: (musicDate) => dispatch(setMusicDate(musicDate))
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(MusicApplyContainer);
