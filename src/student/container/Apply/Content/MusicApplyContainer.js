@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { setMusicDate } from '../../../../actions/index';
+import { setMusicDate } from '../../../../actions/ApplyActions';
 
 import './MusicApplyContainer.scss'
 

@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from "react-redux";
-import { selectMusicCard } from '../../../../actions/index'
+import { selectMusicCard } from '../../../../actions/ApplyActions'
 
 import AppliedMusicCard from '../../../component/Apply/content/music/AppliedMusicCard';
 import ApplyAddCard from '../../../component/Apply/content/utils/ApplyAddCard'

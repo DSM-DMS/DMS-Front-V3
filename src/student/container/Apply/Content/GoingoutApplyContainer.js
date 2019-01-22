@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux';
-import { setGooutDate } from '../../../../actions/index';
+import { setGooutDate } from '../../../../actions/ApplyActions';
 
 import './GoingoutApplyContainer.scss'
 

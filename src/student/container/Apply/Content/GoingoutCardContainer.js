@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from "react-redux";
-import { selectGoingoutCard } from '../../../../actions/index';
+import { selectGoingoutCard } from '../../../../actions/ApplyActions';
 
 import './GoingoutCardContainer.scss'
 

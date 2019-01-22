@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux';
-import {setStayType} from '../../../../actions/index';
+import {setStayType} from '../../../../actions/ApplyActions';
 
 import './StayApplyContainer.scss'
 

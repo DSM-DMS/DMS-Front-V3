@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { setExtensionRoom } from '../../../../actions/index';
+import { setExtensionRoom } from '../../../../actions/ApplyActions';
 
 import './ExtensionApplyContainer.scss';
 
