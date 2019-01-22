@@ -16,6 +16,36 @@
         &:hover {
             background-color: #10a3a4;
             color: white;
+
+            & .notice--admin--icon {
+                background-image: url('../../../assets/icon/ic_error_hovered.png');        
+                transition: .3s
+            }
+
+            & .domitoryRule--admin--icon {
+                background-image: url('../../../assets/icon/ic_domitory_rule_hovered.png');        
+                transition: .3s
+            }
+
+            & .qna--admin--icon {
+                background-image: url('../../../assets/icon/ic_question_hovered.png');        
+                transition: .3s
+            }
+
+            & .fix--admin--icon {
+                background-image: url('../../../assets/icon/ic_fix_hovered.png');        
+                transition: .3s
+            }
+
+            & .survey--admin--icon {
+                background-image: url('../../../assets/icon/ic_survey_hovered.png');        
+                transition: .3s
+            }
+
+            & .goingout--admin--icon {
+                background-image: url('../../../assets/icon/ic_goingout_hovered.png');        
+                transition: .3s
+            }
         }
     }
 

@@ -1,41 +1,41 @@
 import React from 'react';
 
-import './Qna.scss'
+import './Survey.scss'
 
 import Woman from '../../../assets/illust/woman2.png'
 
-const Qna = ({postList}) => {
+const Survey = ({postList}) => {
     return (
         <React.Fragment>
-            <div className = "qna--button--wrapper">
-                <div className = "qna--button--detail qna">
-                    <div className = "qna--button">공지사항</div>
-                    <div style = {{opacity: '0.4'}} className = "qna--button">글쓰기</div>
-                    <img src = {Woman} alt = "qna" className = "qna--button--illust"/>
+            <div className = "survey--button--wrapper">
+                <div className = "survey--button--detail survey">
+                    <div className = "survey--button">설문조사</div>
+                    <div style = {{opacity: '0.4'}} className = "survey--button">글작성</div>
+                    <img src = {Woman} alt = "survey" className = "survey--button--illust"/>
                 </div>
             </div>
-            <div className = "qna--wrapper">
-                <div className = "qna--header--wrapper">
-                    <div className = "qna--header--content content--number">
+            <div className = "survey--wrapper">
+                <div className = "survey--header--wrapper">
+                    <div className = "survey--header--content content--number">
                         번호
                     </div>
-                    <div className = "qna--header--content content--title">
+                    <div className = "survey--header--content content--title">
                         제목
                     </div>
-                    <div className = "qna--header--content content--author">
+                    <div className = "survey--header--content content--author">
                         작성자
                     </div>
-                    <div className = "qna--header--content content--edit">
+                    <div className = "survey--header--content content--edit">
                         수정
                     </div>
-                    <div className = "qna--header--content content--delete">
+                    <div className = "survey--header--content content--delete">
                         삭제
                     </div>
-                    <div className = "qna--header--content content--preview">
+                    <div className = "survey--header--content content--preview">
                         프리뷰
                     </div>
                 </div>
-                <div className = "qna--content--wrapper">
+                <div className = "survey--content--wrapper">
                     {postList}
                 </div>
             </div>
@@ -43,4 +43,4 @@ const Qna = ({postList}) => {
     );
 };
 
-export default Qna;
+export default Survey;
