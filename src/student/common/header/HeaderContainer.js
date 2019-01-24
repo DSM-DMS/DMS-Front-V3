@@ -15,6 +15,7 @@ class HeaderContainer extends Component {
       { title: '공지사항', page: 'post' },
       { title: '부가기능', page: 'extra' },
     ],
+    isLogin: false,
   };
 
   changeModal = value => {
@@ -24,6 +25,7 @@ class HeaderContainer extends Component {
 
   render() {
     const { location, history } = this.props;
+    const { isLogin } = this.state;
     const buttonList = this.state.buttonList.map(data => (
       <HeaderButton title={data.title} scroll={data.page} key={data.page} />
     ));
@@ -31,9 +33,11 @@ class HeaderContainer extends Component {
       location.pathname === '/' ? (
         getCookie('jwt') ? (
           <button
-            className="header--mypage--button"
+            className="header--button--mypage"
             onClick={() => history.push('/mypage')}
-          />
+          >
+            내 정보
+          </button>
         ) : (
           <button
             className="header--button"

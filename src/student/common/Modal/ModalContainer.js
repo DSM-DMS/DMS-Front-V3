@@ -6,6 +6,7 @@ import Modal from './Modal';
 import Login from './Login';
 import Register from './Register';
 import ForgotPassword from './ForgotPassword';
+import PointContainer from './PointContainer';
 
 class ModalContainer extends Component {
   changeModal = value => {
@@ -47,7 +48,12 @@ class ModalContainer extends Component {
           setModal={this.changeModal}
         />
       );
-    else return null;
+    else if (modalState === '상벌점 내역 확인')
+      return <PointContainer setModal={this.changeModal} />;
+    else {
+      console.log(modalState);
+      return null;
+    }
   }
 }
 
