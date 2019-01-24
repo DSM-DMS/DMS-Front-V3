@@ -1,37 +1,37 @@
-import React, { Component } from "react";
-import axios from "axios";
+import React, { Component } from 'react';
+import axios from 'axios';
 
-import "./Register.scss";
+import './Register.scss';
 
 class Register extends Component {
   state = {
-    uuid: "",
-    id: "",
-    pw: "",
-    pwCheck: ""
+    uuid: '',
+    id: '',
+    pw: '',
+    pwCheck: '',
   };
 
   uuidHandler = e => {
     this.setState({
-      uuid: e.target.value
+      uuid: e.target.value,
     });
   };
 
   idHandler = e => {
     this.setState({
-      id: e.target.value
+      id: e.target.value,
     });
   };
 
   pwHandler = e => {
     this.setState({
-      pw: e.target.value
+      pw: e.target.value,
     });
   };
 
   pwCheckHandler = e => {
     this.setState({
-      pwCheck: e.target.value
+      pwCheck: e.target.value,
     });
   };
 
@@ -39,28 +39,28 @@ class Register extends Component {
     const { uuid, id, pw, pwCheck } = this.state;
     if (pw === pwCheck && uuid && id && pw && pwCheck) {
       axios
-        .post("http://ec2.istruly.sexy:5000/account/signup", {
+        .post('http://ec2.istruly.sexy:5000/account/signup', {
           uuid: uuid,
           id: id,
-          password: pw
+          password: pw,
         })
         .then(response => {
           if (response.status === 201) {
-            alert("가입 완료");
-            this.props.setModal("로그인");
+            alert('가입 완료');
+            this.props.setModal('로그인');
           } else if (response.status === 204) {
-            alert("유효하지 않은 확인 코드 입니다.");
-            document.getElementById("register--uuid").focus();
+            alert('유효하지 않은 확인 코드 입니다.');
+            document.getElementById('register--uuid').focus();
           } else if (response.status === 205) {
-            alert("중복된 ID 입니다.");
-            document.getElementById("register--id").focus();
+            alert('중복된 ID 입니다.');
+            document.getElementById('register--id').focus();
           }
         });
     } else if (pw !== pwCheck && uuid && id && pw && pwCheck) {
-      alert("비밀번호가 서로 다릅니다.");
-      document.getElementById("register--password--check").focus();
+      alert('비밀번호가 서로 다릅니다.');
+      document.getElementById('register--password--check').focus();
     } else {
-      alert("공란이 존재합니다.");
+      alert('공란이 존재합니다.');
     }
   };
 

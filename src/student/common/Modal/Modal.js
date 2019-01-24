@@ -1,8 +1,8 @@
-import React from "react";
-import logoImg from "../../../assets/logo/logo@2x.png";
-import exitImg from "../../../assets/icon/ic_exit.png";
+import React from 'react';
+import logoImg from '../../../assets/logo/logo@2x.png';
+import exitImg from '../../../assets/icon/ic_exit.png';
 
-import "./Modal.scss";
+import './Modal.scss';
 
 const Login = ({ title, component, subTitle, link, setModal }) => {
   return (
@@ -11,7 +11,7 @@ const Login = ({ title, component, subTitle, link, setModal }) => {
         src={exitImg}
         alt="exit"
         className="modal--exit--icon"
-        onClick={() => setModal("")}
+        onClick={() => setModal('')}
       />
       <div className="modal--logo--wrapper">
         <img src={logoImg} alt="" className="modal--logo" />
