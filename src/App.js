@@ -1,8 +1,8 @@
 import React, { Component, Fragment } from 'react';
-import { BrowserRouter, Switch, Route, Redirect } from "react-router-dom";
+import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
 import { Provider } from 'react-redux';
-import { createStore, applyMiddleware, compose } from "redux";
-import dmsApp from "./reducers";
+import { createStore, applyMiddleware, compose } from 'redux';
+import dmsApp from './reducers';
 import './App.scss';
 import { routerMiddleware, ConnectedRouter } from 'connected-react-router';
 import { createBrowserHistory } from 'history';
@@ -16,17 +16,13 @@ import ShowDomitoryRuleContainer from "./admin/container/DomitoryRule/ShowDomito
 import NoticeContainer from './admin/container/Notice/NoticeContainer';
 import NoticeWriteContainer from './admin/container/Notice/NoticeWriteContainer';
 import StudentDefaultLayout from './student/component/DefaultLayout/DefaultLayout';
-import MyPageContainer from "./student/container/MyPage/MyPageContainer";
+import MyPageContainer from './student/container/MyPage/MyPageContainer';
 
 const history = createBrowserHistory();
-const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
+const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const store = createStore(
-  dmsApp(history), 
-  composeEnhancer(
-    applyMiddleware(
-      routerMiddleware(history)
-    )
-  )  
+  dmsApp(history),
+  composeEnhancer(applyMiddleware(routerMiddleware(history))),
 );
 
 class App extends Component {
@@ -42,7 +38,7 @@ class App extends Component {
               <Route path="/apply/stay" component={ApplyMainContainer} exact/>
               <Route path="/apply/music" component={ApplyMainContainer} exact/>
               
-              <Route path="/mypage" component={MyPageContainer} exact/>
+              
               <Route path="/admin/:uri?" render={()=>
                 <CommonDesign>
                   <Switch>
@@ -62,6 +58,7 @@ class App extends Component {
                     <Route path="/apply" component={MainContainer} exact/>
                     <Route path="/post" component={MainContainer} exact/>
                     <Route path="/extra" component={MainContainer} exact/>
+                    <Route path="/mypage" component={MyPageContainer} exact/>
                   </Switch>
                 </Fragment>
               }/>
