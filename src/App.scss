@@ -1,5 +1,6 @@
 .App {
   text-align: center;
+  height: 100%;
 }
 
 .inner--wrapper {
@@ -9,6 +10,15 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+
+.unselectable {
+  -webkit-touch-callout: none; /* iOS Safari */
+  -webkit-user-select: none; /* Safari */
+  -khtml-user-select: none; /* Konqueror HTML */
+  -moz-user-select: none; /* Firefox */
+  -ms-user-select: none; /* Internet Explorer/Edge */
+  user-select: none;
 }
 
 @font-face {
@@ -35,4 +45,13 @@
   html {
     font-size: 11.383px;
   }
+}
+
+::-webkit-scrollbar {
+  width: 0.8125rem;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 1rem;
+  background-color: #10a3a4;
 }

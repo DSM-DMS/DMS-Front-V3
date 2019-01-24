@@ -2,12 +2,14 @@ import React from 'react';
 
 import './Manage.scss'
 
+import Setting from '../../../assets/icon/ic_gears.png'
+
 const Manage = ({cardList}) => {
     return (
         <div className = "manage--wrapper">
             <div className = "manage--inner--wrapper">
                 <div className = "manage--logo--wrapper">
-                    <img className = "manage--logo--icon"/>
+                    <img src = {Setting} alt = "gears" className = "manage--logo--icon"/>
                     <div className = "manage--logo--text">
                         Management
                     </div>

@@ -1,0 +1,12 @@
+.apply--add--card {
+    width: 37.5rem;
+    outline-style: dashed;
+    border-radius: 1rem;
+    margin-bottom: 3.125rem;
+
+    &--text {
+        font-family: NanumSquareB;
+        font-size: 1.25rem;
+        text-align: center;
+    }
+}

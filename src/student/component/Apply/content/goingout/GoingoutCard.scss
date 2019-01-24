@@ -1,0 +1,47 @@
+.apply--goingout--card {
+    width: 37.5rem;
+    background: #fff;
+    border-radius: 1rem;
+    box-sizing: border-box;
+    padding: 1.875rem;
+    margin-bottom: 3.125rem;
+    box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.16);
+
+    & > p {
+        font-family: NanumSquareR;
+    }
+
+    &:nth-child(2n-1) {
+        margin-right: 6.25rem;
+    }
+
+    &--title {
+        font-size: 1.5rem;
+        color: #505050;
+        margin: 0;
+    }
+
+    &--time {
+        margin-top: 1rem;
+        font-size: 1.25rem;
+        color: #606060;
+    }
+
+    &--selected {
+        background: #19b6b6;
+        & > p{
+            color: #fff;
+        }
+        & > .apply--goingout--card--time {
+            opacity: 0.8;
+        }
+        & > .apply--goingout--card--reson {
+            opacity: 0.6;
+        }
+    }
+
+    &--reason {
+        font-size: 1rem;
+        margin: 0 0 0.5em;
+    }
+}

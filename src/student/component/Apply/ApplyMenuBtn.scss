@@ -1,0 +1,24 @@
+.apply--detail--btn {
+    display: flex;
+    height: 4.25rem;
+    align-items: center;
+    margin-top: 1.75rem;
+    padding-left: 1rem;
+    border-radius: 0.5rem;
+
+    &--icon {
+        width: 2.25rem;
+        height: 2.25rem;
+    }
+
+    &--title {
+        margin-left: 2.25rem;
+        font-size: 1.5rem;
+        color: #fff;
+        text-decoration: none;
+    }
+
+    &--selected {
+        background: rgba(255, 255, 255, 0.36);
+    }
+}

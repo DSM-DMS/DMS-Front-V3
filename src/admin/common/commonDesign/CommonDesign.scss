@@ -1,0 +1,40 @@
+.common-design {
+    &--wrapper {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        height: 100vh;
+    }
+
+    &--top--wrapper {
+        padding-left: 10.4375rem;
+        padding-right: 10.4375rem;
+        top: 0;
+        position: absolute;
+        display: flex;
+        justify-content: center;
+        width: calc(100% - 20.875rem);
+        height: 43vh;
+        background-image: linear-gradient(to right, #0a9395, #099394 20%, #099293 31%, #099294 42%, #099394 51%, #099394 55%, #0c9a9b 64%, #0e9e9f 72%, #12a6a7 80%, #14abab);
+    }
+
+    &--center {
+        &--wrapper {
+        display: flex;
+        width: 79.2rem;
+        height: 41.8375rem;
+        flex-direction: column;
+        align-content: space-around;
+        }
+    }
+
+    &--bottom--wrapper {
+        top: 43vh;
+        position: absolute;
+        display: flex;
+        width: 100%;
+        height: 57vh;
+        background-color: #ebebeb;
+    }
+}

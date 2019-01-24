@@ -1,0 +1,37 @@
+.apply--stay--card {
+    width: 16.5625rem;
+    padding: 3.75rem 1.875rem;
+    box-sizing: border-box;
+    border-radius: 1rem;
+    background: #fff;
+    box-shadow: 0 5px 5px 0 rgba(0, 0, 0, 0.16);
+
+    &>p {
+        font-family: NanumSquareR;
+    }
+
+    &--icon {
+        display: block;
+        height: 6rem;
+        width: 6rem;
+        margin: 0 auto;
+    }
+
+    &--title {
+        text-align: center;
+        color: #19b6b6;
+        font-size: 1.5rem;
+    }
+
+    &--content {
+        font-size: 0.875rem;
+        line-height: 1.5rem;
+    }
+
+    &--selected {
+        background: #19b6b6;
+        & > p {
+            color: #fff;
+        }
+    }
+}

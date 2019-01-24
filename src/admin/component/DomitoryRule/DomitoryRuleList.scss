@@ -1,0 +1,75 @@
+.domitory-rule {
+    &--list {
+        display: flex;
+        justify-content: center;
+
+        font : {
+            size: 1.25rem;
+            family: 'NanumSquareB';
+        }
+    }
+
+    &--list--wrapper {
+        display: flex;
+        align-items: center;
+        width: 100%;
+        height: 2rem;
+        color: #000000;
+        text-decoration: none;
+
+        & + & {
+            margin-top: 2.5rem;
+        }
+   }
+}
+
+.list {
+    &--number {
+        width: 3.75rem;
+    }
+
+    &--title {
+        width: 20.875rem;
+    }
+
+    &--author {
+        padding-left: 1.25rem;
+        width: 8.125rem;
+    }
+
+    &--edit {
+        padding-left: 0.5rem;
+        width: 8.125rem;
+    }
+
+    &--delete {
+        width: 8.125rem;
+    }
+
+    &--preview {
+        width: 8.125rem;
+    }    
+}
+
+.icon {
+    &--edit {
+        width: 1.75rem;
+        height: 1.75rem;
+        background-image: url('../../../assets/icon/ic_edit.png');
+        background-size: contain;
+    }
+
+    &--preview {
+        width: 1.75rem;
+        height: 1.75rem;
+        background-image: url('../../../assets/icon/ic_search.png');
+        background-size: contain;
+    }
+
+    &--delete {
+        width: 1.75rem;
+        height: 1.75rem;
+        background-image: url('../../../assets/icon/ic_trash.png');
+        background-size: contain;
+    }
+}
