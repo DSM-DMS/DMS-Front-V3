@@ -3,9 +3,9 @@ import React from 'react';
 import './ApplyAddCard.scss';
 import applyAddImg from '../../../../../assets/icon/ic_apply_add.png';
 
-const ApplyAddCard = () => {
+const ApplyAddCard = ({onClickAdd}) => {
   return (
-    <div className='apply--add--card'>
+    <div className='apply--add--card' onClick={onClickAdd}>
       <img
         className='apply--add--card--img'
         src={applyAddImg}

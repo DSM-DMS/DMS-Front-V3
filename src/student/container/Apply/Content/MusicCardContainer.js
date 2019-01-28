@@ -8,7 +8,7 @@ import ApplyAddCard from '../../../component/Apply/content/utils/ApplyAddCard';
 import './MusicCardContainer.scss';
 
 const MusicCardContainer = props => {
-  const { cardsInfo, musicCard, onChangeCard } = props;
+  const { cardsInfo, musicCard, onChangeCard, onApplyMusic } = props;
   const musicCards = cardsInfo.map(info => {
     let selectedClass;
     if (info.id === musicCard) selectedClass = 'apply--music--card--selected';
@@ -30,7 +30,7 @@ const MusicCardContainer = props => {
   return (
     <div className='apply--music--card--wrapper'>
       {musicCards}
-      {isThereAddCard && <ApplyAddCard />}
+      {isThereAddCard && <ApplyAddCard onClickAdd={onApplyMusic} />}
     </div>
   );
 };
