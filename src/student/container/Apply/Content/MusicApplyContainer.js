@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { setMusicDate } from '../../../../actions/ApplyActions';
+import { getMusicList, submitMusic } from '../../../../lib/applyAPI';
 
 import './MusicApplyContainer.scss';
 
 import ApplyExtensionBtn from '../../../component/Apply/content/ApplyExtensionBtn';
 import MusicCardContainer from './MusicCardContainer';
+import MusicSubmitCard from '../../../component/Apply/content/music/MusicSubmitCard';
 
 class MusicApplyContainer extends Component {
   state = {
@@ -119,7 +121,29 @@ class MusicApplyContainer extends Component {
           studentName: '수근수근'
         }
       ]
+    },
+    isMusicSubmitOpened: false
+  };
+
+  onApplyMusic = () => {
+    this.setState({
+      isMusicSubmitOpened: true
+    });
+  };
+
+  onExitSubmit = () => {
+    this.setState({
+      isMusicSubmitOpened: false
+    });
+  };
+
+  onSubmitMusic = (title, artist) => {
+    if (title === '' || artist === '') {
+      alert('음악 제목 혹은 아티스트 이름을 적지 않았습니다.');
+      return;
     }
+    //submitMusic(token, day, artist, title);
+    this.onExitSubmit();
   };
 
   render() {
@@ -160,7 +184,16 @@ class MusicApplyContainer extends Component {
       <div className='apply--music--wrapper'>
         <p className='unselectable apply--title'>기상음악 신청</p>
         <div className='apply--music--btnlist'>{musicBtnList}</div>
-        <MusicCardContainer cardsInfo={this.state.cardsInfo[selectedDate]} />
+        <MusicCardContainer
+          cardsInfo={this.state.cardsInfo[selectedDate]}
+          onApplyMusic={this.onApplyMusic}
+        />
+        {this.state.isMusicSubmitOpened && (
+          <MusicSubmitCard
+            onSubmitMusic={this.onSubmitMusic}
+            onExit={this.onExitSubmit}
+          />
+        )}
       </div>
     );
   }
