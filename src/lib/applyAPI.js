@@ -16,3 +16,18 @@ export const getGoingoutInform = async token => {
     }
   });
 };
+
+export const getMusicList = async () => {
+  return await axios.get(`${rootUrl}/music`);
+};
+
+export const submitMusic = async (token, day, singer, musicName) => {
+  return await axios.post(`${rootUrl}/music`, {
+    params: {
+      Authorization: token,
+      day,
+      singer,
+      musicName
+    }
+  });
+};
