@@ -1,11 +1,12 @@
-import React, { Component } from "react";
-import { connect } from "react-redux";
-import { setModal } from "../../../actions";
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { setModal } from '../../../actions';
 
-import Modal from "./Modal";
-import Login from "./Login";
-import Register from "./Register";
-import ForgotPassword from "./ForgotPassword";
+import Modal from './Modal';
+import Login from './Login';
+import Register from './Register';
+import ForgotPassword from './ForgotPassword';
+import PointContainer from './PointContainer';
 
 class ModalContainer extends Component {
   changeModal = value => {
@@ -17,7 +18,7 @@ class ModalContainer extends Component {
     const { modalState } = this.props;
     // if(!modalState) return null;
 
-    if (modalState === "로그인")
+    if (modalState === '로그인')
       return (
         <Modal
           title="로그인"
@@ -27,7 +28,7 @@ class ModalContainer extends Component {
           setModal={this.changeModal}
         />
       );
-    else if (modalState === "회원가입")
+    else if (modalState === '회원가입')
       return (
         <Modal
           title="회원가입"
@@ -37,7 +38,7 @@ class ModalContainer extends Component {
           setModal={this.changeModal}
         />
       );
-    else if (modalState === "비밀번호 찾기")
+    else if (modalState === '비밀번호 찾기')
       return (
         <Modal
           title="비밀번호 찾기"
@@ -47,23 +48,28 @@ class ModalContainer extends Component {
           setModal={this.changeModal}
         />
       );
-    else return null;
+    else if (modalState === '상벌점 내역 확인')
+      return <PointContainer setModal={this.changeModal} />;
+    else {
+      console.log(modalState);
+      return null;
+    }
   }
 }
 
 const mapStateToProps = state => {
   return {
-    modalState: state.modal.modalState
+    modalState: state.modal.modalState,
   };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
-    setModal: value => dispatch(setModal(value))
+    setModal: value => dispatch(setModal(value)),
   };
 };
 
 export default connect(
   mapStateToProps,
-  mapDispatchToProps
+  mapDispatchToProps,
 )(ModalContainer);

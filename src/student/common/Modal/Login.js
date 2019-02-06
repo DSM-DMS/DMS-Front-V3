@@ -1,56 +1,58 @@
-import React, { Component } from "react";
-import axios from "axios";
-import { setCookie } from "../../../lib/cookie";
+import React, { Component } from 'react';
+import axios from 'axios';
+import { setCookie } from '../../../lib/cookie';
 
-import "./Login.scss";
+import './Login.scss';
 
 class Login extends Component {
   state = {
-    id: "",
-    pw: "",
-    checkbox: false
+    id: '',
+    pw: '',
+    checkbox: false,
   };
 
   idHandler = e => {
     this.setState({
-      id: e.target.value
+      id: e.target.value,
     });
   };
 
   pwHandler = e => {
     this.setState({
-      pw: e.target.value
+      pw: e.target.value,
     });
   };
 
   checkboxHandler = e => {
     this.setState({
-      checkbox: !this.state.checkbox
+      checkbox: !this.state.checkbox,
     });
   };
 
   loginBtn = () => {
     const { id, pw, checkbox } = this.state;
+
     if (id && pw) {
       axios
-        .post("http://ec2.istruly.sexy:5000/account/auth", {
+        .post('http://ec2.istruly.sexy:5000/account/auth', {
           id: id,
-          pw: pw
+          pw: pw,
         })
         .then(response => {
           if (response.status === 200) {
-            alert("로그인에 성공하셨습니다.");
+            alert('로그인에 성공하셨습니다.');
             if (checkbox) {
-              setCookie("JWT", response.data.accessToken, 180);
-              setCookie("RFT", response.data.refreshToken, 180);
+              setCookie('JWT', response.data.accessToken, 180);
+              setCookie('RFT', response.data.refreshToken, 180);
             } else {
-              setCookie("JWT", response.data.accessToken);
-              setCookie("RFT", response.data.refreshToken);
+              setCookie('JWT', response.data.accessToken);
+              setCookie('RFT', response.data.refreshToken);
             }
+            this.props.setModal('');
           }
         });
     } else {
-      alert("공란이 존재합니다.");
+      alert('공란이 존재합니다.');
     }
   };
 
@@ -91,7 +93,7 @@ class Login extends Component {
           </span>
           <span
             className="login--forgot"
-            onClick={() => setModal("비밀번호 찾기")}
+            onClick={() => setModal('비밀번호 찾기')}
           >
             비밀번호를 잊으셨나요 ?
           </span>

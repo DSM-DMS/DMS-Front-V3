@@ -1,0 +1,53 @@
+$goodColor: #19b6b6;
+$badColor: #ff5252;
+
+.point--card {
+  &--wrapper {
+    display: flex;
+    width: calc(100%-6px);
+    min-height: 4.4375rem;
+    padding: 0 1rem 0 1rem;
+    border: 3px solid;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 6px;
+    margin-bottom: 1rem;
+  }
+
+  &--good {
+    border-color: $goodColor;
+    color: $goodColor;
+  }
+
+  &--bad {
+    border-color: $badColor;
+    color: $badColor;
+  }
+
+  &--left {
+    &--wrapper {
+      display: flex;
+      flex-direction: column;
+    }
+
+    &--reason {
+      font: {
+        size: 1.125rem;
+        weight: 600;
+        family: 'NanumSquareB';
+      }
+    }
+
+    &--date {
+      opacity: 0.7;
+      font: {
+        size: 0.875rem;
+        family: 'NanumSquareR';
+      }
+    }
+  }
+
+  &--point {
+    font-size: 1.75rem;
+  }
+}
