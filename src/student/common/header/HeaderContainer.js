@@ -2,7 +2,6 @@ import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
 import { setModal } from '../../../actions';
 import { withRouter } from 'react-router-dom';
-import { getCookie } from '../../../lib/cookie';
 
 import HeaderButton from './HeaderButton';
 
@@ -15,7 +14,6 @@ class HeaderContainer extends Component {
       { title: '공지사항', page: 'post' },
       { title: '부가기능', page: 'extra' },
     ],
-    isLogin: false,
   };
 
   changeModal = value => {
@@ -25,13 +23,13 @@ class HeaderContainer extends Component {
 
   render() {
     const { location, history } = this.props;
-    const { isLogin } = this.state;
+    const { isLogin } = this.props;
     const buttonList = this.state.buttonList.map(data => (
       <HeaderButton title={data.title} scroll={data.page} key={data.page} />
     ));
     const variableButton =
       location.pathname === '/' ? (
-        getCookie('jwt') ? (
+        isLogin ? (
           <button
             className="header--button--mypage"
             onClick={() => history.push('/mypage')}
@@ -68,13 +66,15 @@ class HeaderContainer extends Component {
   }
 }
 
-const mapDispatchToProps = dispatch => {
-  return {
-    setModal: value => dispatch(setModal(value)),
-  };
-};
+const mapStateToProps = state => ({
+  isLogin: state.login.isLogin,
+});
+
+const mapDispatchToProps = dispatch => ({
+  setModal: value => dispatch(setModal(value)),
+});
 
 export default connect(
-  null,
+  mapStateToProps,
   mapDispatchToProps,
 )(withRouter(HeaderContainer));
