@@ -77,12 +77,22 @@ class MainContainer extends Component {
   componentDidMount() {
     const { location } = this.props;
     const mainPage = document.getElementById('main');
-    mainPage.addEventListener('DOMMouseScroll', e => {
-      this.throttle(e, this.scrolling, 1300)();
-    });
-    mainPage.addEventListener('mousewheel', e => {
-      this.throttle(e, this.scrolling, 1300)();
-    });
+    let agent = navigator.userAgent.toLowerCase();
+
+    if (
+      !(
+        (navigator.appName === 'Netscape' &&
+          navigator.userAgent.search('Trident') !== -1) ||
+        agent.indexOf('msie') !== -1
+      )
+    ) {
+      mainPage.addEventListener('DOMMouseScroll', e => {
+        this.throttle(e, this.scrolling, 750)();
+      });
+      mainPage.addEventListener('mousewheel', e => {
+        this.throttle(e, this.scrolling, 750)();
+      });
+    }
 
     if (location.pathname !== '/') {
       const place = location.pathname.replace('/', '');
@@ -94,8 +104,15 @@ class MainContainer extends Component {
     const { section } = this.props;
     return (
       <div
-        style={{ width: window.screen.width }}
-        className={`scroll--${section.currentSection}`}
+        className={
+          !(
+            (navigator.appName === 'Netscape' &&
+              navigator.userAgent.search('Trident') !== -1) ||
+            navigator.userAgent.toLowerCase().indexOf('msie') !== -1
+          )
+            ? `scroll--${section.currentSection}`
+            : 'main--ie'
+        }
         id="main"
       >
         <MealContainer />

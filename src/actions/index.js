@@ -10,6 +10,19 @@ export const isLogin = bool => ({
   bool: bool,
 });
 
+export const mealPrevDate = () => ({
+  type: types.SET_MEAL_PREV_DATE,
+});
+
+export const mealNextDate = () => ({
+  type: types.SET_MEAL_NEXT_DATE,
+});
+
+export const setMeal = meal => ({
+  type: types.SET_MEAL,
+  meal: meal,
+});
+
 export const setExtensionRoom = room => ({
   type: types.SET_EXTENSION_ROOM,
   room,
