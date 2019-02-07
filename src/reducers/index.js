@@ -7,6 +7,7 @@ import ApplyCardSwitch from './student/apply/ApplyCardSwitch';
 import domitoryrule from './domitoryRule';
 import modal from './modal';
 import login from './login';
+import meal from './meal';
 
 const dmsApp = history =>
   combineReducers({
@@ -18,6 +19,7 @@ const dmsApp = history =>
     domitoryrule,
     modal,
     login,
+    meal,
     router: connectRouter(history),
   });
 
