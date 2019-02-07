@@ -2,13 +2,15 @@ import React from 'react';
 
 import './MyPageCard.scss';
 
-const MyPageCard = ({ kind, title, setModal }) => {
+const MyPageCard = ({ kind, title, setModal, onLogOutBtn }) => {
   return (
     <div
       className="mypage--card--wrapper"
       onClick={
         kind === 'score' || kind === 'changepassword'
           ? () => setModal(title)
+          : kind === 'logout'
+          ? onLogOutBtn
           : null
       }
     >

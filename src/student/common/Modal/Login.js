@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import { connect } from 'react-redux';
 import { setCookie } from '../../../lib/cookie';
+import { isLogin } from '../../../actions';
 
 import './Login.scss';
 
@@ -49,6 +51,7 @@ class Login extends Component {
               setCookie('RFT', response.data.refreshToken);
             }
             this.props.setModal('');
+            this.props.isLogin(true);
           }
         });
     } else {
@@ -103,4 +106,11 @@ class Login extends Component {
   }
 }
 
-export default Login;
+const mapDispatchToProps = dispatch => ({
+  isLogin: bool => dispatch(isLogin(bool)),
+});
+
+export default connect(
+  null,
+  mapDispatchToProps,
+)(Login);
