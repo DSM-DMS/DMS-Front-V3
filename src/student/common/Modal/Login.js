@@ -36,7 +36,7 @@ class Login extends Component {
       axios
         .post('http://ec2.istruly.sexy:5000/account/auth', {
           id: id,
-          pw: pw,
+          password: pw,
         })
         .then(response => {
           if (response.status === 200) {

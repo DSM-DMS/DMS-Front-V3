@@ -13,7 +13,7 @@ class MyPageContainer extends Component {
     name: '김동규',
     goodPoint: 15,
     badPoint: 19,
-    coment: '긴장타세요 퇴사가 코앞입니다.',
+    comment: '긴장타세요 퇴사가 코앞입니다.',
     cardList: [
       {
         kind: 'score',
@@ -54,7 +54,7 @@ class MyPageContainer extends Component {
           name={this.state.name}
           goodPoint={this.state.goodPoint}
           badPoint={this.state.badPoint}
-          coment={this.state.coment}
+          comment={this.state.comment}
           myPageCardList={MyPageCardList}
         />
       </Fragment>
