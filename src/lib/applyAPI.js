@@ -17,17 +17,26 @@ export const getGoingoutInform = async token => {
   });
 };
 
-export const getMusicList = async () => {
-  return await axios.get(`${rootUrl}/music`);
+export const getMusicList = token => {
+  return axios.get(`${rootUrl}/music`, {
+    headers: {
+      Authorization: `Bearer ${token}`
+    }
+  });
 };
 
 export const submitMusic = async (token, day, singer, musicName) => {
-  return await axios.post(`${rootUrl}/music`, {
-    params: {
-      Authorization: token,
+  return await axios.post(
+    `${rootUrl}/music`,
+    {
       day,
       singer,
       musicName
+    },
+    {
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
     }
-  });
+  );
 };
