@@ -10,6 +10,7 @@
     "lodash.throttle": "^4.1.1",
     "node-sass": "^4.11.0",
     "react": "^16.7.0",
+    "react-app-polyfill": "^0.2.0",
     "react-dom": "^16.7.0",
     "react-redux": "^6.0.0",
     "react-router-dom": "^4.3.1",
