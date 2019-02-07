@@ -10,6 +10,8 @@ export default class GoingoutModiyCard extends Component {
     fieldActivate: false
   };
 
+  textarea = null;
+
   activeField = () => {
     this.setState({
       fieldActivate: true
@@ -17,7 +19,7 @@ export default class GoingoutModiyCard extends Component {
   };
 
   disableFocus = e => {
-    console.log(e.target.value)
+    console.log(e.target.value);
     if (e.target.value === '') {
       this.setState({
         fieldActivate: false
@@ -46,10 +48,16 @@ export default class GoingoutModiyCard extends Component {
         <p className='apply--goingout--modify--card--title'>외출</p>
         <p className='apply--goingout--modify--card--subtitle'>사유</p>
         <div className='apply--goingout--modify--card--input--wrapper'>
-          <label className={this.state.fieldActivate ? 'field-active' : ''}>
+          <label
+            className={`apply--goingout--modify--label ${this.state.fieldActivate ? 'field-active' : ''}`}
+            onClick={() => {
+              this.textarea.focus();
+            }}
+          >
             사유를 적어주세요
           </label>
           <textarea
+            ref={ref => (this.textarea = ref)}
             className='apply--goingout--modify--card--reason'
             onFocus={this.activeField}
             value={this.state.reason}

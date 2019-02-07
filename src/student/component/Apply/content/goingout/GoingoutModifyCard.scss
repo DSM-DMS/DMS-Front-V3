@@ -40,7 +40,7 @@
   }
 }
 
-label {
+.apply--goingout--modify--label {
   display: inline-block;
   position: absolute;
   left: 1.25rem;
@@ -53,7 +53,7 @@ label {
   font-size: 1.125rem;
 }
 
-label.field-active {
+.apply--goingout--modify--label.field-active {
   transform: translateY(-2rem);
   font-size: 1rem;
   color: #19b6b6;
