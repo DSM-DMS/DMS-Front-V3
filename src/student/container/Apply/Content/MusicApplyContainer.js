@@ -13,7 +13,6 @@ import MusicSubmitCard from '../../../component/Apply/content/music/MusicSubmitC
 class MusicApplyContainer extends Component {
   constructor(props) {
     super(props);
-    console.log(getMusicList(getCookie('JWT')));
     this.state = {
       dayType: [
         { date: '월요일', val: 'mon' },
@@ -67,14 +66,14 @@ class MusicApplyContainer extends Component {
     });
   };
 
-  onSubmitMusic = (title, artist) => {
+  onSubmitMusic = async (title, artist) => {
     if (title === '' || artist === '') {
       alert('음악 제목 혹은 아티스트 이름을 적지 않았습니다.');
       return;
     }
-    submitMusic(getCookie('JWT'), this.dateToNum(this.props.musicDate), artist, title);
+    await submitMusic(getCookie('JWT'), this.dateToNum(this.props.musicDate), artist, title);
     this.onExitSubmit();
-    this.getCards();
+    await this.getCards();
   };
 
   dateToNum = date => {
