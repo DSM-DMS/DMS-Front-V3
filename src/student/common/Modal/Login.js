@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import { connect } from 'react-redux';
 import { setCookie } from '../../../lib/cookie';
+import { isLogin } from '../../../actions';
 
 import './Login.scss';
 
@@ -44,11 +46,14 @@ class Login extends Component {
             if (checkbox) {
               setCookie('JWT', response.data.accessToken, 180);
               setCookie('RFT', response.data.refreshToken, 180);
+              setCookie('ID', id, 180);
             } else {
               setCookie('JWT', response.data.accessToken);
               setCookie('RFT', response.data.refreshToken);
+              setCookie('ID', id);
             }
             this.props.setModal('');
+            this.props.isLogin(true);
           }
         });
     } else {
@@ -103,4 +108,11 @@ class Login extends Component {
   }
 }
 
-export default Login;
+const mapDispatchToProps = dispatch => ({
+  isLogin: bool => dispatch(isLogin(bool)),
+});
+
+export default connect(
+  null,
+  mapDispatchToProps,
+)(Login);

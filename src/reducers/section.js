@@ -1,16 +1,16 @@
-import { SET_SECTION } from "../actions";
+import { SET_SECTION } from '../actions/ActionTypes';
 
 const initialState = {
-    currentSection: "meal"
-}
+  currentSection: 'meal',
+};
 
 function scroll(state = initialState, action) {
-    switch(action.type) {
-        case SET_SECTION:
-            return {...state, currentSection: action.currentSection}
-        default:
-            return state;
-    }
+  switch (action.type) {
+    case SET_SECTION:
+      return { ...state, currentSection: action.currentSection };
+    default:
+      return state;
+  }
 }
 
 export default scroll;
