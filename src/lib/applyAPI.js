@@ -25,13 +25,35 @@ export const getMusicList = token => {
   });
 };
 
-export const submitMusic = async (token, day, singer, musicName) => {
-  return await axios.post(
+export const submitMusic = (token, day, singer, musicName) => {
+  return axios.post(
     `${rootUrl}/music`,
     {
       day,
       singer,
       musicName
+    },
+    {
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    }
+  );
+};
+
+export const getStayInform = token => {
+  return axios.get(`${rootUrl}/stay`, {
+    headers: {
+      Authorization: `Bearer ${token}`
+    }
+  });
+};
+
+export const submitStayInform = (token, value) => {
+  return axios.post(
+    `${rootUrl}/stay`,
+    {
+      value
     },
     {
       headers: {
