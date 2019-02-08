@@ -7,15 +7,15 @@ import './App.scss';
 import { routerMiddleware, ConnectedRouter } from 'connected-react-router';
 import { createBrowserHistory } from 'history';
 
-import MainContainer from "./student/container/Main/MainContainer";
-import AdminMainContainer from "./admin/container/Main/AdminMainContainer";
-import ApplyMainContainer from "./student/container/Apply/ApplyMainContainer";
-import DomitoryRuleContainer from "./admin/container/DomitoryRule/DomitoryRuleContainer"
-import CommonDesign from "./admin/common/commonDesign/CommonDesign"
-import ShowDomitoryRuleContainer from "./admin/container/DomitoryRule/ShowDomitoryRuleContainer"
+import MainContainer from './student/container/Main/MainContainer';
+import AdminMainContainer from './admin/container/Main/AdminMainContainer';
+import ApplyMainContainer from './student/container/Apply/ApplyMainContainer';
+import DomitoryRuleContainer from './admin/container/DomitoryRule/DomitoryRuleContainer';
+import CommonDesign from './admin/common/commonDesign/CommonDesign';
+import ShowDomitoryRuleContainer from './admin/container/DomitoryRule/ShowDomitoryRuleContainer';
 import NoticeContainer from './admin/container/Notice/NoticeContainer';
 import NoticeWriteContainer from './admin/container/Notice/NoticeWriteContainer';
-import StudentDefaultLayout from './student/component/DefaultLayout/DefaultLayout';
+import StudentDefaultLayout from './student/common/DefaultLayout/DefaultLayout';
 import MyPageContainer from './student/container/MyPage/MyPageContainer';
 
 const history = createBrowserHistory();
@@ -32,39 +32,69 @@ class App extends Component {
         <ConnectedRouter history={history}>
           <BrowserRouter>
             <Switch>
-              <Route path="/admin" component={AdminMainContainer} exact/>
-              <Route path="/apply/extension" component={ApplyMainContainer} exact/>
-              <Route path="/apply/goingout" component={ApplyMainContainer} exact/>
-              <Route path="/apply/stay" component={ApplyMainContainer} exact/>
-              <Route path="/apply/music" component={ApplyMainContainer} exact/>
-              
-              
-              <Route path="/admin/:uri?" render={()=>
-                <CommonDesign>
-                  <Switch>
-                    <Route path="/admin/domitoryrule" component={DomitoryRuleContainer} exact/>
-                    <Route path="/admin/domitoryrule/:postId" component={ShowDomitoryRuleContainer}/>
-                    <Route path="/admin/notice" component={NoticeContainer} exact/>
-                    <Route path="/admin/notice/write" component={NoticeWriteContainer} exact/>
-                  </Switch>
-                </CommonDesign>
-              }
+              <Route path="/admin" component={AdminMainContainer} exact />
+              <Route
+                path="/apply/extension"
+                component={ApplyMainContainer}
+                exact
               />
-              <Route path="/:uri?" render={() => 
-                <Fragment>
-                  <StudentDefaultLayout/>
-                  <Switch>
-                    <Route path="/" component={MainContainer} exact/>
-                    <Route path="/apply" component={MainContainer} exact/>
-                    <Route path="/post" component={MainContainer} exact/>
-                    <Route path="/extra" component={MainContainer} exact/>
-                    <Route path="/mypage" component={MyPageContainer} exact/>
-                  </Switch>
-                </Fragment>
+              <Route
+                path="/apply/goingout"
+                component={ApplyMainContainer}
+                exact
+              />
+              <Route path="/apply/stay" component={ApplyMainContainer} exact />
+              <Route path="/apply/music" component={ApplyMainContainer} exact />
+              <Route
+                path="/admin/:uri?"
+                render={() => (
+                  <CommonDesign>
+                    <Switch>
+                      <Route
+                        path="/admin/domitoryrule"
+                        component={DomitoryRuleContainer}
+                        exact
+                      />
+                      <Route
+                        path="/admin/domitoryrule/:postId"
+                        component={ShowDomitoryRuleContainer}
+                      />
+                      <Route
+                        path="/admin/notice"
+                        component={NoticeContainer}
+                        exact
+                      />
+                      <Route
+                        path="/admin/notice/write"
+                        component={NoticeWriteContainer}
+                        exact
+                      />
+                    </Switch>
+                  </CommonDesign>
+                )}
+              />
+              <Route
+                path="/:uri?"
+                render={() => (
+                  <Fragment>
+                    <StudentDefaultLayout>
+                      <Switch>
+                        <Route path="/" component={MainContainer} exact />
+                        <Route path="/apply" component={MainContainer} exact />
+                        <Route path="/post" component={MainContainer} exact />
+                        <Route path="/extra" component={MainContainer} exact />
+                        <Route
+                          path="/mypage"
+                          component={MyPageContainer}
+                          exact
+                        />
+                      </Switch>
+                    </StudentDefaultLayout>
+                  </Fragment>
+                )}
+              />
               }/>
-              
-            }/>
-              <Redirect to="/"/>
+              <Redirect to="/" />
             </Switch>
           </BrowserRouter>
         </ConnectedRouter>

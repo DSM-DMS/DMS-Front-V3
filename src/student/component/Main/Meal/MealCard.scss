@@ -1,65 +1,79 @@
 .meal--card {
-    &--wrapper {
-        position: relative;
+  &--wrapper {
+    position: relative;
+    transition: 1s;
+    width: 12.5rem;
+    height: 18.75rem;
+    border-radius: 10px;
+    background-color: #0c9799;
+    box-shadow: 0px 5px 5px 0 rgba(0, 0, 0, 0.2);
+
+    &:hover {
+      transition: 1s;
+      width: 15.625rem;
+      height: 21.875rem;
+
+      & p {
+        opacity: 1;
         transition: 1s;
-        width: 12.5rem;
-        height: 18.75rem;
-        border-radius: 10px;
-        background-color: #0c9799;
-        box-shadow: 0px 5px 5px 0 rgba(0, 0, 0, 0.2);
-
-        &:hover {
-            transition: 1s;
-            width: 15.625rem;
-            height: 21.875rem;
-    
-            & p {
-                opacity: 1;
-                transition: 1s;
-                font-size: 1.5rem;
-            }
-    
-            & .meal--card--content{
-                font-size: 1.375rem;
-                transition: 1s;
-                
-                &--wrapper {
-                bottom: 40%;
-                transition: 1s;
-                }
-            }
-        }
-    }
-
-    &--header {
         font-size: 1.5rem;
-        opacity: 0;
-        transition: 1s;
-        top: 10%;
-        color: white;
-        font-family: 'NanumSquareB';
-        text-align: center;
-        padding-bottom:0.3rem;
-    }
+      }
 
-    &--content {
-        color: white;
-        font: {
-            size: 1.25rem;
-            family: 'NanumSquareR';
-        }
+      & .meal--card--content {
+        font-size: 1.375rem;
+        transition: 1s;
 
         &--wrapper {
-            display: flex;
-            position: absolute;
-            left: 50%;
-            bottom: 50%;
-            transform: translate(-50%, 50%);
-            width: 100%;
-            height: 14.3125rem;
-            flex-direction: column;
-            justify-content: space-between;
-            align-items: center
+          bottom: 40%;
+          transition: 1s;
         }
+      }
     }
+  }
+
+  &--header {
+    font-size: 1.5rem;
+    opacity: 0;
+    transition: 1s;
+    top: 10%;
+    color: white;
+    font-family: 'NanumSquareB';
+    text-align: center;
+    padding-bottom: 0.3rem;
+  }
+
+  &--content {
+    color: white;
+    font: {
+      size: 1.25rem;
+      family: 'NanumSquareR';
+    }
+
+    &--wrapper {
+      display: flex;
+      position: absolute;
+      left: 50%;
+      bottom: 50%;
+      transform: translate(-50%, 50%);
+      width: 100%;
+      height: 14.3125rem;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: center;
+    }
+  }
+
+  &--temp {
+    position: absolute;
+    width: 100%;
+    text-align: center;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    font: {
+      size: 1.25rem;
+      family: 'NanumSquareR';
+    }
+  }
 }

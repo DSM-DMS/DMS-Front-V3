@@ -1,6 +1,7 @@
 import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
-import { setModal } from '../../../actions';
+import { setModal, isLogin } from '../../../actions';
+import { removeCookie } from '../../../lib/cookie';
 
 import MyPage from '../../component/MyPage/MyPage';
 import MyPageCard from '../../component/MyPage/MyPageCard';
@@ -34,6 +35,14 @@ class MyPageContainer extends Component {
     ],
   };
 
+  onLogOutBtn = () => {
+    alert('로그아웃에 성공하셨습니다.');
+    this.props.isLogin(false);
+    removeCookie('JWT');
+    removeCookie('RFT');
+    this.props.history.push('/');
+  };
+
   render() {
     const { cardList } = this.state;
     const { setModal } = this.props;
@@ -43,6 +52,7 @@ class MyPageContainer extends Component {
         title={data.title}
         setModal={setModal}
         key={`my-pagecard${data.kind}`}
+        onLogOutBtn={this.onLogOutBtn}
       />
     ));
     return (
@@ -62,11 +72,10 @@ class MyPageContainer extends Component {
   }
 }
 
-const mapDispatchToProps = dispatch => {
-  return {
-    setModal: value => dispatch(setModal(value)),
-  };
-};
+const mapDispatchToProps = dispatch => ({
+  setModal: value => dispatch(setModal(value)),
+  isLogin: bool => dispatch(isLogin(bool)),
+});
 
 export default connect(
   null,
