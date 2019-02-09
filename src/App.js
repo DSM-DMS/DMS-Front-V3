@@ -21,6 +21,8 @@ import QnaContainer from './admin/container/Qna/QnaContainer'
 import QnaWriteContainer from './admin/container/Qna/QnaWriteContainer'
 import FixContainer from './admin/container/Fix/FixContainer';
 import FixDetailContainer from './admin/container/Fix/FixDetailContainer';
+import SurveyContainer from './admin/container/Survey/SurveyContainer';
+import SurveyWriteContainer from './admin/container/Survey/SurveyWriteContainer';
 
 const history = createBrowserHistory();
 const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
@@ -54,6 +56,8 @@ class App extends Component {
                     <Route path="/admin/qna/write" component={QnaWriteContainer} exact/>
                     <Route path="/admin/fix" component={FixContainer} exact/>
                     <Route path="/admin/fix/:uri" component={FixDetailContainer} exact/>
+                    <Route path="/admin/survey" component={SurveyContainer} exact/>
+                    <Route path="/admin/survey/write" component={SurveyWriteContainer} exact/>
                   </Switch>
                 </CommonDesign>
               }

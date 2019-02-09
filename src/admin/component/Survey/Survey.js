@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 import './Survey.scss'
 
@@ -10,7 +11,7 @@ const Survey = ({postList}) => {
             <div className = "survey--button--wrapper">
                 <div className = "survey--button--detail survey">
                     <div className = "survey--button">설문조사</div>
-                    <div style = {{opacity: '0.4'}} className = "survey--button">글작성</div>
+                    <Link to = "/admin/survey/write" style = {{opacity: '0.4'}} className = "survey--button">글작성</Link>
                     <img src = {Woman} alt = "survey" className = "survey--button--illust"/>
                 </div>
             </div>

@@ -1,4 +1,4 @@
-.qna-write {
+.survey-write {
     &--button {
         display: flex;
         align-items: center;
@@ -8,6 +8,7 @@
         background-color: #ffffff;
         border-radius: 2.5rem;
         color: #10a3a4;
+        text-decoration: none;
 
         & + & {
             margin-left: 0.75rem;
@@ -42,32 +43,52 @@
 
     &--wrapper {
         z-index: 3;
-        width: calc(100% - 23.25rem);
+        width: calc(100% - 8.75rem);
         height: 28.025rem;
-        padding: 5rem 11.625rem 3.625rem;
+        padding-left: 4.25rem;
+        padding-right: 4.25rem;
+        padding-top: 5.125rem;
+        padding-bottom: 3.625rem;
         background-color: #ffffff;
         border-radius: 1.124rem;
+
+        color: #10a3a4;
+        
+        font : {
+            size: 1.5rem;
+            family : 'NanumSquareB';
+        }
     }
 
-    &--header {
-        &--wrapper {
-            display: flex;
-            width: 100%;
-            height: 2.6875rem;
-            border-bottom: 0.125rem solid #0a9395;
+    &--input {
+        background-color: #ffffff;
+        border-radius: 0.5rem;
+        border: 0.0625rem solid #707070;
+
+        &.title {
+            width: 30.875rem;
+            height: 2.75rem;
         }
-        
-        &--content {
 
-            color: #0a9395;
+        &.date {
+            height: 2.125rem;
 
-            font : {
-                size: 1.5rem;
-                family: 'NanumSquareB';
+            &.year {
+                width: 5.9375rem;
             }
+            
+            &.month {
+                width: 2.5625rem;
+            }
+            
+            &.day {
+                width: 2.875rem;
+            }
+        }
 
-            display: flex;
-            justify-content: center;
+        &.post {
+            width: 100%;
+            height: 12rem;
         }
     }
 
@@ -100,9 +121,33 @@
     &--content {
         &--wrapper {
             width: 100%;
-            height: 16.6875rem;
-            overflow-y: auto;
-            margin-top: 1.5rem;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        &--header {
+            &--wrapper {
+                display: flex;
+                align-items: center;
+            }
+        }
+
+        &--date {
+            &--wrapper {
+                width: 53.25rem;
+                height: 2.125rem;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+            }
+        }
+
+        &--post {
+            &--wrapper {
+                display: flex;
+                flex-direction: column;
+            }
         }
 
         &--button--wrapper {
@@ -130,25 +175,6 @@
             & + & {
                 margin-left: 1.25rem;
             }
-        }
-    }
-
-    &--content {
-        width: calc(100% - 4.75rem);
-        height: calc(100% - 4rem);
-        padding: 1.75rem 2.25rem;
-        border: 0.125rem solid #10a3a4;
-        resize: none;
-        border-radius: 1.125rem;
-
-        font : {
-            size: 1.25rem;
-            family: 'NanumSquareB';
-        }
-
-        &::placeholder {
-            color: #010101;
-            opacity: 0.4;
         }
     }
 }
