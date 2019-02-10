@@ -56,7 +56,9 @@ class ForgotPassword extends Component {
           onChange={this.emailHandler}
           value={this.state.email}
         />
-        <button className="modal--submit">로그인</button>
+        <button className="modal--submit" onClick={this.forgotBtn}>
+          비밀번호 찾기
+        </button>
       </div>
     );
   }

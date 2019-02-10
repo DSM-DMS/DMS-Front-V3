@@ -33,7 +33,6 @@ class Login extends Component {
 
   loginBtn = () => {
     const { id, pw, checkbox } = this.state;
-
     if (id && pw) {
       axios
         .post('http://ec2.istruly.sexy:5000/account/auth', {

@@ -23,6 +23,20 @@ export const setMeal = meal => ({
   meal: meal,
 });
 
+export const setStudentBasicData = basicData => ({
+  type: types.SET_STUDENT_BASIC_DATA,
+  basicData: basicData,
+});
+
+export const setStudentPointData = pointData => ({
+  type: types.SET_STUDENT_POINT_DATA,
+  pointData: pointData,
+});
+
+export const resetStudentData = () => ({
+  type: types.RESET_STUDENT_DATA,
+});
+
 export const setExtensionRoom = room => ({
   type: types.SET_EXTENSION_ROOM,
   room,

@@ -1,42 +1,35 @@
 import React, { Component, Fragment } from 'react';
 import axios from 'axios';
+import { connect } from 'react-redux';
 import { getCookie } from '../../../lib/cookie';
+import { setStudentPointData } from '../../../actions';
 
 import Point from './Point';
 import PointCard from './PointCard';
 
 class PointContainer extends Component {
-  state = {
-    pointHistory: [
-      { date: '2017-12-17', point: 3, pointType: false, reason: '치킨 먹음' },
-      { date: '2017-12-19', point: 2, pointType: true, reason: '치킨 맛있음' },
-      { date: '2017-12-19', point: 2, pointType: true, reason: '치킨 맛있음' },
-      { date: '2017-12-19', point: 2, pointType: true, reason: '치킨 맛있음' },
-      { date: '2017-12-19', point: 2, pointType: true, reason: '치킨 맛있음' },
-      { date: '2017-12-19', point: 2, pointType: true, reason: '치킨 맛있음' },
-      { date: '2017-12-19', point: 2, pointType: true, reason: '치킨 맛있음' },
-    ],
-  };
+  componentWillMount() {
+    const jwtToken = getCookie('JWT');
+    this.getPointCards(jwtToken);
+  }
 
-  componentDidMount() {
+  getPointCards = token => {
     axios
       .get('http://ec2.istruly.sexy:5000/info/point', {
-        headers: { Authorization: getCookie('jwt') },
+        headers: { Authorization: `Bearer ${token}` },
       })
       .then(response => {
         if (response.status === 200) {
-          this.setState({
-            pointHistory: response.data.point_history,
-          });
+          this.props.setStudentPointData(response.data.point_history);
         }
       })
       .catch(err => {
         console.log(err);
       });
-  }
+  };
 
   render() {
-    const { pointHistory } = this.state;
+    const { pointHistory } = this.props;
     const historyCards = pointHistory.map(data => (
       <PointCard
         date={data.date}
@@ -54,4 +47,15 @@ class PointContainer extends Component {
   }
 }
 
-export default PointContainer;
+const mapStateToProps = state => ({
+  pointHistory: state.studentData.pointHistory,
+});
+
+const mapDispatchToProps = dispatch => ({
+  setStudentPointData: pointData => dispatch(setStudentPointData(pointData)),
+});
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(PointContainer);

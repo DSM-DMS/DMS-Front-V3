@@ -8,6 +8,7 @@ import domitoryrule from './domitoryRule';
 import modal from './modal';
 import login from './login';
 import meal from './meal';
+import studentData from './studentData';
 
 const dmsApp = history =>
   combineReducers({
@@ -20,6 +21,7 @@ const dmsApp = history =>
     modal,
     login,
     meal,
+    studentData,
     router: connectRouter(history),
   });
 
