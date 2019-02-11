@@ -28,7 +28,10 @@ class HeaderContainer extends Component {
       <HeaderButton title={data.title} scroll={data.page} key={data.page} />
     ));
     const variableButton =
-      location.pathname === '/' ? (
+      location.pathname === '/' ||
+      location.pathname === '/apply' ||
+      location.pathname === '/post' ||
+      location.pathname === '/extra' ? (
         isLogin ? (
           <button
             className="header--button--mypage"
