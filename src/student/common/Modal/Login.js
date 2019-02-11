@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import { connect } from 'react-redux';
 import { setCookie } from '../../../lib/cookie';
-import { isLogin } from '../../../actions';
+import { isLogin, setStudentPointData, setStudentBasicData } from '../../../actions';
 
 import './Login.scss';
 
@@ -51,13 +51,42 @@ class Login extends Component {
               setCookie('RFT', response.data.refreshToken);
               setCookie('ID', id);
             }
-            this.props.setModal('');
+            this.getPointCards(response.data.accessToken);
+            this.getBasicData(response.data.accessToken);
             this.props.isLogin(true);
+            this.props.setModal('');
           }
         });
     } else {
       alert('공란이 존재합니다.');
     }
+  };
+
+  getPointCards = token => {
+    axios
+      .get('http://ec2.istruly.sexy:5000/info/point', {
+        headers: { Authorization: `Bearer ${token}` },
+      })
+      .then(response => {
+        if (response.status === 200) {
+          this.props.setStudentPointData(response.data.point_history);
+        }
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  };
+
+  getBasicData = token => {
+    axios
+      .get('http://ec2.istruly.sexy:5000/info/basic', {
+        headers: { Authorization: `Bearer ${token}` },
+      })
+      .then(response => {
+        if (response.status === 200) {
+          this.props.setStudentBasicData(response.data);
+        }
+      });
   };
 
   render() {
@@ -108,7 +137,7 @@ class Login extends Component {
 }
 
 const mapDispatchToProps = dispatch => ({
-  isLogin: bool => dispatch(isLogin(bool)),
+  isLogin: bool => dispatch(isLogin(bool)),setStudentPointData: pointData => dispatch(setStudentPointData(pointData)),setStudentBasicData: pointData => dispatch(setStudentBasicData(pointData))
 });
 
 export default connect(
