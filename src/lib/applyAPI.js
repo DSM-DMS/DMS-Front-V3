@@ -10,11 +10,32 @@ export const getExtensionMap = async (time, classNum) => {
 };
 
 export const getGoingoutInform = async token => {
-  return await axios.get(`${rootUrl}/goingout `, {
-    params: {
-      Authorization: token
+  return axios.get(`${rootUrl}/goingout `, {
+    headers: {
+      Authorization: `Bearer ${token}`
     }
   });
+};
+
+export const postGoingoutInform = async (
+  token,
+  goOutDate,
+  returnDate,
+  reason
+) => {
+  return axios.post(
+    `${rootUrl}/goingout `,
+    {
+      goOutDate,
+      returnDate,
+      reason
+    },
+    {
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    }
+  );
 };
 
 export const getMusicList = token => {
