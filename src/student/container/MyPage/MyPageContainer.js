@@ -1,20 +1,15 @@
 import React, { Component, Fragment } from 'react';
+import axios from 'axios';
 import { connect } from 'react-redux';
 import { setModal, isLogin } from '../../../actions';
-import { removeCookie } from '../../../lib/cookie';
+import { removeCookie, getCookie } from '../../../lib/cookie';
+import { setStudentBasicData, resetStudentData } from '../../../actions';
 
 import MyPage from '../../component/MyPage/MyPage';
 import MyPageCard from '../../component/MyPage/MyPageCard';
 
 class MyPageContainer extends Component {
   state = {
-    grade: 3,
-    classroom: 1,
-    number: 4,
-    name: '김동규',
-    goodPoint: 15,
-    badPoint: 19,
-    comment: '긴장타세요 퇴사가 코앞입니다.',
     cardList: [
       {
         kind: 'score',
@@ -35,17 +30,48 @@ class MyPageContainer extends Component {
     ],
   };
 
+  componentWillMount() {
+    const jwtToken = getCookie('JWT');
+    if (jwtToken) {
+      this.getBasicData(jwtToken);
+    } else {
+      this.props.history.push('/');
+    }
+  }
+
+  getBasicData = token => {
+    axios
+      .get('http://ec2.istruly.sexy:5000/info/basic', {
+        headers: { Authorization: `Bearer ${token}` },
+      })
+      .then(response => {
+        if (response.status === 200) {
+          this.props.setStudentBasicData(response.data);
+        }
+      });
+  };
+
   onLogOutBtn = () => {
     alert('로그아웃에 성공하셨습니다.');
     this.props.isLogin(false);
     removeCookie('JWT');
     removeCookie('RFT');
+    this.props.resetStudentData();
     this.props.history.push('/');
   };
 
   render() {
     const { cardList } = this.state;
     const { setModal } = this.props;
+    const {
+      grade,
+      classroom,
+      number,
+      name,
+      goodPoint,
+      badPoint,
+      comment,
+    } = this.props.studentData;
     const MyPageCardList = cardList.map(data => (
       <MyPageCard
         kind={data.kind}
@@ -58,13 +84,13 @@ class MyPageContainer extends Component {
     return (
       <Fragment>
         <MyPage
-          grade={this.state.grade}
-          classroom={this.state.classroom}
-          number={this.state.number}
-          name={this.state.name}
-          goodPoint={this.state.goodPoint}
-          badPoint={this.state.badPoint}
-          comment={this.state.comment}
+          grade={grade}
+          classroom={classroom}
+          number={number}
+          name={name}
+          goodPoint={goodPoint}
+          badPoint={badPoint}
+          comment={comment}
           myPageCardList={MyPageCardList}
         />
       </Fragment>
@@ -72,12 +98,18 @@ class MyPageContainer extends Component {
   }
 }
 
+const mapStateToProps = state => ({
+  studentData: state.studentData,
+});
+
 const mapDispatchToProps = dispatch => ({
   setModal: value => dispatch(setModal(value)),
   isLogin: bool => dispatch(isLogin(bool)),
+  setStudentBasicData: basicData => dispatch(setStudentBasicData(basicData)),
+  resetStudentData: () => dispatch(resetStudentData()),
 });
 
 export default connect(
-  null,
+  mapStateToProps,
   mapDispatchToProps,
 )(MyPageContainer);

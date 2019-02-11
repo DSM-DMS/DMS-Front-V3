@@ -7,6 +7,7 @@ import Login from './Login';
 import Register from './Register';
 import ForgotPassword from './ForgotPassword';
 import PointContainer from './PointContainer';
+import ChangePassword from './ChangePassword';
 
 class ModalContainer extends Component {
   changeModal = value => {
@@ -50,6 +51,16 @@ class ModalContainer extends Component {
       );
     else if (modalState === '상벌점 내역 확인')
       return <PointContainer setModal={this.changeModal} />;
+    else if (modalState === '비밀번호 변경')
+      return (
+        <Modal
+          title="비밀번호 변경"
+          component={<ChangePassword />}
+          subTitle="비밀번호를 바꿔보세요."
+          link=""
+          setModal={this.changeModal}
+        />
+      );
     else {
       console.log(modalState);
       return null;
