@@ -9,10 +9,12 @@ import './MusicApplyContainer.scss';
 import ApplyExtensionBtn from '../../../component/Apply/content/ApplyExtensionBtn';
 import MusicCardContainer from './MusicCardContainer';
 import MusicSubmitCard from '../../../component/Apply/content/music/MusicSubmitCard';
+import ApplyAcceptBtn from '../../../component/Apply/content/ApplyAcceptBtn';
 
 class MusicApplyContainer extends Component {
   constructor(props) {
     super(props);
+    const id = getCookie('ID');
     this.state = {
       dayType: [
         { date: '월요일', val: 'mon' },
@@ -24,7 +26,9 @@ class MusicApplyContainer extends Component {
       cardsInfo: null,
       isMusicSubmitOpened: false,
       loading: false,
-      selectedDate: ''
+      selectedDate: '',
+      studentId: id,
+      isCardSelected: false
     };
   }
 
@@ -71,7 +75,12 @@ class MusicApplyContainer extends Component {
       alert('음악 제목 혹은 아티스트 이름을 적지 않았습니다.');
       return;
     }
-    await submitMusic(getCookie('JWT'), this.dateToNum(this.props.musicDate), artist, title);
+    await submitMusic(
+      getCookie('JWT'),
+      this.dateToNum(this.props.musicDate),
+      artist,
+      title
+    );
     this.onExitSubmit();
     await this.getCards();
   };
@@ -91,6 +100,12 @@ class MusicApplyContainer extends Component {
       default:
         return 0;
     }
+  };
+
+  onSelectMyMusic = () => {
+    this.setState({
+      isCardSelected: true
+    });
   };
 
   render() {
@@ -119,6 +134,7 @@ class MusicApplyContainer extends Component {
           <MusicCardContainer
             cardsInfo={this.state.cardsInfo[musicDate]}
             onApplyMusic={this.onApplyMusic}
+            studentId={this.state.studentId}
           />
         )}
         {this.state.isMusicSubmitOpened && (
@@ -127,6 +143,9 @@ class MusicApplyContainer extends Component {
             onExit={this.onExitSubmit}
           />
         )}
+        <div>
+          <ApplyAcceptBtn title='취소'/>
+        </div>
       </div>
     );
   }
