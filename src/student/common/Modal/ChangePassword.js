@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import axios from 'axios';
 import { withRouter } from 'react-router-dom';
 import { getCookie, removeCookie } from '../../../lib/cookie';
+
+import { isLogin, setModal } from '../../../actions';
 
 import './ChangePassword.scss';
 
@@ -38,7 +41,9 @@ class ChangePassword extends Component {
             alert('비밀번호 변경에 성공하셨습니다. \n 다시 로그인하세요.');
             removeCookie('JWT');
             removeCookie('RFT');
+            this.props.isLogin(false);
             this.props.history.push('/');
+            this.props.setModal('');
           } else if (response.status === 205) {
             alert('현재 비밀번호와 바꾸시려는 비밀번호가 같습니다.');
           }
@@ -86,4 +91,12 @@ class ChangePassword extends Component {
   }
 }
 
-export default withRouter(ChangePassword);
+const mapDispatchToProps = dispatch => ({
+  setModal: value => dispatch(setModal(value)),
+  isLogin: bool => dispatch(isLogin(bool)),
+});
+
+export default connect(
+  null,
+  mapDispatchToProps,
+)(withRouter(ChangePassword));

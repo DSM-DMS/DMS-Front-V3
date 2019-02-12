@@ -10,6 +10,7 @@
 
 # production
 /build
+/src/lib/setHeader.js
 
 # misc
 .DS_Store
