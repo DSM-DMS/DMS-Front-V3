@@ -9,6 +9,7 @@
     "enzyme-adapter-react-16": "^1.7.1",
     "history": "^4.7.2",
     "immutable": "^4.0.0-rc.12",
+    "js-sha3": "^0.8.0",
     "lodash.throttle": "^4.1.1",
     "node-sass": "^4.11.0",
     "react-outside-click-handler": "^1.2.2",
