@@ -62,7 +62,6 @@ class ModalContainer extends Component {
         />
       );
     else {
-      console.log(modalState);
       return null;
     }
   }
