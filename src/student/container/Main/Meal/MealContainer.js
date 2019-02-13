@@ -45,7 +45,6 @@ class MealContainer extends Component {
       .get(`http://ec2.istruly.sexy:5000/meal/${getFormDate}`)
       .then(response => {
         if (response.status === 200) {
-          console.log(response.data[getFormDate]);
           this.props.setMeal(response.data[getFormDate]);
         } else if (response.status === 205) {
           return;
@@ -58,7 +57,6 @@ class MealContainer extends Component {
 
   render() {
     const { selectedDate, breakfast, lunch, dinner } = this.props;
-    console.log(selectedDate);
     return (
       <Fragment>
         <Meal
