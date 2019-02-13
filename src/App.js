@@ -6,6 +6,7 @@ import dmsApp from './reducers';
 import './App.scss';
 import { routerMiddleware, ConnectedRouter } from 'connected-react-router';
 import { createBrowserHistory } from 'history';
+import axios from 'axios';
 
 import MainContainer from './student/container/Main/MainContainer';
 import AdminMainContainer from './admin/container/Main/AdminMainContainer';
@@ -18,11 +19,23 @@ import NoticeWriteContainer from './admin/container/Notice/NoticeWriteContainer'
 import StudentDefaultLayout from './student/common/DefaultLayout/DefaultLayout';
 import MyPageContainer from './student/container/MyPage/MyPageContainer';
 
+import setHeader from './lib/setHeader';
+
 const history = createBrowserHistory();
 const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const store = createStore(
   dmsApp(history),
   composeEnhancer(applyMiddleware(routerMiddleware(history))),
+);
+
+axios.interceptors.request.use(
+  conf => {
+    conf.headers = setHeader(conf.headers);
+    return conf;
+  },
+  err => {
+    return Promise.reject(err);
+  },
 );
 
 class App extends Component {

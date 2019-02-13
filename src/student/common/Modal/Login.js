@@ -2,7 +2,11 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import { connect } from 'react-redux';
 import { setCookie } from '../../../lib/cookie';
-import { isLogin, setStudentPointData, setStudentBasicData } from '../../../actions';
+import {
+  isLogin,
+  setStudentPointData,
+  setStudentBasicData,
+} from '../../../actions';
 
 import './Login.scss';
 
@@ -137,7 +141,9 @@ class Login extends Component {
 }
 
 const mapDispatchToProps = dispatch => ({
-  isLogin: bool => dispatch(isLogin(bool)),setStudentPointData: pointData => dispatch(setStudentPointData(pointData)),setStudentBasicData: pointData => dispatch(setStudentBasicData(pointData))
+  isLogin: bool => dispatch(isLogin(bool)),
+  setStudentPointData: pointData => dispatch(setStudentPointData(pointData)),
+  setStudentBasicData: pointData => dispatch(setStudentBasicData(pointData)),
 });
 
 export default connect(
