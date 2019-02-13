@@ -4,7 +4,7 @@ import { setSection } from '../../../actions';
 
 import MealContainer from './Meal/MealContainer';
 import ApplyContainer from './Apply/ApplyContainer';
-import PostContainer from './Post/PostContainer';
+import GuideContainer from './Guide/GuideContainer';
 import ExtraContainer from './Extra/ExtraContainer';
 import FooterContainer from './Footer/FooterContainer';
 
@@ -23,10 +23,10 @@ class MainContainer extends Component {
           this.props.setSection('apply');
           break;
         case 'apply':
-          history.push('post');
-          this.props.setSection('post');
+          history.push('guide');
+          this.props.setSection('guide');
           break;
-        case 'post':
+        case 'guide':
           history.push('extra');
           this.props.setSection('extra');
           break;
@@ -42,13 +42,13 @@ class MainContainer extends Component {
           history.push('/');
           this.props.setSection('meal');
           break;
-        case 'post':
+        case 'guide':
           history.push('apply');
           this.props.setSection('apply');
           break;
         case 'extra':
-          history.push('post');
-          this.props.setSection('post');
+          history.push('guide');
+          this.props.setSection('guide');
           break;
         case 'footer':
           history.push('extra');
@@ -117,7 +117,7 @@ class MainContainer extends Component {
       >
         <MealContainer />
         <ApplyContainer />
-        <PostContainer />
+        <GuideContainer />
         <ExtraContainer />
         <FooterContainer />
       </div>

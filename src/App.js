@@ -94,7 +94,7 @@ class App extends Component {
                       <Switch>
                         <Route path="/" component={MainContainer} exact />
                         <Route path="/apply" component={MainContainer} exact />
-                        <Route path="/post" component={MainContainer} exact />
+                        <Route path="/guide" component={MainContainer} exact />
                         <Route path="/extra" component={MainContainer} exact />
                         <Route
                           path="/mypage"
