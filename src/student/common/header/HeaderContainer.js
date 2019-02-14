@@ -11,7 +11,7 @@ class HeaderContainer extends Component {
   state = {
     buttonList: [
       { title: '신청화면', page: 'apply' },
-      { title: '공지사항', page: 'post' },
+      { title: '공지사항', page: 'guide' },
       { title: '부가기능', page: 'extra' },
     ],
   };
@@ -30,7 +30,7 @@ class HeaderContainer extends Component {
     const variableButton =
       location.pathname === '/' ||
       location.pathname === '/apply' ||
-      location.pathname === '/post' ||
+      location.pathname === '/guide' ||
       location.pathname === '/extra' ? (
         isLogin ? (
           <button
