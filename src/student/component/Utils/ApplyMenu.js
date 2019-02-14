@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import './ApplyMenu.scss';
 
 import ApplyMenuBtn from './ApplyMenuBtn';
@@ -35,13 +36,24 @@ const ApplyMenu = ({ menuType, selectedMenu }) => {
       <ApplyMenuBtn
         iconSrc={info.iconSrc}
         title={info.title}
+        baseUrl={menuType}
         url={info.url}
         key={i}
         selectedClass={selectedClass}
       />
     );
   });
-  return <div className='apply--menu--btn--wrapper'>{list}</div>;
+  return (
+    <div className='apply--menu--btn--wrapper'>
+      {list}
+      <div className='unselectable apply--detail--btn apply--detail--btn--back'>
+      <img className='apply--detail--btn--icon' src={extsIcon} alt='icon' />
+      <Link className='apply--detail--btn--title' to={`/${menuType}`}>
+        뒤로가기
+      </Link>
+    </div>
+    </div>
+  );
 };
 
 export default ApplyMenu;

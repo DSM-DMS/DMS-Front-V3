@@ -18,6 +18,7 @@ import NoticeContainer from './admin/container/Notice/NoticeContainer';
 import NoticeWriteContainer from './admin/container/Notice/NoticeWriteContainer';
 import StudentDefaultLayout from './student/common/DefaultLayout/DefaultLayout';
 import MyPageContainer from './student/container/MyPage/MyPageContainer';
+import GuideMainContainer from './student/container/Guide/GuideMainContainer';
 
 import setHeader from './lib/setHeader';
 
@@ -58,6 +59,9 @@ class App extends Component {
               />
               <Route path="/apply/stay" component={ApplyMainContainer} exact />
               <Route path="/apply/music" component={ApplyMainContainer} exact />
+              <Route path='/guide/faq' component={GuideMainContainer} exact />
+              <Route path='/guide/notice' component={GuideMainContainer} exact />
+              <Route path='/guide/rule' component={GuideMainContainer} exact />
               <Route
                 path="/admin/:uri?"
                 render={() => (

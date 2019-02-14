@@ -6,11 +6,11 @@ import ApplyMenu from '../../../component/Utils/ApplyMenu';
 
 export default class ApplyMenuContainer extends Component {
   render() {
-    const { selectedMenu } = this.props;
+    const { menuType, selectedMenu } = this.props;
     return (
       <div className='apply--menu'>
         <ApplyTitle />
-        <ApplyMenu menuType='apply' selectedMenu={selectedMenu} />
+        <ApplyMenu menuType={menuType} selectedMenu={selectedMenu} />
       </div>
     );
   }
