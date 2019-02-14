@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import GuideContentContainer from './GuideContentContainer';
+import GuideContentContainer from './Utils/GuideContentContainer';
 import './GuideRuleContainer.scss'
 
 export default class GuideRuleContainer extends Component {

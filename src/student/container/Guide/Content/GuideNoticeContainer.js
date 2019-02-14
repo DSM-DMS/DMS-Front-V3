@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import GuideContentContainer from './GuideContentContainer';
+import GuideContentContainer from './Utils/GuideContentContainer';
 import './GuideNoticeContainer'
 
 export default class GuideNoticeContainer extends Component {
