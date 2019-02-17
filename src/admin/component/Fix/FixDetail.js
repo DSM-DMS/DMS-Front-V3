@@ -32,8 +32,8 @@ const ShowDomitoryRule = ({match, data}) => {
                                     321호
                                 </div>
                             </div>
+                            <div className = "fix--detail--content--next"/>
                         </div>
-                    <div className = "fix--detail--content--next"/>
                 </div>
         </React.Fragment>
     );

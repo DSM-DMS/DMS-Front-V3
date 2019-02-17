@@ -16,7 +16,7 @@
                 align-items: center;
 
                 font: {
-                    size: 1.75rem;
+                    size: 1.3rem;
                     family: 'NanumSquareB';
                 }
             }
@@ -26,17 +26,17 @@
             height: 7.15625rem;
             padding-right: 3rem;
             padding-left: 2.25rem;
+            color: #777777;
             font : {
-                size: 1.5rem;
+                size: 1.2rem;
                 family: 'NanumSquareR';
             }
         }
 
         &--wrapper {
-            margin-right: 3.5rem;
+            margin-right: 3.6rem;
             display: flex;
             flex-direction: column;
-            justify-content: space-between;
             box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
             border-radius: 1.125rem;
     
@@ -44,12 +44,12 @@
                 size: 1.25rem;
                 family: 'NanumSquareB';
             }       
-            width: 26.9rem;
-            height: 15.625rem;
+            width: 20rem;
+            height: 13.625rem;
             color: #000000;
             text-decoration: none;
 
-            &:nth-child(n+3) {
+            &:nth-child(n+4) {
                 margin-top: 3.5rem;
             }
         }
@@ -62,7 +62,7 @@
                 display: flex;
                 justify-content: space-between;
                 font : {
-                    size: 3rem;
+                    size: 2rem;
                     family: 'NanumSquareB';
                 }
             }

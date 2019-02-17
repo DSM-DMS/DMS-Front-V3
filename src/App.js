@@ -46,7 +46,7 @@ class App extends Component {
               
               <Route path="/mypage" component={MyPageContainer} exact/>
               <Route path="/admin/:uri?" render={()=>
-                <CommonDesign>
+                <CommonDesign history = {history}>
                   <Switch>
                     <Route path="/admin/domitoryrule" component={DomitoryRuleContainer} exact/>
                     <Route path="/admin/domitoryrule/:postId" component={ShowDomitoryRuleContainer}/>

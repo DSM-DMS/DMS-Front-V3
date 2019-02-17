@@ -21,7 +21,30 @@
         }
 
         &--content {
+            &--prev {
+                position: absolute;
+                background-image: url("../../../assets/icon/ic_left.png");
+                background-size: cover;
+                width: 2.41875rem;
+                height: 4.4375rem;
+                left: 0;
+                top: 50%;
+                transform: translateY(-50%);
+            }
+
+            &--next {
+                position: absolute;
+                background-image: url("../../../assets/icon/ic_right.png");
+                background-size: cover;
+                width: 2.41875rem;
+                height: 4.4375rem;
+                right: 0;
+                top: 50%;
+                transform: translateY(-50%);
+            }
+
             &--wrapper {
+                position: relative;
                 display: flex;
                 justify-content: center;
                 margin-top: 3.375rem;
