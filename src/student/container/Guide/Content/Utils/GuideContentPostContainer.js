@@ -4,6 +4,7 @@ import './GuideContentPostContainer.scss';
 
 export default class GuideContentPostContainer extends Component {
   render() {
-    return <div></div>;
+    const { content } = this.props;
+    return <div className='guide--content--post--detail'>{content}</div>;
   }
 }
