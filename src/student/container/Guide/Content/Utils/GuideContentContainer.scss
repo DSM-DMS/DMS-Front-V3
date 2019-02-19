@@ -7,14 +7,38 @@
 .guide--content--title {
   color: #19b6b6;
   font-size: 2.5rem;
-  width: 81.25rem;
+  width: 100%;
+  margin: 0;
   font-family: NanumSquareR;
-  margin: 3.125rem auto 0;
-  &::after {
-    border-top: 3px solid #3d7e9a;
-    content: '';
-    display: block;
-    width: 100%;
-    margin-top: 4.125rem;
+  &--wrapper {
+    position: relative;
+    height: 6.875rem;
+    width: 81.25rem;
+    margin: 3.125rem auto 0;
+    &::after {
+      position: absolute;
+      border-top: 3px solid #3d7e9a;
+      content: '';
+      display: block;
+      width: 100%;
+      top: 6.875rem;
+    }
+  }
+}
+
+.guide--content--detail {
+  &--wrapper {
+    margin-top: 1rem;
+    font-family: NanumSquareR;
+    font-size: 1.5rem;
+  }
+
+  &--title {
+    opacity: 0.64;
+  }
+
+  &--date {
+    float: right;
+    opacity: 0.36;
   }
 }
