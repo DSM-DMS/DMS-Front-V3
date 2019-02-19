@@ -4,7 +4,7 @@ const initialState = {
     room: '가온실',
     gooutDate: '토요일',
     stayType: '',
-    musicDate: '월요일'
+    musicDate: 'mon'
 };
 
 export default function ApplyTypeSwitch (state = initialState, action) {

@@ -5,7 +5,8 @@ import './GoingoutModifyCard.scss';
 export default class GoingoutModiyCard extends Component {
   state = {
     date: '',
-    time: '',
+    goOutDate: '',
+    returnDate: '',
     reason: '',
     fieldActivate: false
   };
@@ -46,10 +47,16 @@ export default class GoingoutModiyCard extends Component {
     return (
       <div className='apply--goingout--modify--card'>
         <p className='apply--goingout--modify--card--title'>외출</p>
+        <div className='apply--goingout--modify--card--date--input--wrapper'>
+          <input />
+          <input />
+        </div>
         <p className='apply--goingout--modify--card--subtitle'>사유</p>
         <div className='apply--goingout--modify--card--input--wrapper'>
           <label
-            className={`apply--goingout--modify--label ${this.state.fieldActivate ? 'field-active' : ''}`}
+            className={`apply--goingout--modify--label ${
+              this.state.fieldActivate ? 'field-active' : ''
+            }`}
             onClick={() => {
               this.textarea.focus();
             }}

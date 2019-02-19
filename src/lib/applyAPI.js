@@ -10,11 +10,32 @@ export const getExtensionMap = async (time, classNum) => {
 };
 
 export const getGoingoutInform = async token => {
-  return await axios.get(`${rootUrl}/goingout `, {
-    params: {
-      Authorization: token
+  return axios.get(`${rootUrl}/goingout `, {
+    headers: {
+      Authorization: `Bearer ${token}`
     }
   });
+};
+
+export const postGoingoutInform = async (
+  token,
+  goOutDate,
+  returnDate,
+  reason
+) => {
+  return axios.post(
+    `${rootUrl}/goingout `,
+    {
+      goOutDate,
+      returnDate,
+      reason
+    },
+    {
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    }
+  );
 };
 
 export const getMusicList = token => {
@@ -25,13 +46,35 @@ export const getMusicList = token => {
   });
 };
 
-export const submitMusic = async (token, day, singer, musicName) => {
-  return await axios.post(
+export const submitMusic = (token, day, singer, musicName) => {
+  return axios.post(
     `${rootUrl}/music`,
     {
       day,
       singer,
       musicName
+    },
+    {
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    }
+  );
+};
+
+export const getStayInform = token => {
+  return axios.get(`${rootUrl}/stay`, {
+    headers: {
+      Authorization: `Bearer ${token}`
+    }
+  });
+};
+
+export const submitStayInform = (token, value) => {
+  return axios.post(
+    `${rootUrl}/stay`,
+    {
+      value
     },
     {
       headers: {
