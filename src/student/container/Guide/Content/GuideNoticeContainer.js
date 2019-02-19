@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 
 import GuideContentContainer from './Utils/GuideContentContainer';
-import './GuideNoticeContainer'
+import './GuideNoticeContainer.scss';
 
 export default class GuideNoticeContainer extends Component {
   render() {
-    return <div />;
+    const type = 'notice';
+    return <GuideContentContainer type={type} />;
   }
 }

@@ -1,9 +1,15 @@
 import React, { Component } from 'react';
 
-import './GuideContentPostLstContainer.scss';
+import './GuideContentPostListContainer.scss';
+import GuidePostItem from '../../../../component/Guide/GuidePostItem';
 
-export default class GuideContentPostLstContainer extends Component {
+export default class GuideContentPostListContainer extends Component {
   render() {
-    return <div></div>;
+    const { posts } = this.props;
+    const postList = posts.map(post => {
+      const { title, key, postDate } = post;
+      return <GuidePostItem title={title} key={key} postDate={postDate} />;
+    });
+    return <ol className='guide--postlist--wrapper'>{postList}</ol>;
   }
 }
