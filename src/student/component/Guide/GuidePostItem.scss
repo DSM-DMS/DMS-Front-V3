@@ -1,0 +1,15 @@
+.guide--post--item {
+  margin-top: 2.25rem;
+  font-size: 1.75rem;
+  font-family: NanumSquareR;
+  &--title {
+    &:hover {
+      color: #19b6b6;
+    }
+  }
+
+  &--postDate {
+    float: right;
+    opacity: 0.48;
+  }
+}

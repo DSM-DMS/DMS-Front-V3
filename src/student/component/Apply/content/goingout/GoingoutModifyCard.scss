@@ -1,0 +1,61 @@
+.apply--goingout--modify--card {
+  width: 48.4375rem;
+  height: 64.2%;
+  background: #fff;
+  border-radius: 1rem;
+  margin: 0 auto;
+  padding: 3.625rem;
+  box-sizing: border-box;
+  & > p {
+    font-family: NanumSquareB;
+    color: #19b6b6;
+    font-size: 2.5rem;
+    margin: 0;
+  }
+  &--title {
+  }
+
+  & > input {
+    display: block;
+  }
+
+  &--input--wrapper {
+    position: relative;
+    margin: 2.6875rem auto 0;
+    & > textarea {
+      width: 40.9375rem;
+      height: 19.625rem;
+      border: 3px solid #e0e0e0;
+      border-radius: 4px;
+      padding: 1.25rem;
+      box-sizing: border-box;
+      -webkit-appearance: none !important;
+      font-family: NanumSquareB;
+      font-size: 1.125rem;
+    }
+
+    & > textarea:focus {
+      border: 3px solid #19b6b6;
+    }
+  }
+}
+
+.apply--goingout--modify--label {
+  display: inline-block;
+  position: absolute;
+  left: 1.25rem;
+  top: 1.25rem;
+  transition: all 150ms ease-in;
+  padding: 0.2rem 0;
+  color: #9e9e9e;
+  background: #fff;
+  font-family: NanumSquareB;
+  font-size: 1.125rem;
+}
+
+.apply--goingout--modify--label.field-active {
+  transform: translateY(-2rem);
+  font-size: 1rem;
+  color: #19b6b6;
+  padding: 0.3em 0.5em;
+}

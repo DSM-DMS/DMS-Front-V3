@@ -1,0 +1,805 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`App should matches snapshot 1`] = `
+ShallowWrapper {
+  Symbol(enzyme.__root__): [Circular],
+  Symbol(enzyme.__unrendered__): <App />,
+  Symbol(enzyme.__renderer__): Object {
+    "batchedUpdates": [Function],
+    "getNode": [Function],
+    "render": [Function],
+    "simulateError": [Function],
+    "simulateEvent": [Function],
+    "unmount": [Function],
+  },
+  Symbol(enzyme.__node__): Object {
+    "instance": null,
+    "key": undefined,
+    "nodeType": "class",
+    "props": Object {
+      "children": <Connect(ConnectedRouterWithContext)
+        history={
+          Object {
+            "action": "POP",
+            "block": [Function],
+            "createHref": [Function],
+            "go": [Function],
+            "goBack": [Function],
+            "goForward": [Function],
+            "length": 1,
+            "listen": [Function],
+            "location": Object {
+              "hash": "",
+              "pathname": "/",
+              "search": "",
+              "state": undefined,
+            },
+            "push": [Function],
+            "replace": [Function],
+          }
+        }
+      >
+        <BrowserRouter>
+          <Switch>
+            <Route
+              component={[Function]}
+              exact={true}
+              path="/admin"
+            />
+            <Route
+              component={[Function]}
+              exact={true}
+              path="/apply/extension"
+            />
+            <Route
+              component={[Function]}
+              exact={true}
+              path="/apply/goingout"
+            />
+            <Route
+              component={[Function]}
+              exact={true}
+              path="/apply/stay"
+            />
+            <Route
+              component={[Function]}
+              exact={true}
+              path="/apply/music"
+            />
+            <Route
+              component={[Function]}
+              exact={true}
+              path="/mypage"
+            />
+            <Route
+              path="/admin/:uri?"
+              render={[Function]}
+            />
+            <Route
+              path="/:uri?"
+              render={[Function]}
+            />
+            }/&gt;
+            <Redirect
+              push={false}
+              to="/"
+            />
+          </Switch>
+        </BrowserRouter>
+      </Connect(ConnectedRouterWithContext)>,
+      "store": Object {
+        "dispatch": [Function],
+        "getState": [Function],
+        "replaceReducer": [Function],
+        "subscribe": [Function],
+        Symbol(observable): [Function],
+      },
+    },
+    "ref": null,
+    "rendered": Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "class",
+      "props": Object {
+        "children": <BrowserRouter>
+          <Switch>
+            <Route
+              component={[Function]}
+              exact={true}
+              path="/admin"
+            />
+            <Route
+              component={[Function]}
+              exact={true}
+              path="/apply/extension"
+            />
+            <Route
+              component={[Function]}
+              exact={true}
+              path="/apply/goingout"
+            />
+            <Route
+              component={[Function]}
+              exact={true}
+              path="/apply/stay"
+            />
+            <Route
+              component={[Function]}
+              exact={true}
+              path="/apply/music"
+            />
+            <Route
+              component={[Function]}
+              exact={true}
+              path="/mypage"
+            />
+            <Route
+              path="/admin/:uri?"
+              render={[Function]}
+            />
+            <Route
+              path="/:uri?"
+              render={[Function]}
+            />
+            }/&gt;
+            <Redirect
+              push={false}
+              to="/"
+            />
+          </Switch>
+        </BrowserRouter>,
+        "history": Object {
+          "action": "POP",
+          "block": [Function],
+          "createHref": [Function],
+          "go": [Function],
+          "goBack": [Function],
+          "goForward": [Function],
+          "length": 1,
+          "listen": [Function],
+          "location": Object {
+            "hash": "",
+            "pathname": "/",
+            "search": "",
+            "state": undefined,
+          },
+          "push": [Function],
+          "replace": [Function],
+        },
+      },
+      "ref": null,
+      "rendered": Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "children": <Switch>
+            <Route
+              component={[Function]}
+              exact={true}
+              path="/admin"
+            />
+            <Route
+              component={[Function]}
+              exact={true}
+              path="/apply/extension"
+            />
+            <Route
+              component={[Function]}
+              exact={true}
+              path="/apply/goingout"
+            />
+            <Route
+              component={[Function]}
+              exact={true}
+              path="/apply/stay"
+            />
+            <Route
+              component={[Function]}
+              exact={true}
+              path="/apply/music"
+            />
+            <Route
+              component={[Function]}
+              exact={true}
+              path="/mypage"
+            />
+            <Route
+              path="/admin/:uri?"
+              render={[Function]}
+            />
+            <Route
+              path="/:uri?"
+              render={[Function]}
+            />
+            }/&gt;
+            <Redirect
+              push={false}
+              to="/"
+            />
+          </Switch>,
+        },
+        "ref": null,
+        "rendered": Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "children": Array [
+              <Route
+                component={[Function]}
+                exact={true}
+                path="/admin"
+              />,
+              <Route
+                component={[Function]}
+                exact={true}
+                path="/apply/extension"
+              />,
+              <Route
+                component={[Function]}
+                exact={true}
+                path="/apply/goingout"
+              />,
+              <Route
+                component={[Function]}
+                exact={true}
+                path="/apply/stay"
+              />,
+              <Route
+                component={[Function]}
+                exact={true}
+                path="/apply/music"
+              />,
+              <Route
+                component={[Function]}
+                exact={true}
+                path="/mypage"
+              />,
+              <Route
+                path="/admin/:uri?"
+                render={[Function]}
+              />,
+              <Route
+                path="/:uri?"
+                render={[Function]}
+              />,
+              "}/>",
+              <Redirect
+                push={false}
+                to="/"
+              />,
+            ],
+          },
+          "ref": null,
+          "rendered": Array [
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "component": [Function],
+                "exact": true,
+                "path": "/admin",
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "component": [Function],
+                "exact": true,
+                "path": "/apply/extension",
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "component": [Function],
+                "exact": true,
+                "path": "/apply/goingout",
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "component": [Function],
+                "exact": true,
+                "path": "/apply/stay",
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "component": [Function],
+                "exact": true,
+                "path": "/apply/music",
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "component": [Function],
+                "exact": true,
+                "path": "/mypage",
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "path": "/admin/:uri?",
+                "render": [Function],
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "path": "/:uri?",
+                "render": [Function],
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+            "}/>",
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "push": false,
+                "to": "/",
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+          ],
+          "type": [Function],
+        },
+        "type": [Function],
+      },
+      "type": [Function],
+    },
+    "type": [Function],
+  },
+  Symbol(enzyme.__nodes__): Array [
+    Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "class",
+      "props": Object {
+        "children": <Connect(ConnectedRouterWithContext)
+          history={
+            Object {
+              "action": "POP",
+              "block": [Function],
+              "createHref": [Function],
+              "go": [Function],
+              "goBack": [Function],
+              "goForward": [Function],
+              "length": 1,
+              "listen": [Function],
+              "location": Object {
+                "hash": "",
+                "pathname": "/",
+                "search": "",
+                "state": undefined,
+              },
+              "push": [Function],
+              "replace": [Function],
+            }
+          }
+        >
+          <BrowserRouter>
+            <Switch>
+              <Route
+                component={[Function]}
+                exact={true}
+                path="/admin"
+              />
+              <Route
+                component={[Function]}
+                exact={true}
+                path="/apply/extension"
+              />
+              <Route
+                component={[Function]}
+                exact={true}
+                path="/apply/goingout"
+              />
+              <Route
+                component={[Function]}
+                exact={true}
+                path="/apply/stay"
+              />
+              <Route
+                component={[Function]}
+                exact={true}
+                path="/apply/music"
+              />
+              <Route
+                component={[Function]}
+                exact={true}
+                path="/mypage"
+              />
+              <Route
+                path="/admin/:uri?"
+                render={[Function]}
+              />
+              <Route
+                path="/:uri?"
+                render={[Function]}
+              />
+              }/&gt;
+              <Redirect
+                push={false}
+                to="/"
+              />
+            </Switch>
+          </BrowserRouter>
+        </Connect(ConnectedRouterWithContext)>,
+        "store": Object {
+          "dispatch": [Function],
+          "getState": [Function],
+          "replaceReducer": [Function],
+          "subscribe": [Function],
+          Symbol(observable): [Function],
+        },
+      },
+      "ref": null,
+      "rendered": Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "children": <BrowserRouter>
+            <Switch>
+              <Route
+                component={[Function]}
+                exact={true}
+                path="/admin"
+              />
+              <Route
+                component={[Function]}
+                exact={true}
+                path="/apply/extension"
+              />
+              <Route
+                component={[Function]}
+                exact={true}
+                path="/apply/goingout"
+              />
+              <Route
+                component={[Function]}
+                exact={true}
+                path="/apply/stay"
+              />
+              <Route
+                component={[Function]}
+                exact={true}
+                path="/apply/music"
+              />
+              <Route
+                component={[Function]}
+                exact={true}
+                path="/mypage"
+              />
+              <Route
+                path="/admin/:uri?"
+                render={[Function]}
+              />
+              <Route
+                path="/:uri?"
+                render={[Function]}
+              />
+              }/&gt;
+              <Redirect
+                push={false}
+                to="/"
+              />
+            </Switch>
+          </BrowserRouter>,
+          "history": Object {
+            "action": "POP",
+            "block": [Function],
+            "createHref": [Function],
+            "go": [Function],
+            "goBack": [Function],
+            "goForward": [Function],
+            "length": 1,
+            "listen": [Function],
+            "location": Object {
+              "hash": "",
+              "pathname": "/",
+              "search": "",
+              "state": undefined,
+            },
+            "push": [Function],
+            "replace": [Function],
+          },
+        },
+        "ref": null,
+        "rendered": Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "children": <Switch>
+              <Route
+                component={[Function]}
+                exact={true}
+                path="/admin"
+              />
+              <Route
+                component={[Function]}
+                exact={true}
+                path="/apply/extension"
+              />
+              <Route
+                component={[Function]}
+                exact={true}
+                path="/apply/goingout"
+              />
+              <Route
+                component={[Function]}
+                exact={true}
+                path="/apply/stay"
+              />
+              <Route
+                component={[Function]}
+                exact={true}
+                path="/apply/music"
+              />
+              <Route
+                component={[Function]}
+                exact={true}
+                path="/mypage"
+              />
+              <Route
+                path="/admin/:uri?"
+                render={[Function]}
+              />
+              <Route
+                path="/:uri?"
+                render={[Function]}
+              />
+              }/&gt;
+              <Redirect
+                push={false}
+                to="/"
+              />
+            </Switch>,
+          },
+          "ref": null,
+          "rendered": Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "children": Array [
+                <Route
+                  component={[Function]}
+                  exact={true}
+                  path="/admin"
+                />,
+                <Route
+                  component={[Function]}
+                  exact={true}
+                  path="/apply/extension"
+                />,
+                <Route
+                  component={[Function]}
+                  exact={true}
+                  path="/apply/goingout"
+                />,
+                <Route
+                  component={[Function]}
+                  exact={true}
+                  path="/apply/stay"
+                />,
+                <Route
+                  component={[Function]}
+                  exact={true}
+                  path="/apply/music"
+                />,
+                <Route
+                  component={[Function]}
+                  exact={true}
+                  path="/mypage"
+                />,
+                <Route
+                  path="/admin/:uri?"
+                  render={[Function]}
+                />,
+                <Route
+                  path="/:uri?"
+                  render={[Function]}
+                />,
+                "}/>",
+                <Redirect
+                  push={false}
+                  to="/"
+                />,
+              ],
+            },
+            "ref": null,
+            "rendered": Array [
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "class",
+                "props": Object {
+                  "component": [Function],
+                  "exact": true,
+                  "path": "/admin",
+                },
+                "ref": null,
+                "rendered": null,
+                "type": [Function],
+              },
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "class",
+                "props": Object {
+                  "component": [Function],
+                  "exact": true,
+                  "path": "/apply/extension",
+                },
+                "ref": null,
+                "rendered": null,
+                "type": [Function],
+              },
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "class",
+                "props": Object {
+                  "component": [Function],
+                  "exact": true,
+                  "path": "/apply/goingout",
+                },
+                "ref": null,
+                "rendered": null,
+                "type": [Function],
+              },
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "class",
+                "props": Object {
+                  "component": [Function],
+                  "exact": true,
+                  "path": "/apply/stay",
+                },
+                "ref": null,
+                "rendered": null,
+                "type": [Function],
+              },
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "class",
+                "props": Object {
+                  "component": [Function],
+                  "exact": true,
+                  "path": "/apply/music",
+                },
+                "ref": null,
+                "rendered": null,
+                "type": [Function],
+              },
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "class",
+                "props": Object {
+                  "component": [Function],
+                  "exact": true,
+                  "path": "/mypage",
+                },
+                "ref": null,
+                "rendered": null,
+                "type": [Function],
+              },
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "class",
+                "props": Object {
+                  "path": "/admin/:uri?",
+                  "render": [Function],
+                },
+                "ref": null,
+                "rendered": null,
+                "type": [Function],
+              },
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "class",
+                "props": Object {
+                  "path": "/:uri?",
+                  "render": [Function],
+                },
+                "ref": null,
+                "rendered": null,
+                "type": [Function],
+              },
+              "}/>",
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "class",
+                "props": Object {
+                  "push": false,
+                  "to": "/",
+                },
+                "ref": null,
+                "rendered": null,
+                "type": [Function],
+              },
+            ],
+            "type": [Function],
+          },
+          "type": [Function],
+        },
+        "type": [Function],
+      },
+      "type": [Function],
+    },
+  ],
+  Symbol(enzyme.__options__): Object {
+    "adapter": ReactSixteenAdapter {
+      "options": Object {
+        "enableComponentDidUpdateOnSetState": true,
+        "lifecycles": Object {
+          "componentDidUpdate": Object {
+            "onSetState": true,
+          },
+          "getDerivedStateFromProps": true,
+          "getSnapshotBeforeUpdate": true,
+          "setState": Object {
+            "skipsComponentDidUpdateOnNullish": true,
+          },
+        },
+      },
+    },
+  },
+}
+`;

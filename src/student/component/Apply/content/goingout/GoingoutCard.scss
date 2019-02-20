@@ -1,18 +1,14 @@
 .apply--goingout--card {
     width: 37.5rem;
+    height: 12.5rem;
     background: #fff;
     border-radius: 1rem;
     box-sizing: border-box;
     padding: 1.875rem;
-    margin-bottom: 3.125rem;
     box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.16);
 
     & > p {
         font-family: NanumSquareR;
-    }
-
-    &:nth-child(2n-1) {
-        margin-right: 6.25rem;
     }
 
     &--title {
@@ -42,6 +38,7 @@
 
     &--reason {
         font-size: 1rem;
+        color: rgba($color: #000000, $alpha: 0.56);
         margin: 0 0 0.5em;
     }
 }
