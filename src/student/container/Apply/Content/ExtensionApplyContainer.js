@@ -15,9 +15,9 @@ class ExtensionApplyContainer extends Component {
         const btnList = btns.map((content, i) => {
             const {room, onChangeRoom} = this.props;
             let selectedClass = undefined;
-            if(room === content)
+            if(room === i)
                 selectedClass = selectedClass = 'apply--extens--btn--selected';
-            return (<ApplyExtensionBtn content={content} key = {i} selected = {selectedClass} onChangeType = {onChangeRoom}/>);
+            return (<ApplyExtensionBtn content={content} key = {i} selected = {selectedClass} onChangeType = {onChangeRoom} val={i}/>);
         });
 
         return (
