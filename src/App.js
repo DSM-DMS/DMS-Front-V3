@@ -21,6 +21,7 @@ import MyPageContainer from './student/container/MyPage/MyPageContainer';
 import GuideMainContainer from './student/container/Guide/GuideMainContainer';
 
 import setHeader from './lib/setHeader';
+import { setCookie } from './lib/cookie';
 
 const history = createBrowserHistory();
 const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
@@ -39,8 +40,48 @@ axios.interceptors.request.use(
   },
 );
 
+axios.interceptors.response.use(
+  res => {
+    if (!!res.headers['new-access-token']) {
+      setCookie('JWT', res.headers['new-access-token']);
+    }
+    return res;
+  },
+  err => {
+    return Promise.reject(err);
+  },
+);
+
 class App extends Component {
+  componentWillMount() {
+    if (
+      (navigator.appName === 'Netscape' &&
+        navigator.userAgent.search('Trident') !== -1) ||
+      navigator.userAgent.indexOf('msie') !== -1
+    ) {
+      alert('인터넷 익스플로러 브라우저 입니다.\n썩 꺼지세요.');
+    }
+  }
   render() {
+    if (
+      (navigator.appName === 'Netscape' &&
+        navigator.userAgent.search('Trident') !== -1) ||
+      navigator.userAgent.indexOf('msie') !== -1
+    ) {
+      return (
+        <div
+          style={{
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            fontSize: '3rem',
+            color: 'red',
+          }}
+        >
+          크롬으로 오세요 ^^
+        </div>
+      );
+    }
     return (
       <Provider store={store}>
         <ConnectedRouter history={history}>
@@ -59,9 +100,13 @@ class App extends Component {
               />
               <Route path="/apply/stay" component={ApplyMainContainer} exact />
               <Route path="/apply/music" component={ApplyMainContainer} exact />
-              <Route path='/guide/faq' component={GuideMainContainer} exact />
-              <Route path='/guide/notice' component={GuideMainContainer} exact />
-              <Route path='/guide/rule' component={GuideMainContainer} exact />
+              <Route path="/guide/faq" component={GuideMainContainer} exact />
+              <Route
+                path="/guide/notice"
+                component={GuideMainContainer}
+                exact
+              />
+              <Route path="/guide/rule" component={GuideMainContainer} exact />
               <Route
                 path="/admin/:uri?"
                 render={() => (

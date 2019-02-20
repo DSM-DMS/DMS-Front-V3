@@ -63,12 +63,10 @@ class MainContainer extends Component {
   throttle = (e, func, wait) => {
     return () => {
       if (!throttleBool) {
-        console.log(23);
         throttleBool = true;
         func(e);
         setTimeout(() => {
           throttleBool = false;
-          console.log(13);
         }, wait);
       }
     };
@@ -87,10 +85,10 @@ class MainContainer extends Component {
       )
     ) {
       mainPage.addEventListener('DOMMouseScroll', e => {
-        this.throttle(e, this.scrolling, 750)();
+        this.throttle(e, this.scrolling, 1000)();
       });
       mainPage.addEventListener('mousewheel', e => {
-        this.throttle(e, this.scrolling, 750)();
+        this.throttle(e, this.scrolling, 1000)();
       });
     }
 

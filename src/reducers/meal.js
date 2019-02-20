@@ -29,7 +29,6 @@ function isLogin(state = initialState, action) {
       };
     case SET_MEAL:
       const { meal } = action;
-      console.log(meal);
       return {
         ...state,
         breakfast: meal.breakfast,
