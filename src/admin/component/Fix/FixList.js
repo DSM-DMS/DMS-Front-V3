@@ -9,15 +9,15 @@ const FixList = ({data}) => {
         <div className = "fix--list--wrapper">
             <div className = "fix--list--header--wrapper">
                 <div className = "fix--list--header--name">
-                    {data.name}
+                    {data.studentName}
                 </div>
                 <div className = "fix--list--header--content--wrapper">
-                    <Link className = "fix--list" to = {'/admin/domitoryrule/' + data.number}>
+                    <Link className = "fix--list" to = {'/admin/fix/' + data.reportId}>
                         <div className = "icon--preview" />   
                     </Link>
-                    <Link className = "fix--list" to = {'/admin/domitoryrule/' + data.number}>
+                    <div className = "fix--list">
                         <div className = "icon--delete" />   
-                    </Link>
+                    </div>
                 </div>
             </div>
             <div className = "fix--list--content--wrapper">

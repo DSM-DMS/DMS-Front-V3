@@ -5,7 +5,7 @@ import './Notice.scss'
 
 import Woman from '../../../assets/illust/woman2.png'
 
-const Notice = ({postList}) => {
+const Notice = ({List}) => {
     return (
         <React.Fragment>
             <div className = "notice--button--wrapper">
@@ -37,7 +37,7 @@ const Notice = ({postList}) => {
                     </div>
                 </div>
                 <div className = "notice--content--wrapper">
-                    {postList}
+                    {List}
                 </div>
             </div>
         </React.Fragment>

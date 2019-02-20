@@ -1,54 +1,44 @@
 import React, { Component } from 'react';
+import axios from 'axios'
+
 import Fix from '../../component/Fix/Fix';
 
 import FixList from '../../component/Fix/FixList';
 
+import { connect } from 'react-redux'
+import { facilityRequest } from '../../../actions/index'
+
 class FixContainer extends Component {
-    id = 1;
 
-    state = {
-        data : [
+    componentDidMount() {
+        console.log(this.props)
+        axios
+            .get("http://ec2.istruly.sexy:5001/facility_report", 
             {
-                name : '이주용',
-                content : '승우형의 발냄새가 너무 심해요.',
-                room : '421',
-                id : this.id
-            },
+                headers : {
+                    Authorization: `Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1NTA2NjYzMjMsIm5iZiI6MTU1MDY2NjMyMywianRpIjoiMTNkN2UyMWItZjdlNC00YTk5LThmZjQtMWVlZDc0ZTZkNmUwIiwiZXhwIjoxNTUwNjY3MjIzLCJpZGVudGl0eSI6InRlc3QiLCJmcmVzaCI6ZmFsc2UsInR5cGUiOiJhY2Nlc3MifQ.XNDIct5X6ksgl-hZ4_iJoWYS9JHFiaxFUps9kwiHG1I`
+                }
+            })
+            .then(response => {
+                console.log(response)
+                if (response.status === 200 && response.data !== "") {
+                    console.log(response)
+                    this.props.facilityRequest(
+                        response.data
+                    )
+                    console.log(this.props)
+                }
+            })
 
-            {
-                name : '이주용',
-                content : '승우형의 발냄새가 너무 심해요.',
-                room : '421',
-                id : this.id
-            },
-
-            {
-                name : '이주용',
-                content : '승우형의 발냄새가 너무 심해요.',
-                room : '421',
-                id : this.id
-            },
-            
-            {
-                name : '이주용',
-                content : '승우형의 발냄새가 너무 심해요.',
-                room : '421',
-                id : this.id
-            },
-            
-            {
-                name : '이주용',
-                content : '승우형의 발냄새가 너무 심해요.',
-                room : '421',
-                id : this.id
-            },
-        ]
+            .catch(err => {
+                console.log(err)
+            })
     }
 
     render() {
-        const { data } = this.state;
-        const fixList = data.map( data =>
-            <FixList data = {data} key = {this.id++} />
+        const { facilityReportList } = this.props;
+        const fixList = facilityReportList.map(data =>
+            <FixList data = {data} key = {data.reportId} />
         )
         return (
             <Fix fixList = {fixList}/>
@@ -56,4 +46,12 @@ class FixContainer extends Component {
     }
 }
 
-export default FixContainer;
+const mapStateToProps = state => (
+    state.facility
+)
+
+const mapDispatchToProps = dispatch => ({
+    facilityRequest : (responseData) => dispatch(facilityRequest(responseData))
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(FixContainer);

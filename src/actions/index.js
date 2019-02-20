@@ -21,6 +21,7 @@ export function setModal(value) {
 export const INCREMENT = 'INCREMENT'; // 이와같이 액션 명 정의
 export const SET_DIFF = 'SET_DIFF';
 export const DOMITORY_RULE_LIST_ADD = 'DOMITORY_RULE_LIST_ADD';
+export const FACILITY_REQUEST = 'FACILITY_REQUEST'
 
 export function increment(value) {
     return {
@@ -41,5 +42,12 @@ export function domitoyRuleListAdd({ index, list }) {
         type: DOMITORY_RULE_LIST_ADD,
         index,
         list
+    }
+}
+
+export function facilityRequest(responseData) {
+    return {
+        type: FACILITY_REQUEST,
+        responseData
     }
 }

@@ -1,10 +1,11 @@
 import React from 'react';
+import {Link} from 'react-router-dom'
 
 import Woman from '../../../assets/illust/admin-1.png'
 
 import './FixDetail.scss'
 
-const ShowDomitoryRule = ({match, data}) => {
+const FixDetail = ({data, index, lastIndex}) => {
     return (
         <React.Fragment>
             <div className = "fix--button--wrapper">
@@ -18,25 +19,31 @@ const ShowDomitoryRule = ({match, data}) => {
                     상세 설명
                 </div>
                 <div className = "fix--detail--content--wrapper">
-                    <div className = "fix--detail--content--prev"/>
+                    {
+                        !(index === 0) &&
+                    <Link to = {`/admin/fix/${data[index - 1].reportId}`} className = "fix--detail--content--prev"/>
+                    }
                         <div className = "fix--detail--content--main--wrapper">
                                 <div className = "fix--detail--content--main--header--wrapper">
                                     <div className = "fix--detail--content--main--header--name">
-                                        김용현
+                                        {data[index].studentName}
                                     </div>
                                 </div>
                                 <div className = "fix--detail--content--main--detail--wrapper">
-                                    문이 안닫힘
+                                    {data[index].content}
                                 </div>
                                 <div className = "fix--detail--content--main--footer--wrapper">
-                                    321호
+                                    {data[index].room}호
                                 </div>
                             </div>
-                            <div className = "fix--detail--content--next"/>
+                            {
+                                !(index === lastIndex) &&
+                            <Link to = {`/admin/fix/${data[index + 1].reportId}`} className = "fix--detail--content--next"/>
+                            }
                         </div>
                 </div>
         </React.Fragment>
     );
 };
 
-export default ShowDomitoryRule;
+export default FixDetail;

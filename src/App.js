@@ -23,6 +23,8 @@ import FixContainer from './admin/container/Fix/FixContainer';
 import FixDetailContainer from './admin/container/Fix/FixDetailContainer';
 import SurveyContainer from './admin/container/Survey/SurveyContainer';
 import SurveyWriteContainer from './admin/container/Survey/SurveyWriteContainer';
+import LoginConatiner from './admin/container/Login/LoginContainer';
+import ShowNoticeContainer from './admin/container/Notice/ShowNoticeContainer';
 
 const history = createBrowserHistory();
 const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
@@ -52,12 +54,14 @@ class App extends Component {
                     <Route path="/admin/domitoryrule/:postId" component={ShowDomitoryRuleContainer}/>
                     <Route path="/admin/notice" component={NoticeContainer} exact/>
                     <Route path="/admin/notice/write" component={NoticeWriteContainer} exact/>
+                    <Route path="/admin/notice/:postId" component={ShowNoticeContainer}/>
                     <Route path="/admin/qna" component={QnaContainer} exact/>
                     <Route path="/admin/qna/write" component={QnaWriteContainer} exact/>
                     <Route path="/admin/fix" component={FixContainer} exact/>
                     <Route path="/admin/fix/:uri" component={FixDetailContainer} exact/>
                     <Route path="/admin/survey" component={SurveyContainer} exact/>
                     <Route path="/admin/survey/write" component={SurveyWriteContainer} exact/>
+                    <Route path="/admin/survey/login" component={LoginConatiner} exact/>
                   </Switch>
                 </CommonDesign>
               }
