@@ -39,7 +39,35 @@ axios.interceptors.request.use(
 );
 
 class App extends Component {
+  componentWillMount() {
+    if (
+      (navigator.appName === 'Netscape' &&
+        navigator.userAgent.search('Trident') !== -1) ||
+      navigator.userAgent.indexOf('msie') !== -1
+    ) {
+      alert('인터넷 익스플로러 브라우저 입니다.\n썩 꺼지세요.');
+    }
+  }
   render() {
+    if (
+      (navigator.appName === 'Netscape' &&
+        navigator.userAgent.search('Trident') !== -1) ||
+      navigator.userAgent.indexOf('msie') !== -1
+    ) {
+      return (
+        <div
+          style={{
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            fontSize: '3rem',
+            color: 'red',
+          }}
+        >
+          크롬으로 오세요 ^^
+        </div>
+      );
+    }
     return (
       <Provider store={store}>
         <ConnectedRouter history={history}>
