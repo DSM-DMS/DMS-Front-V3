@@ -9,7 +9,7 @@ export const getExtensionMap = async (time, classNum) => {
   });
 };
 
-export const getGoingoutInform = async token => {
+export const getGoingoutInform = token => {
   return axios.get(`${rootUrl}/goingout `, {
     headers: {
       Authorization: `Bearer ${token}`
@@ -17,7 +17,7 @@ export const getGoingoutInform = async token => {
   });
 };
 
-export const postGoingoutInform = async (
+export const postGoingoutInform = (
   token,
   goOutDate,
   returnDate,
