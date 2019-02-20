@@ -106,6 +106,7 @@
     &:focus {
       border-color: #19b6b6;
       color: #19b6b6;
+      outline: none;
       &::placeholder {
         color: #19b6b6;
       }

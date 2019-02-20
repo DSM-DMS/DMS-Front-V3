@@ -8,6 +8,8 @@ import Register from './Register';
 import ForgotPassword from './ForgotPassword';
 import PointContainer from './PointContainer';
 import ChangePassword from './ChangePassword';
+import BrokenReport from './BrokenReport';
+import BugReport from './BugReport';
 
 class ModalContainer extends Component {
   changeModal = value => {
@@ -61,7 +63,27 @@ class ModalContainer extends Component {
           setModal={this.changeModal}
         />
       );
-    else {
+    else if (modalState === '시설물 고장 신고') {
+      return (
+        <Modal
+          title="시설물 고장 신고"
+          component={<BrokenReport setModal={this.changeModal} />}
+          subTitle="기숙사 시설물에 문제가 있다면 ?"
+          link=""
+          setModal={this.changeModal}
+        />
+      );
+    } else if (modalState === '버그신고') {
+      return (
+        <Modal
+          title="버그신고"
+          component={<BugReport setModal={this.changeModal} />}
+          subTitle="DMS에 버그가 있다면 ?"
+          link=""
+          setModal={this.changeModal}
+        />
+      );
+    } else {
       return null;
     }
   }
