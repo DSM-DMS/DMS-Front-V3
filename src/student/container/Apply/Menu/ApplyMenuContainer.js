@@ -1,16 +1,14 @@
 import React, { Component } from 'react';
 import './ApplyMenuContainer.scss';
 
-import ApplyTitle from '../../../component/Utils/ApplyTitle';
-import ApplyMenu from '../../../component/Utils/ApplyMenu';
+import dmsLogo from '../../../../assets/logo/logo.png';
 
 export default class ApplyMenuContainer extends Component {
   render() {
     const { menuType, selectedMenu } = this.props;
     return (
       <div className='apply--menu'>
-        <ApplyTitle />
-        <ApplyMenu menuType={menuType} selectedMenu={selectedMenu} />
+        <img src={dmsLogo} alt='dms 로고'/>
       </div>
     );
   }
