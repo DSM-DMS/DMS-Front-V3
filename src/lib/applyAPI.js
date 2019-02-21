@@ -2,11 +2,7 @@ import axios from 'axios';
 const rootUrl = 'http://ec2.istruly.sexy:5000/apply';
 
 export const getExtensionMap = async (time, classNum) => {
-  return await axios.get(`${rootUrl}/extension/${time}/map`, {
-    data: {
-      classNum
-    }
-  });
+  return await axios.get(`${rootUrl}/extension/map/${time}/${classNum}`);
 };
 
 export const getGoingoutInform = token => {
@@ -17,12 +13,7 @@ export const getGoingoutInform = token => {
   });
 };
 
-export const postGoingoutInform = (
-  token,
-  goOutDate,
-  returnDate,
-  reason
-) => {
+export const postGoingoutInform = (token, goOutDate, returnDate, reason) => {
   return axios.post(
     `${rootUrl}/goingout `,
     {

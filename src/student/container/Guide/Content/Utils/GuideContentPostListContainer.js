@@ -5,15 +5,14 @@ import GuidePostItem from '../../../../component/Guide/GuidePostItem';
 
 export default class GuideContentPostListContainer extends Component {
   render() {
-    const { type, posts, setDetailPost } = this.props;
+    const { posts, setDetailPost } = this.props;
     const postList = posts.map(post => {
-      const { title, postDate } = post;
-      const id = post[`${type}Id`];
+      const { title, postDate, id } = post;
       return (
         <GuidePostItem
           title={title}
           key={id}
-          postDate={postDate}
+          postDate={postDate.substr(0, 10)}
           id={id}
           setDetailPost={setDetailPost}
         />

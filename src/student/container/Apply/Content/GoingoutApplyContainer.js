@@ -12,7 +12,7 @@ import GoingoutModifyCard from '../../../component/Apply/content/goingout/Goingo
 
 class GoingoutApplyContainer extends Component {
   state = {
-    gooutType: ['토요일', '일요일', '평일'],
+    gooutType: [{content: '토요일', val: 'sat'}, {content: '일요일', val: 'sun'}, {content: '평일', val: 'weekday'}],
     goingOut: [
       {
         goOutDate: '2019-01-01 08:00',
@@ -96,14 +96,15 @@ class GoingoutApplyContainer extends Component {
     const isSelected = goingoutCard !== null;
     const gooutBtnList = gooutType.map((type, i) => {
       let selectedClass = undefined;
-      if (type === gooutDate) selectedClass = 'apply--extens--btn--selected';
+      if (type.val === gooutDate) selectedClass = 'apply--extens--btn--selected';
 
       return (
         <ApplyExtensionBtn
-          content={type}
+          content={type.content}
           selected={selectedClass}
           key={i}
           onChangeType={onChangeDate}
+          val={type.val}
         />
       );
     });

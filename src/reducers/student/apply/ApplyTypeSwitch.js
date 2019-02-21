@@ -1,8 +1,8 @@
 import * as types from '../../../actions/ActionTypes';
 
 const initialState = {
-    room: '가온실',
-    gooutDate: '토요일',
+    room: 0,
+    gooutDate: 'sat',
     stayType: '',
     musicDate: 'mon'
 };

@@ -1,16 +1,44 @@
 import React, { Component } from 'react';
-import './ApplyExtensionMap.scss'
-import * as applyExtensionApi from '../../../../lib/applyAPI';
+import './ApplyExtensionMap.scss';
+import { getExtensionMap } from '../../../../lib/applyAPI';
 
 export default class ApplyExtensionMap extends Component {
+  state = {
+    loading: false,
+    map: null
+  };
 
-    render() {
-        applyExtensionApi.getExtensionMap(11,1).then(result => console.log(`data: ${result.data}`));
+  componentWillReceiveProps(nextProps) {
+    const { time, classNum } = nextProps;
+    this.setExtensionMap(time, classNum);
+  }
 
-        return (
-            <div className = 'apply--extension--map'>
+  componentDidMount() {
+    const { time, classNum } = this.props;
+    this.setExtensionMap(time, classNum);
+  }
 
-            </div>
-        )
+  setExtensionMap = async (time, classNum) => {
+    if (this.state.loading) {
+      return;
     }
+    this.setState({
+      loading: true
+    });
+    try {
+      const response = await getExtensionMap(time, classNum);
+      this.setState({
+        map: response.data.map
+      });
+    } catch (e) {
+      console.error(e);
+    }
+    this.setState({
+      loading: false
+    });
+  };
+
+  render() {
+    return <div className='apply--extension--map'>{this.state.map}</div>;
+  }
 }
