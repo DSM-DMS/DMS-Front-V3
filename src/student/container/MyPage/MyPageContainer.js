@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from 'react';
 import axios from 'axios';
 import { connect } from 'react-redux';
-import { setModal, isLogin } from '../../../actions';
+import { setModal, isLogin, autoLogin } from '../../../actions';
 import { removeCookie, getCookie } from '../../../lib/cookie';
 import { setStudentBasicData, resetStudentData } from '../../../actions';
 
@@ -57,6 +57,7 @@ class MyPageContainer extends Component {
     removeCookie('JWT');
     removeCookie('RFT');
     this.props.resetStudentData();
+    this.props.autoLogin({ id: '', pw: '' });
     this.props.history.push('/');
   };
 
@@ -105,6 +106,7 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
   setModal: value => dispatch(setModal(value)),
   isLogin: bool => dispatch(isLogin(bool)),
+  autoLogin: data => dispatch(autoLogin(data)),
   setStudentBasicData: basicData => dispatch(setStudentBasicData(basicData)),
   resetStudentData: () => dispatch(resetStudentData()),
 });
