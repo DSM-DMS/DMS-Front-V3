@@ -63,31 +63,34 @@ export default class GuideContentContainer extends Component {
     });
   };
 
-  setDetailPost = id => {
+  setDetailPost = async id => {
     if (this.state.loading) return;
     this.setState({
-      isOnDetail: true,
       loading: true
     });
-
     try {
+      let response = null;
       switch (this.props.type) {
         case 'notice':
-          this.getNoticeDetailPost(id);
+          response = await getNoticeDetailPost(id);
           break;
         case 'rule':
-          this.getRuleDetailPost(id);
+          response = await getRuleDetailPost(id);
           break;
         case 'faq':
-          this.getFaqDetailPost(id);
+          response = await getFaqDetailPost(id);
           break;
         default:
       }
+      this.setState({
+        detailPost: response.data
+      });
     } catch (e) {
       alert('error');
       console.error(e);
     }
     this.setState({
+      isOnDetail: true,
       loading: false
     });
   };
@@ -119,33 +122,6 @@ export default class GuideContentContainer extends Component {
     });
   };
 
-  getFaqDetailPost = async id => {
-    const response = await getFaqDetailPost(id);
-    const detailPost = response.data;
-
-    this.setState({
-      detailPost
-    });
-  };
-
-  getNoticeDetailPost = async id => {
-    const response = await getNoticeDetailPost(id);
-    const detailPost = response.data;
-
-    this.setState({
-      detailPost
-    });
-  };
-
-  getRuleDetailPost = async id => {
-    const response = await getRuleDetailPost(id);
-    const detailPost = response.data;
-
-    this.setState({
-      detailPost
-    });
-  };
-
   componentDidMount() {
     this.setPostList();
   }
@@ -159,7 +135,7 @@ export default class GuideContentContainer extends Component {
       detailHeader = (
         <div className='guide--content--detail--wrapper'>
           <span className='guide--content--detail--title'>{title}</span>
-          <span className='guide--content--detail--date'>{postDate}</span>
+          <span className='guide--content--detail--date'>{postDate.substr(0, 10)}</span>
         </div>
       );
     }
@@ -173,7 +149,6 @@ export default class GuideContentContainer extends Component {
         {!isOnDetail ? (
           <GuideContentPostListContainer
             posts={guidePostList}
-            type={type}
             setDetailPost={this.setDetailPost}
           />
         ) : (
