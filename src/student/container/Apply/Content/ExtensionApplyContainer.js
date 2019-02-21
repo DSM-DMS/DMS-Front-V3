@@ -11,9 +11,10 @@ import ApplyAcceptBtn from '../../../component/Apply/content/ApplyAcceptBtn';
 class ExtensionApplyContainer extends Component {
     render() {
         const btns = ['가온실', '나온실', '다온실', '라온실', '2층 여자 독서실', '3층 계단측 독서실', '3층 학교측 독서실', '4층 계단측 독서실', '4층 학교측 독서실', '5층 열린 교실'];
+        const {room, onChangeRoom} = this.props;
 
         const btnList = btns.map((content, i) => {
-            const {room, onChangeRoom} = this.props;
+            
             let selectedClass = undefined;
             if(room === i)
                 selectedClass = selectedClass = 'apply--extens--btn--selected';
@@ -26,7 +27,7 @@ class ExtensionApplyContainer extends Component {
                 <div className = 'apply--extension--btnlist'>
                     {btnList}
                 </div>
-                <ApplyExtensionMap/>
+                <ApplyExtensionMap time={1} classNum={room+1}/>
                 <div className = 'apply--extension--accept--btnlist'>
                     <ApplyAcceptBtn type = 'apply--extension--cancle--btn' title = '취소'/>
                     <ApplyAcceptBtn type = 'apply--extension--accept--btn' title = '신청'/>
