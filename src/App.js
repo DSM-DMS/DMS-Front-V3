@@ -45,9 +45,6 @@ axios.interceptors.response.use(
 
 class App extends Component {
   componentWillMount() {
-    const id = getCookie('id');
-    const pw = getCookie('pw');
-
     if (
       (navigator.appName === 'Netscape' &&
         navigator.userAgent.search('Trident') !== -1) ||
@@ -58,8 +55,16 @@ class App extends Component {
       );
     }
 
+    this.loginApi();
+
+    window.addEventListener('beforeunload', this.setAutoLogin);
+  }
+
+  loginApi = async () => {
+    const id = getCookie('id');
+    const pw = getCookie('pw');
     if (id && pw) {
-      axios
+      await axios
         .post('http://ec2.istruly.sexy:5000/account/auth', {
           id: id,
           password: pw,
@@ -68,7 +73,6 @@ class App extends Component {
           if (response.status === 200) {
             setCookie('JWT', response.data.accessToken);
             setCookie('ID', id);
-            console.log('succ');
             removeCookie('id');
             removeCookie('pw');
             this.props.autoLogin({ id: id, pw: pw });
@@ -76,9 +80,7 @@ class App extends Component {
           }
         });
     }
-
-    window.addEventListener('beforeunload', this.setAutoLogin);
-  }
+  };
 
   setAutoLogin = () => {
     const { id, pw, autoLogin } = this.props;
