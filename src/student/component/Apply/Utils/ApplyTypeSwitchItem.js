@@ -1,10 +1,9 @@
-import React, { Component } from 'react';
+import React from 'react';
 
 import './ApplyTypeSwitchItem.scss';
 
-export default class ApplyTypeSwitchItem extends Component {
-  render() {
-    const { item } = this.props;
-    return <div />;
-  }
-}
+const ApplyTypeSwitchItem = () => {
+  return <div></div>;
+};
+
+export default ApplyTypeSwitchItem;
