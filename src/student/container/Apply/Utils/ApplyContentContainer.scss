@@ -1,3 +1,21 @@
-.apply--content--wrapper {
+.apply--content--outer--wrapper {
   flex-grow: 1;
+}
+
+.apply--content--wrapper {
+  width: 76.3%;
+  height: 85%;
+  margin: 0 auto;
+  display: flex;
+}
+
+.apply--content--title {
+  font-family: NanumSquareEB;
+  font-size: 2.25rem;
+}
+
+.apply--content--left {
+  width: 18.75rem;
+  display: flex;
+  flex-direction: column;
 }
