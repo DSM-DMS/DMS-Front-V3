@@ -10,6 +10,12 @@ export const isLogin = bool => ({
   bool: bool,
 });
 
+export const autoLogin = data => ({
+  type: types.AUTO_LOGIN,
+  id: data.id,
+  pw: data.pw,
+});
+
 export const mealPrevDate = () => ({
   type: types.SET_MEAL_PREV_DATE,
 });

@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { setCookie } from '../../../lib/cookie';
 import {
   isLogin,
+  autoLogin,
   setStudentPointData,
   setStudentBasicData,
 } from '../../../actions';
@@ -47,8 +48,8 @@ class Login extends Component {
           if (response.status === 200) {
             alert('로그인에 성공하셨습니다.');
             setCookie('JWT', response.data.accessToken);
-            setCookie('RFT', response.data.refreshToken);
             setCookie('ID', id);
+            if (checkbox) this.props.autoLogin({ id: id, pw: pw });
             this.getPointCards(response.data.accessToken);
             this.getBasicData(response.data.accessToken);
             this.props.isLogin(true);
@@ -136,6 +137,7 @@ class Login extends Component {
 
 const mapDispatchToProps = dispatch => ({
   isLogin: bool => dispatch(isLogin(bool)),
+  autoLogin: data => dispatch(autoLogin(data)),
   setStudentPointData: pointData => dispatch(setStudentPointData(pointData)),
   setStudentBasicData: pointData => dispatch(setStudentBasicData(pointData)),
 });
