@@ -6,16 +6,41 @@ import ApplyMenuItem from '../../../component/Apply/menu/ApplyMenuItem';
 
 export default class ApplyMenuContainer extends Component {
   menus = {
-    apply: ['연장', '외출', '잔류', '기상음악']
+    apply: [
+      { content: '연장', url: 'extension' },
+      { content: '외출', url: 'goingout' },
+      { content: '잔류', url: 'stay' },
+      { content: '기상음악', url: 'music' }
+    ]
   };
+
+  onSelectMenu = menu => {
+    this.setState({
+      selectedMenu: menu
+    });
+  };
+
   render() {
     const { menuType, selectedMenu } = this.props;
     const menuItems = this.menus[menuType].map(content => {
-      if (content === selectedMenu)
+      if (content.url === selectedMenu)
         return (
-          <ApplyMenuItem content={content} isSelected={'menu--selected'} />
+          <ApplyMenuItem
+            baseUrl='apply'
+            url={content.url}
+            content={content.content}
+            isSelected={'menu--selected'}
+            onSelectMenu={this.onSelectMenu}
+          />
         );
-      return <ApplyMenuItem content={content} />;
+      return (
+        <ApplyMenuItem
+          baseUrl='apply'
+          url={content.url}
+          content={content.content}
+          onSelectMenu={this.onSelectMenu}
+        />
+      );
     });
     return (
       <div className='apply--menu'>

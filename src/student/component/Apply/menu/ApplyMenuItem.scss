@@ -1,0 +1,40 @@
+.apply--menu--item {
+  display: flex;
+  position: relative;
+  width: 100%;
+  height: 4rem;
+  text-align: center;
+  font-family: NanumSquareR;
+  padding: 0 1.125rem;
+  box-sizing: border-box;
+
+  & > a {
+    text-decoration: none;
+    margin: 0;
+    height: 100%;
+    line-height: 4rem;
+    flex-grow: 1;
+    border-radius: 8px;
+    color: #19b6b6;
+    &:hover {
+      background: #e2f6f6;
+    }
+  }
+
+  &.menu--selected {
+    font-family: NanumSquareEB;
+
+    &::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      display: block;
+      width: 5px;
+      height: 100%;
+      background: #19b6b6;
+      box-shadow: 0 3px 8px 0 rgba($color: #19b6b6, $alpha: 0.48);
+      border-top-right-radius: 5px;
+      border-bottom-right-radius: 5px;
+    }
+  }
+}
