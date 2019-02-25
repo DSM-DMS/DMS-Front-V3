@@ -8,6 +8,7 @@
   align-items: center;
   &.selected {
     background: #19b6b6;
+    border: none;
   }
   &.selected > span {
     color: #fff;
