@@ -20,9 +20,20 @@ export default class ApplyContentMenuContainer extends Component {
     const { selected } = this.state;
     const menuItems = menuList.map((item, i) =>
       selected === i ? (
-        <ApplyContentMenuItem isSelected='selected' content={item} val={i} onClickMenu={this.onClickMenu} key={i} />
+        <ApplyContentMenuItem
+          isSelected='selected'
+          content={item}
+          val={i}
+          onClickMenu={this.onClickMenu}
+          key={i}
+        />
       ) : (
-        <ApplyContentMenuItem content={item} val={i} onClickMenu={this.onClickMenu} key={i}/>
+        <ApplyContentMenuItem
+          content={item}
+          val={i}
+          onClickMenu={this.onClickMenu}
+          key={i}
+        />
       )
     );
 
