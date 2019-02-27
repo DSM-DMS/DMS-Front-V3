@@ -21,7 +21,7 @@ export default class ApplyContentInnerContainer extends Component {
       onApply
     } = this.props;
 
-    let content = null
+    let content = null;
 
     switch (applyType) {
       case 'extension':
@@ -33,7 +33,7 @@ export default class ApplyContentInnerContainer extends Component {
         content = <GoingoutContent />;
         break;
       case 'stay':
-        content = <StayContent />;
+        content = <StayContent selectedMenu={selectedMenu} />;
         break;
       case 'music':
         content = <MusicContent />;
@@ -78,7 +78,7 @@ export default class ApplyContentInnerContainer extends Component {
                 content='신청'
                 btnClass='apply'
                 onClick={onApply}
-                params={selectedType}
+                params={selectedMenu}
               />
             </div>
           )}
