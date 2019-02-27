@@ -9,9 +9,20 @@ export default class GoingoutApplyContainer extends Component {
     { content: '토요일', val: 'sat' },
     { content: '일요일', val: 'sun' },
     { content: '평일', val: 'weekday' }
-  ]
+  ];
+
+  onCancel = () => {};
+
+  onApply = () => {};
 
   render() {
-    return <ApplyContentContainer type='goingout' typeList={this.typeList} />;
+    return (
+      <ApplyContentContainer
+        type='goingout'
+        typeList={this.typeList}
+        onCancel={this.onCancel}
+        onApply={this.onApply}
+      />
+    );
   }
 }

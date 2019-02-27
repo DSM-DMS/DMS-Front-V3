@@ -24,7 +24,15 @@ export default class StayApplyContainer extends Component {
     }
   ];
 
+  onApply = () => {};
+
   render() {
-    return <ApplyContentContainer type='stay' menuList={this.menuList}/>;
+    return (
+      <ApplyContentContainer
+        type='stay'
+        menuList={this.menuList}
+        onApply={this.onApply}
+      />
+    );
   }
 }
