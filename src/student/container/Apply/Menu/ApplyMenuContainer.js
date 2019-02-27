@@ -22,7 +22,7 @@ export default class ApplyMenuContainer extends Component {
 
   render() {
     const { menuType, selectedMenu } = this.props;
-    const menuItems = this.menus[menuType].map(content => {
+    const menuItems = this.menus[menuType].map((content, i) => {
       if (content.url === selectedMenu)
         return (
           <ApplyMenuItem
@@ -31,6 +31,7 @@ export default class ApplyMenuContainer extends Component {
             content={content.content}
             isSelected={'menu--selected'}
             onSelectMenu={this.onSelectMenu}
+            key={i}
           />
         );
       return (
@@ -39,6 +40,7 @@ export default class ApplyMenuContainer extends Component {
           url={content.url}
           content={content.content}
           onSelectMenu={this.onSelectMenu}
+          key={i}
         />
       );
     });
