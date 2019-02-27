@@ -1,8 +1,32 @@
 import axios from 'axios';
 const rootUrl = 'http://ec2.istruly.sexy:5000/apply';
 
-export const getExtensionMap = async (time, classNum) => {
-  return await axios.get(`${rootUrl}/extension/map/${time}/${classNum}`);
+export const getExtensionMap = (time, classNum) => {
+  return axios.get(`${rootUrl}/extension/map/${time}/${classNum}`);
+};
+
+export const getMyExtensionInfo = (token, time) => {
+  return axios.get(`${rootUrl}/extension/${time}`, {
+    headers: {
+      Authorization: `Bearer ${token}`
+    }
+  });
+};
+
+export const deleteExtension = (token, time) => {
+  return axios.delete(`${rootUrl}/extension/${time}`, {
+    headers: {
+      Authorization: `Bearer ${token}`
+    }
+  });
+};
+
+export const applyExtension = (token, time) => {
+  return axios.get(`${rootUrl}/extension/${time}`, {
+    headers: {
+      Authorization: `Bearer ${token}`
+    }
+  });
 };
 
 export const getGoingoutInform = token => {
