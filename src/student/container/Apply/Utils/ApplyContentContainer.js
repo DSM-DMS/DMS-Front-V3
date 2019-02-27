@@ -5,7 +5,7 @@ import './ApplyContentContainer.scss';
 import ApplyContentMenuContainer from './ApplyContentMenuContainer';
 import ApplyContentInnerContainer from './ApplyContentInnerContainer';
 
-import { getMyExtensionInfo } from '../../../../lib/applyAPI';
+import { getMyExtensionInfo, getStayInform } from '../../../../lib/applyAPI';
 import { getCookie } from '../../../../lib/cookie';
 
 export default class ApplyContentContainer extends Component {
@@ -72,7 +72,7 @@ export default class ApplyContentContainer extends Component {
       goingout: 'sat'
     },
     extensionInfo: ['', ''],
-    stayInfo: '금요귀가'
+    stayInfo: ''
   };
 
   setExtensionInfo = async () => {
@@ -84,6 +84,17 @@ export default class ApplyContentContainer extends Component {
           this.getRoomName(response1.data.classNum),
           this.getRoomName(response2.data.classNum)
         ]
+      });
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
+  setStayInfo = async () => {
+    try {
+      const response = await getStayInform(getCookie('JWT'));
+      this.setState({
+        stayInfo: this.getStayType(response.data.value)
       });
     } catch (e) {
       console.log(e);
@@ -115,6 +126,20 @@ export default class ApplyContentContainer extends Component {
     }
   }
 
+  getStayType(stayNum) {
+    switch (stayNum) {
+      case 1:
+        return '금요귀가';
+      case 2:
+        return '토요귀가';
+      case 3:
+        return '토요귀사';
+      case 4:
+        return '잔류';
+      default:
+    }
+  }
+
   onSelectMenu = menuVal => {
     this.setState({
       selectedMenu: menuVal
@@ -133,6 +158,15 @@ export default class ApplyContentContainer extends Component {
 
   componentDidMount() {
     this.setExtensionInfo();
+    this.setStayInfo();
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.refreshFlag) {
+      this.setExtensionInfo();
+      this.setStayInfo();
+      this.props.afterRefresh();
+    }
   }
 
   render() {
