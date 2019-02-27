@@ -3,6 +3,8 @@ import React, { Component } from 'react';
 import './StayApplyContainer.scss';
 
 import ApplyContentContainer from '../Utils/ApplyContentContainer';
+import { submitStayInform } from '../../../../lib/applyAPI';
+import { getCookie } from '../../../../lib/cookie';
 
 export default class StayApplyContainer extends Component {
   menuList = [
@@ -24,7 +26,29 @@ export default class StayApplyContainer extends Component {
     }
   ];
 
-  onApply = () => {};
+  state = {
+    refreshFlag: false
+  };
+
+  onApply = stayVal => {
+    console.log(stayVal);
+    submitStayInform(getCookie('JWT'), stayVal + 1)
+      .then(() => {
+        alert('잔류신청에 성공했습니다.');
+        this.setState({
+          refreshFlag: true
+        });
+      })
+      .catch(e => {
+        alert('잔류신청을 하지 못했습니다.');
+      });
+  };
+
+  afterRefresh = () => {
+    this.setState({
+      refreshFlag: false
+    });
+  };
 
   render() {
     return (
@@ -32,6 +56,8 @@ export default class StayApplyContainer extends Component {
         type='stay'
         menuList={this.menuList}
         onApply={this.onApply}
+        refreshFlag={this.state.refreshFlag}
+        afterRefresh={this.afterRefresh}
       />
     );
   }
