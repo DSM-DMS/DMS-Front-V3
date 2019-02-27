@@ -1,0 +1,14 @@
+.apply--content--extension--seat {
+  width: 3.125rem;
+  height: 3.125rem;
+  line-height: 3.125rem;
+  border-radius: 3.125rem;
+  font-family: NanumSquareR;
+  font-size: 0.8125rem;
+  color: #fff;
+  background: #19b6b6;
+  box-shadow: 0 6px 12px 0 rgba($color: #19b6b6, $alpha: 0.16);
+  &.invisible {
+    visibility: hidden;
+  }
+}
