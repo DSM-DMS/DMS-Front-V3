@@ -5,33 +5,23 @@ import './ApplyContentMenuContainer.scss';
 import ApplyContentMenuItem from '../../../component/Apply/Utils/ApplyContentMenuItem';
 
 export default class ApplyContentMenuContainer extends Component {
-  state = {
-    selected: 0
-  };
-
-  onClickMenu = index => {
-    this.setState({
-      selected: index
-    });
-  };
 
   render() {
-    const { menuTitle, menuList } = this.props;
-    const { selected } = this.state;
+    const { menuTitle, menuList, onSelectMenu, selectedMenu } = this.props;
     const menuItems = menuList.map((item, i) =>
-      selected === i ? (
+      selectedMenu === i ? (
         <ApplyContentMenuItem
           isSelected='selected'
           content={item}
           val={i}
-          onClickMenu={this.onClickMenu}
+          onClickMenu={onSelectMenu}
           key={i}
         />
       ) : (
         <ApplyContentMenuItem
           content={item}
           val={i}
-          onClickMenu={this.onClickMenu}
+          onClickMenu={onSelectMenu}
           key={i}
         />
       )
