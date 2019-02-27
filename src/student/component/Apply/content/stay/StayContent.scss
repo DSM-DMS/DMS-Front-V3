@@ -1,0 +1,22 @@
+.apply--content--stay {
+  height: 100%;
+
+  &--icon {
+    display: block;
+    width: 6rem;
+    height: 6rem;
+    margin: 6.25rem auto 0;
+  }
+  &--title {
+    font-size: 2.25rem;
+    font-family: NanumSquareB;
+    text-align: center;
+  }
+  &--content {
+    min-width: 32.5rem;
+    width: 0;
+    font-size: 1.5rem;
+    font-family: NanumSquareR;
+    margin: 5rem auto 0;
+  }
+}
