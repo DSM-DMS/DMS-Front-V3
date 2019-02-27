@@ -5,6 +5,9 @@ import './ApplyContentContainer.scss';
 import ApplyContentMenuContainer from './ApplyContentMenuContainer';
 import ApplyContentInnerContainer from './ApplyContentInnerContainer';
 
+import { getMyExtensionInfo } from '../../../../lib/applyAPI';
+import { getCookie } from '../../../../lib/cookie';
+
 export default class ApplyContentContainer extends Component {
   contentInfo = {
     extension: {
@@ -63,12 +66,59 @@ export default class ApplyContentContainer extends Component {
   };
 
   state = {
+    selectedMenu: 0,
     selectedType: {
       extension: 11,
       goingout: 'sat'
     },
-    extensionInfo: ['가온실', '-'],
+    extensionInfo: ['', ''],
     stayInfo: '금요귀가'
+  };
+
+  setExtensionInfo = async () => {
+    try {
+      const response1 = await getMyExtensionInfo(getCookie('JWT'), 11);
+      const response2 = await getMyExtensionInfo(getCookie('JWT'), 12);
+      this.setState({
+        extensionInfo: [
+          this.getRoomName(response1.data.classNum),
+          this.getRoomName(response2.data.classNum)
+        ]
+      });
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
+  getRoomName(roomNum) {
+    switch (roomNum) {
+      case 1:
+        return '가온실';
+      case 2:
+        return '나온실';
+      case 3:
+        return '다온실';
+      case 4:
+        return '라온실';
+      case 5:
+        return '2층';
+      case 6:
+      case 7:
+        return '3층';
+      case 8:
+      case 9:
+        return '4층';
+      case 10:
+        return '5층';
+      default:
+        return '-';
+    }
+  }
+
+  onSelectMenu = menuVal => {
+    this.setState({
+      selectedMenu: menuVal
+    });
   };
 
   onSelectType = typeVal => {
@@ -81,9 +131,13 @@ export default class ApplyContentContainer extends Component {
     });
   };
 
+  componentDidMount() {
+    this.setExtensionInfo();
+  }
+
   render() {
-    const { type, menuList, typeList } = this.props;
-    const { selectedType, extensionInfo, stayInfo } = this.state;
+    const { type, menuList, typeList, onCancel, onApply } = this.props;
+    const { selectedType, extensionInfo, stayInfo, selectedMenu } = this.state;
     const applyTag = {
       extension: (
         <div className='apply--content--tag--wrapper'>
@@ -110,13 +164,19 @@ export default class ApplyContentContainer extends Component {
             <ApplyContentMenuContainer
               menuTitle={this.contentInfo[type].menuTitle}
               menuList={this.contentInfo[type].menuList}
+              selectedMenu={selectedMenu}
+              onSelectMenu={this.onSelectMenu}
             />
           </div>
           <div className='apply--content--right'>
             <ApplyContentInnerContainer
+              applyType={type}
               typeList={this.contentInfo[type].typeList}
               selectedType={selectedType[type]}
               onSelectType={this.onSelectType}
+              selectedMenu={selectedMenu}
+              onCancel={onCancel}
+              onApply={onApply}
             />
           </div>
         </div>
