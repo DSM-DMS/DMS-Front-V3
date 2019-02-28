@@ -71,6 +71,10 @@ export default class ApplyContentContainer extends Component {
       extension: 11,
       goingout: 'sat'
     },
+    musicApplication: {
+      singer: '',
+      title: ''
+    },
     extensionInfo: ['', ''],
     stayInfo: ''
   };
@@ -155,6 +159,14 @@ export default class ApplyContentContainer extends Component {
       }
     });
   };
+  onChangeMusicApplication = (e) => {
+    this.setState({
+      musicApplication: {
+        ...this.state.musicApplication,
+        [e.target.name]: e.target.value
+      }
+    });
+  }
 
   componentDidMount() {
     this.setExtensionInfo();
@@ -171,7 +183,13 @@ export default class ApplyContentContainer extends Component {
 
   render() {
     const { type, menuList, typeList, onCancel, onApply } = this.props;
-    const { selectedType, extensionInfo, stayInfo, selectedMenu } = this.state;
+    const {
+      selectedType,
+      extensionInfo,
+      stayInfo,
+      selectedMenu,
+      musicApplication
+    } = this.state;
     const applyTag = {
       extension: (
         <div className='apply--content--tag--wrapper'>
@@ -184,6 +202,24 @@ export default class ApplyContentContainer extends Component {
           <div className='apply--content--tag'>{stayInfo}</div>
         </div>
       )
+    };
+    const params = {
+      extension: {
+        apply: selectedType,
+        cancel: selectedType
+      },
+      goingout: {
+        apply: '',
+        cancel: ''
+      },
+      stay: {
+        apply: selectedMenu,
+        cancel: selectedMenu
+      },
+      music: {
+        apply: selectedMenu,
+        cancel: selectedMenu
+      }
     };
     return (
       <div className='apply--content--outer--wrapper'>
@@ -211,6 +247,9 @@ export default class ApplyContentContainer extends Component {
               selectedMenu={selectedMenu}
               onCancel={onCancel}
               onApply={onApply}
+              params={params[type]}
+              musicApplication={musicApplication}
+              onChangeMusicApplication={this.onChangeMusicApplication}
             />
           </div>
         </div>

@@ -18,6 +18,8 @@
   font-size: 2.25rem;
   &--wrapper {
     position: relative;
+    height: 3.125rem;
+    line-height: 3.125rem;
   }
 }
 
@@ -38,8 +40,7 @@
   font-family: NanumSquareR;
   font-size: 0.75rem;
 
-
-  &.second{
+  &.second {
     position: relative;
     &::before {
       position: absolute;
@@ -51,7 +52,6 @@
       background: rgba($color: #fff, $alpha: 0.28);
     }
   }
-  
 
   &--wrapper {
     position: absolute;

@@ -18,25 +18,40 @@ export default class ApplyContentInnerContainer extends Component {
       onSelectType,
       selectedMenu,
       onCancel,
-      onApply
+      onApply,
+      params,
+      musicApplication,
+      onChangeMusicApplication
     } = this.props;
 
     let content = null;
-
+    let applyParam = null;
     switch (applyType) {
       case 'extension':
         content = (
           <ExtensionContent time={selectedType} classNum={selectedMenu} />
         );
+        applyParam = params.apply;
         break;
       case 'goingout':
         content = <GoingoutContent />;
+        applyParam = params.apply;
         break;
       case 'stay':
         content = <StayContent selectedMenu={selectedMenu} />;
+        applyParam = params.apply;
         break;
       case 'music':
-        content = <MusicContent />;
+        content = (
+          <MusicContent
+            musicApplication={musicApplication}
+            onChangeMusicApplication={onChangeMusicApplication}
+          />
+        );
+        applyParam = {
+          day: params.apply,
+          ...musicApplication
+        };
         break;
       default:
     }
@@ -56,20 +71,19 @@ export default class ApplyContentInnerContainer extends Component {
         </div>
         <div className='apply--content--inner--content'>
           {content}
-
           {applyType !== 'stay' ? (
             <div className='apply--content--btn--wrapper'>
               <ApplyAcceptBtn
                 content='취소'
                 btnClass='cancel'
                 onClick={onCancel}
-                params={selectedType}
+                params={applyParam}
               />
               <ApplyAcceptBtn
                 content='신청'
                 btnClass='apply'
                 onClick={onApply}
-                params={selectedType}
+                params={applyParam}
               />
             </div>
           ) : (
@@ -78,7 +92,7 @@ export default class ApplyContentInnerContainer extends Component {
                 content='신청'
                 btnClass='apply'
                 onClick={onApply}
-                params={selectedMenu}
+                params={applyParam}
               />
             </div>
           )}

@@ -3,6 +3,8 @@ import React, { Component } from 'react';
 import './MusicApplyContainer.scss';
 
 import ApplyContentContainer from '../Utils/ApplyContentContainer';
+import { submitMusic } from '../../../../lib/applyAPI';
+import { getCookie } from '../../../../lib/cookie';
 
 export default class MusicApplyContainer extends Component {
   menuList = [
@@ -15,7 +17,9 @@ export default class MusicApplyContainer extends Component {
 
   onCancel = () => {};
 
-  onApply = () => {};
+  onApply = ({day, singer, title}) => {
+    submitMusic(getCookie('JWT'), day+1, singer, title)
+  };
 
   render() {
     return (
