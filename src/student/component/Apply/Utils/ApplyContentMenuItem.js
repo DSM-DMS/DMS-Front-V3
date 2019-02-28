@@ -2,12 +2,12 @@ import React from 'react';
 
 import './ApplyContentMenuItem.scss';
 
-const ApplyContentMenuItem = ({ content, isSelected, val, onClickMenu }) => {
+const ApplyContentMenuItem = ({ content, isSelected, val, onClickMenu, available }) => {
   let isLongWord;
   if (content.content.length > 1) isLongWord = 'long';
   return (
     <div
-      className={`apply--content--menu--item ${isSelected}`}
+      className={`apply--content--menu--item ${isSelected} ${available}`}
       onClick={() => onClickMenu(val)}
     >
       <span className={`apply--content--menu--item--content ${isLongWord}`}>
