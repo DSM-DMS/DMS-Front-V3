@@ -15,6 +15,7 @@ export default class ApplyContentMenuContainer extends Component {
           content={item}
           val={i}
           onClickMenu={onSelectMenu}
+          available={item.available === false ? 'disable' : undefined}
           key={i}
         />
       ) : (
@@ -22,6 +23,7 @@ export default class ApplyContentMenuContainer extends Component {
           content={item}
           val={i}
           onClickMenu={onSelectMenu}
+          available={item.available === false ? 'disable' : undefined}
           key={i}
         />
       )
