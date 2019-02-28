@@ -109,7 +109,7 @@ export default class ExtensionContent extends Component {
     const { mapData } = this.state;
     const map = mapData.map((seatCol, i) => {
       const row = seatCol.map((seat, i) => {
-        if (seat === 1)
+        if (seat === 0)
           return <ExtensionMapseat key={i} invisibleClass='invisible' />;
         return <ExtensionMapseat key={i} content={seat} />;
       });
