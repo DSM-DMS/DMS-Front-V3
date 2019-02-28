@@ -21,7 +21,8 @@ export default class ApplyContentInnerContainer extends Component {
       onApply,
       params,
       musicApplication,
-      onChangeMusicApplication
+      onChangeMusicApplication,
+      musicInfo
     } = this.props;
 
     let content = null;
@@ -46,6 +47,8 @@ export default class ApplyContentInnerContainer extends Component {
           <MusicContent
             musicApplication={musicApplication}
             onChangeMusicApplication={onChangeMusicApplication}
+            musicInfo={musicInfo}
+            isOnApply={selectedMenu !== 5}
           />
         );
         applyParam = {
