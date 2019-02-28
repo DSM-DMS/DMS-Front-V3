@@ -5,67 +5,71 @@ import './ApplyContentContainer.scss';
 import ApplyContentMenuContainer from './ApplyContentMenuContainer';
 import ApplyContentInnerContainer from './ApplyContentInnerContainer';
 
-import { getMyExtensionInfo, getStayInform } from '../../../../lib/applyAPI';
+import {
+  getMyExtensionInfo,
+  getStayInform,
+  getMusicList
+} from '../../../../lib/applyAPI';
 import { getCookie } from '../../../../lib/cookie';
 
 export default class ApplyContentContainer extends Component {
-  contentInfo = {
-    extension: {
-      title: '연장신청',
-      menuTitle: '위치선택',
-      menuList: [
-        { content: '가', detail: '가온실' },
-        { content: '나', detail: '나온실' },
-        { content: '다', detail: '다온실' },
-        { content: '라', detail: '라온실' },
-        { content: '2층', detail: '2층 여자 독서실' },
-        { content: '3층', detail: '3층 학교측 독서실' },
-        { content: '3층', detail: '3층 기숙사측 독서실' },
-        { content: '4층', detail: '4층 학교측 독서실' },
-        { content: '4층', detail: '4층 기숙사측 독서실' },
-        { content: '5층', detail: '5층 열린 교실' }
-      ],
-      typeList: [{ content: '11시', val: 11 }, { content: '12시', val: 12 }]
-    },
-    goingout: {
-      title: '외출신청',
-      menuTitle: '외출목록',
-      menuList: [
-        { content: '토', detail: '' },
-        { content: '평일', detail: '' }
-      ],
-      typeList: [
-        { content: '토요일', val: 'sat' },
-        { content: '일요일', val: 'sun' },
-        { content: '평일', val: 'week' }
-      ]
-    },
-    music: {
-      title: '기상음악',
-      menuTitle: '요일선택',
-      menuList: [
-        { content: '월', detail: '신청가능' },
-        { content: '화', detail: '신청가능' },
-        { content: '수', detail: '신청가능' },
-        { content: '목', detail: '신청가능' },
-        { content: '금', detail: '신청가능' }
-      ],
-      typeList: []
-    },
-    stay: {
-      title: '잔류신청',
-      menuTitle: '신청목록',
-      menuList: [
-        { content: '금', detail: '금요귀가' },
-        { content: '토', detail: '토요귀가' },
-        { content: '토', detail: '토요귀사' },
-        { content: '잔류', detail: '잔류' }
-      ],
-      typeList: []
-    }
-  };
-
   state = {
+    contentInfo: {
+      extension: {
+        title: '연장신청',
+        menuTitle: '위치선택',
+        menuList: [
+          { content: '가', detail: '가온실' },
+          { content: '나', detail: '나온실' },
+          { content: '다', detail: '다온실' },
+          { content: '라', detail: '라온실' },
+          { content: '2층', detail: '2층 여자 독서실' },
+          { content: '3층', detail: '3층 학교측 독서실' },
+          { content: '3층', detail: '3층 기숙사측 독서실' },
+          { content: '4층', detail: '4층 학교측 독서실' },
+          { content: '4층', detail: '4층 기숙사측 독서실' },
+          { content: '5층', detail: '5층 열린 교실' }
+        ],
+        typeList: [{ content: '11시', val: 11 }, { content: '12시', val: 12 }]
+      },
+      goingout: {
+        title: '외출신청',
+        menuTitle: '외출목록',
+        menuList: [
+          { content: '토', detail: '' },
+          { content: '평일', detail: '' }
+        ],
+        typeList: [
+          { content: '토요일', val: 'sat' },
+          { content: '일요일', val: 'sun' },
+          { content: '평일', val: 'week' }
+        ]
+      },
+      music: {
+        title: '기상음악',
+        menuTitle: '요일선택',
+        menuList: [
+          { content: '월', detail: '신청가능', val: 'mon', available: true },
+          { content: '화', detail: '신청가능', val: 'tue', available: true },
+          { content: '수', detail: '신청가능', val: 'wed', available: true },
+          { content: '목', detail: '신청가능', val: 'thu', available: true },
+          { content: '금', detail: '신청가능', val: 'fri', available: true },
+          { content: '리', detail: '기상음악 리스트' }
+        ],
+        typeList: []
+      },
+      stay: {
+        title: '잔류신청',
+        menuTitle: '신청목록',
+        menuList: [
+          { content: '금', detail: '금요귀가' },
+          { content: '토', detail: '토요귀가' },
+          { content: '토', detail: '토요귀사' },
+          { content: '잔류', detail: '잔류' }
+        ],
+        typeList: []
+      }
+    },
     selectedMenu: 0,
     selectedType: {
       extension: 11,
@@ -76,7 +80,8 @@ export default class ApplyContentContainer extends Component {
       title: ''
     },
     extensionInfo: ['', ''],
-    stayInfo: ''
+    stayInfo: '',
+    musicInfo: {}
   };
 
   setExtensionInfo = async () => {
@@ -100,6 +105,46 @@ export default class ApplyContentContainer extends Component {
       this.setState({
         stayInfo: this.getStayType(response.data.value)
       });
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
+  setMusicInfo = async () => {
+    try {
+      const response = await getMusicList(getCookie('JWT'));
+      this.setState({
+        musicInfo: response.data
+      });
+      let i = 0;
+      console.log(getCookie('ID'));
+      for (let day in response.data) {
+        let isFull = response.data[day].length === 5;
+        if(isFull) {
+          const menuList = [...this.state.contentInfo.music.menuList];
+          menuList[i].detail = '신청불가';
+          menuList[i].available = false;
+        }
+        
+        let isApplied = response.data[day].some(musicInfo => {
+          return musicInfo.studentId === getCookie('ID');
+        });
+
+        if (isApplied) {
+          const menuList = [...this.state.contentInfo.music.menuList];
+          menuList[i].detail = '신청완료';
+          this.setState({
+            contentInfo: {
+              ...this.state.contentInfo,
+              music: {
+                ...this.state.contentInfo.music,
+                menuList: [...menuList]
+              }
+            }
+          });
+        }
+        i++;
+      }
     } catch (e) {
       console.log(e);
     }
@@ -159,24 +204,26 @@ export default class ApplyContentContainer extends Component {
       }
     });
   };
-  onChangeMusicApplication = (e) => {
+  onChangeMusicApplication = e => {
     this.setState({
       musicApplication: {
         ...this.state.musicApplication,
         [e.target.name]: e.target.value
       }
     });
-  }
+  };
 
   componentDidMount() {
     this.setExtensionInfo();
     this.setStayInfo();
+    this.setMusicInfo();
   }
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.refreshFlag) {
       this.setExtensionInfo();
       this.setStayInfo();
+      this.setMusicInfo();
       this.props.afterRefresh();
     }
   }
@@ -184,11 +231,13 @@ export default class ApplyContentContainer extends Component {
   render() {
     const { type, menuList, typeList, onCancel, onApply } = this.props;
     const {
+      contentInfo,
       selectedType,
       extensionInfo,
       stayInfo,
       selectedMenu,
-      musicApplication
+      musicApplication,
+      musicInfo
     } = this.state;
     const applyTag = {
       extension: (
@@ -227,13 +276,13 @@ export default class ApplyContentContainer extends Component {
           <div className='apply--content--left'>
             <div className='apply--content--title--wrapper'>
               <span className='apply--content--title'>
-                {this.contentInfo[type].title}
+                {contentInfo[type].title}
               </span>
               {applyTag[type]}
             </div>
             <ApplyContentMenuContainer
-              menuTitle={this.contentInfo[type].menuTitle}
-              menuList={this.contentInfo[type].menuList}
+              menuTitle={contentInfo[type].menuTitle}
+              menuList={contentInfo[type].menuList}
               selectedMenu={selectedMenu}
               onSelectMenu={this.onSelectMenu}
             />
@@ -241,7 +290,7 @@ export default class ApplyContentContainer extends Component {
           <div className='apply--content--right'>
             <ApplyContentInnerContainer
               applyType={type}
-              typeList={this.contentInfo[type].typeList}
+              typeList={contentInfo[type].typeList}
               selectedType={selectedType[type]}
               onSelectType={this.onSelectType}
               selectedMenu={selectedMenu}
@@ -250,6 +299,7 @@ export default class ApplyContentContainer extends Component {
               params={params[type]}
               musicApplication={musicApplication}
               onChangeMusicApplication={this.onChangeMusicApplication}
+              musicInfo={musicInfo}
             />
           </div>
         </div>
