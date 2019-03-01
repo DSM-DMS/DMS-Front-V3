@@ -37,6 +37,19 @@ export const getGoingoutInform = token => {
   });
 };
 
+export const deleteGoingoutInform = (token, id) => {
+  return axios({
+    method: 'DELETE',
+    url: `${rootUrl}/goingout`,
+    data: {
+      applyId: id
+    },
+    headers: {
+      Authorization: `Bearer ${token}`
+    }
+  });
+};
+
 export const postGoingoutInform = (token, goOutDate, returnDate, reason) => {
   return axios.post(
     `${rootUrl}/goingout `,
