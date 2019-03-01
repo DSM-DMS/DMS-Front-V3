@@ -2,14 +2,21 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 import logo from '../../../assets/logo/logo-white.png';
+import logogreen from '../../../assets/logo/logo.png';
 
 import './Header.scss';
 
-const Header = ({ buttonList, variableButton }) => {
+const Header = ({ buttonList, variableButton, developers }) => {
   return (
-    <div className="header--wrapper">
+    <div
+      className={`${!!developers ? 'developers--page' : ''} header--wrapper`}
+    >
       <Link to="/" className="header--logo">
-        <img src={logo} alt="logo" className="header--logo--icon" />
+        <img
+          src={!!developers ? logogreen : logo}
+          alt="logo"
+          className="header--logo--icon"
+        />
         <span className="header--logo--title">DMS</span>
       </Link>
       <div className="header--button--list">

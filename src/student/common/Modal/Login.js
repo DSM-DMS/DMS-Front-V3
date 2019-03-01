@@ -88,6 +88,12 @@ class Login extends Component {
       });
   };
 
+  enterKeyPress = e => {
+    if (e.key === 'Enter') {
+      this.loginBtn();
+    }
+  };
+
   render() {
     const { setModal } = this.props;
 
@@ -99,6 +105,7 @@ class Login extends Component {
           className="modal--input"
           onChange={this.idHandler}
           value={this.state.id}
+          onKeyPress={this.enterKeyPress}
         />
         <input
           type="password"
@@ -106,6 +113,7 @@ class Login extends Component {
           className="modal--input"
           onChange={this.pwHandler}
           value={this.state.pw}
+          onKeyPress={this.enterKeyPress}
         />
         <button className="modal--submit" onClick={this.loginBtn}>
           로그인
@@ -120,7 +128,7 @@ class Login extends Component {
               value={this.state.checkbox}
             />
             <label htmlFor="login--checkbox" className="login--checkbox--label">
-              비밀번호 저장
+              자동 로그인
             </label>
           </span>
           <span

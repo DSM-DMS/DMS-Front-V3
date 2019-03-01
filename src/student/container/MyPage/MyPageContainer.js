@@ -61,6 +61,12 @@ class MyPageContainer extends Component {
     this.props.history.push('/');
   };
 
+  goDevelopers = (go) => {
+    const { history } = this.props;
+
+    history.push(`/${go}`)
+  }
+
   render() {
     const { cardList } = this.state;
     const { setModal } = this.props;
@@ -80,6 +86,7 @@ class MyPageContainer extends Component {
         setModal={setModal}
         key={`my-pagecard${data.kind}`}
         onLogOutBtn={this.onLogOutBtn}
+        goDevelopers={this.goDevelopers}
       />
     ));
     return (
