@@ -19,16 +19,17 @@
 
   &--content {
     margin-left: 1.5rem;
+    margin-right: 1.5rem;
     font-family: NanumSquareEB;
     font-size: 1.5rem;
     &.long {
       font-size: 1.125rem;
       margin-left: 1.125rem;
+      margin-right: 1.125rem;
     }
   }
 
   &--detail {
-    margin-left: 1.5rem;
     font-family: NanumSquareB;
     font-size: 0.875rem;
   }
