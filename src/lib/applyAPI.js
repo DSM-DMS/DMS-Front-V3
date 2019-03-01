@@ -21,8 +21,12 @@ export const deleteExtension = (token, time) => {
   });
 };
 
-export const applyExtension = (token, time) => {
-  return axios.get(`${rootUrl}/extension/${time}`, {
+export const applyExtension = (token, param) => {
+  return axios.post(`${rootUrl}/extension/${param.time}`,{
+    classNum: param.class+1,
+    seatNum: param.seat
+  },
+   {
     headers: {
       Authorization: `Bearer ${token}`
     }
