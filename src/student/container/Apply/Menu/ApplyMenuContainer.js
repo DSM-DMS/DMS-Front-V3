@@ -1,18 +1,18 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import './ApplyMenuContainer.scss';
 
 import dmsLogo from '../../../../assets/logo/logo.png';
 import ApplyMenuItem from '../../../component/Apply/menu/ApplyMenuItem';
 
 export default class ApplyMenuContainer extends Component {
-  menus = {
-    apply: [
-      { content: '연장', url: 'extension' },
-      { content: '외출', url: 'goingout' },
-      { content: '잔류', url: 'stay' },
-      { content: '기상음악', url: 'music' }
-    ]
-  };
+  menus = [
+    { content: '연장', url: 'apply/extension', val: 'extension' },
+    { content: '외출', url: 'apply/goingout', val: 'goingout' },
+    { content: '잔류', url: 'apply/stay', val: 'stay' },
+    { content: '기상음악', url: 'apply/music', val: 'music' },
+    { content: '공지사항', url: 'guide/notice', val: 'notice' }
+  ];
 
   onSelectMenu = menu => {
     this.setState({
@@ -22,11 +22,10 @@ export default class ApplyMenuContainer extends Component {
 
   render() {
     const { menuType, selectedMenu } = this.props;
-    const menuItems = this.menus[menuType].map((content, i) => {
-      if (content.url === selectedMenu)
+    const menuItems = this.menus.map((content, i) => {
+      if (content.val === selectedMenu)
         return (
           <ApplyMenuItem
-            baseUrl='apply'
             url={content.url}
             content={content.content}
             isSelected={'menu--selected'}
@@ -36,7 +35,6 @@ export default class ApplyMenuContainer extends Component {
         );
       return (
         <ApplyMenuItem
-          baseUrl='apply'
           url={content.url}
           content={content.content}
           onSelectMenu={this.onSelectMenu}
@@ -46,7 +44,7 @@ export default class ApplyMenuContainer extends Component {
     });
     return (
       <div className='apply--menu'>
-        <img className='apply--menu--logo' src={dmsLogo} alt='dms 로고' />
+        <Link to='/'><img className='apply--menu--logo' src={dmsLogo} alt='dms 로고' /></Link>
         <div className='apply--menu--item--wrapper'>{menuItems}</div>
       </div>
     );
