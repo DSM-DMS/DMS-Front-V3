@@ -32,7 +32,7 @@ class ChangePassword extends Component {
     ) {
       axios
         .patch(
-          'http://ec2.istruly.sexy:5000/account/pw',
+          'https://dms-api.istruly.sexy/account/pw',
           { currentPassword: currentPassword, newPassword: newPassword },
           { headers: { Authorization: `Bearer ${jwtToken}` } },
         )

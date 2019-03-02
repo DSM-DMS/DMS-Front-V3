@@ -41,7 +41,7 @@ class MyPageContainer extends Component {
 
   getBasicData = token => {
     axios
-      .get('http://ec2.istruly.sexy:5000/info/basic', {
+      .get('https://dms-api.istruly.sexy/info/basic', {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then(response => {
@@ -61,11 +61,11 @@ class MyPageContainer extends Component {
     this.props.history.push('/');
   };
 
-  goDevelopers = (go) => {
+  goDevelopers = go => {
     const { history } = this.props;
 
-    history.push(`/${go}`)
-  }
+    history.push(`/${go}`);
+  };
 
   render() {
     const { cardList } = this.state;

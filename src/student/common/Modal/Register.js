@@ -39,7 +39,7 @@ class Register extends Component {
     const { uuid, id, pw, pwCheck } = this.state;
     if (pw === pwCheck && uuid && id && pw && pwCheck) {
       axios
-        .post('http://ec2.istruly.sexy:5000/account/signup', {
+        .post('https://dms-api.istruly.sexy/account/signup', {
           uuid: uuid,
           id: id,
           password: pw,

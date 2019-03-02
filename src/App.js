@@ -108,6 +108,7 @@ class App extends Component {
             alignItems: 'center',
             fontSize: '3rem',
             color: 'red',
+            height: '100vh',
           }}
         >
           IE를 지원하지 않습니다. 타 브라우저로 접속해주세요.

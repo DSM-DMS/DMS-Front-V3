@@ -42,7 +42,7 @@ class MealContainer extends Component {
         : selectedDate.getDate()
     }`;
     axios
-      .get(`http://ec2.istruly.sexy:5000/meal/${getFormDate}`)
+      .get(`https://dms-api.istruly.sexy/meal/${getFormDate}`)
       .then(response => {
         if (response.status === 200) {
           this.props.setMeal(response.data[getFormDate]);

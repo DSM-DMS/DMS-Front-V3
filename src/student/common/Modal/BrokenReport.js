@@ -21,7 +21,7 @@ class BrokenReport extends Component {
   onSubmitHandler = () => {
     axios
       .post(
-        'http://ec2.istruly.sexy:5000/report/facility',
+        'https://dms-api.istruly.sexy/report/facility',
         {
           room: parseInt(this.state.room),
           content: this.state.description,

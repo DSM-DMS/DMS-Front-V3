@@ -1,5 +1,10 @@
 .developers {
   &--wrapper {
+    height: 100vh;
+    overflow-y: auto;
+  }
+
+  &--inner--wrapper {
     display: flex;
     position: relative;
     width: 100%;
@@ -50,6 +55,44 @@
       position: absolute;
       right: 0;
       bottom: 0;
+    }
+
+    &--content {
+      &--wrapper {
+        display: flex;
+        width: 75rem;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+      }
+
+      &--title {
+        width: 100%;
+        margin: 3rem 0;
+        padding-bottom: calc(0.8rem + 4px);
+        font: {
+          size: 1.75rem;
+          family: 'NanumSquareEB';
+        }
+
+        &--underline {
+          padding-bottom: 0.8rem;
+          padding-right: 1.5rem;
+          border-bottom: 4px solid #19b6b6;
+        }
+      }
+    }
+  }
+
+  &--card {
+    &--list {
+      display: flex;
+      width: 100%;
+      margin: 3rem 0;
+
+      & > div {
+        margin-right: 14.3rem;
+      }
     }
   }
 }

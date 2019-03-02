@@ -21,7 +21,7 @@ class BugReport extends Component {
   onSubmitHandler = () => {
     axios
       .post(
-        'http://ec2.istruly.sexy:5000/report/bug/1',
+        'https://dms-api.istruly.sexy/report/bug/1',
         { content: this.state.description },
         { headers: { Authorization: `Bearer ${getCookie('JWT')}` } },
       )
