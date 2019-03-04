@@ -20,27 +20,45 @@ export default class ApplyContentInnerContainer extends Component {
       onCancel,
       onApply,
       params,
+      onSelectSeat,
+      selectedSeat,
+      clearSeat,
       musicApplication,
       onChangeMusicApplication,
-      musicInfo
+      musicInfo,
+      onChangeGoingoutApplication,
+      goingoutApplication
     } = this.props;
 
     let content = null;
-    let applyParam = null;
+    let applyParam = {};
     switch (applyType) {
       case 'extension':
         content = (
-          <ExtensionContent time={selectedType} classNum={selectedMenu} />
+          <ExtensionContent
+            time={selectedType}
+            classNum={selectedMenu}
+            onSelectSeat={onSelectSeat}
+            selectedSeat={selectedSeat}
+            clearSeat={clearSeat}
+          />
         );
-        applyParam = params.apply;
+        applyParam.apply = params.apply;
+        applyParam.cancel = params.cancel;
         break;
       case 'goingout':
-        content = <GoingoutContent />;
-        applyParam = params.apply;
+        content = (
+          <GoingoutContent
+            onChangeGoingoutApplication={onChangeGoingoutApplication}
+            goingoutApplication={goingoutApplication}
+          />
+        );
+        applyParam.apply = goingoutApplication;
+        applyParam.cancel = params.apply;
         break;
       case 'stay':
         content = <StayContent selectedMenu={selectedMenu} />;
-        applyParam = params.apply;
+        applyParam.apply = params.apply;
         break;
       case 'music':
         content = (
@@ -51,7 +69,11 @@ export default class ApplyContentInnerContainer extends Component {
             isOnApply={selectedMenu !== 5}
           />
         );
-        applyParam = {
+        applyParam.apply = {
+          day: params.apply,
+          ...musicApplication
+        };
+        applyParam.cancel = {
           day: params.apply,
           ...musicApplication
         };
@@ -80,13 +102,13 @@ export default class ApplyContentInnerContainer extends Component {
                 content='취소'
                 btnClass='cancel'
                 onClick={onCancel}
-                params={applyParam}
+                params={applyParam.cancel}
               />
               <ApplyAcceptBtn
                 content='신청'
                 btnClass='apply'
                 onClick={onApply}
-                params={applyParam}
+                params={applyParam.apply}
               />
             </div>
           ) : (

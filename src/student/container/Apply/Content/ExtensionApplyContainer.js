@@ -46,8 +46,9 @@ export default class ExtensionApplyContainer extends Component {
       });
   };
 
-  onApply = time => {
-    applyExtension(getCookie('JWT'), time);
+  onApply = param => {
+    console.log(param);
+    applyExtension(getCookie('JWT'), param);
   };
 
   render() {

@@ -8,7 +8,8 @@ import ApplyContentInnerContainer from './ApplyContentInnerContainer';
 import {
   getMyExtensionInfo,
   getStayInform,
-  getMusicList
+  getMusicList,
+  getGoingoutInform
 } from '../../../../lib/applyAPI';
 import { getCookie } from '../../../../lib/cookie';
 
@@ -19,31 +20,24 @@ export default class ApplyContentContainer extends Component {
         title: '연장신청',
         menuTitle: '위치선택',
         menuList: [
-          { content: '가', detail: '가온실' },
-          { content: '나', detail: '나온실' },
-          { content: '다', detail: '다온실' },
-          { content: '라', detail: '라온실' },
-          { content: '2층', detail: '2층 여자 독서실' },
-          { content: '3층', detail: '3층 학교측 독서실' },
-          { content: '3층', detail: '3층 기숙사측 독서실' },
-          { content: '4층', detail: '4층 학교측 독서실' },
-          { content: '4층', detail: '4층 기숙사측 독서실' },
-          { content: '5층', detail: '5층 열린 교실' }
+          { content: '가', detail: '가온실', val: 0 },
+          { content: '나', detail: '나온실', val: 1 },
+          { content: '다', detail: '다온실', val: 2 },
+          { content: '라', detail: '라온실', val: 3 },
+          { content: '2층', detail: '2층 여자 독서실', val: 4 },
+          { content: '3층', detail: '3층 학교측 독서실', val: 5 },
+          { content: '3층', detail: '3층 기숙사측 독서실', val: 6 },
+          { content: '4층', detail: '4층 학교측 독서실', val: 7 },
+          { content: '4층', detail: '4층 기숙사측 독서실', val: 8 },
+          { content: '5층', detail: '5층 열린 교실', val: 9 }
         ],
         typeList: [{ content: '11시', val: 11 }, { content: '12시', val: 12 }]
       },
       goingout: {
         title: '외출신청',
         menuTitle: '외출목록',
-        menuList: [
-          { content: '토', detail: '' },
-          { content: '평일', detail: '' }
-        ],
-        typeList: [
-          { content: '토요일', val: 'sat' },
-          { content: '일요일', val: 'sun' },
-          { content: '평일', val: 'week' }
-        ]
+        menuList: [],
+        typeList: []
       },
       music: {
         title: '기상음악',
@@ -62,10 +56,10 @@ export default class ApplyContentContainer extends Component {
         title: '잔류신청',
         menuTitle: '신청목록',
         menuList: [
-          { content: '금', detail: '금요귀가' },
-          { content: '토', detail: '토요귀가' },
-          { content: '토', detail: '토요귀사' },
-          { content: '잔류', detail: '잔류' }
+          { content: '금', detail: '금요귀가', val: 0 },
+          { content: '토', detail: '토요귀가', val: 1 },
+          { content: '토', detail: '토요귀사', val: 2 },
+          { content: '잔류', detail: '잔류', val: 3 }
         ],
         typeList: []
       }
@@ -75,9 +69,20 @@ export default class ApplyContentContainer extends Component {
       extension: 11,
       goingout: 'sat'
     },
+    selectedSeat: '',
     musicApplication: {
       singer: '',
       title: ''
+    },
+    goingoutApplication: {
+      year: '',
+      month: '',
+      day: '',
+      outHour: '',
+      outMin: '',
+      returnHour: '',
+      returnMin: '',
+      reason: ''
     },
     extensionInfo: ['', ''],
     stayInfo: '',
@@ -117,15 +122,14 @@ export default class ApplyContentContainer extends Component {
         musicInfo: response.data
       });
       let i = 0;
-      console.log(getCookie('ID'));
       for (let day in response.data) {
         let isFull = response.data[day].length === 5;
-        if(isFull) {
+        if (isFull) {
           const menuList = [...this.state.contentInfo.music.menuList];
           menuList[i].detail = '신청불가';
           menuList[i].available = false;
         }
-        
+
         let isApplied = response.data[day].some(musicInfo => {
           return musicInfo.studentId === getCookie('ID');
         });
@@ -145,6 +149,34 @@ export default class ApplyContentContainer extends Component {
         }
         i++;
       }
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
+  setGoingoutInfo = async () => {
+    try {
+      const response = await getGoingoutInform(getCookie('JWT'));
+      let content = [];
+      for (let day in response.data) {
+        const contentList = response.data[day].map(content => {
+          return {
+            content: this.getDayType(day),
+            detail: this.convertGoingoutInfotoContent(content),
+            val: content.id
+          };
+        });
+        content = [...content, ...contentList];
+      }
+      this.setState({
+        contentInfo: {
+          ...this.state.contentInfo,
+          goingout: {
+            ...this.state.contentInfo.goingout,
+            menuList: content
+          }
+        }
+      });
     } catch (e) {
       console.log(e);
     }
@@ -189,6 +221,43 @@ export default class ApplyContentContainer extends Component {
     }
   }
 
+  getDayType(day) {
+    switch (day) {
+      case 'mon':
+        return '월';
+      case 'tue':
+        return '화';
+      case 'wed':
+        return '수';
+      case 'thu':
+        return '목';
+      case 'fri':
+        return '금';
+      case 'sat':
+      case 'saturday':
+        return '토';
+      case 'sun':
+      case 'sunday':
+        return '일';
+      case 'workday':
+        return '평일';
+      default:
+    }
+  }
+
+  convertGoingoutInfotoContent = info => {
+    return `${this.convertDemical(info.go_out_date.substr(5, 2))}일 \
+    ${info.go_out_date.substr(11)} \
+    ~ ${info.return_date.substr(11)}`;
+  };
+
+  convertDemical = numStr => {
+    if (numStr[0] === '0') {
+      return numStr[1];
+    }
+    return numStr;
+  };
+
   onSelectMenu = menuVal => {
     this.setState({
       selectedMenu: menuVal
@@ -213,10 +282,66 @@ export default class ApplyContentContainer extends Component {
     });
   };
 
+  onSelectSeat = seat => {
+    this.setState({
+      selectedSeat: seat
+    });
+  };
+
+  clearSeat = () => {
+    this.setState({
+      selectedSeat: ''
+    })
+  }
+
+  onChangeGoingoutApplication = e => {
+    let value;
+    if (!isNaN(parseInt(e.target.value))) value = parseInt(e.target.value, 10);
+    else value = 0;
+    switch (e.target.name) {
+      case 'month':
+        if (value < 0 || value > 12) return;
+        break;
+      case 'day':
+        if (value < 0 || value > 31) return;
+        break;
+      case 'outHour':
+      case 'returnHour':
+        if (value < 0 || value > 24) return;
+        break;
+      case 'outMin':
+      case 'returnMin':
+        if (value < 0 || value > 59) return;
+        break;
+      case 'reason':
+        value = e.target.value;
+        break;
+      default:
+    }
+    this.setState({
+      goingoutApplication: {
+        ...this.state.goingoutApplication,
+        [e.target.name]: value
+      }
+    });
+  };
+
+  getYear = () => {
+    let date = new Date();
+    return date.getFullYear();
+  };
+
   componentDidMount() {
     this.setExtensionInfo();
     this.setStayInfo();
     this.setMusicInfo();
+    this.setGoingoutInfo();
+    this.setState({
+      goingoutApplication: {
+        ...this.state.goingoutApplication,
+        year: this.getYear()
+      }
+    });
   }
 
   componentWillReceiveProps(nextProps) {
@@ -224,6 +349,7 @@ export default class ApplyContentContainer extends Component {
       this.setExtensionInfo();
       this.setStayInfo();
       this.setMusicInfo();
+      this.setGoingoutInfo();
       this.props.afterRefresh();
     }
   }
@@ -237,7 +363,9 @@ export default class ApplyContentContainer extends Component {
       stayInfo,
       selectedMenu,
       musicApplication,
-      musicInfo
+      musicInfo,
+      goingoutApplication,
+      selectedSeat
     } = this.state;
     const applyTag = {
       extension: (
@@ -254,12 +382,16 @@ export default class ApplyContentContainer extends Component {
     };
     const params = {
       extension: {
-        apply: selectedType,
+        apply: {
+          time: selectedType.extension,
+          class: selectedMenu,
+          seat: selectedSeat
+        },
         cancel: selectedType
       },
       goingout: {
         apply: '',
-        cancel: ''
+        cancel: selectedMenu
       },
       stay: {
         apply: selectedMenu,
@@ -300,6 +432,11 @@ export default class ApplyContentContainer extends Component {
               musicApplication={musicApplication}
               onChangeMusicApplication={this.onChangeMusicApplication}
               musicInfo={musicInfo}
+              onSelectSeat={this.onSelectSeat}
+              selectedSeat={selectedSeat}
+              clearSeat={this.clearSeat}
+              onChangeGoingoutApplication={this.onChangeGoingoutApplication}
+              goingoutApplication={goingoutApplication}
             />
           </div>
         </div>

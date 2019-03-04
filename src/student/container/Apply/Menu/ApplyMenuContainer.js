@@ -11,7 +11,7 @@ export default class ApplyMenuContainer extends Component {
     { content: '외출', url: 'apply/goingout', val: 'goingout' },
     { content: '잔류', url: 'apply/stay', val: 'stay' },
     { content: '기상음악', url: 'apply/music', val: 'music' },
-    { content: '공지사항', url: 'guide/notice', val: 'notice' }
+    { content: '공지사항', url: 'guide/notice', val: 'guide' }
   ];
 
   onSelectMenu = menu => {

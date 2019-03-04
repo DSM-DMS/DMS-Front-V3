@@ -23,16 +23,17 @@ export default class GuideMainContainer extends Component {
 
   render() {
     const { path } = this.state;
+    const { history } = this.props;
     const type = path.substring(7, path.length);
     const containerType = {
-      faq: <GuideFaqContainer />,
-      notice: <GuideNoticeContainer />,
-      rule: <GuideRuleContainer />
+      faq: <GuideFaqContainer history={history} />,
+      notice: <GuideNoticeContainer history={history} />,
+      rule: <GuideRuleContainer history={history} />
     };
     const content = containerType[type];
     return (
-      <div className='guide--main--wrapper'>
-        <GuideMenuContainer selectedMenu={type} />
+      <div className='apply--main--wrapper'>
+        <GuideMenuContainer selectedMenu='guide' />
         {content}
       </div>
     );

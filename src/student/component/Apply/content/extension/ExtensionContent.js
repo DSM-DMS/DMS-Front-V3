@@ -74,14 +74,12 @@ export default class ExtensionContent extends Component {
     mapData: []
   };
   setMapInfo = async (time, classNum) => {
-    console.log(classNum);
     if (this.state.loading) return;
     this.setState({
       loading: true
     });
     try {
       const response = await getExtensionMap(time, classNum);
-      console.log(`data: ${response.data.map}`);
       this.setState({
         mapData: response.data.map
       });
@@ -91,7 +89,6 @@ export default class ExtensionContent extends Component {
     this.setState({
       loading: false
     });
-    return null;
   };
 
   componentDidMount() {
@@ -101,17 +98,42 @@ export default class ExtensionContent extends Component {
 
   componentWillReceiveProps(nextProps) {
     const { time, classNum } = nextProps;
-    this.setMapInfo(time, classNum + 1);
+    if(time !== this.props.time || classNum !== this.props.classNum) {
+      this.props.clearSeat();
+      this.setMapInfo(time, classNum + 1);
+    }
   }
 
   render() {
-    const { time, classNum } = this.props;
+    const { time, classNum, selectedSeat, onSelectSeat } = this.props;
     const { mapData } = this.state;
     const map = mapData.map((seatCol, i) => {
       const row = seatCol.map((seat, i) => {
         if (seat === 0)
           return <ExtensionMapseat key={i} invisibleClass='invisible' />;
-        return <ExtensionMapseat key={i} content={seat} />;
+        if (seat === selectedSeat) {
+          return (
+            <ExtensionMapseat
+              key={i}
+              selectedClass='selected'
+              content={seat}
+              onClick={onSelectSeat}
+            />
+          );
+        }
+        if (Number.isInteger(seat)) {
+          return (
+            <ExtensionMapseat
+              key={i}
+              selectedClass='unselected'
+              content={seat}
+              onClick={onSelectSeat}
+            />
+          );
+        }
+        return (
+          <ExtensionMapseat key={i} content={seat} />
+        );
       });
       return <tr key={i}>{row}</tr>;
     });

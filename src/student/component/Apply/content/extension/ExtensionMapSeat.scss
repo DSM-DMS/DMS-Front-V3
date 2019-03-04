@@ -11,4 +11,11 @@
   &.invisible {
     visibility: hidden;
   }
+
+  &.unselected {
+    background: #e9eff4;
+  }
+  &.selected {
+    background: #19b6b6;
+  }
 }

@@ -9,11 +9,11 @@ export default class ApplyContentMenuContainer extends Component {
   render() {
     const { menuTitle, menuList, onSelectMenu, selectedMenu } = this.props;
     const menuItems = menuList.map((item, i) =>
-      selectedMenu === i ? (
+      selectedMenu === item.val ? (
         <ApplyContentMenuItem
           isSelected='selected'
           content={item}
-          val={i}
+          val={item.val}
           onClickMenu={onSelectMenu}
           available={item.available === false ? 'disable' : undefined}
           key={i}
@@ -21,7 +21,7 @@ export default class ApplyContentMenuContainer extends Component {
       ) : (
         <ApplyContentMenuItem
           content={item}
-          val={i}
+          val={item.val}
           onClickMenu={onSelectMenu}
           available={item.available === false ? 'disable' : undefined}
           key={i}
