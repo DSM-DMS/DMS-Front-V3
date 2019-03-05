@@ -64,7 +64,7 @@ class BrokenReport extends Component {
           value={this.state.description}
         />
         <button className="modal--submit" onClick={this.onSubmitHandler}>
-          로그인
+          신고하기
         </button>
       </div>
     );

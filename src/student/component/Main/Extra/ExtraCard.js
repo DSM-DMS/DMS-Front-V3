@@ -2,7 +2,7 @@ import React from 'react';
 
 import './ExtraCard.scss';
 
-const ExtraCard = ({ type, src, title, linkToSurvey, onClickBroken }) => {
+const ExtraCard = ({ type, src, title, linkToSurvey, onClickModal }) => {
   return (
     <div
       className="extra--card--wrapper"
@@ -10,7 +10,7 @@ const ExtraCard = ({ type, src, title, linkToSurvey, onClickBroken }) => {
         type === 'survey'
           ? () => linkToSurvey(`/extra/${type}`)
           : e => {
-              onClickBroken(e, title);
+              onClickModal(e, title);
             }
       }
     >

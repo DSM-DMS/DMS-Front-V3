@@ -58,29 +58,40 @@ class App extends Component {
 
     this.loginApi();
 
+    // window.addEventListener('load', this.loginApi);
     window.addEventListener('beforeunload', this.setAutoLogin);
   }
 
-  loginApi = async () => {
+  loginApi = () => {
     const id = getCookie('id');
     const pw = getCookie('pw');
     if (id && pw) {
-      const response = await axios.post(
-        'http://ec2.istruly.sexy:5000/account/auth',
-        {
+      axios
+        .post('https://dms-api.istruly.sexy/account/auth', {
           id: id,
           password: pw,
-        },
-      );
+        })
+        .then(response => {
+          if (response.status === 200) {
+            setCookie('JWT', response.data.accessToken);
+            setCookie('ID', id);
+            removeCookie('id');
+            removeCookie('pw');
+            this.props.autoLogin({ id: id, pw: pw });
+            this.props.isLogin(true);
+          } else if (response.status === 204) {
+            alert('비밀번호가 틀렸습니다.');
+          }
+        });
 
-      if (response.status === 200) {
-        setCookie('JWT', response.data.accessToken);
-        setCookie('ID', id);
-        removeCookie('id');
-        removeCookie('pw');
-        this.props.autoLogin({ id: id, pw: pw });
-        this.props.isLogin(true);
-      }
+      // if (response.status === 200) {
+      //   setCookie('JWT', response.data.accessToken);
+      //   setCookie('ID', id);
+      //   removeCookie('id');
+      //   removeCookie('pw');
+      //   this.props.autoLogin({ id: id, pw: pw });
+      //   this.props.isLogin(true);
+      // }
     }
   };
 
@@ -92,6 +103,7 @@ class App extends Component {
       setCookie('pw', pw, 150);
     }
     removeCookie('JWT');
+    removeCookie('ID');
   };
 
   render() {
