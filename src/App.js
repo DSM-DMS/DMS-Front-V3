@@ -18,6 +18,7 @@ import NoticeWriteContainer from './admin/container/Notice/NoticeWriteContainer'
 import StudentDefaultLayout from './student/common/DefaultLayout/DefaultLayout';
 import MyPageContainer from './student/container/MyPage/MyPageContainer';
 import GuideMainContainer from './student/container/Guide/GuideMainContainer';
+import DevelopersContainer from './student/container/Developers/DevelopersContainer';
 
 import setHeader from './lib/setHeader';
 
@@ -64,21 +65,22 @@ class App extends Component {
     const id = getCookie('id');
     const pw = getCookie('pw');
     if (id && pw) {
-      await axios
-        .post('http://ec2.istruly.sexy:5000/account/auth', {
+      const response = await axios.post(
+        'http://ec2.istruly.sexy:5000/account/auth',
+        {
           id: id,
           password: pw,
-        })
-        .then(response => {
-          if (response.status === 200) {
-            setCookie('JWT', response.data.accessToken);
-            setCookie('ID', id);
-            removeCookie('id');
-            removeCookie('pw');
-            this.props.autoLogin({ id: id, pw: pw });
-            this.props.isLogin(true);
-          }
-        });
+        },
+      );
+
+      if (response.status === 200) {
+        setCookie('JWT', response.data.accessToken);
+        setCookie('ID', id);
+        removeCookie('id');
+        removeCookie('pw');
+        this.props.autoLogin({ id: id, pw: pw });
+        this.props.isLogin(true);
+      }
     }
   };
 
@@ -106,6 +108,7 @@ class App extends Component {
             alignItems: 'center',
             fontSize: '3rem',
             color: 'red',
+            height: '100vh',
           }}
         >
           IE를 지원하지 않습니다. 타 브라우저로 접속해주세요.
@@ -123,6 +126,7 @@ class App extends Component {
           <Route path="/guide/faq" component={GuideMainContainer} exact />
           <Route path="/guide/notice" component={GuideMainContainer} exact />
           <Route path="/guide/rule" component={GuideMainContainer} exact />
+          <Route path="/developers" component={DevelopersContainer} exact />
           <Route
             path="/admin/:uri?"
             render={() => (

@@ -25,7 +25,7 @@ class ForgotPassword extends Component {
     const { id, email } = this.state;
     if (id && email) {
       axios
-        .post('http://ec2.istruly.sexy:5000/account/pw', {
+        .post('https://dms-api.istruly.sexy/account/pw', {
           id: id,
           email: email,
         })

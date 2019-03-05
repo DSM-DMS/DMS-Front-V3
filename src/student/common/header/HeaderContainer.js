@@ -22,8 +22,7 @@ class HeaderContainer extends Component {
   };
 
   render() {
-    const { location, history } = this.props;
-    const { isLogin } = this.props;
+    const { location, history, isLogin, developers } = this.props;
     const buttonList = this.state.buttonList.map(data => (
       <HeaderButton title={data.title} scroll={data.page} key={data.page} />
     ));
@@ -54,7 +53,7 @@ class HeaderContainer extends Component {
             history.push('/');
           }}
         >
-          급식 메뉴
+          메인으로
         </button>
       );
     return (
@@ -63,6 +62,7 @@ class HeaderContainer extends Component {
           buttonList={buttonList}
           setModal={this.changeModal}
           variableButton={variableButton}
+          developers={developers}
         />
       </Fragment>
     );

@@ -41,7 +41,7 @@ class MyPageContainer extends Component {
 
   getBasicData = token => {
     axios
-      .get('http://ec2.istruly.sexy:5000/info/basic', {
+      .get('https://dms-api.istruly.sexy/info/basic', {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then(response => {
@@ -59,6 +59,12 @@ class MyPageContainer extends Component {
     this.props.resetStudentData();
     this.props.autoLogin({ id: '', pw: '' });
     this.props.history.push('/');
+  };
+
+  goDevelopers = go => {
+    const { history } = this.props;
+
+    history.push(`/${go}`);
   };
 
   render() {
@@ -80,6 +86,7 @@ class MyPageContainer extends Component {
         setModal={setModal}
         key={`my-pagecard${data.kind}`}
         onLogOutBtn={this.onLogOutBtn}
+        goDevelopers={this.goDevelopers}
       />
     ));
     return (

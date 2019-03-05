@@ -2,7 +2,7 @@ import React from 'react';
 
 import './MyPageCard.scss';
 
-const MyPageCard = ({ kind, title, setModal, onLogOutBtn }) => {
+const MyPageCard = ({ kind, title, setModal, onLogOutBtn, goDevelopers }) => {
   return (
     <div
       className="mypage--card--wrapper"
@@ -11,7 +11,9 @@ const MyPageCard = ({ kind, title, setModal, onLogOutBtn }) => {
           ? () => setModal(title)
           : kind === 'logout'
           ? onLogOutBtn
-          : null
+          : kind === 'developers' 
+          ? () => goDevelopers(kind):
+          null
       }
     >
       <span className={`mypage--card--img mypage--card--img--${kind}`} />

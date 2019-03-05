@@ -107,3 +107,24 @@
     }
   }
 }
+
+.developers--page {
+  & .header {
+    &--logo {
+      &--title {
+        color: #19b6b6;
+      }
+    }
+
+    &--button {
+      &--link {
+        color: #19b6b6;
+      }
+    }
+
+    &--meal--button {
+      color: white;
+      background-color: #19b6b6;
+    }
+  }
+}

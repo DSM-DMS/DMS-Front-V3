@@ -15,7 +15,7 @@ class PointContainer extends Component {
 
   getPointCards = token => {
     axios
-      .get('http://ec2.istruly.sexy:5000/info/point', {
+      .get('https://dms-api.istruly.sexy/info/point', {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then(response => {
