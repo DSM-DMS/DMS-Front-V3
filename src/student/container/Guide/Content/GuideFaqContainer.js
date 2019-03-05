@@ -6,6 +6,6 @@ import './GuideFaqContainer.scss';
 export default class GuideFaqContainer extends Component {
   render() {
     const type = 'faq';
-    return <GuideContentContainer type={type} />;
+    return <GuideContentContainer type={type} history={this.props.history}/>;
   }
 }

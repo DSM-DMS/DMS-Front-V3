@@ -1,165 +1,68 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { setMusicDate } from '../../../../actions/ApplyActions';
-import { getMusicList, submitMusic } from '../../../../lib/applyAPI';
-import { getCookie } from '../../../../lib/cookie';
 
 import './MusicApplyContainer.scss';
 
-import ApplyExtensionBtn from '../../../component/Apply/content/ApplyExtensionBtn';
-import MusicCardContainer from './MusicCardContainer';
-import MusicSubmitCard from '../../../component/Apply/content/music/MusicSubmitCard';
-import ApplyAcceptBtn from '../../../component/Apply/content/ApplyAcceptBtn';
+import ApplyContentContainer from '../Utils/ApplyContentContainer';
+import { submitMusic } from '../../../../lib/applyAPI';
+import { getCookie } from '../../../../lib/cookie';
 
-class MusicApplyContainer extends Component {
-  constructor(props) {
-    super(props);
-    const id = getCookie('ID');
-    this.state = {
-      dayType: [
-        { date: '월요일', val: 'mon' },
-        { date: '화요일', val: 'tue' },
-        { date: '수요일', val: 'wed' },
-        { date: '목요일', val: 'thu' },
-        { date: '금요일', val: 'fri' }
-      ],
-      cardsInfo: null,
-      isMusicSubmitOpened: false,
-      loading: false,
-      selectedDate: '',
-      studentId: id,
-      isCardSelected: false
-    };
-  }
+export default class MusicApplyContainer extends Component {
+  menuList = [
+    { date: '월요일', val: 'mon' },
+    { date: '화요일', val: 'tue' },
+    { date: '수요일', val: 'wed' },
+    { date: '목요일', val: 'thu' },
+    { date: '금요일', val: 'fri' }
+  ];
 
-  getCards = async () => {
-    if (this.state.loading) return;
-    this.setState({
-      loading: true
-    });
-
-    try {
-      const response = await getMusicList(getCookie('JWT'));
-      const musicList = response.data;
-
-      this.setState({
-        cardsInfo: musicList
-      });
-    } catch (e) {
-      alert('error');
-      console.log('error: ' + e);
-    }
-    this.setState({
-      loading: false
-    });
+  state = {
+    refreshFlag: false
   };
 
-  componentDidMount() {
-    this.getCards();
-  }
+  onCancel = () => {};
 
-  onApplyMusic = () => {
-    this.setState({
-      isMusicSubmitOpened: true
-    });
-  };
-
-  onExitSubmit = () => {
-    this.setState({
-      isMusicSubmitOpened: false
-    });
-  };
-
-  onSubmitMusic = async (title, artist) => {
-    if (title === '' || artist === '') {
-      alert('음악 제목 혹은 아티스트 이름을 적지 않았습니다.');
+  onApply = ({ day, singer, title }) => {
+    if(singer === '' || title === '') {
+      alert('노래 제목 혹은 아티스트를 입력하지 않으셨습니다.');
       return;
     }
-    await submitMusic(
-      getCookie('JWT'),
-      this.dateToNum(this.props.musicDate),
-      artist,
-      title
-    );
-    this.onExitSubmit();
-    await this.getCards();
+    submitMusic(getCookie('JWT'), day, singer, title)
+      .then(response => {
+        switch (response.status) {
+          case 200:
+            alert('기상음악 신청이 완료되었습니다.');
+            this.setState({
+              refreshFlag: true
+            });
+            break;
+          case 205:
+            alert('기상음악 신청이 이미 마감되었습니다.');
+            break;
+          default:
+        }
+      })
+      .catch(e => {
+        alert('기상음악 신청 실패');
+        console.log(e);
+      });
   };
 
-  dateToNum = date => {
-    switch (date) {
-      case 'mon':
-        return 0;
-      case 'tue':
-        return 1;
-      case 'wed':
-        return 2;
-      case 'thu':
-        return 3;
-      case 'fri':
-        return 4;
-      default:
-        return 0;
-    }
-  };
-
-  onSelectMyMusic = () => {
+  afterRefresh = () => {
     this.setState({
-      isCardSelected: true
+      refreshFlag: false
     });
   };
 
   render() {
-    console.log(this.state.cardsInfo);
-    const { musicDate, onChangeDate } = this.props;
-    const musicBtnList = this.state.dayType.map((type, i) => {
-      let selectedClass = undefined;
-      if (type.val === musicDate)
-        selectedClass = 'apply--extens--btn--selected';
-      return (
-        <ApplyExtensionBtn
-          content={type.date}
-          key={i}
-          selected={selectedClass}
-          onChangeType={onChangeDate}
-          val={type.val}
-        />
-      );
-    });
-
     return (
-      <div className='apply--music--wrapper'>
-        <p className='unselectable apply--title'>기상음악 신청</p>
-        <div className='apply--music--btnlist'>{musicBtnList}</div>
-        {this.state.cardsInfo !== null && (
-          <MusicCardContainer
-            cardsInfo={this.state.cardsInfo[musicDate]}
-            onApplyMusic={this.onApplyMusic}
-            studentId={this.state.studentId}
-          />
-        )}
-        {this.state.isMusicSubmitOpened && (
-          <MusicSubmitCard
-            onSubmitMusic={this.onSubmitMusic}
-            onExit={this.onExitSubmit}
-          />
-        )}
-        <div>
-          <ApplyAcceptBtn title='취소'/>
-        </div>
-      </div>
+      <ApplyContentContainer
+        type='music'
+        menuList={this.menuList}
+        onCancel={this.onCancel}
+        onApply={this.onApply}
+        refreshFlag={this.state.refreshFlag}
+        afterRefresh={this.afterRefresh}
+      />
     );
   }
 }
-
-const mapStateToProps = state => ({
-  musicDate: state.ApplyTypeSwitch.musicDate
-});
-
-const mapDispatchToProps = dispatch => ({
-  onChangeDate: musicDate => dispatch(setMusicDate(musicDate))
-});
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(MusicApplyContainer);

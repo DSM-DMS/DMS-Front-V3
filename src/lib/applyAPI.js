@@ -1,12 +1,53 @@
 import axios from 'axios';
-const rootUrl = 'http://ec2.istruly.sexy:5000/apply';
+const rootUrl = 'https://dms-api.istruly.sexy';
 
-export const getExtensionMap = async (time, classNum) => {
-  return await axios.get(`${rootUrl}/extension/map/${time}/${classNum}`);
+export const getExtensionMap = (time, classNum) => {
+  return axios.get(`${rootUrl}/extension/map/${time}/${classNum}`);
+};
+
+export const getMyExtensionInfo = (token, time) => {
+  return axios.get(`${rootUrl}/extension/${time}`, {
+    headers: {
+      Authorization: `Bearer ${token}`
+    }
+  });
+};
+
+export const deleteExtension = (token, time) => {
+  return axios.delete(`${rootUrl}/extension/${time}`, {
+    headers: {
+      Authorization: `Bearer ${token}`
+    }
+  });
+};
+
+export const applyExtension = (token, param) => {
+  return axios.post(`${rootUrl}/extension/${param.time}`,{
+    classNum: param.class+1,
+    seatNum: param.seat
+  },
+   {
+    headers: {
+      Authorization: `Bearer ${token}`
+    }
+  });
 };
 
 export const getGoingoutInform = token => {
   return axios.get(`${rootUrl}/goingout `, {
+    headers: {
+      Authorization: `Bearer ${token}`
+    }
+  });
+};
+
+export const deleteGoingoutInform = (token, id) => {
+  return axios({
+    method: 'DELETE',
+    url: `${rootUrl}/goingout`,
+    data: {
+      applyId: id
+    },
     headers: {
       Authorization: `Bearer ${token}`
     }

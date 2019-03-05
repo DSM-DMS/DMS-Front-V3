@@ -1,0 +1,16 @@
+.apply--content--menu--wrapper {
+  flex-grow: 1;
+  margin-top: 3.125rem;
+  background: #fff;
+  border-radius: 8px;
+  padding: 1.25rem 1.25rem 0 1.25rem;
+  overflow: auto;
+  box-sizing: border-box;
+  box-shadow: 0 3px 12px 0 rgba($color: #000000, $alpha: 0.08);
+}
+
+.apply--content--menu--title {
+  font-family: NanumSquareB;
+  font-size: 0.75rem;
+  margin-top: 0.75rem;
+}

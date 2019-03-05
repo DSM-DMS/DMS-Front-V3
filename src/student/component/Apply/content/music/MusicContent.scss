@@ -1,0 +1,68 @@
+.apply--content--music {
+  padding: 0 1.875rem;
+  height: 100%;
+  text-align: center;
+
+  &--icon {
+    width: 6rem;
+    height: 6rem;
+  }
+
+  &--title {
+    text-align: center;
+    font-size: 2.25rem;
+    font-family: NanumSquareB;
+    margin-top: 2.5rem;
+  }
+  & > p {
+    font-family: NanumSquareB;
+    font-size: 1rem;
+    text-align: start;
+  }
+
+  & > input {
+    height: 3.125rem;
+    width: 100%;
+    border: 1px solid #e9eff4;
+    border-radius: 8px;
+    text-align: center;
+    font-family: NanumSquareR;
+    color: #233539;
+  }
+}
+
+@media screen and (max-height: 799px) {
+  .apply--content--music {
+    &--icon {
+      margin-top: 5%;
+    }
+    &--title {
+      margin-top: 5%;
+      margin-bottom: 5%;
+    }
+  }
+}
+
+@media screen and (min-height: 800px) and (max-height: 949px) {
+  .apply--content--music {
+    &--icon {
+      margin-top: 10%;
+    }
+    &--title {
+      margin-top: 10%;
+      margin-bottom: 14%;
+    }
+  }
+}
+
+@media screen and (min-height: 950px) {
+  .apply--content--music {
+    &--icon {
+      margin-top: 15%;
+    }
+    &--title {
+      margin-top: 15%;
+      margin-bottom: 18%;
+    }
+  }
+}

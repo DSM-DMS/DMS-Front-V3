@@ -1,48 +1,65 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { setExtensionRoom } from '../../../../actions/ApplyActions';
 
 import './ExtensionApplyContainer.scss';
 
-import ApplyExtensionBtn from '../../../component/Apply/content/ApplyExtensionBtn';
-import ApplyExtensionMap from '../../../component/Apply/content/ApplyExtensionMap';
-import ApplyAcceptBtn from '../../../component/Apply/content/ApplyAcceptBtn';
+import ApplyContentContainer from '../Utils/ApplyContentContainer';
+import { deleteExtension, applyExtension } from '../../../../lib/applyAPI';
+import { getCookie } from '../../../../lib/cookie';
 
-class ExtensionApplyContainer extends Component {
-    render() {
-        const btns = ['가온실', '나온실', '다온실', '라온실', '2층 여자 독서실', '3층 계단측 독서실', '3층 학교측 독서실', '4층 계단측 독서실', '4층 학교측 독서실', '5층 열린 교실'];
-        const {room, onChangeRoom} = this.props;
+export default class ExtensionApplyContainer extends Component {
+  menuList = [
+    '가온실',
+    '나온실',
+    '다온실',
+    '라온실',
+    '2층 여자 독서실',
+    '3층 계단측 독서실',
+    '3층 학교측 독서실',
+    '4층 계단측 독서실',
+    '4층 학교측 독서실',
+    '5층 열린 교실'
+  ];
+  typeList = [{ content: '11시', val: '11' }, { content: '12시', val: '12' }];
 
-        const btnList = btns.map((content, i) => {
-            
-            let selectedClass = undefined;
-            if(room === i)
-                selectedClass = selectedClass = 'apply--extens--btn--selected';
-            return (<ApplyExtensionBtn content={content} key = {i} selected = {selectedClass} onChangeType = {onChangeRoom} val={i}/>);
-        });
+  onCancel = time => {
+    console.log(time);
+    deleteExtension(getCookie('JWT'), time)
+      .then(response => {
+        console.log(response);
+        switch (response.status) {
+          case 200:
+            alert('연장신청 취소 성공!');
+            break;
+          default:
+        }
+      })
+      .catch(error => {
+        switch (error.response.status) {
+          case 403:
+            alert('권한 없음');
+            break;
+          case 409:
+            alert('연장신청 취소 실패!');
+            break;
+          default:
+        }
+      });
+  };
 
-        return (
-            <div className = 'apply--extension--wrapper'>
-                <p className = 'unselectable apply--title'>연장학습 신청</p>
-                <div className = 'apply--extension--btnlist'>
-                    {btnList}
-                </div>
-                <ApplyExtensionMap time={1} classNum={room+1}/>
-                <div className = 'apply--extension--accept--btnlist'>
-                    <ApplyAcceptBtn type = 'apply--extension--cancle--btn' title = '취소'/>
-                    <ApplyAcceptBtn type = 'apply--extension--accept--btn' title = '신청'/>
-                </div>
-            </div>
-        )
-    }
+  onApply = param => {
+    console.log(param);
+    applyExtension(getCookie('JWT'), param);
+  };
+
+  render() {
+    return (
+      <ApplyContentContainer
+        type='extension'
+        menuList={this.menuList}
+        typeList={this.typeList}
+        onCancel={this.onCancel}
+        onApply={this.onApply}
+      />
+    );
+  }
 }
-
-const mapStateToProps = (state) => ({
-    room: state.ApplyTypeSwitch.room
-});
-
-const mapDispatchToProps = (dispatch) => ({
-    onChangeRoom: (room) => dispatch(setExtensionRoom(room))
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(ExtensionApplyContainer)

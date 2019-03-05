@@ -9,29 +9,75 @@ import {
   getFaqDetailPost
 } from '../../../../../lib/guideAPI';
 
-import './GuideContentContainer.scss';
 import GuideContentPostListContainer from './GuideContentPostListContainer';
 import GuideContentPostContainer from './GuideContentPostContainer';
+import ApplyContentMenuContainer from '../../../Apply/Utils/ApplyContentMenuContainer';
+import GuideInnerContentContainer from './GuideInnerContentContainer';
 
 export default class GuideContentContainer extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      content: {
-        faq: {
-          title: '자주하는질문'
-        },
+      contentInfo: {
         notice: {
-          title: '공지사항'
+          title: '공지사항',
+          menuTitle: '공지목록',
+          menuList: [
+            { content: '금', detail: '금요귀가', val: 0 },
+            { content: '토', detail: '토요귀가', val: 1 },
+            { content: '토', detail: '토요귀사', val: 2 },
+            { content: '잔류', detail: '잔류', val: 3 }
+          ],
+          typeList: [
+            { content: '공지사항', val: 'notice' },
+            { content: '기숙사규정', val: 'rule' },
+            { content: '자주하는 질문', val: 'faq' }
+          ]
         },
         rule: {
-          title: '기숙사 규정'
+          title: '기숙사 규정',
+          menuTitle: '공지목록',
+          menuList: [
+            { content: '금', detail: '금요귀가', val: 0 },
+            { content: '토', detail: '토요귀가', val: 1 },
+            { content: '토', detail: '토요귀사', val: 2 },
+            { content: '잔류', detail: '잔류', val: 3 }
+          ],
+          typeList: [
+            { content: '공지사항', val: 'notice' },
+            { content: '기숙사규정', val: 'rule' },
+            { content: '자주하는 질문', val: 'faq' }
+          ]
+        },
+        faq: {
+          title: '자주하는 질문',
+          menuTitle: '공지목록',
+          menuList: [
+            { content: '금', detail: '금요귀가', val: 0 },
+            { content: '토', detail: '토요귀가', val: 1 },
+            { content: '토', detail: '토요귀사', val: 2 },
+            { content: '잔류', detail: '잔류', val: 3 }
+          ],
+          typeList: [
+            { content: '공지사항', val: 'notice' },
+            { content: '기숙사규정', val: 'rule' },
+            { content: '자주하는 질문', val: 'faq' }
+          ]
         }
+      },
+      selectedType: this.props.type,
+      selectedMenu: {
+        notice: '',
+        guide: '',
+        faq: ''
       },
       isOnDetail: false,
       loading: false,
       guidePostList: [],
-      detailPost: null
+      detailPost: {
+        content: '',
+        title: ''
+      }
     };
   }
 
@@ -99,61 +145,137 @@ export default class GuideContentContainer extends Component {
     const response = await getNoticeList();
     const noticeList = response.data.noticeList;
 
-    this.setState({
-      guidePostList: noticeList
+    await this.setState({
+      guidePostList: noticeList.map((post, i) => {
+        if (i === 0) {
+          this.setState({
+            selectedMenu: {
+              ...this.state.selectedMenu,
+              notice: post.id
+            }
+          });
+        }
+        return {
+          content: i,
+          detail: post.title,
+          val: post.id
+        };
+      })
     });
+    if (noticeList.length > 0) {
+      this.setDetailPost(noticeList[0].id);
+    }
   };
 
   getRuleList = async () => {
     const response = await getRuleList();
     const ruleList = response.data.ruleList;
 
-    this.setState({
-      guidePostList: ruleList
+    await this.setState({
+      guidePostList: ruleList.map((post, i) => {
+        if (i === 0) {
+          this.setState({
+            selectedMenu: {
+              ...this.state.selectedMenu,
+              rule: post.id
+            }
+          });
+        }
+        return {
+          content: i,
+          detail: post.title,
+          val: post.id
+        };
+      })
     });
+    if (ruleList.length > 0) {
+      this.setDetailPost(ruleList[0].id);
+    }
   };
 
   getFaqList = async () => {
     const response = await getFaqList();
     const faqList = response.data.qnaList;
 
-    this.setState({
-      guidePostList: faqList
+    await this.setState({
+      guidePostList: faqList.map((post, i) => {
+        if (i === 0) {
+          this.setState({
+            selectedMenu: {
+              ...this.state.selectedMenu,
+              faq: post.id
+            }
+          });
+        }
+        return {
+          content: i,
+          detail: post.title,
+          val: post.id
+        };
+      })
     });
+    if (faqList.length > 0) {
+      this.setDetailPost(faqList[0].id);
+    }
+  };
+
+  onSelectMenu = menuVal => {
+    this.setState({
+      selectedMenu: {
+        ...this.state.selectedMenu,
+        [this.props.type]: menuVal
+      }
+    });
+    this.setDetailPost(menuVal);
+  };
+
+  onSelectType = typeVal => {
+    this.setState({
+      selectedType: typeVal
+    });
+    this.props.history.push('/guide/' + typeVal);
   };
 
   componentDidMount() {
     this.setPostList();
+    console.log(this.state.selectedMenu);
   }
 
   render() {
-    const { type } = this.props;
-    const { content, isOnDetail, guidePostList } = this.state;
-    let detailHeader;
-    if (isOnDetail) {
-      const { title, postDate } = this.state.detailPost;
-      detailHeader = (
-        <div className='guide--content--detail--wrapper'>
-          <span className='guide--content--detail--title'>{title}</span>
-          <span className='guide--content--detail--date'>{postDate.substr(0, 10)}</span>
-        </div>
-      );
-    }
+    const { type, menuList, typeList, onCancel, onApply } = this.props;
+    const {
+      contentInfo,
+      selectedType,
+      selectedMenu,
+      guidePostList,
+      detailPost
+    } = this.state;
 
     return (
-      <div className='guide--content--wrapper'>
-        <div className='guide--content--title--wrapper'>
-          <p className='guide--content--title'>{content[type].title}</p>
-          {isOnDetail && detailHeader}
+      <div className='apply--content--outer--wrapper'>
+        <div className='apply--content--wrapper'>
+          <div className='apply--content--left'>
+            <div className='apply--content--title--wrapper'>
+              <span className='apply--content--title'>
+                {contentInfo[type].title}
+              </span>
+            </div>
+            <ApplyContentMenuContainer
+              menuTitle={contentInfo[type].menuTitle}
+              menuList={guidePostList}
+              selectedMenu={selectedMenu[type]}
+              onSelectMenu={this.onSelectMenu}
+            />
+          </div>
+          <div className='apply--content--right'>
+            <GuideContentPostContainer
+              typeList={contentInfo[type].typeList}
+              selectedType={selectedType}
+              onSelectType={this.onSelectType}
+              detailPost={detailPost}
+            />
+          </div>
         </div>
-        {!isOnDetail ? (
-          <GuideContentPostListContainer
-            posts={guidePostList}
-            setDetailPost={this.setDetailPost}
-          />
-        ) : (
-          <GuideContentPostContainer content={this.state.detailPost.content} />
-        )}
       </div>
     );
   }

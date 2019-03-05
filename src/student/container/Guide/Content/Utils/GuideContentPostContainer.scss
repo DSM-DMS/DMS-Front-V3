@@ -1,6 +1,26 @@
-.guide--content--post--detail {
-    width: 50rem;
-    margin: 0 auto;
-    overflow: scroll;
-    font-size: 1.5rem;
+.guide--content--post {
+  display: flex;
+  flex-direction: column;
+  padding: 2rem 1.25rem;
+
+  & > p {
+    margin: 0;
+    font-family: NanumSquareB;
+    color: rgba($color: #233539, $alpha: 0.6);
+    font-size: 0.875rem;
+  }
+
+  & > h2 {
+    font-family: NanumSquareB;
+    color: #233539;
+    font-size: 0.875rem;
+  }
+
+  & > div {
+    flex-grow: 1;
+    overflow: auto;
+    font-family: NanumSquareR;
+    font-size: 0.875rem;
+    color: #404040;
+  }
 }

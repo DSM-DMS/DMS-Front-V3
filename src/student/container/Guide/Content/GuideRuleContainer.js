@@ -6,6 +6,6 @@ import './GuideRuleContainer.scss';
 export default class GuideRuleContainer extends Component {
   render() {
     const type = 'rule';
-    return <GuideContentContainer type={type} />;
+    return <GuideContentContainer type={type} history={this.props.history} />;
   }
 }

@@ -1,0 +1,46 @@
+.apply--content--goingout {
+  display: flex;
+  height: 100%;
+  flex-direction: column;
+  padding: 1.875rem;
+  box-sizing: border-box;
+  & > p,
+  & > textarea,
+  & > input {
+    font-family: NanumSquareB;
+    color: #233539;
+    font-size: 1rem;
+  }
+  & > textarea {
+    border: 1px solid #e9eff4;
+    border-radius: 8px;
+    overflow: auto;
+    outline: none;
+    box-shadow: none;
+    resize: none;
+    flex-grow: 1;
+  }
+  &--input {
+    border: none;
+    outline: none;
+    box-shadow: none;
+    text-align: end;
+    width: 1.875rem;
+    &::-webkit-outer-spin-button,
+    &::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+  }
+
+  &--input--wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 3.125rem;
+    & > span {
+      font-family: NanumSquareEB;
+      margin: 0 0.5rem;
+    }
+  }
+}
