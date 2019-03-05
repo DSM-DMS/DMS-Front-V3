@@ -19,30 +19,31 @@ class BrokenReport extends Component {
   };
 
   onSubmitHandler = () => {
-    axios
-      .post(
-        'https://dms-api.istruly.sexy/report/facility',
-        {
-          room: parseInt(this.state.room),
-          content: this.state.description,
-        },
-        {
-          headers: {
-            Authorization: `Bearer ${getCookie('JWT')}`,
+    if (this.state.room && this.state.description)
+      axios
+        .post(
+          'https://dms-api.istruly.sexy/report/facility',
+          {
+            room: parseInt(this.state.room),
+            content: this.state.description,
           },
-        },
-      )
-      .then(res => {
-        if (res.status === 201) {
-          alert('성공적으로 신고하였습니다.');
-          this.props.setModal('');
-        }
-      })
-      .catch(err => {
-        if (err.response.status === 403) {
-          alert('권한이 없습니다.');
-        }
-      });
+          {
+            headers: {
+              Authorization: `Bearer ${getCookie('JWT')}`,
+            },
+          },
+        )
+        .then(res => {
+          if (res.status === 201) {
+            alert('성공적으로 신고하였습니다.');
+            this.props.setModal('');
+          }
+        })
+        .catch(err => {
+          if (err.response.status === 403) {
+            alert('권한이 없습니다.');
+          }
+        });
   };
 
   render() {

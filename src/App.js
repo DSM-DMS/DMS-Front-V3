@@ -82,6 +82,10 @@ class App extends Component {
           } else if (response.status === 204) {
             alert('비밀번호가 틀렸습니다.');
           }
+        })
+        .catch(err => {
+          removeCookie('id');
+          removeCookie('pw');
         });
 
       // if (response.status === 200) {

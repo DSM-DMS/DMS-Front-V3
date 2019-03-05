@@ -18,24 +18,25 @@ class BugReport extends Component {
   };
 
   onSubmitHandler = () => {
-    axios
-      .post(
-        'https://dms-api.istruly.sexy/report/bug/1',
-        { content: this.state.description },
-        { headers: { Authorization: `Bearer ${getCookie('JWT')}` } },
-      )
-      .then(res => {
-        if (res.status === 201) {
-          alert('버그 신고에 성공하셨습니다. ㅇㅁㅇ');
-          this.props.setModal('');
-        }
-      })
-      .catch(err => {
-        console.log(err);
-        if (err.response.status === 400) {
-          alert('옳지 않은 입력이 있습니다.');
-        }
-      });
+    if (this.state.room && this.state.description)
+      axios
+        .post(
+          'https://dms-api.istruly.sexy/report/bug/1',
+          { content: this.state.description },
+          { headers: { Authorization: `Bearer ${getCookie('JWT')}` } },
+        )
+        .then(res => {
+          if (res.status === 201) {
+            alert('버그 신고에 성공하셨습니다. ㅇㅁㅇ');
+            this.props.setModal('');
+          }
+        })
+        .catch(err => {
+          console.log(err);
+          if (err.response.status === 400) {
+            alert('옳지 않은 입력이 있습니다.');
+          }
+        });
   };
 
   render() {
