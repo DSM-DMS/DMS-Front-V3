@@ -6,6 +6,7 @@ import { setModal } from '../../../../actions';
 
 import Extra from '../../../component/Main/Extra/Extra';
 import ExtraCard from '../../../component/Main/Extra/ExtraCard';
+import { getCookie } from '../../../../lib/cookie';
 
 import imgSurvey from '../../../../assets/img/img_survey.png';
 import imgBug from '../../../../assets/img/img_bug.png';
@@ -32,9 +33,13 @@ class ExtraContainer extends Component {
     ],
   };
 
-  onClickBroken = (e, val) => {
-    e.preventDefault();
-    this.props.setModal(val);
+  onClickModal = (e, val) => {
+    if (getCookie('JWT')) {
+      e.preventDefault();
+      this.props.setModal(val);
+    } else {
+      alert('로그인 후 시도해주세요.');
+    }
   };
 
   linkToSurvey = val => {
@@ -49,7 +54,7 @@ class ExtraContainer extends Component {
         src={data.src}
         title={data.title}
         key={data.type + '-extra-card'}
-        onClickBroken={this.onClickBroken}
+        onClickModal={this.onClickModal}
         linkToSurvey={this.linkToSurvey}
       />
     ));

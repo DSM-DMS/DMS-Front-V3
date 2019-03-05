@@ -53,6 +53,23 @@ class ChangePassword extends Component {
             alert('비밀번호가 틀렸습니다.');
           }
         });
+    } else if (!(currentPassword && newPassword && newPasswordChk)) {
+      alert('공란이 있습니다.');
+    } else if (
+      currentPassword &&
+      newPassword &&
+      newPasswordChk &&
+      newPassword.length < 8
+    ) {
+      alert('비밀번호는 8자리 이상입니다.');
+    } else if (
+      currentPassword &&
+      newPassword &&
+      newPasswordChk &&
+      newPassword &&
+      newPassword !== newPasswordChk
+    ) {
+      alert('새 비밀번호가 다릅니다.');
     }
   };
 

@@ -54,6 +54,8 @@ class Login extends Component {
             this.getBasicData(response.data.accessToken);
             this.props.isLogin(true);
             this.props.setModal('');
+          } else if (response.status === 204) {
+            alert('비밀번호가 틀렸습니다.');
           }
         });
     } else {

@@ -8,12 +8,13 @@
   }
 
   &--textarea {
-    width: calc(100% - 6px - 3.25rem);
-    height: calc(13.5rem - 6px - 1.2rem);
+    width: 100%;
+    height: 13.5rem;
     border: 3px solid #e0e0e0;
     border-radius: 5px;
     padding: 0.6rem 1.625rem;
     resize: none;
+    box-sizing: border-box;
 
     font: {
       family: 'NanumSqaureB';
@@ -31,6 +32,10 @@
       &::placeholder {
         color: #19b6b6;
       }
+    }
+
+    &--bug {
+      height: 17.5rem;
     }
   }
 }

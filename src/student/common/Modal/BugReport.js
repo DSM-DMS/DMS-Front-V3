@@ -7,7 +7,6 @@ import './Report.scss';
 
 class BugReport extends Component {
   state = {
-    title: '',
     description: '',
   };
 
@@ -33,29 +32,24 @@ class BugReport extends Component {
       })
       .catch(err => {
         console.log(err);
+        if (err.response.status === 400) {
+          alert('옳지 않은 입력이 있습니다.');
+        }
       });
   };
 
   render() {
     return (
       <div className="report--wrapper">
-        <input
-          type="text"
-          placeholder="제목을 입력해주세요."
-          className="modal--input"
-          name="bugReport.title"
-          onChange={this.onChangeHandler}
-          value={this.state.title}
-        />
         <textarea
-          className="report--textarea"
+          className="report--textarea report--textarea--bug"
           placeholder="버그내용을 입력해주세요."
           name="bugReport.description"
           onChange={this.onChangeHandler}
           value={this.state.description}
         />
         <button className="modal--submit" onClick={this.onSubmitHandler}>
-          로그인
+          신고하기
         </button>
       </div>
     );

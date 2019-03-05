@@ -10,6 +10,7 @@
     width: 100%;
     align-items: center;
     flex-direction: column;
+    margin-bottom: 4rem;
   }
 
   &--introduce {
@@ -19,7 +20,7 @@
       width: 100%;
       height: 22.5rem;
       justify-content: center;
-      background-image: linear-gradient(left, #078f91, #19b6b6);
+      background-image: linear-gradient(to left, #078f91, #19b6b6);
     }
 
     &--inner--wrapper {
@@ -88,10 +89,10 @@
     &--list {
       display: flex;
       width: 100%;
-      margin: 3rem 0;
+      margin: 2rem 0;
 
       & > div {
-        margin-right: 14.3rem;
+        margin-right: 8.75rem;
       }
     }
   }

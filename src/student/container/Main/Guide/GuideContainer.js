@@ -5,7 +5,6 @@ import GuideCard from '../../../component/Main/Guide/GuideCard';
 
 import ImgNotice from '../../../../assets/img/img_notice.png';
 import ImgRule from '../../../../assets/img/img_rule.png';
-import ImgQuestion from '../../../../assets/img/img_question.png';
 
 class GuideContainer extends Component {
   state = {
@@ -21,12 +20,6 @@ class GuideContainer extends Component {
         title: '기숙사 규정',
         subtitle: '사감부에서 제정한 규정을 확인하세요.',
         src: ImgRule,
-      },
-      {
-        type: 'question',
-        title: '자주하는 질문',
-        subtitle: '자주하는 질문에 대한 사감부측 답변을 확인하세요.',
-        src: ImgQuestion,
       },
     ],
   };
