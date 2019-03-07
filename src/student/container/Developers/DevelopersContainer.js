@@ -43,11 +43,16 @@ class DevelopersContainer extends Component {
   render() {
     const { developers } = this.state;
     const devCards = developers.map((data, index) => (
-      <p className="developers--card--list">
+      <div className="developers--card--list" key={`devcard-${index}line`}>
         {data.map(data => (
-          <DevelopersCard src={data.src} name={data.name} job={data.job} />
+          <DevelopersCard
+            src={data.src}
+            name={data.name}
+            job={data.job}
+            key={`devcard-${data.name}`}
+          />
         ))}
-      </p>
+      </div>
     ));
 
     return (
