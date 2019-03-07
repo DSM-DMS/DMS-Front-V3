@@ -11,7 +11,7 @@ const initialState = {
   dinner: [],
 };
 
-function isLogin(state = initialState, action) {
+function meal(state = initialState, action) {
   switch (action.type) {
     case SET_MEAL_PREV_DATE:
       return {
@@ -40,4 +40,4 @@ function isLogin(state = initialState, action) {
   }
 }
 
-export default isLogin;
+export default meal;
