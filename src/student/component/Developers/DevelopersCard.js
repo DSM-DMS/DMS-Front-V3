@@ -8,7 +8,7 @@ const DevelopersCard = ({ src, name, job }) => {
   return (
     <div className="developers--card--wrapper">
       <img
-        src={`https://s3.ap-northeast-2.amazonaws.com/dms.istruly.sexy/DMS-Developers/${encodeURIComponent(
+        src={`https://s3.ap-northeast-2.amazonaws.com/dms-developers/${encodeURIComponent(
           b64EncodeUnicode(name),
         )}.png`}
         alt=""
