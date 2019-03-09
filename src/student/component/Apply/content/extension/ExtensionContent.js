@@ -107,6 +107,7 @@ export default class ExtensionContent extends Component {
   render() {
     const { time, classNum, selectedSeat, onSelectSeat } = this.props;
     const { mapData } = this.state;
+    const isBigClass = classNum==9;
     const map = mapData.map((seatCol, i) => {
       const row = seatCol.map((seat, i) => {
         if (seat === 0)
@@ -151,7 +152,9 @@ export default class ExtensionContent extends Component {
         <span className='apply--content--extension--mark right'>
           {mapInfoList[classNum].right}
         </span>
-        <table className='apply--content--extension--map'>{map}</table>
+        <div className={`apply--content--extension--map--wrapper ${isBigClass ? 'big--class' : ''}`}>
+          <table className={`apply--content--extension--map ${isBigClass ? 'big--class' : ''}`}>{map}</table>
+        </div>
       </div>
     );
   }
