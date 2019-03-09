@@ -1,0 +1,33 @@
+@keyframes around {
+    from {transform: rotate(0deg)}
+    to {transform: rotate(360deg)}
+}
+
+.loading--wrapper {
+    width: 100vw;
+    height: 100vh;
+    background-color: #777777;
+    opacity: 0.4;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 10;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.loading {
+    &--circle--wrapper {
+        position: fixed;
+    }
+
+    &--circle {
+        width: 2rem;
+        height: 2rem;
+        border: 1rem solid;
+        border-image: linear-gradient(to right, #01c9ca 0%, #3886FF 100%);
+        z-index: 15;
+        animation: around 2s infinite linear;
+    }
+}

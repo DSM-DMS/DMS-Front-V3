@@ -1,45 +1,65 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 
-import DomitoryRule from '../../component/DomitoryRule/DomitoryRule';
+import { noticeGet, noticeDelete } from '../../lib/notice'
+
+import DomitoryRule from '../../component/DomitoryRule/DomitoryRule'
 import DomitoryRuleList from '../../component/DomitoryRule/DomitoryRuleList'
+import Loading from '../../common/Loading/Loading'
 
-import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom'
 
 class DomitoryRuleContainer extends Component {
-/*
-    state = {
-        postData : [
-            {
-                number: 1,
-                title: '우정관 점호 안내',
-                author: '사감부'
-            },
-            {
-                number: 2,
-                title: '우정관 외출, 외박(귀가) 규정',
-                author: '사감부'
-            }
-        ]
+    TaskData = async () => {
+        try {
+        const response = await noticeGet('rule')
+        console.log(response.data)
+        this.HandleAfterRequest(response)
+        }
+        catch (err) {
+            alert('로그인이 필요합니다')
+            this.props.history.push('/admin/login')
+        }
     }
-*/
-    
+
+    HandleAfterRequest = (response) => {
+        console.log(response.data)
+        const { ruleList } = response.data
+        this.setState({
+            ruleList,
+            loading : false
+        })
+    }
+
+    HandleDelete = async (id) => {
+        console.log('실행됨')
+        await noticeDelete('rule', id)
+        this.TaskData()
+    }
+
+    state = {
+        ruleList : [],
+        loading : true
+    }
+
+    componentDidMount() {
+        this.TaskData()
+    }
 
     render() {
-        console.log(this.props)
-        const { list } = this.props.domitoryrule;
-        const postList = list.map( data => 
-            <DomitoryRuleList data = {data} key = {data.number}/>
-        )
+        const { ruleList, loading } = this.state
+        console.log(ruleList)
+        const List = ruleList.reverse().map(data => (
+            <DomitoryRuleList HandleDelete = {this.HandleDelete} data = {data} key = {data.ruleId}/>
+        ))
         return (
-            <DomitoryRule postList = {postList}/>
+            <Fragment>
+                {
+                    loading && <Loading />
+                }
+                <DomitoryRule List = {List}/>
+            </Fragment>
         );
     }
 }
 
-const mapStateToProps = (state) => {
-    return {
-        domitoryrule: state.domitoryrule
-    }
-};
-
-export default connect(mapStateToProps)(DomitoryRuleContainer);
+export default withRouter(DomitoryRuleContainer);

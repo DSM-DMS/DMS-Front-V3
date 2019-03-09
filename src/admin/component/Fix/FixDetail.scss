@@ -1,0 +1,120 @@
+.fix {
+    &--detail {
+        &--wrapper {
+            z-index: 3;
+            width: calc(100% - 10.4875rem);
+            height: 21.6125rem;
+            padding: 5.75rem 5.24375rem 9.2875rem;
+            background-color: #ffffff;
+            border-radius: 1.124rem;
+        }
+
+        &--header--wrapper {
+            display: flex;
+            justify-content: center;
+            font : {
+                family: "NanumSquareB";
+                size: 2.5rem;
+            }
+
+            color: #10a3a4;
+        }
+
+        &--content {
+            &--prev {
+                position: absolute;
+                background-image: url("../../../assets/icon/ic_left.png");
+                background-size: cover;
+                width: 2.41875rem;
+                height: 4.4375rem;
+                left: 0;
+                top: 50%;
+                transform: translateY(-50%);
+            }
+
+            &--next {
+                position: absolute;
+                background-image: url("../../../assets/icon/ic_right.png");
+                background-size: cover;
+                width: 2.41875rem;
+                height: 4.4375rem;
+                right: 0;
+                top: 50%;
+                transform: translateY(-50%);
+            }
+
+            &--wrapper {
+                position: relative;
+                display: flex;
+                justify-content: center;
+                margin-top: 3.375rem;
+                height: calc(100% - 3.375rem);
+            }
+
+            &--main {
+                &--footer {
+                    &--wrapper {
+                        padding: 1.3375rem 4.15625rem;
+                        height: 1.9125rem;
+                        box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
+                        background-color: #0a9395;
+                        border-bottom-left-radius: 1.125rem;
+                        border-bottom-right-radius: 1.125rem;
+                        color: #ffffff;
+                        display: flex;
+                        justify-content: flex-end;
+                        align-items: center;
+        
+                        font: {
+                            size: 1.75rem;
+                            family: 'NanumSquareB';
+                        }
+                    }
+                }
+        
+                &--wrapper {
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: space-between;
+                    box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
+                    border-radius: 1.125rem;
+            
+                    font : {
+                        size: 1.25rem;
+                        family: 'NanumSquareB';
+                    }       
+                    width: 37rem;
+                    height: 100%;
+                    color: #000000;
+                    text-decoration: none;
+
+                }
+                
+                &--header {
+                    &--wrapper {
+                        margin-top: 2rem;
+                        margin-bottom: 2rem;
+                        padding: 0rem 4rem;
+                        display: flex;
+                        justify-content: space-between;
+                        font : {
+                            size: 2.5rem;
+                            family: 'NanumSquareB';
+                        }
+                    }
+                }
+
+                &--detail {
+                    &--wrapper {
+                        padding: 0rem 4.15625rem;
+                        height: 9.375rem;
+
+                        font: {
+                            size: 1.3rem;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

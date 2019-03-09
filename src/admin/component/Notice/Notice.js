@@ -1,16 +1,17 @@
 import React from 'react';
+import { Link } from 'react-router-dom'
 
 import './Notice.scss'
 
 import Woman from '../../../assets/illust/woman2.png'
 
-const Notice = ({postList}) => {
+const Notice = ({List}) => {
     return (
         <React.Fragment>
             <div className = "notice--button--wrapper">
                 <div className = "notice--button--detail notice">
                     <div className = "notice--button">공지사항</div>
-                    <div style = {{opacity: '0.4'}} className = "notice--button">글쓰기</div>
+                    <Link to = "/admin/notice/write" style = {{opacity: '0.4'}} className = "notice--button">글작성</Link>
                     <img src = {Woman} alt = "notice" className = "notice--button--illust"/>
                 </div>
             </div>
@@ -36,7 +37,7 @@ const Notice = ({postList}) => {
                     </div>
                 </div>
                 <div className = "notice--content--wrapper">
-                    {postList}
+                    {List}
                 </div>
             </div>
         </React.Fragment>

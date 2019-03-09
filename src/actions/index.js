@@ -79,9 +79,33 @@ export const selectMusicCard = cardIndex => ({
 });
 
 export const DOMITORY_RULE_LIST_ADD = 'DOMITORY_RULE_LIST_ADD';
+export const FACILITY_REQUEST = 'FACILITY_REQUEST'
+export const LOGIN = 'LOGIN'
 
-export const domitoyRuleListAdd = ({ index, list }) => ({
-  type: DOMITORY_RULE_LIST_ADD,
-  index,
-  list,
-});
+export function increment(value) {
+    return {
+        type: INCREMENT,
+        index: value
+    };
+} // 22
+
+export function setDiff(value) {
+    return {
+        type: SET_DIFF,
+        diff: value
+    }
+} // dispatch 할때 인자를 호출하면
+
+export function facilityRequest(responseData) {
+    return {
+        type: FACILITY_REQUEST,
+        responseData
+    }
+}
+
+export function login(bool) {
+    return {
+        type: LOGIN,
+        bool
+    }
+}

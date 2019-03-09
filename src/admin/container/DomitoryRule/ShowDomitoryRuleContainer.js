@@ -1,21 +1,49 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import ShowDomitoryRule from '../../component/DomitoryRule/ShowDomitoryRule'
+import Loading from '../../common/Loading/Loading'
 
-import { connect } from 'react-redux'
+import { noticeContentGet } from '../../lib/notice'
 
 class ShowDomitoryRuleContainer extends Component {
-    render() {
+    state = {
+        content: "",
+        title: "",
+        loading: true
+    }
+
+    TaskData = async () => {
         const { match } = this.props
-        const { list } = this.props.domitoryrule;
-        console.log(this.props)
+        console.log(parseInt(match.params.postId))
+        try {
+            const response = await noticeContentGet('rule', parseInt(match.params.postId))
+            const {content, title} = response.data
+            this.setState({
+                content : content,
+                title : title,
+                loading: false
+            })
+        } catch (err) {
+            alert('로그인이 필요합니다')
+            this.props.history.push('/admin/login')
+        }
+    }
+
+    componentDidMount() {
+        this.TaskData()
+    }
+
+    render() {
+        const data = this.state
+        const { loading } = this.state
         return (
-            <ShowDomitoryRule match = {match} postData = { list }/>
+            <Fragment>
+                {loading &&
+                    <Loading />
+                }
+                <ShowDomitoryRule data = {data}/>
+            </Fragment>
         );
     }
 }
 
-const mapStateToProps = (state) => ({
-    domitoryrule: state.domitoryrule
-})
-
-export default connect(mapStateToProps)(ShowDomitoryRuleContainer);
+export default ShowDomitoryRuleContainer;

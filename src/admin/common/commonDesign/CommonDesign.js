@@ -3,10 +3,11 @@ import React from 'react';
 import './CommonDesign.scss'
 
 import logo from '../../../assets/logo/logo-white.png';
+import arrow from '../../../assets/icon/ic_backarrow.png';
 
-import { Link } from 'react-router-dom'
+import { Link, withRouter } from 'react-router-dom'
 
-const CommonDesign = ({children}) => {
+const CommonDesign = ({children, history}) => {
     return (
         <div className = "common-design--wrapper">
             <div className = "common-design--top--wrapper">
@@ -15,6 +16,10 @@ const CommonDesign = ({children}) => {
                         <img src={logo} alt="logo" className="admin_header--logo--icon"/>
                         <span className="admin_header--logo--title">DMS</span>
                     </Link>
+                    <div onClick = {history.goBack} className="admin_header--goback--wrapper">
+                        <img src={arrow} alt="arrow" className="admin_header--icon"/>
+                        <span className="admin_header--goback--text">돌아가기</span>
+                    </div>
                 </div>
             </div>
             <div className = "common-design--center--wrapper">
@@ -25,4 +30,4 @@ const CommonDesign = ({children}) => {
     );
 };
 
-export default CommonDesign;
+export default withRouter(CommonDesign);
