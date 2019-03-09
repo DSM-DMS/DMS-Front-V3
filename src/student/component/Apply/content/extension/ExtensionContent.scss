@@ -5,6 +5,7 @@
   font-family: NanumSquareB;
   font-size: 1.5rem;
   &.top {
+    top: 0;
     left: 50%;
     transform: translateX(-50%);
   }
@@ -28,22 +29,31 @@
 .apply--content--extension {
   position: relative;
   height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .apply--content--extension--map {
-  position: relative;
   display: flex;
+  height: 100%;
   flex-direction: column;
   justify-content: space-between;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 21.875rem;
-  height: 28.125rem;
   text-align: center;
   & > tr {
     display: flex;
     justify-content: space-between;
     justify-items: center;
+  }
+  &--wrapper {
+    width: 21.875rem;
+    height: 80%;
+    overflow: auto;
+    &.big--class {
+      width: 35rem;
+    }
+  }
+  &.big--class {
+    height: 150%;
   }
 }

@@ -8,7 +8,13 @@ const ExtensionMapSeat = ({
   selectedClass,
   onClick
 }) => {
-  return (
+  return onClick === undefined ? (
+    <td
+      className={`apply--content--extension--seat ${invisibleClass} ${selectedClass}`}
+    >
+      {content}
+    </td>
+  ) : (
     <td
       className={`apply--content--extension--seat ${invisibleClass} ${selectedClass}`}
       onClick={() => onClick(content)}
