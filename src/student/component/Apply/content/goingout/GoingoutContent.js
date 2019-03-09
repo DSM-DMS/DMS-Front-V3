@@ -15,6 +15,7 @@ const GoingoutContent = ({
           value={goingoutApplication.month}
           onChange={onChangeGoingoutApplication}
           className='apply--content--goingout--input'
+          autocomplete='off'
         />
         <span>월</span>
         <input
@@ -22,6 +23,7 @@ const GoingoutContent = ({
           value={goingoutApplication.day}
           onChange={onChangeGoingoutApplication}
           className='apply--content--goingout--input'
+          autocomplete='off'
         />
         <span>일</span>
       </div>
@@ -32,6 +34,7 @@ const GoingoutContent = ({
           value={goingoutApplication.outHour}
           onChange={onChangeGoingoutApplication}
           className='apply--content--goingout--input'
+          autocomplete='off'
         />
         <span>시</span>
         <input
@@ -39,6 +42,7 @@ const GoingoutContent = ({
           value={goingoutApplication.outMin}
           onChange={onChangeGoingoutApplication}
           className='apply--content--goingout--input'
+          autocomplete='off'
         />
         <span>분</span>
         <span> ~ </span>
@@ -47,6 +51,7 @@ const GoingoutContent = ({
           value={goingoutApplication.returnHour}
           onChange={onChangeGoingoutApplication}
           className='apply--content--goingout--input'
+          autocomplete='off'
         />
         <span>시</span>
         <input
@@ -54,6 +59,7 @@ const GoingoutContent = ({
           value={goingoutApplication.returnMin}
           onChange={onChangeGoingoutApplication}
           className='apply--content--goingout--input'
+          autocomplete='off'
         />
         <span>분</span>
       </div>
@@ -62,6 +68,7 @@ const GoingoutContent = ({
         name='reason'
         value={goingoutApplication.reason}
         onChange={onChangeGoingoutApplication}
+        autocomplete='off'
       />
     </div>
   );

@@ -21,6 +21,7 @@ const MusicContent = ({
           name='title'
           value={musicApplication.title}
           onChange={onChangeMusicApplication}
+          autocomplete='off'
         />
         <p className='apply--content--music--artist'>아티스트</p>
         <input
@@ -28,6 +29,7 @@ const MusicContent = ({
           name='singer'
           value={musicApplication.singer}
           onChange={onChangeMusicApplication}
+          autocomplete='off'
         />
       </div>
     );
