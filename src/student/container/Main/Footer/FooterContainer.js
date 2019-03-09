@@ -45,6 +45,13 @@ class FooterContainer extends Component {
                 members: [
                     '이동기'
                 ]
+            },
+            {
+                team: 'Server',
+                members: [
+                    '인상민',
+                    '김윤재'
+                ]
             }
         ]
     }

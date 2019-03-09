@@ -6,24 +6,31 @@
     "axios": "^0.18.0",
     "connected-react-router": "^6.1.0",
     "file-saver": "^2.0.1",
+    "enzyme": "^3.8.0",
+    "enzyme-adapter-react-16": "^1.7.1",
     "history": "^4.7.2",
     "immutable": "^4.0.0-rc.12",
+    "js-sha3": "^0.8.0",
     "lodash.throttle": "^4.1.1",
     "node-sass": "^4.11.0",
+    "react-outside-click-handler": "^1.2.2",
     "react": "^16.7.0",
+    "react-app-polyfill": "^0.2.0",
     "react-dom": "^16.7.0",
     "react-redux": "^6.0.0",
     "react-router-dom": "^4.3.1",
     "react-scripts": "2.1.2",
     "redux": "^4.0.1",
     "redux-actions": "^2.6.4",
+    "redux-mock-store": "^1.5.3",
     "throttle-debounce": "^2.0.1"
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
+    "build": "./build.sh",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "deploy": "./deploy.sh"
   },
   "eslintConfig": {
     "extends": "react-app"

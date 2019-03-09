@@ -1,0 +1,35 @@
+.apply--content--music--list {
+  padding: 2rem 1.875rem;
+  height: 100%;
+  overflow: auto;
+  text-align: start;
+  box-sizing: border-box;
+  &--header {
+    display: flex;
+    font-family: NanumSquareB;
+    color: rgba($color: #233539, $alpha: 0.6);
+    font-size: 0.875rem;
+    border-bottom: 1px solid #f4f8f9;
+    padding-bottom: 1.25rem;
+  }
+  &--body {
+    display: flex;
+    font-family: NanumSquareB;
+    color: #233539;
+    font-size: 0.875rem;
+    margin-top: 1.25rem;
+  }
+
+  &--day {
+    width: 6.625rem;
+  }
+
+  &--title {
+    flex-grow: 1;
+  }
+
+  &--author {
+    width: 6.25rem;
+    text-align: end;
+  }
+}

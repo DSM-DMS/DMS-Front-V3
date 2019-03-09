@@ -1,0 +1,19 @@
+.apply--menu {
+  width: 6.25rem;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: #fff;
+  box-shadow: 0 3px 12px 0 rgba($color: #000000, $alpha: 0.16);
+  &--logo {
+    margin-top: 1.875rem;
+    width: 2.5rem;
+    height: 2.5rem;
+  }
+
+  &--item--wrapper {
+    width: 100%;
+    margin-top: 6.0625rem;
+  }
+}

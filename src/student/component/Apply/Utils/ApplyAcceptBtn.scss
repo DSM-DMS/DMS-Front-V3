@@ -1,0 +1,19 @@
+.apply--btn {
+  width: 12.5rem;
+  height: 3.125rem;
+  font-family: NanumSquareEB;
+  color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 3px 6px 0 rgba($color: #000000, $alpha: 0.08);
+  line-height: 3.125rem;
+  text-align: center;
+  font-size: 1.125rem;
+  &.cancel {
+    color: #fff;
+    background: #e3e3e3;
+  }
+  &.apply {
+    background: #19b6b6;
+    margin-left: 1.875rem;
+  }
+}

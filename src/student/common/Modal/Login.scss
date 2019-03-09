@@ -1,49 +1,49 @@
 .login {
+  &--wrapper {
+    display: flex;
+    width: 18.75rem;
+    height: 14.375rem;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  &--checkbox {
+    width: 1.25rem;
+    height: 1.25rem;
+    border-radius: 5px;
+    background-color: #e0e0e0;
+    cursor: pointer;
+
     &--wrapper {
-        display: flex;
-        width: 18.75rem;
-        height: 14.375rem;
-        flex-direction: column;
-        justify-content: space-between;
+      display: flex;
+      width: 7.3rem;
+      justify-content: space-between;
+      align-items: center;
     }
 
-    &--checkbox {
-        width: 1.25rem;
-        height: 1.25rem;
-        border-radius: 5px;
-        background-color: #e0e0e0;
-        cursor: pointer;
+    &--label {
+      color: #616161;
+      cursor: pointer;
 
-        &--wrapper {
-            display: flex;
-            width: 6.8125rem;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        &--label {
-            color: #616161;
-            cursor: pointer;
-
-            font: {
-                family: 'NanumSquareR';
-                size: 0.875rem;
-            }
-        }
+      font: {
+        family: 'NanumSquareR';
+        size: 0.8rem;
+      }
     }
-    &--bottom--wrapper {
-        display: flex;
-        width: 100%;
-        justify-content: space-between;
-        align-items: center;
-    }
+  }
+  &--bottom--wrapper {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+  }
 
-    &--forgot {
-        color: #19b6b6;
-        cursor: pointer;
-        font: {
-            family: 'NanumSquareR';
-            size: 0.875rem;
-        }
+  &--forgot {
+    color: #19b6b6;
+    cursor: pointer;
+    font: {
+      family: 'NanumSquareR';
+      size: 0.875rem;
     }
+  }
 }

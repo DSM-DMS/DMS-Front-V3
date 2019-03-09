@@ -1,35 +1,32 @@
-import React, { Component } from "react";
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { setSection } from '../../../actions';
-// import throttle from 'lodash.throttle';
 
-import MealContainer from "./Meal/MealContainer";
-import ApplyContainer from "./Apply/ApplyContainer";
-import PostContainer from "./Post/PostContainer";
+import MealContainer from './Meal/MealContainer';
+import ApplyContainer from './Apply/ApplyContainer';
+import GuideContainer from './Guide/GuideContainer';
 import ExtraContainer from './Extra/ExtraContainer';
 import FooterContainer from './Footer/FooterContainer';
-
 
 import './MainContainer.scss';
 
 let throttleBool;
 class MainContainer extends Component {
-
-  scrolling = (e) => {
+  scrolling = e => {
     const { history } = this.props;
-    const upDown = e.wheelDelta || -e.detail
+    const upDown = e.wheelDelta || -e.detail;
     let nowScroll = this.props.section.currentSection;
-    if(upDown < 0) {
-      switch(nowScroll){
+    if (upDown < 0) {
+      switch (nowScroll) {
         case 'meal':
           history.push('apply');
           this.props.setSection('apply');
           break;
         case 'apply':
-          history.push('post');
-          this.props.setSection('post');
+          history.push('guide');
+          this.props.setSection('guide');
           break;
-        case 'post':
+        case 'guide':
           history.push('extra');
           this.props.setSection('extra');
           break;
@@ -40,18 +37,18 @@ class MainContainer extends Component {
           break;
       }
     } else {
-      switch(nowScroll){
+      switch (nowScroll) {
         case 'apply':
           history.push('/');
           this.props.setSection('meal');
           break;
-        case 'post':          
+        case 'guide':
           history.push('apply');
           this.props.setSection('apply');
           break;
         case 'extra':
-          history.push('post');
-          this.props.setSection('post');
+          history.push('guide');
+          this.props.setSection('guide');
           break;
         case 'footer':
           history.push('extra');
@@ -61,49 +58,64 @@ class MainContainer extends Component {
           break;
       }
     }
-  }
+  };
 
   throttle = (e, func, wait) => {
     return () => {
-      if(!throttleBool) {
-        console.log(23)
+      if (!throttleBool) {
         throttleBool = true;
-        func(e)
-        setTimeout(()=>{
+        func(e);
+        setTimeout(() => {
           throttleBool = false;
-          console.log(13)
-        }, wait)
+        }, wait);
       }
-    }
-  }
-
+    };
+  };
 
   componentDidMount() {
     const { location } = this.props;
-    const mainPage = document.getElementById("main");
-    mainPage.addEventListener("DOMMouseScroll", 
-    (e) => {
-      this.throttle(e, this.scrolling, 1300)()
-    })
-    mainPage.addEventListener("mousewheel", 
-    (e) => {
-      this.throttle(e, this.scrolling, 1300)()
-    })
+    const mainPage = document.getElementById('main');
+    let agent = navigator.userAgent.toLowerCase();
 
-    if (location.pathname !== "/") {
-      const place = location.pathname.replace("/", "");
+    if (
+      !(
+        (navigator.appName === 'Netscape' &&
+          navigator.userAgent.search('Trident') !== -1) ||
+        agent.indexOf('msie') !== -1
+      )
+    ) {
+      mainPage.addEventListener('DOMMouseScroll', e => {
+        this.throttle(e, this.scrolling, 1000)();
+      });
+      mainPage.addEventListener('mousewheel', e => {
+        this.throttle(e, this.scrolling, 1000)();
+      });
+    }
+
+    if (location.pathname !== '/') {
+      const place = location.pathname.replace('/', '');
       this.props.setSection(place);
     }
   }
-  
 
   render() {
     const { section } = this.props;
     return (
-      <div style={{ width: window.screen.width}} className={`scroll--${section.currentSection}` } id="main">
+      <div
+        className={
+          !(
+            (navigator.appName === 'Netscape' &&
+              navigator.userAgent.search('Trident') !== -1) ||
+            navigator.userAgent.toLowerCase().indexOf('msie') !== -1
+          )
+            ? `scroll--${section.currentSection}`
+            : 'main--ie'
+        }
+        id="main"
+      >
         <MealContainer />
         <ApplyContainer />
-        <PostContainer />
+        <GuideContainer />
         <ExtraContainer />
         <FooterContainer />
       </div>
@@ -111,16 +123,19 @@ class MainContainer extends Component {
   }
 }
 
-const mapStateToProps = (state) => {
+const mapStateToProps = state => {
   return {
-    section: state.section
-  }
-}
+    section: state.section,
+  };
+};
 
-const mapDispatchToProps = (dispatch) => {
+const mapDispatchToProps = dispatch => {
   return {
-    setSection: (value) => dispatch(setSection(value))
-  }
-}
+    setSection: value => dispatch(setSection(value)),
+  };
+};
 
-export default connect(mapStateToProps, mapDispatchToProps)(MainContainer);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(MainContainer);

@@ -1,22 +1,28 @@
 .scroll {
-    &--meal {
-        transform: translate3d(0px, 0px, 0px);
-        transition: transform 700ms ease 0s;
-    }
-    &--apply {
-        transform: translate3d(0px, -100vh, 0px);
-        transition: transform 700ms ease 0s;
-    }
-    &--post {
-        transform: translate3d(0px, -200vh, 0px);
-        transition: transform 700ms ease 0s;
-    }
-    &--extra {
-        transform: translate3d(0px, -300vh, 0px);
-        transition: transform 700ms ease 0s;
-    }
-    &--footer {
-        transform: translate3d(0px, calc(-300vh - 31.25rem), 0px);
-        transition: transform 700ms ease 0s;
-    }
+  &--meal {
+    transform: translate3d(0px, 0px, 0px);
+    transition: transform 700ms ease 0s;
+  }
+  &--apply {
+    transform: translate3d(0px, -100vh, 0px);
+    transition: transform 700ms ease 0s;
+  }
+  &--guide {
+    transform: translate3d(0px, -200vh, 0px);
+    transition: transform 700ms ease 0s;
+  }
+  &--extra {
+    transform: translate3d(0px, -300vh, 0px);
+    transition: transform 700ms ease 0s;
+  }
+  &--footer {
+    transform: translate3d(0px, calc(-300vh - 31.25rem), 0px);
+    transition: transform 700ms ease 0s;
+  }
+}
+
+.main--ie {
+  height: 100vh;
+  overflow-y: scroll;
+  overflow-x: hidden;
 }

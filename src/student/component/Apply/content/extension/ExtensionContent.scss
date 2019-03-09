@@ -1,0 +1,49 @@
+.apply--content--extension--mark {
+  position: absolute;
+  display: inline-block;
+  color: rgba($color: #19b6b6, $alpha: 0.16);
+  font-family: NanumSquareB;
+  font-size: 1.5rem;
+  &.top {
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  &.bottom {
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  &.left {
+    transform: rotate(-90deg) translateX(+50%);
+    left: 0;
+    top: 50%;
+  }
+  &.right {
+    transform: rotate(90deg) translateX(-50%);
+    right: 0;
+    top: 50%;
+  }
+}
+
+.apply--content--extension {
+  position: relative;
+  height: 100%;
+}
+
+.apply--content--extension--map {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 21.875rem;
+  height: 28.125rem;
+  text-align: center;
+  & > tr {
+    display: flex;
+    justify-content: space-between;
+    justify-items: center;
+  }
+}

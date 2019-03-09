@@ -1,0 +1,13 @@
+.apply--content--type--switch--item {
+  font-family: NanumSquareB;
+  line-height: 2rem;
+  text-align: center;
+  width: 6.25rem;
+  height: 2rem;
+  display: inline-block;
+  border-radius: 4px;
+  &.selected {
+    background: #fff;
+    box-shadow: 0 3px 6px 0 rgba($color: #000000, $alpha: 0.04);
+  }
+}

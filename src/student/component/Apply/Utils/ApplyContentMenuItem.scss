@@ -1,0 +1,36 @@
+.apply--content--menu--item {
+  height: 3.125rem;
+  border-radius: 8px;
+  border: 1px solid #e9eff4;
+  margin-top: 1.25rem;
+  margin-bottom: 1.25rem;
+  display: flex;
+  align-items: center;
+  &.disable > span {
+    color: rgba($color: #233539, $alpha: 0.8);
+  }
+  &.selected {
+    background: #19b6b6;
+    border: none;
+  }
+  &.selected > span {
+    color: #fff;
+  }
+
+  &--content {
+    margin-left: 1.5rem;
+    margin-right: 1.5rem;
+    font-family: NanumSquareEB;
+    font-size: 1.5rem;
+    &.long {
+      font-size: 1.125rem;
+      margin-left: 1.125rem;
+      margin-right: 1.125rem;
+    }
+  }
+
+  &--detail {
+    font-family: NanumSquareB;
+    font-size: 0.875rem;
+  }
+}

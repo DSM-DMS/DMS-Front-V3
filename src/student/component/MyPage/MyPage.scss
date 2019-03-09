@@ -1,105 +1,104 @@
 .mypage {
+  &--wrapper {
+    display: flex;
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    justify-content: center;
+    background-image: linear-gradient(to bottom, #078f91, #19b6b6);
+  }
+
+  &--illust {
+    &--grass {
+      position: absolute;
+      top: 35%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    &--left {
+      position: absolute;
+      width: 12.0625rem;
+      height: 19.125rem;
+      left: 10.9375rem;
+      bottom: 6.125rem;
+    }
+
+    &--right {
+      position: absolute;
+      width: 14.125rem;
+      height: 20rem;
+      right: 9.9375rem;
+      bottom: 4.5rem;
+    }
+  }
+
+  &--content {
     &--wrapper {
-        display: flex;
-        position: relative;
-        width: 100%;
-        height: 100vh;
-        justify-content: center;
-        background-image: linear-gradient(to bottom, #078f91, #19b6b6);
+      display: flex;
+      z-index: 2;
+      width: 100%;
+      height: calc(100vh - 13.4375rem);
+      flex-direction: column;
+      justify-content: center;
+      margin-bottom: 4.0625rem;
     }
-
-    &--illust {
-        &--grass {
-            position: absolute;
-            top: 35%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-        }
-
-        &--left {
-            position: absolute;
-            width: 12.0625rem;
-            height: 19.125rem;
-            left: 10.9375rem;
-            bottom: 6.125rem;
-        }
-
-        &--right {
-            position: absolute;
-            width: 14.125rem;
-            height: 20rem;
-            right: 9.9375rem;
-            bottom: 4.5rem;
-        }
+    &--inner--wrapper {
+      display: flex;
+      width: 100%;
+      height: 34.25rem;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
     }
+  }
+  &--state {
+    &--wrapper {
+      display: flex;
+      flex-direction: column;
+      height: 11.4375rem;
+      justify-content: space-between;
+      align-items: center;
+    }
+    &--person {
+      color: white;
 
-    &--content {
-        &--wrapper {
-            display: flex;
-            z-index: 2;
-            width: 100%;
-            height: calc(100vh - 9.375rem);
-            flex-direction: column;
-            justify-content: center;
-            margin-bottom: 4.0625rem;
-        }
-        &--inner--wrapper {
-            display: flex;
-            width: 100%;
-            height: 34.25rem;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-        }
+      font: {
+        size: 3rem;
+        family: 'NanumSquareEB';
+      }
     }
-    &--state {
-        &--wrapper {
-            display: flex;
-            flex-direction: column;
-            width: 34.0625rem;
-            height: 11.4375rem;
-            justify-content: space-between;
-            align-items: center;
-        }
-        &--person {
-            color: white;
-
-            font: {
-                size: 3rem;
-                family: 'NanumSquareEB';
-            }
-        }
-        &--point {
-            color: rgba(255, 255, 255, 0.7);
-            font: {
-                size: 1.5rem;
-                family: 'NanumSquareB';
-            }
-        }
-        &--title {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            box-shadow: 0px 5px 5px 0 rgba(0, 0, 0, 0.2);
-            color: #19b6b6;
-            background-color: white;
-            border-radius: 25px;
-            width: 100%;
-            height: 3.125rem;
-            font: {
-                size: 1.5rem;
-                family: 'NanumSquareB';
-            }
-        }
+    &--point {
+      color: rgba(255, 255, 255, 0.7);
+      font: {
+        size: 1.5rem;
+        family: 'NanumSquareB';
+      }
     }
-    &--link {
-        &--wrapper {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            height: 18.75rem;
-            padding-top: 4.0625rem;
-            width: 100%;
-        }
+    &--title {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      box-shadow: 0px 5px 5px 0 rgba(0, 0, 0, 0.2);
+      color: #19b6b6;
+      background-color: white;
+      border-radius: 25px;
+      width: 34.0625rem;
+      height: 3.125rem;
+      font: {
+        size: 1.5rem;
+        family: 'NanumSquareB';
+      }
     }
+  }
+  &--link {
+    &--wrapper {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      height: 18.75rem;
+      padding-top: 4.0625rem;
+      width: 100%;
+    }
+  }
 }
