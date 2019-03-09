@@ -65,7 +65,7 @@ class Login extends Component {
 
   getPointCards = token => {
     axios
-      .get('http://ec2.istruly.sexy:5000/info/point', {
+      .get('https://dms-api.istruly.sexy/info/point', {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then(response => {
@@ -80,7 +80,7 @@ class Login extends Component {
 
   getBasicData = token => {
     axios
-      .get('http://ec2.istruly.sexy:5000/info/basic', {
+      .get('https://dms-api.istruly.sexy/info/basic', {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then(response => {
