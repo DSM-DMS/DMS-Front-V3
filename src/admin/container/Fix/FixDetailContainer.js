@@ -4,6 +4,13 @@ import FixDetail from '../../component/Fix/FixDetail';
 import { connect } from 'react-redux'
 
 class FixDetailContainer extends Component {
+    componentDidMount = () => {
+        if(this.props.login.isLogin === false) {
+            alert('로그인이 필요합니다')
+            this.props.history.push('/admin/login')
+        }
+    }
+
 
     render() {
         const { match, facilityReportList } = this.props;
@@ -22,7 +29,8 @@ class FixDetailContainer extends Component {
 }
 
 const mapStateToProps = state=> ({
-    ...state.facility
+    ...state.facility,
+    login : state.adminLogin
 })
 
 export default connect(mapStateToProps)(FixDetailContainer);

@@ -1,47 +1,57 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import axios from 'axios'
 
 import Fix from '../../component/Fix/Fix';
 
 import FixList from '../../component/Fix/FixList';
+import Loading from '../../common/Loading/Loading'
 
 import { connect } from 'react-redux'
 import { facilityRequest } from '../../../actions/index'
+import { getCookie } from '../../../lib/cookie'
 
 class FixContainer extends Component {
+    state = {
+        loading : true
+    }
 
-    componentDidMount() {
-        console.log(this.props)
-        axios
-            .get("http://ec2.istruly.sexy:5001/facility_report", 
+    componentDidMount = async () => {
+        try {
+        const token = getCookie('JWT')
+        const response = await axios
+            .get("https://dms-admin.istruly.sexy/facility_report", 
             {
                 headers : {
-                    Authorization: `Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1NTA2NjYzMjMsIm5iZiI6MTU1MDY2NjMyMywianRpIjoiMTNkN2UyMWItZjdlNC00YTk5LThmZjQtMWVlZDc0ZTZkNmUwIiwiZXhwIjoxNTUwNjY3MjIzLCJpZGVudGl0eSI6InRlc3QiLCJmcmVzaCI6ZmFsc2UsInR5cGUiOiJhY2Nlc3MifQ.XNDIct5X6ksgl-hZ4_iJoWYS9JHFiaxFUps9kwiHG1I`
+                    Authorization: `Bearer ${token}`
                 }
             })
-            .then(response => {
-                console.log(response)
-                if (response.status === 200 && response.data !== "") {
-                    console.log(response)
-                    this.props.facilityRequest(
-                        response.data
-                    )
-                    console.log(this.props)
-                }
-            })
-
-            .catch(err => {
-                console.log(err)
-            })
+            if (response.data !== "") {
+                this.props.facilityRequest(
+                    response.data
+                )
+                this.setState({
+                    loading : false
+                })
+            }
+        } catch(err) {
+            alert('로그인이 필요합니다')
+            this.props.history.push('/admin/login')
+        }
     }
 
     render() {
         const { facilityReportList } = this.props;
+        const { loading } = this.state;
         const fixList = facilityReportList.map(data =>
             <FixList data = {data} key = {data.reportId} />
         )
         return (
-            <Fix fixList = {fixList}/>
+            <Fragment>
+                {
+                    loading && <Loading />
+                }
+                <Fix fixList = {fixList}/>
+            </Fragment>
         );
     }
 }

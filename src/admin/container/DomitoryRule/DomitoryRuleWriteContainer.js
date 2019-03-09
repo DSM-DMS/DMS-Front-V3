@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 
-import NoticeWrite from '../../component/Notice/NoticeWrite'
+import DomitoryRuleWrite from '../../component/DomitoryRule/DomitoryRuleWrite'
 
 import { noticePost } from '../../lib/notice'
 
 import {connect} from 'react-redux'
 
-class NoticeWriteContainer extends Component {
+class DomitoryRuleWriteContainer extends Component {
     componentDidMount = () => {
         if(this.props.login.isLogin === false) {
             alert('로그인이 필요합니다')
@@ -16,7 +16,7 @@ class NoticeWriteContainer extends Component {
 
     state = {
         title : "",
-        content : "",
+        content : ""
     }
 
     HandleChange = (e) => {
@@ -27,26 +27,25 @@ class NoticeWriteContainer extends Component {
 
     HandleAJAX = () => {
         const { title, content } = this.state;
-        noticePost('notice', title, content)
+        noticePost('rule', title, content)
         alert('글 작성에 성공했습니다!')
-        this.props.history.push('/admin/notice')
+        this.props.history.push('/admin/domitoryrule')
     }
 
     HandleCancle = () => {
         alert('글 작성을 취소했습니다')
-        this.props.history.push('/admin/notice')
+        this.props.history.push('/admin/domitoryrule')
     }
 
     render() {
         return (
-            <NoticeWrite HandleCancle = {this.HandleCancle} HandleAJAX = {this.HandleAJAX} HandleChange = {this.HandleChange}/>
+            <DomitoryRuleWrite HandleCancle = {this.HandleCancle} HandleAJAX = {this.HandleAJAX} HandleChange = {this.HandleChange}/>
         );
     }
 }
-
 
 const mapStateToProps = (state) => ({
     login : state.adminLogin
 })
 
-export default connect(mapStateToProps)(NoticeWriteContainer);
+export default connect(mapStateToProps)(DomitoryRuleWriteContainer);

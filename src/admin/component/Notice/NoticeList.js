@@ -17,14 +17,14 @@ const NoticeList = ({data, HandleDelete}) => {
             <div className = "notice--list list--author">
                 Admin
             </div>
-            <div className = "notice--list list--edit">
+            <Link className = "notice--list list--edit" to = {'/admin/notice/edit/' + data.noticeId}>
                 <div className = "icon--edit" />
-            </div>
+            </Link>
             <div onClick = {() => HandleDelete(id)} className = "notice--list list--delete">
                 <div className = "icon--delete" />   
             </div>
             <Link className = "notice--list list--preview" to = {'/admin/notice/' + data.noticeId}>
-                <div className = "icon--preview" />   
+                <div className = "icon--preview"/>   
             </Link>
         </div>
     );

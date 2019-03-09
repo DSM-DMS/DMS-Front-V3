@@ -1,4 +1,4 @@
-.notice-write {
+.domitory-rule-write {
     &--button {
         display: flex;
         align-items: center;
@@ -115,7 +115,6 @@
         }
 
         &--button {
-            cursor: pointer;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -128,6 +127,7 @@
             }
 
             box-shadow: 0 0.1875rem 0.375rem 0 rgba(0, 0, 0, 0.16);
+            cursor: pointer;
 
             & + & {
                 margin-left: 1.25rem;

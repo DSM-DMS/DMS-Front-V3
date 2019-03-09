@@ -1,0 +1,190 @@
+.admin-login {
+    &--wrapper {
+        display: flex;
+        flex-direction: column;
+        width: 100vw;
+        height: 100vh;
+        background-image: linear-gradient(to right, #0a9395, #099394 20%, #099293 31%, #099294 42%, #099394 51%, #099394 55%, #0c9a9b 64%, #0e9e9f 72%, #12a6a7 80%, #14abab);
+    }
+
+    &--header {
+        &--wrapper {
+            width: 100%;
+            height: 3.875rem;
+            padding-left: 10.4375rem;
+            padding-top: 2rem;
+        }
+
+        &--icon--wrapper {
+            width: 9.6875rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        &--icon {
+            width: 3.875rem;
+        }
+
+        &--text {
+            font : {
+                family: 'NanumSquareB';
+                size: 2rem;
+            }
+            color: white;
+        }
+    }
+
+    &--content {
+        &--wrapper {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: calc(100% - 47.975rem);
+            height: calc(100% - 10.56875rem);
+            padding-top: 1rem;
+            padding-left: 23.9875rem;
+            padding-right: 23.9875rem;
+            padding-bottom: 3.69375rem;
+        }
+
+        &--image {
+            height: 49.9375rem;
+        }
+
+        &--card {
+            &--footer {
+                &--wrapper {
+                    position: absolute;
+                    width: 28.9rem;
+                    height: 2.921875rem;
+                    background: #e0e0e0;
+                    border-bottom-left-radius: 2.5rem;
+                    border-bottom-right-radius: 2.5rem;
+                    bottom: 0;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                }
+
+                &--text {
+                    color: #ffffff;
+                    font : {
+                        size: 0.6375rem;
+                        family: 'NanumSquareEB';
+                    }
+                }
+            }
+
+            &--wrapper {
+                position: relative;
+                display: flex;
+                flex-direction: column;
+                height: 43rem;
+                width: 28.9rem;
+                background: #f3f3f3;
+                box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
+                border-radius: 2.5rem;
+            }
+
+            &--logo {
+                &--image {
+                    width: 4.35625rem;
+                }
+
+                &--text {
+                    font : {
+                        size: 1.9125rem;
+                        family: 'NanumSquareEB';
+                    }
+                    color: #19b6b6;
+                }
+
+                &--wrapper {
+                    display: flex;
+                    flex-direction: column;
+                    height: 7.775rem;
+                    justify-content: space-between;
+                    align-items: center;
+                    padding-bottom: 2.625rem;
+                    padding-top: 2rem;
+                }
+            }
+
+            &--input {
+                &--wrapper {
+                    height: 13.546875rem;
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    justify-content: space-between;
+                }
+                font : {
+                    family : 'NanumSquareB';
+                    size : 1.275rem; 
+                }
+                padding-left: 1.859375rem;
+                padding-right: 1.859375rem;
+                height: 3.134375rem;
+                border: 0.265625rem solid #e0e0e0;
+                border-radius: 0.371875rem;
+                width: 18.540625rem;
+                color: #000000;
+
+                &::placeholder {
+                    color: #e0e0e0;
+                }                
+
+                &:focus {
+                    border: 0.265625rem solid #19b6b6;
+                    color: #19b6b6;
+                    outline-offset: none;
+                    outline: none;
+                }
+
+                &:focus::placeholder {
+                    color: #19b6b6;
+                }
+
+                &[type = password] {
+                    color: #000000;
+                    font : {
+                        family : arial;
+                    }
+                }
+
+                &[type = password]::placeholder{
+                    font : {
+                        family : 'NanumSquareB';
+                    }
+                }
+
+                &[type = password]:focus{
+                    font : {
+                        family : arial;
+                    }
+                }
+
+                &[type = password]:focus::placeholder {
+                    font : {
+                        family : 'NanumSquareB';
+                    }
+                }
+            }
+
+            &--button {     
+                height: 3.790625rem;
+                border: none;
+                border-radius: 0.371875rem;
+                width: 22.790625rem;
+                color: #ffffff;
+                cursor: pointer;
+
+                font : {
+                    family: 'NanumSquareB';
+                    size: 1.275rem;
+                }
+            }
+        }
+    }
+}

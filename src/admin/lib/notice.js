@@ -1,9 +1,10 @@
 import axios from 'axios'
+import { getCookie } from '../../lib/cookie'
 
-const url = 'http://ec2.istruly.sexy:5001/notice'
+const url = 'https://dms-admin.istruly.sexy/notice'
 
 export function noticePost (type, title, content) {
-    console.log(type, title)
+    const token = getCookie('JWT');
     axios
         .post(`${url}/${type}`, {
             title : title,
@@ -11,7 +12,7 @@ export function noticePost (type, title, content) {
         },
         {
             headers : {
-                Authorization: "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1NTA2OTI5MjcsIm5iZiI6MTU1MDY5MjkyNywianRpIjoiNjEzZGM5MWUtYWQ0NS00NjYzLWFjNGMtZjZmNDZmZTE5N2ZjIiwiZXhwIjoxNTUwNjkzODI3LCJpZGVudGl0eSI6InRlc3QiLCJmcmVzaCI6ZmFsc2UsInR5cGUiOiJhY2Nlc3MifQ.l9kFIecok1A-TAHtUY2dhoh4CuSth6YmuOOClLe6rZ4"
+                Authorization: `Bearer ${token}`
             }
         }
         )
@@ -28,29 +29,47 @@ export function noticePost (type, title, content) {
 }
 
 export function noticeGet (type) {
+    const token = getCookie('JWT');
     return axios
         .get(`${url}/${type}`, {
             headers : {
-                Authorization: "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1NTA2OTI5MjcsIm5iZiI6MTU1MDY5MjkyNywianRpIjoiNjEzZGM5MWUtYWQ0NS00NjYzLWFjNGMtZjZmNDZmZTE5N2ZjIiwiZXhwIjoxNTUwNjkzODI3LCJpZGVudGl0eSI6InRlc3QiLCJmcmVzaCI6ZmFsc2UsInR5cGUiOiJhY2Nlc3MifQ.l9kFIecok1A-TAHtUY2dhoh4CuSth6YmuOOClLe6rZ4"
+                Authorization: `Bearer ${token}`
             }
         })
 }
 
 export function noticeDelete (type, id) {
+    const token = getCookie('JWT');
     return axios
         .delete(`${url}/${type}/${id}`, 
         {
             headers : {
-                Authorization: "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1NTA2OTI5MjcsIm5iZiI6MTU1MDY5MjkyNywianRpIjoiNjEzZGM5MWUtYWQ0NS00NjYzLWFjNGMtZjZmNDZmZTE5N2ZjIiwiZXhwIjoxNTUwNjkzODI3LCJpZGVudGl0eSI6InRlc3QiLCJmcmVzaCI6ZmFsc2UsInR5cGUiOiJhY2Nlc3MifQ.l9kFIecok1A-TAHtUY2dhoh4CuSth6YmuOOClLe6rZ4"
+                Authorization: `Bearer ${token}`
             }
         })
 }
 
 export function noticeContentGet (type, id) {
+    const token = getCookie('JWT');
     return axios
     .get(`${url}/${type}/${id}`, {
         headers : {
-            Authorization: "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1NTA2OTM0MzMsIm5iZiI6MTU1MDY5MzQzMywianRpIjoiMzZiMzI5MmItZTIzZS00YTMxLTliMWEtM2U5OGIyM2Q1MjMyIiwiZXhwIjoxNTUwNjk0MzMzLCJpZGVudGl0eSI6InRlc3QiLCJmcmVzaCI6ZmFsc2UsInR5cGUiOiJhY2Nlc3MifQ.hVmSaJeWre-Q4eICLvr5X7Z9rtrkr2O_TOJ63FFNsg4"
+            Authorization: `Bearer ${token}`
         }
     })
+}
+
+export function noticePatch (type, id, title, content) {
+    const token = getCookie('JWT');
+    return axios
+    .patch(`${url}/${type}/${id}`,  {
+        title : title,
+        content : content,
+    },
+    {
+        headers : {
+            Authorization: `Bearer ${token}`
+        }
+    }
+    )
 }

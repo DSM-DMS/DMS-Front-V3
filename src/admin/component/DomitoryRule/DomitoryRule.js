@@ -1,16 +1,18 @@
 import React from 'react';
+import { Link } from 'react-router-dom'
 
 import './DomitoryRule.scss'
 
-import Woman from '../../../assets/illust/admin-1.png'
+import Woman from '../../../assets/illust/woman2.png'
 
-const DomitoryRule = ({postList}) => {
+const DomitoryRule = ({List}) => {
     return (
         <React.Fragment>
             <div className = "domitory-rule--button--wrapper">
                 <div className = "domitory-rule--button--detail domitory-rule">
                     <div className = "domitory-rule--button">기숙사규칙</div>
-                    <img src = {Woman} alt = "Domitory_Rule" className = "domitory-rule--button--illust"/>
+                    <Link to = "/admin/domitoryrule/write" style = {{opacity: '0.4'}} className = "domitory-rule--button">글작성</Link>
+                    <img src = {Woman} alt = "domitory-rule" className = "domitory-rule--button--illust"/>
                 </div>
             </div>
             <div className = "domitory-rule--wrapper">
@@ -35,7 +37,7 @@ const DomitoryRule = ({postList}) => {
                     </div>
                 </div>
                 <div className = "domitory-rule--content--wrapper">
-                    {postList}
+                    {List}
                 </div>
             </div>
         </React.Fragment>

@@ -1,4 +1,4 @@
-.domitory-rule {
+.goingout {
     &--button {
         display: flex;
         align-items: center;
@@ -28,9 +28,9 @@
 
         &--illust {
             position: absolute;
-            width: 3.8125rem;
-            left: 26.75rem;
-            top: -2.90625rem;
+            width: 9.1875rem;
+            bottom: 2.7rem;
+            left: 2rem;
         }
     }
 
@@ -45,7 +45,10 @@
         z-index: 3;
         width: calc(100% - 23.25rem);
         height: 19.025rem;
-        padding: 8.8125rem 11.625rem;
+        padding-top: 5.5rem;
+        padding-bottom: 12.125rem;
+        padding-left: 11.625rem;
+        padding-right: 11.625rem;
         background-color: #ffffff;
         border-radius: 1.124rem;
     }
@@ -82,28 +85,28 @@
     }
 }
 
-.content {
+.goingout--header--content.content {
     &--number {
-        width: 3.75rem;
-    }
-
-    &--title {
-        width: 20.875rem;
-    }
-
-    &--author {
         width: 8.125rem;
     }
 
-    &--edit {
+    &--name {
+        width: 8.125rem;
+    }
+
+    &--schoolnumber {
+        width: 8.125rem;
+    }
+
+    &--time {
+        width: 14.125rem;
+    }
+
+    &--check {
         width: 8.125rem;
     }
 
     &--delete {
-        width: 8.125rem;
-    }
-
-    &--preview {
         width: 8.125rem;
     }
 

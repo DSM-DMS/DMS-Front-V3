@@ -57,6 +57,7 @@
         height: 1.75rem;
         background-image: url('../../../assets/icon/ic_edit.png');
         background-size: contain;
+        cursor: pointer;
     }
 
     &--preview {
@@ -64,6 +65,7 @@
         height: 1.75rem;
         background-image: url('../../../assets/icon/ic_search.png');
         background-size: contain;
+        cursor: pointer;
     }
 
     &--delete {
@@ -71,5 +73,6 @@
         height: 1.75rem;
         background-image: url('../../../assets/icon/ic_trash.png');
         background-size: contain;
+        cursor: pointer;
     }
 }

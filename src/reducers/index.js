@@ -5,6 +5,7 @@ import section from './section';
 import domitoryrule from './domitoryRule';
 import modal from './modal';
 import facility from './facilityReport';
+import adminLogin from './adminLogin';
 
 
 const dmsApp = (history) => combineReducers({
@@ -15,6 +16,7 @@ const dmsApp = (history) => combineReducers({
     domitoryrule,
     modal,
     facility,
+    adminLogin,
     router: connectRouter(history)
 })
 
