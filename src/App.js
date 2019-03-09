@@ -13,8 +13,6 @@ import StudentDefaultLayout from './student/common/DefaultLayout/DefaultLayout';
 import MyPageContainer from './student/container/MyPage/MyPageContainer';
 import GuideMainContainer from './student/container/Guide/GuideMainContainer';
 import DevelopersContainer from './student/container/Developers/DevelopersContainer';
-import QnaContainer from './admin/container/Qna/QnaContainer'
-import QnaWriteContainer from './admin/container/Qna/QnaWriteContainer'
 import FixContainer from './admin/container/Fix/FixContainer';
 import FixDetailContainer from './admin/container/Fix/FixDetailContainer';
 import SurveyContainer from './admin/container/Survey/SurveyContainer';
@@ -159,7 +157,7 @@ class App extends Component {
           <Route
             path="/admin/:uri?"
             render={() => (
-              <CommonDesign history = {history}>
+              <CommonDesign>
                   <Switch>
                     <Route path="/admin/domitoryrule" component={DomitoryRuleContainer} exact/>
                     <Route path="/admin/domitoryrule/write" component={DomitoryRuleWriteContainer} exact />
@@ -169,8 +167,6 @@ class App extends Component {
                     <Route path="/admin/notice/write" component={NoticeWriteContainer} exact/>
                     <Route path="/admin/notice/edit/:postId" component={NoticeEditContainer} exact />
                     <Route path="/admin/notice/:postId" component={ShowNoticeContainer}/>
-                    <Route path="/admin/qna" component={QnaContainer} exact/>
-                    <Route path="/admin/qna/write" component={QnaWriteContainer} exact/>
                     <Route path="/admin/fix" component={FixContainer} exact/>
                     <Route path="/admin/fix/:uri" component={FixDetailContainer} exact/>
                     <Route path="/admin/goingout" component={GoingOutContainer} exact/>

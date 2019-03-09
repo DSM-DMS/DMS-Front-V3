@@ -82,20 +82,6 @@ export const DOMITORY_RULE_LIST_ADD = 'DOMITORY_RULE_LIST_ADD';
 export const FACILITY_REQUEST = 'FACILITY_REQUEST'
 export const LOGIN = 'LOGIN'
 
-export function increment(value) {
-    return {
-        type: INCREMENT,
-        index: value
-    };
-} // 22
-
-export function setDiff(value) {
-    return {
-        type: SET_DIFF,
-        diff: value
-    }
-} // dispatch 할때 인자를 호출하면
-
 export function facilityRequest(responseData) {
     return {
         type: FACILITY_REQUEST,
