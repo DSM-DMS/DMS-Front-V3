@@ -22,7 +22,7 @@ export default class ExtensionApplyContainer extends Component {
   typeList = [{ content: '11시', val: '11' }, { content: '12시', val: '12' }];
   state = {
     refreshFlag: false
-  }
+  };
   onCancel = param => {
     console.log(param);
     deleteExtension(getCookie('JWT'), param.extension)
@@ -50,7 +50,7 @@ export default class ExtensionApplyContainer extends Component {
         }
       });
   };
-  
+
   afterRefresh = () => {
     this.setState({
       refreshFlag: false
@@ -93,6 +93,7 @@ export default class ExtensionApplyContainer extends Component {
         menuList={this.menuList}
         typeList={this.typeList}
         refreshFlag={this.state.refreshFlag}
+        afterRefresh={this.afterRefresh}
         onCancel={this.onCancel}
         onApply={this.onApply}
       />
