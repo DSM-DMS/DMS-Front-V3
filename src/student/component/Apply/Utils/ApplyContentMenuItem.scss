@@ -8,6 +8,9 @@
   align-items: center;
   &.disable {
     opacity: 0.3;
+    &.selected {
+      opacity: 1;
+    }
   }
   &.selected {
     background: #19b6b6;
