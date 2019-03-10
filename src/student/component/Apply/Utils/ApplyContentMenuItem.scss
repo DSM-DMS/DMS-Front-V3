@@ -6,8 +6,8 @@
   margin-bottom: 1.25rem;
   display: flex;
   align-items: center;
-  &.disable > span {
-    color: rgba($color: #233539, $alpha: 0.8);
+  &.disable {
+    opacity: 0.3;
   }
   &.selected {
     background: #19b6b6;
