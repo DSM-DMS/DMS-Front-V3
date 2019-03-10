@@ -8,6 +8,7 @@
         background-color: #ffffff;
         border-radius: 2.5rem;
         color: #10a3a4;
+        text-decoration: none;
 
         & + & {
             margin-left: 0.75rem;
@@ -114,6 +115,7 @@
         }
 
         &--button {
+            cursor: pointer;
             display: flex;
             align-items: center;
             justify-content: center;

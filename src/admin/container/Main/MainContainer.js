@@ -1,24 +1,26 @@
 import React, { Component } from 'react';
 import Main from '../../component/Main/Main';
 import MainSelectList from '../../component/Main/MainSelectList'
+import axios from 'axios';
 
 class MainContainer extends Component {
     
     state = {
         select: '다운로드 할 사항을 선택해주세요.',
+        selectKind: null,
         selected: false,
         selectListState: false,
         selectList: [
             {
-                kind: 'apply',
+                kind: 'stay',
                 title: '잔류신청'
             },
             {
-                kind: '11extension',
+                kind: 'extenstion/11',
                 title: '11시 연장'
             },
             {
-                kind: '12extension',
+                kind: 'extension/12',
                 title: '12시 연장'
             },
             {
@@ -59,20 +61,41 @@ class MainContainer extends Component {
     onDownload = () => {
         switch (this.state.select) {
             case '잔류신청':
-                console.log('잔류신청')
+                this.setState({
+                    selectKind: this.state.selectList[0].kind
+                })
                 break
             case '11시 연장':
-                console.log('11시 연장')
+            this.setState({
+                    selectKind: this.state.selectList[1].kind
+                })
                 break
             case '12시 연장':
-                console.log('12시 연장')
+            this.setState({
+                    selectKind: this.state.selectList[2].kind
+                })
                 break
             case '외출 신청':
-                console.log('외출 신청')
+            this.setState({
+                    selectKind: this.state.selectList[3].kind
+                })
                 break
             default :
                 break
         }
+
+        axios
+            .get(`http://ec2.istruly.sexy:5001/excel/${this.state.selectKind}`, {
+        headers: { Authorization: `Bearer `},
+      })
+      .then(response => {
+        if (response.status === 200) {
+            console.log(response)
+        }
+      })
+      .catch(err => {
+        console.log(err);
+      });
     }
 
     render() {

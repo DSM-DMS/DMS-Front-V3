@@ -8,36 +8,39 @@ export const getExtensionMap = (time, classNum) => {
 export const getMyExtensionInfo = (token, time) => {
   return axios.get(`${rootUrl}/extension/${time}`, {
     headers: {
-      Authorization: `Bearer ${token}`
-    }
+      Authorization: `Bearer ${token}`,
+    },
   });
 };
 
 export const deleteExtension = (token, time) => {
   return axios.delete(`${rootUrl}/extension/${time}`, {
     headers: {
-      Authorization: `Bearer ${token}`
-    }
+      Authorization: `Bearer ${token}`,
+    },
   });
 };
 
 export const applyExtension = (token, param) => {
-  return axios.post(`${rootUrl}/extension/${param.time}`,{
-    classNum: param.class+1,
-    seatNum: param.seat
-  },
-   {
-    headers: {
-      Authorization: `Bearer ${token}`
-    }
-  });
+  return axios.post(
+    `${rootUrl}/extension/${param.time}`,
+    {
+      classNum: param.class + 1,
+      seatNum: param.seat,
+    },
+    {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    },
+  );
 };
 
 export const getGoingoutInform = token => {
   return axios.get(`${rootUrl}/goingout `, {
     headers: {
-      Authorization: `Bearer ${token}`
-    }
+      Authorization: `Bearer ${token}`,
+    },
   });
 };
 
@@ -46,11 +49,11 @@ export const deleteGoingoutInform = (token, id) => {
     method: 'DELETE',
     url: `${rootUrl}/goingout`,
     data: {
-      applyId: id
+      applyId: id,
     },
     headers: {
-      Authorization: `Bearer ${token}`
-    }
+      Authorization: `Bearer ${token}`,
+    },
   });
 };
 
@@ -60,21 +63,21 @@ export const postGoingoutInform = (token, goOutDate, returnDate, reason) => {
     {
       goOutDate,
       returnDate,
-      reason
+      reason,
     },
     {
       headers: {
-        Authorization: `Bearer ${token}`
-      }
-    }
+        Authorization: `Bearer ${token}`,
+      },
+    },
   );
 };
 
 export const getMusicList = token => {
   return axios.get(`${rootUrl}/music`, {
     headers: {
-      Authorization: `Bearer ${token}`
-    }
+      Authorization: `Bearer ${token}`,
+    },
   });
 };
 
@@ -84,21 +87,21 @@ export const submitMusic = (token, day, singer, musicName) => {
     {
       day,
       singer,
-      musicName
+      musicName,
     },
     {
       headers: {
-        Authorization: `Bearer ${token}`
-      }
-    }
+        Authorization: `Bearer ${token}`,
+      },
+    },
   );
 };
 
 export const getStayInform = token => {
   return axios.get(`${rootUrl}/stay`, {
     headers: {
-      Authorization: `Bearer ${token}`
-    }
+      Authorization: `Bearer ${token}`,
+    },
   });
 };
 
@@ -106,12 +109,12 @@ export const submitStayInform = (token, value) => {
   return axios.post(
     `${rootUrl}/stay`,
     {
-      value
+      value,
     },
     {
       headers: {
-        Authorization: `Bearer ${token}`
-      }
-    }
+        Authorization: `Bearer ${token}`,
+      },
+    },
   );
 };

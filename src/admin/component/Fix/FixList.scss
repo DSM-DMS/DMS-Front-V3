@@ -1,0 +1,102 @@
+.fix {
+    &--list {
+
+        &--footer {
+            &--wrapper {
+                padding-right: 1.5rem;
+                padding-left: 1.5rem;
+                height: 3.40625rem;
+                box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
+                background-color: #0a9395;
+                border-bottom-left-radius: 1.125rem;
+                border-bottom-right-radius: 1.125rem;
+                color: #ffffff;
+                display: flex;
+                justify-content: flex-end;
+                align-items: center;
+
+                font: {
+                    size: 1.3rem;
+                    family: 'NanumSquareR';
+                }
+            }
+        }
+
+        &--content--wrapper {
+            height: 7.15625rem;
+            padding-right: 1.5rem;
+            padding-left: 1.5rem;
+            color: #777777;
+            font : {
+                size: 1.2rem;
+                family: 'NanumSquareR';
+            }
+        }
+
+        &--wrapper {
+            margin-right: 3rem;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
+            border-radius: 1.125rem;
+    
+            font : {
+                size: 1.25rem;
+                family: 'NanumSquareB';
+            }       
+            width: 20.5rem;
+            height: 11.625rem;
+            color: #000000;
+            text-decoration: none;
+
+            &:nth-child(n+4) {
+                margin-top: 3.5rem;
+            }
+        }
+        &--header {
+            &--wrapper {
+                margin-top: 1.75rem;
+                margin-bottom: 1.125rem;
+                padding-right: 1.5rem;
+                padding-left: 1.5rem;
+                display: flex;
+                justify-content: space-between;
+                font : {
+                    size: 2rem;
+                    family: 'NanumSquareB';
+                }
+            }
+
+            &--content {
+                &--wrapper {
+                    display: flex;
+                    width: 4.5rem;
+                    justify-content: space-between;
+                }
+            }
+        }
+    }
+}
+
+.icon {
+    &--edit {
+        width: 1.75rem;
+        height: 1.75rem;
+        background-image: url('../../../assets/icon/ic_edit.png');
+        background-size: contain;
+    }
+
+    &--preview {
+        width: 1.75rem;
+        height: 1.75rem;
+        background-image: url('../../../assets/icon/ic_search.png');
+        background-size: cover;
+    }
+
+    &--delete {
+        width: 1.75rem;
+        height: 1.75rem;
+        background-image: url('../../../assets/icon/ic_trash.png');
+        background-size: cover;
+    }
+}

@@ -38,3 +38,28 @@
         background-color: #ebebeb;
     }
 }
+
+.admin_header {
+    &--goback {
+        &--wrapper {
+            width: 7.175rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        &--text {
+            font : {
+                size: 1.3125rem;
+                family: 'NanumSquareR';
+            }
+            color: white;
+        }
+
+        &--icon {
+            width: 1.75rem;
+            height: 1.75rem;
+        }
+    }
+}

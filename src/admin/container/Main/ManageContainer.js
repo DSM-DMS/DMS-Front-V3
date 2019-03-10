@@ -12,14 +12,9 @@ class ManagerContainer extends Component {
                 description: '공지사항을 작성, 관리합니다.'
             },
             {
-                kind: 'domitoryRule',
+                kind: 'domitoryrule',
                 title: '기숙사 규칙',
                 description: '기숙사 규칙을 작성, 관리합니다.'
-            },
-            {
-                kind: 'question',
-                title: '자주하는 질문',
-                description: '자주하는 질문을 작성, 관리합니다.'
             },
             {
                 kind: 'fix',
