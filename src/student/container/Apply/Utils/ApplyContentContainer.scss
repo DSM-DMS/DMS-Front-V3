@@ -16,10 +16,10 @@
 .apply--content--title {
   font-family: NanumSquareEB;
   font-size: 2.25rem;
+  line-height: 3.125rem;
   &--wrapper {
     position: relative;
     height: 3.125rem;
-    line-height: 3.125rem;
   }
 }
 
@@ -42,6 +42,7 @@
 
   &.second {
     position: relative;
+    height: 1rem;
     &::before {
       position: absolute;
       left: 0;
