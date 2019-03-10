@@ -30,9 +30,8 @@ export default class StayApplyContainer extends Component {
     refreshFlag: false
   };
 
-  onApply = stayVal => {
-    console.log(stayVal);
-    submitStayInform(getCookie('JWT'), stayVal + 1)
+  onApply = ({ apply }) => {
+    submitStayInform(getCookie('JWT'), apply + 1)
       .then(res => {
         switch (res.status) {
           case 201:
