@@ -34,6 +34,9 @@ const GoingOut = ({goingoutList}) => {
                         삭제
                     </div>
                 </div>
+                <div className = "goingout--content--wrapper">
+                      
+                </div>
             </div>
         </React.Fragment>
     );
