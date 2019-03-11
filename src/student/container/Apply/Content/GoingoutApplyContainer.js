@@ -47,8 +47,8 @@ export default class GoingoutApplyContainer extends Component {
     const returnDate = `${year}-${this.addZero(month)}-${this.addZero(
       day
     )} ${this.addZero(returnHour)}:${this.addZero(returnMin)}`;
-    postGoingoutInform(getCookie('JWT'), gooutDate, returnDate, reason).then(
-      response => {
+    postGoingoutInform(getCookie('JWT'), gooutDate, returnDate, reason)
+      .then(response => {
         switch (response.status) {
           case 201:
             alert('외출 신청 성공');
@@ -61,8 +61,15 @@ export default class GoingoutApplyContainer extends Component {
             break;
           default:
         }
-      }
-    );
+      })
+      .catch(e => {
+        switch (e.response.status) {
+          case 403:
+            alert('권한이 없습니다.');
+            break;
+          default:
+        }
+      });
   };
 
   addZero = num => {

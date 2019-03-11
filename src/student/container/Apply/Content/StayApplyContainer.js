@@ -30,14 +30,21 @@ export default class StayApplyContainer extends Component {
     refreshFlag: false
   };
 
-  onApply = stayVal => {
-    console.log(stayVal);
-    submitStayInform(getCookie('JWT'), stayVal + 1)
-      .then(() => {
-        alert('잔류신청에 성공했습니다.');
-        this.setState({
-          refreshFlag: true
-        });
+  onApply = ({ apply }) => {
+    submitStayInform(getCookie('JWT'), apply + 1)
+      .then(res => {
+        switch (res.status) {
+          case 201:
+            alert('잔류신청에 성공했습니다.');
+            this.setState({
+              refreshFlag: true
+            });
+            break;
+          case 204:
+            alert('잔류신청 시간이 아닙니다.');
+            break;
+          default:
+        }
       })
       .catch(e => {
         alert('잔류신청을 하지 못했습니다.');

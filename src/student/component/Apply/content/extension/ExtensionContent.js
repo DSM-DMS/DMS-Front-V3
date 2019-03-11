@@ -97,8 +97,13 @@ export default class ExtensionContent extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    const { time, classNum } = nextProps;
+    const { time, classNum, refreshFlag } = nextProps;
+    console.log(time, classNum);
     if(time !== this.props.time || classNum !== this.props.classNum) {
+      this.props.clearSeat();
+      this.setMapInfo(time, classNum + 1);
+    }
+    if(refreshFlag) {
       this.props.clearSeat();
       this.setMapInfo(time, classNum + 1);
     }
