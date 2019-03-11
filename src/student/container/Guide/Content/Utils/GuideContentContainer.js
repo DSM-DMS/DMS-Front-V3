@@ -3,10 +3,8 @@ import React, { Component } from 'react';
 import {
   getNoticeList,
   getRuleList,
-  getFaqList,
   getNoticeDetailPost,
-  getRuleDetailPost,
-  getFaqDetailPost
+  getRuleDetailPost
 } from '../../../../../lib/guideAPI';
 
 import GuideContentPostListContainer from './GuideContentPostListContainer';
@@ -30,8 +28,7 @@ export default class GuideContentContainer extends Component {
           ],
           typeList: [
             { content: '공지사항', val: 'notice' },
-            { content: '기숙사규정', val: 'rule' },
-            { content: '자주하는 질문', val: 'faq' }
+            { content: '기숙사규정', val: 'rule' }
           ]
         },
         rule: {
@@ -45,23 +42,7 @@ export default class GuideContentContainer extends Component {
           ],
           typeList: [
             { content: '공지사항', val: 'notice' },
-            { content: '기숙사규정', val: 'rule' },
-            { content: '자주하는 질문', val: 'faq' }
-          ]
-        },
-        faq: {
-          title: '자주하는 질문',
-          menuTitle: '공지목록',
-          menuList: [
-            { content: '금', detail: '금요귀가', val: 0 },
-            { content: '토', detail: '토요귀가', val: 1 },
-            { content: '토', detail: '토요귀사', val: 2 },
-            { content: '잔류', detail: '잔류', val: 3 }
-          ],
-          typeList: [
-            { content: '공지사항', val: 'notice' },
-            { content: '기숙사규정', val: 'rule' },
-            { content: '자주하는 질문', val: 'faq' }
+            { content: '기숙사규정', val: 'rule' }
           ]
         }
       },
@@ -69,7 +50,6 @@ export default class GuideContentContainer extends Component {
       selectedMenu: {
         notice: '',
         guide: '',
-        faq: ''
       },
       isOnDetail: false,
       loading: false,
@@ -95,9 +75,6 @@ export default class GuideContentContainer extends Component {
         case 'rule':
           this.getRuleList();
           break;
-        case 'faq':
-          this.getFaqList();
-          break;
         default:
       }
     } catch (e) {
@@ -122,9 +99,6 @@ export default class GuideContentContainer extends Component {
           break;
         case 'rule':
           response = await getRuleDetailPost(id);
-          break;
-        case 'faq':
-          response = await getFaqDetailPost(id);
           break;
         default:
       }
@@ -190,32 +164,6 @@ export default class GuideContentContainer extends Component {
     });
     if (ruleList.length > 0) {
       this.setDetailPost(ruleList[0].id);
-    }
-  };
-
-  getFaqList = async () => {
-    const response = await getFaqList();
-    const faqList = response.data.qnaList;
-
-    await this.setState({
-      guidePostList: faqList.map((post, i) => {
-        if (i === 0) {
-          this.setState({
-            selectedMenu: {
-              ...this.state.selectedMenu,
-              faq: post.id
-            }
-          });
-        }
-        return {
-          content: i,
-          detail: post.title,
-          val: post.id
-        };
-      })
-    });
-    if (faqList.length > 0) {
-      this.setDetailPost(faqList[0].id);
     }
   };
 
