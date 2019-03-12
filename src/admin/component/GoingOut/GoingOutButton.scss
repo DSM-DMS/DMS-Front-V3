@@ -1,0 +1,39 @@
+.admin-goingout {
+    &--button {
+        &--wrapper {
+            display: flex;
+            z-index: 10;
+            width: 5.259375rem;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        &--text {
+            color: #10a3a4;
+            font : {
+                family : 'NanumSquareB';
+                size: 1.275rem;
+            }
+        }
+
+        width: 1.540625rem;
+        display: none;
+
+        & + div {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 1.415625rem;
+            height: 1.415625rem;
+            border: 0.0625rem solid #707070;
+            border-radius: 50%;
+        }
+
+        &:checked + div div {
+            width: 1rem;
+            height: 1rem;
+            background-color: #10a3a4;
+            border-radius: 50%;
+        }
+    }
+}

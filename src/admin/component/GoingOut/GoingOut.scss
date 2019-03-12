@@ -1,4 +1,10 @@
 .goingout {
+    &--buttons {
+        &--wrapper {
+            display: flex;
+        }
+    }
+
     &--button {
         display: flex;
         align-items: center;
@@ -78,9 +84,8 @@
     &--content {
         &--wrapper {
             width: 100%;
-            height: calc(100% - 2.6875rem);
-            overflow-y: scroll;
-            margin-top: 2.5rem;
+            height: 12rem;
+            margin-top: 1.5rem;
         }
     }
 }

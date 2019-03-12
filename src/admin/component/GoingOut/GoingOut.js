@@ -4,7 +4,7 @@ import './GoingOut.scss'
 
 import Woman from '../../../assets/illust/admin-1.png'
 
-const GoingOut = ({goingoutList}) => {
+const GoingOut = ({goingoutList, data, selectData}) => {
     return (
         <React.Fragment>
             <div className = "goingout--button--wrapper">
@@ -35,7 +35,16 @@ const GoingOut = ({goingoutList}) => {
                     </div>
                 </div>
                 <div className = "goingout--content--wrapper">
-                      
+                </div>
+                <div className = "goingout--footer--wrapper">
+                    <div className = "goingout--buttons--wrapper">
+                            {data}  
+                    </div>
+                    <div className = "goingout--selected--list--wrapper">
+                        <div className = "goingout--selected--wrapper">
+                            {selectData}
+                        </div>
+                    </div>
                 </div>
             </div>
         </React.Fragment>
