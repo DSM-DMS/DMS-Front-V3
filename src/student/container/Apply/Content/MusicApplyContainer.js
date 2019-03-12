@@ -22,7 +22,7 @@ export default class MusicApplyContainer extends Component {
   onCancel = () => {};
 
   onApply = ({ day, singer, title }) => {
-    if(singer === '' || title === '') {
+    if (singer === '' || title === '') {
       alert('노래 제목 혹은 아티스트를 입력하지 않으셨습니다.');
       return;
     }
