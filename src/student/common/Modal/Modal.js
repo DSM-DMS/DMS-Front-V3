@@ -6,8 +6,11 @@ import './Modal.scss';
 
 const Login = ({ title, component, subTitle, link, setModal }) => {
   return (
-    <div className="modal--wrapper">
-      <div className="modal--inner--wrapper">
+    <div className="modal--wrapper" onClick={() => setModal('')}>
+      <div
+        className="modal--inner--wrapper"
+        onClick={event => event.stopPropagation()}
+      >
         <img
           src={exitImg}
           alt="exit"
