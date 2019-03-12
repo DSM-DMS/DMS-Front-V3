@@ -48,7 +48,7 @@ export default class ApplyContentContainer extends Component {
           { content: '수', detail: '신청가능', val: 'wed', available: true },
           { content: '목', detail: '신청가능', val: 'thu', available: true },
           { content: '금', detail: '신청가능', val: 'fri', available: true },
-          { content: '리', detail: '기상음악 리스트' }
+          { content: '리', detail: '기상음악 리스트', val: 5 }
         ],
         typeList: []
       },
@@ -100,7 +100,9 @@ export default class ApplyContentContainer extends Component {
         ]
       });
     } catch (e) {
-      console.log(e);
+      this.setState({
+        extensionInfo: ['-', '-']
+      });
     }
   };
 
@@ -245,6 +247,22 @@ export default class ApplyContentContainer extends Component {
     }
   }
 
+  getDayIndex = day => {
+    switch (day) {
+      case 'mon':
+        return 1;
+      case 'tue':
+        return 2;
+      case 'wed':
+        return 3;
+      case 'thu':
+        return 4;
+      case 'fri':
+        return 5;
+      default:
+    }
+  };
+
   convertGoingoutInfotoContent = info => {
     return `${this.convertDemical(info.go_out_date.substr(5, 2))}일 \
     ${info.go_out_date.substr(11)} \
@@ -291,8 +309,8 @@ export default class ApplyContentContainer extends Component {
   clearSeat = () => {
     this.setState({
       selectedSeat: ''
-    })
-  }
+    });
+  };
 
   onChangeGoingoutApplication = e => {
     let value;
@@ -355,7 +373,14 @@ export default class ApplyContentContainer extends Component {
   }
 
   render() {
-    const { type, menuList, typeList, onCancel, onApply } = this.props;
+    const {
+      type,
+      menuList,
+      typeList,
+      onCancel,
+      onApply,
+      refreshFlag
+    } = this.props;
     const {
       contentInfo,
       selectedType,
@@ -398,7 +423,7 @@ export default class ApplyContentContainer extends Component {
         cancel: selectedMenu
       },
       music: {
-        apply: selectedMenu,
+        apply: this.getDayIndex(selectedMenu),
         cancel: selectedMenu
       }
     };
@@ -437,6 +462,7 @@ export default class ApplyContentContainer extends Component {
               clearSeat={this.clearSeat}
               onChangeGoingoutApplication={this.onChangeGoingoutApplication}
               goingoutApplication={goingoutApplication}
+              refreshFlag={refreshFlag}
             />
           </div>
         </div>
