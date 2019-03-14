@@ -2,9 +2,9 @@ import React from 'react';
 
 import './GoingOutList.scss'
 
-const GoingOutList = ({data}) => {
+const GoingOutList = ({onModal, data}) => {
     return (
-        <div className = "goingout--datalist--wrapper">
+        <div onClick = {() => {onModal(data.applyId)}} className = "goingout--datalist--wrapper">
             <div className = "goingout--datalist--content content--number">
                 {data.applyId}
             </div>

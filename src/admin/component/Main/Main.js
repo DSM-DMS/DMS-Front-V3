@@ -36,7 +36,7 @@ const Main = ({onDownload, select, selected, onSelectBoxClick, list, selectListS
                             </div>
                             <div className = "main--download--button--wrapper" onClick = {onDownload}>
                                 <img src = {Download} alt = "download_icon" className = "main--download--button--icon"/>
-                                <div className = "main--download--button--text">
+                                <div onClick = {onDownload} className = "main--download--button--text">
                                     Download
                                 </div>
                             </div>

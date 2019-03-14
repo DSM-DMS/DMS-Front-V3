@@ -64,6 +64,7 @@ class GointOutContainer extends Component {
     }
 
     HandleModal = (id) => {
+        console.log(id)
         const cookie = getCookie('JWT');
         axios.get(`https://dms-admin.strtuly.sexy/goingout/${id}`, {
             headers : {
@@ -74,6 +75,9 @@ class GointOutContainer extends Component {
             this.setState({
                 modalData : [...res.data]
             })
+        })
+        .catch(err => {
+            console.log(err)
         })
     }
 
@@ -153,8 +157,21 @@ class GointOutContainer extends Component {
     }
 
     HandleAllToggle = () => {
+        const cookie = getCookie('JWT');
         const data = this.state.checkList.map(data => {
             return { ...data, check : false}
+        })
+        const classNumber = this.FindCurrentClass(); 
+        axios.get(`https://dms-admin.istruly.sexy/goingout/0/${classNumber}`, {
+            responseType : 'arraybuffer',
+            headers : {
+                Authorization : `Bearer ${cookie}`
+            }
+        })
+        .then(res => {
+            this.setState({
+                goingOutList: [...res.data.reverse()]
+            })
         })
         this.setState({
             checkList : [
@@ -171,7 +188,7 @@ class GointOutContainer extends Component {
     }
 
     render() {
-        const { checkList, pageSize, curPage } = this.state;
+        const { checkList, pageSize, curPage, modalData } = this.state;
         const { selectList, selectState, selected, allcheck, goingOutList, modal } = this.state;
         const selectData = selectList.map(data => {
             return <GoingOutClassList HandleSelect = {this.HandleSelect} key = {data.kind} data = {data}>{data.kind}</GoingOutClassList>
@@ -182,7 +199,7 @@ class GointOutContainer extends Component {
         let page = (goingOutList.length / pageSize);
         if(goingOutList.length % pageSize > 0) page++;
         const goingOutData = goingOutList.slice((curPage-1)*6, curPage * 6).map(data => {
-            return <GoingOutList key = {data.applyId} data = {data}/>
+            return <GoingOutList onModal = {this.HandleModal} key = {data.applyId} data = {data}/>
         })
         let PageList = []
         for(let i = curPage; i <= page; i++) {
@@ -193,7 +210,7 @@ class GointOutContainer extends Component {
         }
         return (
             <Fragment>
-                <GoingOut modal = {modal} PageList = {PageList} goingOutData = {goingOutData} HandleAllToggle = {this.HandleAllToggle} AllCheck = {allcheck} HandleSelectToggle = {this.HandleSelectToggle} selected = {selected} selectState = {selectState} selectData = {selectData} data = {data}/>
+                <GoingOut modalData = {modalData} modal = {modal} PageList = {PageList} goingOutData = {goingOutData} HandleAllToggle = {this.HandleAllToggle} AllCheck = {allcheck} HandleSelectToggle = {this.HandleSelectToggle} selected = {selected} selectState = {selectState} selectData = {selectData} data = {data}/>
             </Fragment>
         );
     }

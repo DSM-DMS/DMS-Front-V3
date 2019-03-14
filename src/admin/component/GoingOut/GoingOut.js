@@ -9,7 +9,8 @@ const GoingOut = ({PageList, AllCheck, HandleAllToggle, HandleSelectToggle, sele
     return (
         <React.Fragment>
             <div className = "goingout--modal--wrapper">
-                
+                <div className = "goingout--modal">
+                </div>
             </div>
             <div className = "goingout--button--wrapper">
                 <div className = "goingout--button--detail goingout">

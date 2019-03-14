@@ -1,4 +1,21 @@
 .goingout {
+    &--modal {
+        &--wrapper {
+            position: fixed;
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        width: 38.8875rem;
+        height: 18.0625rem;
+        border-radius: 1rem;
+        background-color: #ffffff;
+        box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
+    }
+
     &--pagelist {
         &--wrapper {
             align-self: center;

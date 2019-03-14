@@ -4,7 +4,7 @@ import './MainSelectList.scss'
 const MainSelectList = ({selectData, onSelect}) => {
     return (
         <div className="download--list--element" id = {selectData.kind} onClick = {() => {
-            onSelect(selectData.title)
+            onSelect(selectData.title, selectData.kind)
         }}>{selectData.title}</div>
     )
 }
