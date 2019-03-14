@@ -1,10 +1,13 @@
 import React, { Component } from 'react'
+import { withRouter } from 'react-router-dom';
 
 import ApplyMenuContainer from './Menu/ApplyMenuContainer';
 import ExtensionApplyContainer from './Content/ExtensionApplyContainer'
 import GoingoutApplyContainer from './Content/GoingoutApplyContainer'
 import MusicApplyContainer from './Content/MusicApplyContainer'
 import StayApplyContainer from './Content/StayApplyContainer'
+
+import { getCookie } from '../../../lib/cookie'
 
 import './ApplyMainContainer.scss'
 
@@ -20,6 +23,15 @@ class ApplyMainContainer extends Component {
                 path:location.pathname
             })
         });
+    }
+
+    componentDidMount() {
+        const { history } = this.props;
+
+        if(!getCookie("JWT")) {
+            alert("로그인이 필요합니다.");
+            history.push("")
+        }
     }
 
     render() {
@@ -42,4 +54,4 @@ class ApplyMainContainer extends Component {
     }
 }
 
-export default ApplyMainContainer;
+export default withRouter(ApplyMainContainer);

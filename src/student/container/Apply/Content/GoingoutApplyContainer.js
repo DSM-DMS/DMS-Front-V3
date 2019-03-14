@@ -5,13 +5,13 @@ import './GoingoutApplyContainer.scss';
 import ApplyContentContainer from '../Utils/ApplyContentContainer';
 import {
   postGoingoutInform,
-  deleteGoingoutInform
+  deleteGoingoutInform,
 } from '../../../../lib/applyAPI';
 import { getCookie } from '../../../../lib/cookie';
 
 export default class GoingoutApplyContainer extends Component {
   state = {
-    refreshFlag: false
+    refreshFlag: false,
   };
 
   onCancel = id => {
@@ -21,7 +21,7 @@ export default class GoingoutApplyContainer extends Component {
         case 200:
           alert('외출 신청 취소 성공');
           this.setState({
-            refreshFlag: true
+            refreshFlag: true,
           });
           break;
         case 204:
@@ -39,15 +39,23 @@ export default class GoingoutApplyContainer extends Component {
     outMin,
     returnHour,
     returnMin,
-    reason
+    reason,
   }) => {
-    const gooutDate = `${year}-${this.addZero(month)}-${this.addZero(
-      day
-    )} ${this.addZero(outHour)}:${this.addZero(outMin)}`;
-    const returnDate = `${year}-${this.addZero(month)}-${this.addZero(
-      day
-    )} ${this.addZero(returnHour)}:${this.addZero(returnMin)}`;
-    postGoingoutInform(getCookie('JWT'), gooutDate, returnDate, reason)
+    // const gooutDate = `${year}-${this.addZero(month)}-${this.addZero(
+    //   day
+    // )} ${this.addZero(outHour)}:${this.addZero(outMin)}`;
+    // const returnDate = `${year}-${this.addZero(month)}-${this.addZero(
+    //   day
+    // )} ${this.addZero(returnHour)}:${this.addZero(returnMin)}`;
+    const dateForm = `${this.addZero(month)}-${this.addZero(
+      day,
+    )} ${this.addZero(outHour)}:${this.addZero(outMin)} ~ ${this.addZero(
+      returnHour,
+    )}:${this.addZero(returnMin)}`;
+    alert('외출 신청 기능이 미완성입니다.\n추후 공지 후 다시 이용해주세요.');
+    // postGoingoutInform(getCookie('JWT'), gooutDate, returnDate, reason)
+    /*
+    postGoingoutInform(getCookie("JWT"), dateForm, reason)
       .then(response => {
         switch (response.status) {
           case 201:
@@ -69,7 +77,7 @@ export default class GoingoutApplyContainer extends Component {
             break;
           default:
         }
-      });
+      });*/
   };
 
   addZero = num => {
@@ -79,14 +87,14 @@ export default class GoingoutApplyContainer extends Component {
 
   afterRefresh = () => {
     this.setState({
-      refreshFlag: false
+      refreshFlag: false,
     });
   };
 
   render() {
     return (
       <ApplyContentContainer
-        type='goingout'
+        type="goingout"
         onCancel={this.onCancel}
         onApply={this.onApply}
         refreshFlag={this.state.refreshFlag}
