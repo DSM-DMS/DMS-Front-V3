@@ -61,7 +61,7 @@ class MainContainer extends Component {
     onDownload = () => {
         const cookie = getCookie('JWT')
         axios
-            .get(`http://dms-admin.istruly.sexy/excel/${this.state.selectKind}`, {
+            .get(`https://dms-admin.istruly.sexy/excel/${this.state.selectKind}`, {
         headers: { Authorization: `Bearer ${cookie}`},
         responseType: 'arraybuffer'
       })
