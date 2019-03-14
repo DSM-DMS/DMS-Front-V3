@@ -12,11 +12,11 @@ export default class MusicApplyContainer extends Component {
     { date: '화요일', val: 'tue' },
     { date: '수요일', val: 'wed' },
     { date: '목요일', val: 'thu' },
-    { date: '금요일', val: 'fri' }
+    { date: '금요일', val: 'fri' },
   ];
 
   state = {
-    refreshFlag: false
+    refreshFlag: false,
   };
 
   onCancel = () => {};
@@ -29,10 +29,10 @@ export default class MusicApplyContainer extends Component {
     submitMusic(getCookie('JWT'), day, singer, title)
       .then(response => {
         switch (response.status) {
-          case 200:
+          case 201:
             alert('기상음악 신청이 완료되었습니다.');
             this.setState({
-              refreshFlag: true
+              refreshFlag: true,
             });
             break;
           case 205:
@@ -49,14 +49,14 @@ export default class MusicApplyContainer extends Component {
 
   afterRefresh = () => {
     this.setState({
-      refreshFlag: false
+      refreshFlag: false,
     });
   };
 
   render() {
     return (
       <ApplyContentContainer
-        type='music'
+        type="music"
         menuList={this.menuList}
         onCancel={this.onCancel}
         onApply={this.onApply}

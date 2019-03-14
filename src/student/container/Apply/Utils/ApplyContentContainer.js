@@ -9,7 +9,7 @@ import {
   getMyExtensionInfo,
   getStayInform,
   getMusicList,
-  getGoingoutInform
+  getGoingoutInform,
 } from '../../../../lib/applyAPI';
 import { getCookie } from '../../../../lib/cookie';
 
@@ -29,15 +29,15 @@ export default class ApplyContentContainer extends Component {
           { content: '3층', detail: '3층 기숙사측 독서실', val: 6 },
           { content: '4층', detail: '4층 학교측 독서실', val: 7 },
           { content: '4층', detail: '4층 기숙사측 독서실', val: 8 },
-          { content: '5층', detail: '5층 열린 교실', val: 9 }
+          { content: '5층', detail: '5층 열린 교실', val: 9 },
         ],
-        typeList: [{ content: '11시', val: 11 }, { content: '12시', val: 12 }]
+        typeList: [{ content: '11시', val: 11 }, { content: '12시', val: 12 }],
       },
       goingout: {
         title: '외출신청',
         menuTitle: '외출목록',
         menuList: [],
-        typeList: []
+        typeList: [],
       },
       music: {
         title: '기상음악',
@@ -48,9 +48,9 @@ export default class ApplyContentContainer extends Component {
           { content: '수', detail: '신청가능', val: 'wed', available: true },
           { content: '목', detail: '신청가능', val: 'thu', available: true },
           { content: '금', detail: '신청가능', val: 'fri', available: true },
-          { content: '리', detail: '기상음악 리스트', val: 5 }
+          { content: '리', detail: '기상음악 리스트', val: 5 },
         ],
-        typeList: []
+        typeList: [],
       },
       stay: {
         title: '잔류신청',
@@ -59,20 +59,20 @@ export default class ApplyContentContainer extends Component {
           { content: '금', detail: '금요귀가', val: 0 },
           { content: '토', detail: '토요귀가', val: 1 },
           { content: '토', detail: '토요귀사', val: 2 },
-          { content: '잔류', detail: '잔류', val: 3 }
+          { content: '잔류', detail: '잔류', val: 3 },
         ],
-        typeList: []
-      }
+        typeList: [],
+      },
     },
     selectedMenu: 0,
     selectedType: {
       extension: 11,
-      goingout: 'sat'
+      goingout: 'sat',
     },
     selectedSeat: '',
     musicApplication: {
       singer: '',
-      title: ''
+      title: '',
     },
     goingoutApplication: {
       year: '',
@@ -82,11 +82,11 @@ export default class ApplyContentContainer extends Component {
       outMin: '',
       returnHour: '',
       returnMin: '',
-      reason: ''
+      reason: '',
     },
     extensionInfo: ['', ''],
     stayInfo: '',
-    musicInfo: {}
+    musicInfo: {},
   };
 
   setExtensionInfo = async () => {
@@ -96,12 +96,12 @@ export default class ApplyContentContainer extends Component {
       this.setState({
         extensionInfo: [
           this.getRoomName(response1.data.classNum),
-          this.getRoomName(response2.data.classNum)
-        ]
+          this.getRoomName(response2.data.classNum),
+        ],
       });
     } catch (e) {
       this.setState({
-        extensionInfo: ['-', '-']
+        extensionInfo: ['-', '-'],
       });
     }
   };
@@ -110,7 +110,7 @@ export default class ApplyContentContainer extends Component {
     try {
       const response = await getStayInform(getCookie('JWT'));
       this.setState({
-        stayInfo: this.getStayType(response.data.value)
+        stayInfo: this.getStayType(response.data.value),
       });
     } catch (e) {
       console.log(e);
@@ -121,7 +121,7 @@ export default class ApplyContentContainer extends Component {
     try {
       const response = await getMusicList(getCookie('JWT'));
       this.setState({
-        musicInfo: response.data
+        musicInfo: response.data,
       });
       let i = 0;
       for (let day in response.data) {
@@ -144,9 +144,9 @@ export default class ApplyContentContainer extends Component {
               ...this.state.contentInfo,
               music: {
                 ...this.state.contentInfo.music,
-                menuList: [...menuList]
-              }
-            }
+                menuList: [...menuList],
+              },
+            },
           });
         }
         i++;
@@ -165,7 +165,7 @@ export default class ApplyContentContainer extends Component {
           return {
             content: this.getDayType(day),
             detail: this.convertGoingoutInfotoContent(content),
-            val: content.id
+            val: content.id,
           };
         });
         content = [...content, ...contentList];
@@ -175,9 +175,9 @@ export default class ApplyContentContainer extends Component {
           ...this.state.contentInfo,
           goingout: {
             ...this.state.contentInfo.goingout,
-            menuList: content
-          }
-        }
+            menuList: content,
+          },
+        },
       });
     } catch (e) {
       console.log(e);
@@ -250,15 +250,15 @@ export default class ApplyContentContainer extends Component {
   getDayIndex = day => {
     switch (day) {
       case 'mon':
-        return 1;
+        return 0;
       case 'tue':
-        return 2;
+        return 1;
       case 'wed':
-        return 3;
+        return 2;
       case 'thu':
-        return 4;
+        return 3;
       case 'fri':
-        return 5;
+        return 4;
       default:
     }
   };
@@ -278,7 +278,7 @@ export default class ApplyContentContainer extends Component {
 
   onSelectMenu = menuVal => {
     this.setState({
-      selectedMenu: menuVal
+      selectedMenu: menuVal,
     });
   };
 
@@ -287,28 +287,28 @@ export default class ApplyContentContainer extends Component {
     this.setState({
       selectedType: {
         ...this.state.selectedType,
-        [type]: typeVal
-      }
+        [type]: typeVal,
+      },
     });
   };
   onChangeMusicApplication = e => {
     this.setState({
       musicApplication: {
         ...this.state.musicApplication,
-        [e.target.name]: e.target.value
-      }
+        [e.target.name]: e.target.value,
+      },
     });
   };
 
   onSelectSeat = seat => {
     this.setState({
-      selectedSeat: seat
+      selectedSeat: seat,
     });
   };
 
   clearSeat = () => {
     this.setState({
-      selectedSeat: ''
+      selectedSeat: '',
     });
   };
 
@@ -339,8 +339,8 @@ export default class ApplyContentContainer extends Component {
     this.setState({
       goingoutApplication: {
         ...this.state.goingoutApplication,
-        [e.target.name]: value
-      }
+        [e.target.name]: value,
+      },
     });
   };
 
@@ -357,8 +357,8 @@ export default class ApplyContentContainer extends Component {
     this.setState({
       goingoutApplication: {
         ...this.state.goingoutApplication,
-        year: this.getYear()
-      }
+        year: this.getYear(),
+      },
     });
   }
 
@@ -379,7 +379,7 @@ export default class ApplyContentContainer extends Component {
       typeList,
       onCancel,
       onApply,
-      refreshFlag
+      refreshFlag,
     } = this.props;
     const {
       contentInfo,
@@ -390,49 +390,49 @@ export default class ApplyContentContainer extends Component {
       musicApplication,
       musicInfo,
       goingoutApplication,
-      selectedSeat
+      selectedSeat,
     } = this.state;
     const applyTag = {
       extension: (
-        <div className='apply--content--tag--wrapper'>
-          <div className='apply--content--tag'>{extensionInfo[0]}</div>
-          <div className='apply--content--tag second'>{extensionInfo[1]}</div>
+        <div className="apply--content--tag--wrapper">
+          <div className="apply--content--tag">{extensionInfo[0]}</div>
+          <div className="apply--content--tag second">{extensionInfo[1]}</div>
         </div>
       ),
       stay: (
-        <div className='apply--content--tag--wrapper'>
-          <div className='apply--content--tag'>{stayInfo}</div>
+        <div className="apply--content--tag--wrapper">
+          <div className="apply--content--tag">{stayInfo}</div>
         </div>
-      )
+      ),
     };
     const params = {
       extension: {
         apply: {
           time: selectedType.extension,
           class: selectedMenu,
-          seat: selectedSeat
+          seat: selectedSeat,
         },
-        cancel: selectedType
+        cancel: selectedType,
       },
       goingout: {
         apply: '',
-        cancel: selectedMenu
+        cancel: selectedMenu,
       },
       stay: {
         apply: selectedMenu,
-        cancel: selectedMenu
+        cancel: selectedMenu,
       },
       music: {
         apply: this.getDayIndex(selectedMenu),
-        cancel: selectedMenu
-      }
+        cancel: selectedMenu,
+      },
     };
     return (
-      <div className='apply--content--outer--wrapper'>
-        <div className='apply--content--wrapper'>
-          <div className='apply--content--left'>
-            <div className='apply--content--title--wrapper'>
-              <span className='apply--content--title'>
+      <div className="apply--content--outer--wrapper">
+        <div className="apply--content--wrapper">
+          <div className="apply--content--left">
+            <div className="apply--content--title--wrapper">
+              <span className="apply--content--title">
                 {contentInfo[type].title}
               </span>
               {applyTag[type]}
@@ -444,7 +444,7 @@ export default class ApplyContentContainer extends Component {
               onSelectMenu={this.onSelectMenu}
             />
           </div>
-          <div className='apply--content--right'>
+          <div className="apply--content--right">
             <ApplyContentInnerContainer
               applyType={type}
               typeList={contentInfo[type].typeList}

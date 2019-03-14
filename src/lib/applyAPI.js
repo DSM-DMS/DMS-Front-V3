@@ -57,13 +57,15 @@ export const deleteGoingoutInform = (token, id) => {
   });
 };
 
-export const postGoingoutInform = (token, goOutDate, returnDate, reason) => {
+// export const postGoingoutInform = (token, goOutDate, returnDate, reason) => {
+export const postGoingoutInform = (token, dateForm, reason) => {
   return axios.post(
     `${rootUrl}/goingout `,
     {
-      goOutDate,
-      returnDate,
-      reason,
+      // goOutDate,
+      // returnDate,
+      date: dateForm,
+      reason: reason,
     },
     {
       headers: {
