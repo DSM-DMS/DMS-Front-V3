@@ -1,0 +1,46 @@
+.goingout {
+    &--datalist {
+            &--wrapper {
+                width: 100%;
+                height: 2.6875rem;
+                align-items: center;
+                display: flex;
+            }
+
+        &--content {
+            display: flex;
+            justify-content: center;
+
+            font : {
+                size: 1.5rem;
+                family: 'NanumSquareB';
+            }
+        }
+    }
+}
+
+.goingout--datalist--content.content {
+    &--number {
+        width: 8.125rem;
+    }
+
+    &--name {
+        width: 8.125rem;
+    }
+
+    &--schoolnumber {
+        width: 8.125rem;
+    }
+
+    &--time {
+        width: 14.125rem;
+    }
+
+    &--check {
+        width: 8.125rem;
+    }
+
+    &--delete {
+        width: 8.125rem;
+    }
+}

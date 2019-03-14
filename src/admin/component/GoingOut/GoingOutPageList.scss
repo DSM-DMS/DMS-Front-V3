@@ -1,0 +1,12 @@
+.admin-goingout {
+    &--pagelist {
+        font : {
+            size : 1.0625rem;
+            family: 'NanumSquareR';
+        }
+
+        & + & {
+            margin-left: 0.5rem;
+        }
+    }
+}
