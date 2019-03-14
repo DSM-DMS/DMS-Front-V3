@@ -2,9 +2,9 @@ import React from 'react';
 
 import './GoingOutClassList.scss'
 
-const GoingOutClassList = ({children, onSelect}) => {
+const GoingOutClassList = ({children, data, HandleSelect}) => {
     return (
-        <div onClick = {onSelect} className = "admin-goingout--list--wrapper">
+        <div onClick = {() => {HandleSelect(data.kind)}} className = "admin-goingout--list--wrapper">
             {children}
         </div>
     );

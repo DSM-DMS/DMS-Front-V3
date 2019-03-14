@@ -1,7 +1,68 @@
 .goingout {
+    &--pagelist {
+        &--wrapper {
+            align-self: center;
+        }
+    }
+
     &--buttons {
         &--wrapper {
             display: flex;
+            justify-content: space-between;
+            width: 18rem;
+        }
+
+        &--all--wrapper {
+            display: flex;
+            align-items: center;
+            width: 31rem;
+            justify-content: space-between;
+        }
+    }
+
+    &--select {
+        &--wrapper {
+            display: flex;
+            width: 3.76875rem;
+            height: 2.125rem;
+            border: 0.0125rem solid #000000;
+            align-items: center;
+            justify-content: space-between;
+            padding-left: 0.4rem;
+            padding-right: 0.4rem;
+            color: #10a3a4;
+            font : {
+                size : 0.85rem;
+                family : 'NanumSquareR'
+            }
+        }
+
+        &--icon {
+            width: 0.85rem;
+            height: 0.85rem;
+        }
+    }
+
+    &--selected {
+        &--wrapper {
+            display: flex;
+            width: 4.56875rem;
+            height: 7.8890625rem;
+            flex-direction: column;
+            justify-content: space-between;
+            border: 0.0125rem solid #000000;
+            border-top: none;
+            background-color: #ffffff;
+        }
+
+        &--list {
+            &--wrapper {
+                width: 4.56875rem;
+                height: 2.125rem;
+                flex-direction: column;
+                justify-content: space-between;
+                align-items: center;
+            }
         }
     }
 
@@ -50,9 +111,9 @@
     &--wrapper {
         z-index: 3;
         width: calc(100% - 23.25rem);
-        height: 19.025rem;
+        height: 29.025rem;
         padding-top: 5.5rem;
-        padding-bottom: 12.125rem;
+        padding-bottom: 2.125rem;
         padding-left: 11.625rem;
         padding-right: 11.625rem;
         background-color: #ffffff;
@@ -84,8 +145,21 @@
     &--content {
         &--wrapper {
             width: 100%;
-            height: 12rem;
-            margin-top: 1.5rem;
+            height: 14rem;
+            margin-top: 1rem;
+            margin-bottom: 5.5rem;
+            display: flex;
+            flex-direction: column;
+        }
+    }
+
+    &--footer {
+        &--wrapper {
+            display: flex;
+            width: 100%;
+            justify-content: space-between;
+            flex-direction: column;
+            height: 5.8375rem;
         }
     }
 }
