@@ -27,7 +27,8 @@ export default class ApplyContentInnerContainer extends Component {
       onChangeMusicApplication,
       musicInfo,
       onChangeGoingoutApplication,
-      goingoutApplication
+      goingoutApplication,
+      refreshFlag
     } = this.props;
 
     let content = null;
@@ -41,6 +42,7 @@ export default class ApplyContentInnerContainer extends Component {
             onSelectSeat={onSelectSeat}
             selectedSeat={selectedSeat}
             clearSeat={clearSeat}
+            refreshFlag={refreshFlag}
           />
         );
         applyParam.apply = params.apply;

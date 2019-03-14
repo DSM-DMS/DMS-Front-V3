@@ -10,7 +10,7 @@ const ApplyTypeSwitchItem = ({ content, onSelectType, val, selectedClass }) => {
         onSelectType(val);
       }}
     >
-      {content}
+      <span>{content}</span>
     </li>
   );
 };

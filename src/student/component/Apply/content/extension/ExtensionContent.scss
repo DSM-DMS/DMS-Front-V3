@@ -44,6 +44,9 @@
     display: flex;
     justify-content: space-between;
     justify-items: center;
+    &:last-child {
+      margin-bottom: 10px;
+    }
   }
   &--wrapper {
     width: 21.875rem;
