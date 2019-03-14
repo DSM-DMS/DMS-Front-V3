@@ -18,7 +18,7 @@ class BugReport extends Component {
   };
 
   onSubmitHandler = () => {
-    if (this.state.room && this.state.description)
+    if (this.state.description)
       axios
         .post(
           'https://dms-api.istruly.sexy/report/bug/1',
