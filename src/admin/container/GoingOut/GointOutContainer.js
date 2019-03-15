@@ -163,7 +163,6 @@ class GointOutContainer extends Component {
         })
         const classNumber = this.FindCurrentClass(); 
         axios.get(`https://dms-admin.istruly.sexy/goingout/0/${classNumber}`, {
-            responseType : 'arraybuffer',
             headers : {
                 Authorization : `Bearer ${cookie}`
             }
@@ -201,9 +200,10 @@ class GointOutContainer extends Component {
         const goingOutData = goingOutList.slice((curPage-1)*6, curPage * 6).map(data => {
             return <GoingOutList onModal = {this.HandleModal} key = {data.applyId} data = {data}/>
         })
-        let PageList = []
-        for(let i = curPage; i <= page; i++) {
-            if(i >= curPage + 9) {
+        let PageList = [], startIndex = 1;
+        if(curPage > 10) startIndex = (page - curPage) + 1
+        for(let i = startIndex; i <= page; i++) {
+            if(startIndex + 9 === i) {
                 break;
             }
             PageList.push(<GoingOutPageList onPageMove = {this.HandlePageSelect} key = {i} numbering = {i}>{i}</GoingOutPageList>)
