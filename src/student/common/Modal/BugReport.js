@@ -27,7 +27,7 @@ class BugReport extends Component {
         )
         .then(res => {
           if (res.status === 201) {
-            alert('버그 신고에 성공하셨습니다. ㅇㅁㅇ');
+            alert('버그 신고에 성공하셨습니다.');
             this.props.setModal('');
           }
         })
