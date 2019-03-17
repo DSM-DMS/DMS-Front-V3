@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import FixDetail from '../../component/Fix/FixDetail';
 
 import { connect } from 'react-redux'
@@ -23,7 +23,11 @@ class FixDetailContainer extends Component {
         )
 
         return (
-            <FixDetail index = {index} lastIndex = {lastIndex} data = {facilityReportList}/>
+            <Fragment>
+            {   this.props.login.isLogin &&
+                <FixDetail index = {index} lastIndex = {lastIndex} data = {facilityReportList}/>
+            }
+            </Fragment>
         );
     }
 }

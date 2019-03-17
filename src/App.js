@@ -34,6 +34,9 @@ import setHeader from './lib/setHeader';
 
 axios.interceptors.request.use(
   conf => {
+    if(window.location.href.includes('admin') === true) {
+      return conf;
+    }
     conf.headers = setHeader(conf.headers);
     return conf;
   },
@@ -170,6 +173,7 @@ class App extends Component {
                     <Route path="/admin/fix" component={FixContainer} exact/>
                     <Route path="/admin/fix/:uri" component={FixDetailContainer} exact/>
                     <Route path="/admin/goingout" component={GoingOutContainer} exact/>
+                    <Redirect to="/admin/login" />
                    </Switch>
               </CommonDesign>
             )}

@@ -3,6 +3,9 @@ import Main from '../../component/Main/Main';
 import MainSelectList from '../../component/Main/MainSelectList'
 import axios from 'axios';
 
+import fileSaver from 'file-saver'
+import { getCookie } from '../../../lib/cookie'
+
 class MainContainer extends Component {
     
     state = {
@@ -16,17 +19,13 @@ class MainContainer extends Component {
                 title: '잔류신청'
             },
             {
-                kind: 'extenstion/11',
+                kind: 'extension_11',
                 title: '11시 연장'
             },
             {
-                kind: 'extension/12',
+                kind: 'extension_12',
                 title: '12시 연장'
             },
-            {
-                kind: 'goingout',
-                title: '외출 신청'
-            }
         ],
         selectOff: false
     };
@@ -50,48 +49,25 @@ class MainContainer extends Component {
         })
     }
 
-    onSelect = (title) => {
+    onSelect = (title, kind) => {
         this.setState({
             select: title,
             selected: true,
+            selectKind : kind,
             selectListState: !this.state.selectListState
         })
     }
 
     onDownload = () => {
-        switch (this.state.select) {
-            case '잔류신청':
-                this.setState({
-                    selectKind: this.state.selectList[0].kind
-                })
-                break
-            case '11시 연장':
-            this.setState({
-                    selectKind: this.state.selectList[1].kind
-                })
-                break
-            case '12시 연장':
-            this.setState({
-                    selectKind: this.state.selectList[2].kind
-                })
-                break
-            case '외출 신청':
-            this.setState({
-                    selectKind: this.state.selectList[3].kind
-                })
-                break
-            default :
-                break
-        }
-
+        const cookie = getCookie('JWT')
         axios
-            .get(`http://ec2.istruly.sexy:5001/excel/${this.state.selectKind}`, {
-        headers: { Authorization: `Bearer `},
+            .get(`https://dms-admin.istruly.sexy/excel/${this.state.selectKind}`, {
+        headers: { Authorization: `Bearer ${cookie}`},
+        responseType: 'arraybuffer'
       })
-      .then(response => {
-        if (response.status === 200) {
-            console.log(response)
-        }
+      .then(res => {
+        let blob = new Blob([res.data], {type: res.headers['content-type']})
+        fileSaver.saveAs(blob, `${this.state.select}명단.xlsx`)
       })
       .catch(err => {
         console.log(err);
@@ -104,7 +80,7 @@ class MainContainer extends Component {
             <MainSelectList onSelect = {this.onSelect} selectData={data} key={data.kind}/>
         ))
         return (
-            <Main onDownload = {this.onDownload} selectOff = {selectOff} onSelectOff = {this.onSelectOff} selectListState = {selectListState} list = {list} select={select} selected = {selected} onSelectBoxClick = {this.onSelectBoxClick}/>
+            <Main onRealDownload = {this.onRealDownload} onDownload = {this.onDownload} selectOff = {selectOff} onSelectOff = {this.onSelectOff} selectListState = {selectListState} list = {list} select={select} selected = {selected} onSelectBoxClick = {this.onSelectBoxClick}/>
         );
     }
 }
