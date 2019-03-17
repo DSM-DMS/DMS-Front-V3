@@ -1,10 +1,5 @@
 import * as types from './ActionTypes';
 
-export const setSection = value => ({
-  type: types.SET_SECTION,
-  currentSection: value,
-});
-
 export const isLogin = bool => ({
   type: types.IS_LOGIN,
   bool: bool,
@@ -79,19 +74,19 @@ export const selectMusicCard = cardIndex => ({
 });
 
 export const DOMITORY_RULE_LIST_ADD = 'DOMITORY_RULE_LIST_ADD';
-export const FACILITY_REQUEST = 'FACILITY_REQUEST'
-export const LOGIN = 'LOGIN'
+export const FACILITY_REQUEST = 'FACILITY_REQUEST';
+export const LOGIN = 'LOGIN';
 
 export function facilityRequest(responseData) {
-    return {
-        type: FACILITY_REQUEST,
-        responseData
-    }
+  return {
+    type: FACILITY_REQUEST,
+    responseData,
+  };
 }
 
 export function login(bool) {
-    return {
-        type: LOGIN,
-        bool
-    }
+  return {
+    type: LOGIN,
+    bool,
+  };
 }

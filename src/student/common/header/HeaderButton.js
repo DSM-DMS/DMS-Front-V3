@@ -2,10 +2,7 @@ import React from 'react';
 
 import { withRouter } from 'react-router-dom';
 
-import { connect } from 'react-redux';
-import { setSection } from '../../../actions';
-
-const HeaderButton = ({ title, scroll, location, history, setSection }) => {
+const HeaderButton = ({ title, scroll, location, history }) => {
   return (
     <span
       onClick={() => {
@@ -15,9 +12,10 @@ const HeaderButton = ({ title, scroll, location, history, setSection }) => {
           location.pathname === '/guide' ||
           location.pathname === '/extra'
         ) {
-          setSection(scroll);
+          document
+            .querySelector('#' + scroll)
+            .scrollIntoView({ behavior: 'smooth' });
         } else {
-          console.log(location.pathname);
           history.push('/' + scroll);
         }
       }}
@@ -28,13 +26,4 @@ const HeaderButton = ({ title, scroll, location, history, setSection }) => {
   );
 };
 
-const mapDispatchToProps = dispatch => {
-  return {
-    setSection: value => dispatch(setSection(value)),
-  };
-};
-
-export default connect(
-  undefined,
-  mapDispatchToProps,
-)(withRouter(HeaderButton));
+export default withRouter(HeaderButton);

@@ -8,7 +8,7 @@ import './Header.scss';
 
 const Header = ({ buttonList, variableButton, developers }) => {
   return (
-    <div
+    <header
       className={`${!!developers ? 'developers--page' : ''} header--wrapper`}
     >
       <Link to="/" className="header--logo">
@@ -19,11 +19,11 @@ const Header = ({ buttonList, variableButton, developers }) => {
         />
         <span className="header--logo--title">DMS</span>
       </Link>
-      <div className="header--button--list">
+      <nav className="header--button--list">
         {buttonList}
         {variableButton}
-      </div>
-    </div>
+      </nav>
+    </header>
   );
 };
 
