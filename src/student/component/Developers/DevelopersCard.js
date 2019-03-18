@@ -4,7 +4,7 @@ import { b64EncodeUnicode } from '../../../lib/unicodeBase64';
 
 import './DevelopersCard.scss';
 
-const DevelopersCard = ({ src, name, job }) => {
+const DevelopersCard = ({ name, job }) => {
   return (
     <div className="developers--card--wrapper">
       <img
