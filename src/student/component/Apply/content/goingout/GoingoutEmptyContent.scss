@@ -1,0 +1,28 @@
+.apply--content--empty--goingout {
+  display: flex;
+  height: 100%;
+  flex-direction: column;
+  padding: 1.875rem;
+  box-sizing: border-box;
+  justify-content: center;
+}
+
+.apply--inner--content--empty--goingout {
+  font-family: NanumSquareR;
+  text-align: center;
+  color: #233539;
+  & > img {
+    width: 6rem;
+    height: 6rem;
+  }
+  & > h2 {
+    font-family: NanumSquareB;
+    font-size: 2.25rem;
+    margin-top: 1.875rem;
+    margin-bottom: 5rem;
+  }
+  & > p {
+    opacity: 0.8;
+    font-size: 1.5rem;
+  }
+}
