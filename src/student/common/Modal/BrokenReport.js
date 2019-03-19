@@ -22,7 +22,7 @@ class BrokenReport extends Component {
     if (this.state.room && this.state.description)
       axios
         .post(
-          'https://dms-api.istruly.sexy/report/facility',
+          'https://static.dms-api.istruly.sexy/report/facility',
           {
             room: parseInt(this.state.room),
             content: this.state.description,

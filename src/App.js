@@ -80,7 +80,7 @@ class App extends Component {
     const pw = getCookie('pw');
     if (id && pw) {
       axios
-        .post('https://dms-api.istruly.sexy/account/auth', {
+        .post('https://static.dms-api.istruly.sexy/account/auth', {
           id: id,
           password: pw,
         })

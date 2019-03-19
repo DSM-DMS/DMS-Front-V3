@@ -40,7 +40,7 @@ class Login extends Component {
     const { id, pw, checkbox } = this.state;
     if (id && pw) {
       axios
-        .post('https://dms-api.istruly.sexy/account/auth', {
+        .post('https://static.dms-api.istruly.sexy/account/auth', {
           id: id,
           password: pw,
         })
@@ -65,7 +65,7 @@ class Login extends Component {
 
   getPointCards = token => {
     axios
-      .get('https://dms-api.istruly.sexy/info/point', {
+      .get('https://static.dms-api.istruly.sexy/info/point', {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then(response => {
@@ -80,7 +80,7 @@ class Login extends Component {
 
   getBasicData = token => {
     axios
-      .get('https://dms-api.istruly.sexy/info/basic', {
+      .get('https://static.dms-api.istruly.sexy/info/basic', {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then(response => {

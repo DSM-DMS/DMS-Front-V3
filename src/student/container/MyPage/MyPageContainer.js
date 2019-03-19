@@ -41,7 +41,7 @@ class MyPageContainer extends Component {
 
   getBasicData = token => {
     axios
-      .get('https://dms-api.istruly.sexy/info/basic', {
+      .get('https://static.dms-api.istruly.sexy/info/basic', {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then(response => {
