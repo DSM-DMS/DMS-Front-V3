@@ -6,6 +6,7 @@ import axios from 'axios';
 import { connect } from 'react-redux';
 import { autoLogin, isLogin } from './actions';
 import { getCookie, setCookie, removeCookie } from './lib/cookie';
+import { postAuth } from './lib/studentInfoAPI';
 
 import MainContainer from './student/container/Main/MainContainer';
 import ApplyMainContainer from './student/container/Apply/ApplyMainContainer';
@@ -79,11 +80,7 @@ class App extends Component {
     const id = getCookie('id');
     const pw = getCookie('pw');
     if (id && pw) {
-      axios
-        .post('https://static.dms-api.istruly.sexy/account/auth', {
-          id: id,
-          password: pw,
-        })
+      postAuth(id, pw)
         .then(response => {
           if (response.status === 200) {
             setCookie('JWT', response.data.accessToken);

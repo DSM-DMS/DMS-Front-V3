@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import axios from 'axios';
 import { withRouter } from 'react-router-dom';
 import { getCookie, removeCookie } from '../../../lib/cookie';
+import { patchPassword } from '../../../lib/studentInfoAPI';
 
 import { isLogin, setModal } from '../../../actions';
 
@@ -30,12 +30,7 @@ class ChangePassword extends Component {
       newPasswordChk &&
       newPassword === newPasswordChk
     ) {
-      axios
-        .patch(
-          'https://static.dms-api.istruly.sexy/account/pw',
-          { currentPassword: currentPassword, newPassword: newPassword },
-          { headers: { Authorization: `Bearer ${jwtToken}` } },
-        )
+      patchPassword(currentPassword, newPassword, `Bearer ${jwtToken}`)
         .then(response => {
           if (response.status === 201) {
             alert('비밀번호 변경에 성공하셨습니다. \n 다시 로그인하세요.');

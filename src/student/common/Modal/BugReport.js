@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import axios from 'axios';
 
 import { getCookie } from '../../../lib/cookie';
+import { postBugReport } from '../../../lib/reportAPI';
 
 import './Report.scss';
 
@@ -19,12 +19,7 @@ class BugReport extends Component {
 
   onSubmitHandler = () => {
     if (this.state.description)
-      axios
-        .post(
-          'https://static.dms-api.istruly.sexy/report/bug/1',
-          { content: this.state.description },
-          { headers: { Authorization: `Bearer ${getCookie('JWT')}` } },
-        )
+      postBugReport(this.state.description, `Bearer ${getCookie('JWT')}`)
         .then(res => {
           if (res.status === 201) {
             alert('버그 신고에 성공하셨습니다.');
