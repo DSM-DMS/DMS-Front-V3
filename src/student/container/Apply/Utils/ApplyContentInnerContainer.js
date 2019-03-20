@@ -6,6 +6,7 @@ import ApplyTypeSwitch from '../../../component/Apply/Utils/ApplyTypeSwitch';
 import ApplyAcceptBtn from '../../../component/Apply/Utils/ApplyAcceptBtn';
 import ExtensionContent from '../../../component/Apply/content/extension/ExtensionContent';
 import GoingoutContent from '../../../component/Apply/content/goingout/GoingoutContent';
+import GoingoutEmptyContent from '../../../component/Apply/content/goingout/GoingoutEmptyContent';
 import MusicContent from '../../../component/Apply/content/music/MusicContent';
 import StayContent from '../../../component/Apply/content/stay/StayContent';
 
@@ -28,7 +29,8 @@ export default class ApplyContentInnerContainer extends Component {
       musicInfo,
       onChangeGoingoutApplication,
       goingoutApplication,
-      refreshFlag
+      refreshFlag,
+      isOnGoingoutApply
     } = this.props;
 
     let content = null;
@@ -49,12 +51,21 @@ export default class ApplyContentInnerContainer extends Component {
         applyParam.cancel = params.cancel;
         break;
       case 'goingout':
-        content = (
-          <GoingoutContent
-            onChangeGoingoutApplication={onChangeGoingoutApplication}
-            goingoutApplication={goingoutApplication}
-          />
-        );
+        if(isOnGoingoutApply) {
+          content = (
+            <GoingoutContent
+              onChangeGoingoutApplication={onChangeGoingoutApplication}
+              goingoutApplication={goingoutApplication}
+            />
+          );
+        } else {
+          content = (
+            <GoingoutEmptyContent
+              onChangeGoingoutApplication={onChangeGoingoutApplication}
+              goingoutApplication={goingoutApplication}
+            />
+          );
+        }
         applyParam.apply = goingoutApplication;
         applyParam.cancel = params.apply;
         break;
