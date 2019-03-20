@@ -14,3 +14,11 @@
   font-size: 0.75rem;
   margin-top: 0.75rem;
 }
+
+.apply--content--menu--item--add {
+  justify-content: center;
+  & > img {
+    width: 1.5rem;
+    height: 1.5rem;
+  }
+}
