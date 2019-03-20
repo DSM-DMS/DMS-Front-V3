@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
 import { mealPrevDate, mealNextDate, setMeal } from '../../../../actions';
-import axios from 'axios';
+import { getMealDate } from '../../../../lib/mealAPI';
 
 import Meal from '../../../component/Main/Meal/Meal';
 
@@ -41,8 +41,7 @@ class MealContainer extends Component {
         ? '0' + selectedDate.getDate()
         : selectedDate.getDate()
     }`;
-    axios
-      .get(`https://dms-api.istruly.sexy/meal/${getFormDate}`)
+    getMealDate(getFormDate)
       .then(response => {
         if (response.status === 200) {
           this.props.setMeal(response.data[getFormDate]);

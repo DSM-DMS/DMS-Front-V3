@@ -9,7 +9,6 @@
     box-shadow: 0px 5px 5px 0 rgba(0, 0, 0, 0.2);
 
     &:hover {
-      transition: 1s;
       width: 15.625rem;
       height: 21.875rem;
 
@@ -56,6 +55,7 @@
       bottom: 50%;
       transform: translate(-50%, 50%);
       width: 100%;
+      transition: 1s;
       height: 14.3125rem;
       flex-direction: column;
       justify-content: space-between;

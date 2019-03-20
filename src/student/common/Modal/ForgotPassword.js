@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import axios from 'axios';
 
+import { postForgotPassword } from '../../../lib/studentInfoAPI';
 import './ForgotPassword.scss';
 
 class ForgotPassword extends Component {
@@ -24,18 +24,13 @@ class ForgotPassword extends Component {
   forgotBtn = () => {
     const { id, email } = this.state;
     if (id && email) {
-      axios
-        .post('https://dms-api.istruly.sexy/account/pw', {
-          id: id,
-          email: email,
-        })
-        .then(response => {
-          if (response.status === 201) {
-            alert('이메일을 발송하였습니다. 학교 이메일을 확인하세요.');
-          } else if (response.status === 204) {
-            alert('잘못된 아이디 혹은 이메일입니다.');
-          }
-        });
+      postForgotPassword(id, email).then(response => {
+        if (response.status === 201) {
+          alert('이메일을 발송하였습니다. 학교 이메일을 확인하세요.');
+        } else if (response.status === 204) {
+          alert('잘못된 아이디 혹은 이메일입니다.');
+        }
+      });
     }
   };
 

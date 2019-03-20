@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import axios from 'axios';
 
 import { getCookie } from '../../../lib/cookie';
+import { postFacilityReport } from '../../../lib/reportAPI';
 
 import './Report.scss';
 
@@ -20,19 +20,11 @@ class BrokenReport extends Component {
 
   onSubmitHandler = () => {
     if (this.state.room && this.state.description)
-      axios
-        .post(
-          'https://dms-api.istruly.sexy/report/facility',
-          {
-            room: parseInt(this.state.room),
-            content: this.state.description,
-          },
-          {
-            headers: {
-              Authorization: `Bearer ${getCookie('JWT')}`,
-            },
-          },
-        )
+      postFacilityReport(
+        parseInt(this.state.room),
+        this.state.description,
+        `Bearer ${getCookie('JWT')}`,
+      )
         .then(res => {
           if (res.status === 201) {
             alert('성공적으로 신고하였습니다.');
