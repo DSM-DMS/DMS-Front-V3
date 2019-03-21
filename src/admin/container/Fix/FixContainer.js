@@ -19,7 +19,7 @@ class FixContainer extends Component {
         try {
         const token = getCookie('JWT')
         const response = await axios
-            .get("https://dms-admin.istruly.sexy/facility_report", 
+            .get("https://admin-api.dms.istruly.sexy/facility_report", 
             {
                 headers : {
                     Authorization: `Bearer ${token}`

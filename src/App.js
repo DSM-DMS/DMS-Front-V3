@@ -29,6 +29,7 @@ import NoticeContainer from './admin/container/Notice/NoticeContainer';
 import NoticeWriteContainer from './admin/container/Notice/NoticeWriteContainer';
 import NoticeEditContainer from './admin/container/Notice/NoticeEditContainer';
 import AdminMainContainer from "./admin/container/Main/AdminMainContainer";
+import MusicContainer from "./admin/container/Music/MusicContainer"
 
 import setHeader from './lib/setHeader';
 
@@ -173,6 +174,7 @@ class App extends Component {
                     <Route path="/admin/fix" component={FixContainer} exact/>
                     <Route path="/admin/fix/:uri" component={FixDetailContainer} exact/>
                     <Route path="/admin/goingout" component={GoingOutContainer} exact/>
+                    <Route path="/admin/music" component={MusicContainer} exact/>
                     <Redirect to="/admin/login" />
                    </Switch>
               </CommonDesign>

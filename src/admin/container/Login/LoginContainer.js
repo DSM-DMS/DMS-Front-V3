@@ -35,7 +35,7 @@ class LoginContainer extends Component {
         this.setState({
             loading : true
         })
-        axios.post('https://dms-admin.istruly.sexy/auth', {
+        axios.post('https://admin-api.dms.istruly.sexy/auth', {
             id : id,
             password : password
         })

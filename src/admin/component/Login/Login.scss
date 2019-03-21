@@ -5,6 +5,8 @@
         width: 100vw;
         height: 100vh;
         background-image: linear-gradient(to right, #0a9395, #099394 20%, #099293 31%, #099294 42%, #099394 51%, #099394 55%, #0c9a9b 64%, #0e9e9f 72%, #12a6a7 80%, #14abab);
+        align-items: center;
+        justify-content: center;
     }
 
     &--header {
@@ -55,13 +57,13 @@
         &--card {
             &--footer {
                 &--wrapper {
-                    position: absolute;
+                    position: relative;
                     width: 28.9rem;
                     height: 2.921875rem;
                     background: #e0e0e0;
                     border-bottom-left-radius: 2.5rem;
                     border-bottom-right-radius: 2.5rem;
-                    bottom: 0;
+                    margin-top: 14.1rem;
                     display: flex;
                     align-items: center;
                     justify-content: center;

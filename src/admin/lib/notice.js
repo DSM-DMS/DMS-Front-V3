@@ -1,7 +1,7 @@
 import axios from 'axios'
 import { getCookie } from '../../lib/cookie'
 
-const url = 'https://dms-admin.istruly.sexy/notice'
+const url = 'https://admin-api.dms.istruly.sexy/notice'
 
 export function noticePost (type, title, content) {
     const token = getCookie('JWT');

@@ -66,7 +66,7 @@ class GointOutContainer extends Component {
     HandleModal = (id) => {
         console.log(id)
         const cookie = getCookie('JWT');
-        axios.get(`https://dms-admin.strtuly.sexy/goingout/${id}`, {
+        axios.get(`https://admin-api.dms.istruly.sexy/goingout/${id}`, {
             headers : {
                 Authorization : `Bearer ${cookie}`
             }  
@@ -96,7 +96,7 @@ class GointOutContainer extends Component {
     componentDidMount = async () => {
         const cookie = getCookie('JWT');
         console.log(cookie)
-        axios.get(`https://dms-admin.istruly.sexy/goingout/0/0`, {
+        axios.get(`https://admin-api.dms.istruly.sexy/goingout/0/0`, {
             headers : {
                 Authorization : `Bearer ${cookie}`
             }
@@ -116,7 +116,7 @@ class GointOutContainer extends Component {
             else return {...data, check : true}
         })
         console.log()
-        const response = await axios.get(`https://dms-admin.istruly.sexy/goingout/${id}/${classNumber}`, {
+        const response = await axios.get(`https://admin-api.dms.istruly.sexy/goingout/${id}/${classNumber}`, {
             headers : {
                 Authorization : `Bearer ${cookie}`
             }
@@ -144,7 +144,7 @@ class GointOutContainer extends Component {
         if(classNumber === -1) classNumber = 0;
         let gradeNumber = 0;
         if(allcheck === false) gradeNumber = this.FindCurrentGrade();
-        const response = await axios.get(`https://dms-admin.istruly.sexy/goingout/${gradeNumber}/${classNumber}`, {
+        const response = await axios.get(`https://admin-api.dms.istruly.sexy/goingout/${gradeNumber}/${classNumber}`, {
             headers : {
                 Authorization : `Bearer ${cookie}`
             }
@@ -162,7 +162,7 @@ class GointOutContainer extends Component {
             return { ...data, check : false}
         })
         const classNumber = this.FindCurrentClass(); 
-        axios.get(`https://dms-admin.istruly.sexy/goingout/0/${classNumber}`, {
+        axios.get(`https://admin-api.dms.istruly.sexy/goingout/0/${classNumber}`, {
             headers : {
                 Authorization : `Bearer ${cookie}`
             }
