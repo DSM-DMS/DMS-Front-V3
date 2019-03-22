@@ -39,6 +39,7 @@ class ExtraContainer extends Component {
       this.props.setModal(val);
     } else {
       alert('로그인 후 시도해주세요.');
+      this.props.setModal('로그인');
     }
   };
 
