@@ -48,6 +48,8 @@ class BrokenReport extends Component {
           name="brokenReport.room"
           onChange={this.onChangeHandler}
           value={this.state.room}
+          min="201"
+          max="518"
         />
         <textarea
           className="report--textarea"

@@ -14,7 +14,7 @@ const MyPage = ({
   name,
   goodPoint,
   badPoint,
-  comment,
+  advice,
   myPageCardList,
 }) => {
   return (
@@ -29,7 +29,7 @@ const MyPage = ({
             <div className="mypage--state--wrapper">
               <span className="mypage--state--person">{`${grade}학년 ${classroom}반 ${number}번 ${name}`}</span>
               <span className="mypage--state--point">{`상점 : ${goodPoint}  벌점 : ${badPoint}`}</span>
-              <span className="mypage--state--title">{comment}</span>
+              <span className="mypage--state--title">{advice}</span>
             </div>
             <div className="mypage--link--wrapper">{myPageCardList}</div>
           </div>
