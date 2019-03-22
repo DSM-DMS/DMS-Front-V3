@@ -57,13 +57,10 @@ export const deleteGoingoutInform = (token, id) => {
   });
 };
 
-// export const postGoingoutInform = (token, goOutDate, returnDate, reason) => {
 export const postGoingoutInform = (token, dateForm, reason) => {
   return axios.post(
     `${rootUrl}/goingout `,
     {
-      // goOutDate,
-      // returnDate,
       date: dateForm,
       reason: reason,
     },
@@ -73,6 +70,20 @@ export const postGoingoutInform = (token, dateForm, reason) => {
       },
     },
   );
+};
+
+export const patchGoingoutInform = (token, applyId, date, reason) => {
+  return axios.post(
+    `${rootUrl}/goingout`,
+    {
+      applyId,
+      date,
+      reason,
+    }, {
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    });
 };
 
 export const getMusicList = token => {
