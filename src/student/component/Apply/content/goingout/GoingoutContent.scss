@@ -20,6 +20,9 @@
     resize: none;
     flex-grow: 1;
     padding: 1rem;
+    &:focus {
+      border: 1px solid #19b6b6;
+    }
   }
   &--input {
     border: none;
