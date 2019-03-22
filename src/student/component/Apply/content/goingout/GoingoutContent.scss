@@ -20,24 +20,27 @@
     resize: none;
     flex-grow: 1;
     padding: 1rem;
+    &:focus {
+      border: 1px solid #19b6b6;
+    }
   }
   &--input {
     border: none;
     text-align: center;
+    outline: none;
+    box-shadow: none;
     width: 1.875rem;
     &::-webkit-outer-spin-button,
     &::-webkit-inner-spin-button {
       -webkit-appearance: none;
       margin: 0;
     }
-    &:focus {
-      outline: none;
-      box-shadow: none;
-      border-bottom: 1px solid #19b6b6;
-    }
   }
 
   &--input--wrapper {
+    &:focus-within {
+      border: 1px solid #19b6b6;
+    }
     display: flex;
     justify-content: center;
     align-items: center;
