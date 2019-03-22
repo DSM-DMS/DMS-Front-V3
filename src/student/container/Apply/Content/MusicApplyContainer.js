@@ -35,6 +35,9 @@ export default class MusicApplyContainer extends Component {
               refreshFlag: true,
             });
             break;
+          case 202:
+            alert('이미 기상음악 신청을 하셨습니다.');
+            break;
           case 205:
             alert('기상음악 신청이 이미 마감되었습니다.');
             break;
