@@ -1,5 +1,5 @@
 import axios from 'axios';
-const rootUrl = 'https://api.dms.istruly.sexy/guide';
+const rootUrl = 'https://api.dms.istruly.sexy';
 
 export const getNoticeList = () => {
   return axios.get(`${rootUrl}/notice`);
