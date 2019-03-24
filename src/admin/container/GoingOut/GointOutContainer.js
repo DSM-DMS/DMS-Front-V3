@@ -103,7 +103,7 @@ class GointOutContainer extends Component {
         })
         .then(res => {
             this.setState({
-                goingOutList: [...res.data.reverse()]
+                goingOutList: [...res.data].reverse()
             })
         })
     }
@@ -126,7 +126,7 @@ class GointOutContainer extends Component {
                 ...data
             ],
             allcheck : false,
-            goingOutList : [...response.data.reverse()]
+            goingOutList : [...response.data].reverse()
         })
     }
 
@@ -152,7 +152,7 @@ class GointOutContainer extends Component {
         this.setState({
             selectState : kind,
             selected : false,
-            goingOutList : [...response.data.reverse()]
+            goingOutList : [...response.data].reverse()
         })
     }
 
@@ -169,7 +169,7 @@ class GointOutContainer extends Component {
         })
         .then(res => {
             this.setState({
-                goingOutList: [...res.data.reverse()]
+                goingOutList: [...res.data].reverse()
             })
         })
         this.setState({

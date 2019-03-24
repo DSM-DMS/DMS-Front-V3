@@ -7,19 +7,47 @@ import axios from 'axios';
 import { getCookie } from '../../../lib/cookie'
 
 class MusicContainer extends Component {
+    handleIndex = (state) => {
+        if(state === 'prev') {
+            if(this.state.dateIndex > 0)
+                this.setState({
+                    dateIndex : this.state.dateIndex - 1
+                })
+        }
+        else if(state === 'next') {
+            if(this.state.dateIndex < 4)
+                this.setState({
+                    dateIndex : this.state.dateIndex + 1
+                })
+        }
+    }
+
     state = {
         loading: true,
+        dateIndex : 0,
         dayList : [
             {
                 day : '월요일',
                 list : [
                     {
                         musicName : null,
-                        singer : null
+                        singer : null,
                     },
                     {
                         musicName : null,
-                        singer : null
+                        singer : null,
+                    },
+                    {
+                        musicName : null,
+                        singer : null,
+                    },
+                    {
+                        musicName : null,
+                        singer : null,
+                    },
+                    {
+                        musicName : null,
+                        singer : null,
                     },
                 ]
             },
@@ -28,11 +56,23 @@ class MusicContainer extends Component {
                 list : [
                     {
                         musicName : null,
-                        singer : null
+                        singer : null,
                     },
                     {
                         musicName : null,
-                        singer : null
+                        singer : null,
+                    },
+                    {
+                        musicName : null,
+                        singer : null,
+                    },
+                    {
+                        musicName : null,
+                        singer : null,
+                    },
+                    {
+                        musicName : null,
+                        singer : null,
                     },
                 ]
             },
@@ -41,11 +81,23 @@ class MusicContainer extends Component {
                 list : [
                     {
                         musicName : null,
-                        singer : null
+                        singer : null,
                     },
                     {
                         musicName : null,
-                        singer : null
+                        singer : null,
+                    },
+                    {
+                        musicName : null,
+                        singer : null,
+                    },
+                    {
+                        musicName : null,
+                        singer : null,
+                    },
+                    {
+                        musicName : null,
+                        singer : null,
                     },
                 ]
             },
@@ -54,11 +106,23 @@ class MusicContainer extends Component {
                 list : [
                     {
                         musicName : null,
-                        singer : null
+                        singer : null,
                     },
                     {
                         musicName : null,
-                        singer : null
+                        singer : null,
+                    },
+                    {
+                        musicName : null,
+                        singer : null,
+                    },
+                    {
+                        musicName : null,
+                        singer : null,
+                    },
+                    {
+                        musicName : null,
+                        singer : null,
                     },
                 ]
             },
@@ -67,11 +131,23 @@ class MusicContainer extends Component {
                 list : [
                     {
                         musicName : null,
-                        singer : null
+                        singer : null,
                     },
                     {
                         musicName : null,
-                        singer : null
+                        singer : null,
+                    },
+                    {
+                        musicName : null,
+                        singer : null,
+                    },
+                    {
+                        musicName : null,
+                        singer : null,
+                    },
+                    {
+                        musicName : null,
+                        singer : null,
                     },
                 ]
             },
@@ -94,36 +170,37 @@ class MusicContainer extends Component {
                 dayList : [
                     {
                         ...dayList[0],
-                        list : [ ...res.data.mon ]
+                        list : [ ...res.data.mon ],
                     },
                     {
                         ...dayList[1],
-                        list : [ ...res.data.tue ]
+                        list : [ ...res.data.tue ],
                     },
                     {
                         ...dayList[2],
-                        list : [ ...res.data.wed ]
+                        list : [ ...res.data.wed ],
                     },
                     {
                         ...dayList[3],
-                        list : [ ...res.data.thu ]
+                        list : [ ...res.data.thu ],
                     },
                     {
                         ...dayList[4],
-                        list : [ ...res.data.fri ]
+                        list : [ ...res.data.fri ],
                     }
                 ]
             })
         })
+        .catch(err => {
+
+        })
     }
 
     render() {
-        const { dayList } = this.state
-        const dayData = dayList.map(data => {
-            return <MusicList data = {data} key = {data.day}/>
-        }) 
+        const { dayList, dateIndex } = this.state
+        console.log(dayList)
         return (
-            <Music list = {dayData}/>
+            <Music onIndexChange = {this.handleIndex} list = {dayList} dateIndex = {dateIndex}/>
         );
     }
 }
