@@ -23,14 +23,69 @@ const Music = ({list, dateIndex, onIndexChange}) => {
                     <div onClick = {() => onIndexChange('prev')} className = "music--detail--content--prev"/>
                     }
                         <div className = "music--detail--content--main--wrapper">
-                                <div className = "music--detail--content--main--detail--wrapper">
+                                <div className = "music--detail--content--main--detail--wrapper apply">
                                     <div className = "music--detail--content--main--detail">
                                         신청
                                     </div>
+                                    <div className = "music--detail--content--main--content--wrapper">
+                                        <div className = "music--detail--content--main--content title">
+                                        
+                                        </div>
+                                        <div className = "music--detail--content--main--content artist">
+                                        
+                                        </div>
+                                        <div className = "music--detail--content--main--content studentname">
+                                        
+                                        </div>
+                                    </div>
+                                    <div className = "music--detail--content--main--content--wrapper">
+                                        <div className = "music--detail--content--main--content title">
+                                        
+                                        </div>
+                                        <div className = "music--detail--content--main--content artist">
+                                        
+                                        </div>
+                                        <div className = "music--detail--content--main--content studentname">
+                                        
+                                        </div>
+                                    </div>
                                 </div>
-                                <div className = "music--detail--content--main--detail--wrapper">
+                                <div className = "music--detail--content--main--detail--wrapper second">
                                     <div className = "music--detail--content--main--detail">
                                         후보
+                                    </div>
+                                    <div className = "music--detail--content--main--content--wrapper">
+                                        <div className = "music--detail--content--main--content title">
+                                        
+                                        </div>
+                                        <div className = "music--detail--content--main--content artist">
+                                        
+                                        </div>
+                                        <div className = "music--detail--content--main--content studentname">
+                                        
+                                        </div>
+                                    </div>
+                                    <div className = "music--detail--content--main--content--wrapper">
+                                        <div className = "music--detail--content--main--content title">
+                                        
+                                        </div>
+                                        <div className = "music--detail--content--main--content artist">
+                                        
+                                        </div>
+                                        <div className = "music--detail--content--main--content studentname">
+                                        
+                                        </div>
+                                    </div>
+                                    <div className = "music--detail--content--main--content--wrapper">
+                                        <div className = "music--detail--content--main--content title">
+                                        
+                                        </div>
+                                        <div className = "music--detail--content--main--content artist">
+                                        
+                                        </div>
+                                        <div className = "music--detail--content--main--content studentname">
+                                        
+                                        </div>
                                     </div>
                                 </div>
                             </div>

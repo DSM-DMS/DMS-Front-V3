@@ -94,6 +94,34 @@
             }
 
             &--main {
+                &--content {
+                    &--wrapper {
+                        width: 100%;
+                        display: flex;
+                        justify-content: space-between;
+                    }
+
+                    border-radius: 0.5rem;
+                    box-shadow: 0 0.1875rem 0.375rem 0 rgba(0, 0, 0, 0.16);
+                    background-color: #ffffff;
+                    height: 2.125rem;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+
+                    &.title {
+                        width: 17.1875rem;
+                    }
+
+                    &.artist {
+                        width: 11rem;
+                    }
+
+                    &.studentname {
+                        width: 8rem;
+                    }
+                }
+
                 &--wrapper {
                     display: flex;
                     flex-direction: column;
@@ -106,10 +134,11 @@
                         family: 'NanumSquareB';
                     }       
                     width: 49rem;
-                    height: 100%;
+                    height: calc(100%);
                     color: #000000;
                     text-decoration: none;
-
+                    padding-top: 1rem;
+                    padding-bottom: 1rem;
                 }
                 
                 &--header {
@@ -129,10 +158,23 @@
                 &--detail {
                     &--wrapper {
                         padding: 0rem 4.15625rem;
-                        height: 9.375rem;
-
+                        width: calc(100% - 8.3125rem);
                         font: {
                             size: 1.3rem;
+                        }
+
+                        &.apply {
+                            height: 6.5rem;
+                            display: flex;
+                            flex-direction: column;
+                            justify-content: space-between;
+                        }
+
+                        &.second {
+                            height: 9.5rem;
+                            display: flex;
+                            flex-direction: column;
+                            justify-content: space-between;  
                         }
                     }
                 }
