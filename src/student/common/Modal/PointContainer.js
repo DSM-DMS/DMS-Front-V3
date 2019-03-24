@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from 'react';
-import axios from 'axios';
+import { getPointCardList } from '../../../lib/studentInfoAPI';
 import { connect } from 'react-redux';
 import { getCookie } from '../../../lib/cookie';
 import { setStudentPointData } from '../../../actions';
@@ -14,10 +14,7 @@ class PointContainer extends Component {
   }
 
   getPointCards = token => {
-    axios
-      .get('https://dms-api.istruly.sexy/info/point', {
-        headers: { Authorization: `Bearer ${token}` },
-      })
+    getPointCardList(`Bearer ${token}`)
       .then(response => {
         if (response.status === 200) {
           this.props.setStudentPointData(response.data.point_history);

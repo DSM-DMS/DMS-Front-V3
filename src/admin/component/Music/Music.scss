@@ -108,17 +108,19 @@
                     display: flex;
                     justify-content: center;
                     align-items: center;
+                    padding-right: 0.25rem;
+                    padding-left: 0.25rem;
 
                     &.title {
-                        width: 17.1875rem;
+                        width: 16.6875rem;
                     }
 
                     &.artist {
-                        width: 11rem;
+                        width: 10.5rem;
                     }
 
                     &.studentname {
-                        width: 8rem;
+                        width: 7.5rem;
                     }
                 }
 

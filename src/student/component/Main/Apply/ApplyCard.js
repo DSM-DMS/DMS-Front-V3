@@ -6,10 +6,11 @@ import './ApplyCard.scss';
 
 const ApplyCard = ({ cardData, cardHoverOn, cardHoverOff }) => {
   return (
-    <div
+    <Link
       className="main--apply--card--wrapper"
       onMouseEnter={() => cardHoverOn(cardData.kind)}
       onMouseLeave={cardHoverOff}
+      to={`/apply/${cardData.kind}`}
     >
       <img
         src={cardData.illust}
@@ -28,10 +29,8 @@ const ApplyCard = ({ cardData, cardHoverOn, cardHoverOff }) => {
           ))}
         </p>
       </div>
-      <Link to={`/apply/${cardData.kind}`} className="main--apply--card--link">
-        신청하기
-      </Link>
-    </div>
+      <button className="main--apply--card--link">신청하기</button>
+    </Link>
   );
 };
 

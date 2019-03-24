@@ -6,6 +6,7 @@ import axios from 'axios';
 import { connect } from 'react-redux';
 import { autoLogin, isLogin } from './actions';
 import { getCookie, setCookie, removeCookie } from './lib/cookie';
+import { postAuth } from './lib/studentInfoAPI';
 
 import MainContainer from './student/container/Main/MainContainer';
 import ApplyMainContainer from './student/container/Apply/ApplyMainContainer';
@@ -20,11 +21,11 @@ import SurveyWriteContainer from './admin/container/Survey/SurveyWriteContainer'
 import LoginConatiner from './admin/container/Login/LoginContainer';
 import ShowNoticeContainer from './admin/container/Notice/ShowNoticeContainer';
 import GoingOutContainer from './admin/container/GoingOut/GointOutContainer';
-import DomitoryRuleContainer from "./admin/container/DomitoryRule/DomitoryRuleContainer"
-import DomitoryRuleWriteContainer from "./admin/container/DomitoryRule/DomitoryRuleWriteContainer"
-import DomitoryRuleEditContainer from "./admin/container/DomitoryRule/DomitoryRuleEditContainer"
-import CommonDesign from "./admin/common/commonDesign/CommonDesign"
-import ShowDomitoryRuleContainer from "./admin/container/DomitoryRule/ShowDomitoryRuleContainer"
+import DomitoryRuleContainer from './admin/container/DomitoryRule/DomitoryRuleContainer';
+import DomitoryRuleWriteContainer from './admin/container/DomitoryRule/DomitoryRuleWriteContainer';
+import DomitoryRuleEditContainer from './admin/container/DomitoryRule/DomitoryRuleEditContainer';
+import CommonDesign from './admin/common/commonDesign/CommonDesign';
+import ShowDomitoryRuleContainer from './admin/container/DomitoryRule/ShowDomitoryRuleContainer';
 import NoticeContainer from './admin/container/Notice/NoticeContainer';
 import NoticeWriteContainer from './admin/container/Notice/NoticeWriteContainer';
 import NoticeEditContainer from './admin/container/Notice/NoticeEditContainer';
@@ -35,7 +36,7 @@ import setHeader from './lib/setHeader';
 
 axios.interceptors.request.use(
   conf => {
-    if(window.location.href.includes('admin') === true) {
+    if (window.location.href.includes('admin') === true) {
       return conf;
     }
     conf.headers = setHeader(conf.headers);
@@ -80,11 +81,7 @@ class App extends Component {
     const id = getCookie('id');
     const pw = getCookie('pw');
     if (id && pw) {
-      axios
-        .post('https://dms-api.istruly.sexy/account/auth', {
-          id: id,
-          password: pw,
-        })
+      postAuth(id, pw)
         .then(response => {
           if (response.status === 200) {
             setCookie('JWT', response.data.accessToken);
@@ -157,11 +154,12 @@ class App extends Component {
           <Route path="/guide/notice" component={GuideMainContainer} exact />
           <Route path="/guide/rule" component={GuideMainContainer} exact />
           <Route path="/developers" component={DevelopersContainer} exact />
-          <Route path="/admin/login" component={LoginConatiner} exact/>
+          <Route path="/admin/login" component={LoginConatiner} exact />
           <Route
             path="/admin/:uri?"
             render={() => (
               <CommonDesign>
+<<<<<<< HEAD
                   <Switch>
                     <Route path="/admin/domitoryrule" component={DomitoryRuleContainer} exact/>
                     <Route path="/admin/domitoryrule/write" component={DomitoryRuleWriteContainer} exact />
@@ -177,6 +175,60 @@ class App extends Component {
                     <Route path="/admin/music" component={MusicContainer} exact/>
                     <Redirect to="/admin/login" />
                    </Switch>
+=======
+                <Switch>
+                  <Route
+                    path="/admin/domitoryrule"
+                    component={DomitoryRuleContainer}
+                    exact
+                  />
+                  <Route
+                    path="/admin/domitoryrule/write"
+                    component={DomitoryRuleWriteContainer}
+                    exact
+                  />
+                  <Route
+                    path="/admin/domitoryrule/edit/:postId"
+                    component={DomitoryRuleEditContainer}
+                    exact
+                  />
+                  <Route
+                    path="/admin/domitoryrule/:postId"
+                    component={ShowDomitoryRuleContainer}
+                  />
+                  <Route
+                    path="/admin/notice"
+                    component={NoticeContainer}
+                    exact
+                  />
+                  <Route
+                    path="/admin/notice/write"
+                    component={NoticeWriteContainer}
+                    exact
+                  />
+                  <Route
+                    path="/admin/notice/edit/:postId"
+                    component={NoticeEditContainer}
+                    exact
+                  />
+                  <Route
+                    path="/admin/notice/:postId"
+                    component={ShowNoticeContainer}
+                  />
+                  <Route path="/admin/fix" component={FixContainer} exact />
+                  <Route
+                    path="/admin/fix/:uri"
+                    component={FixDetailContainer}
+                    exact
+                  />
+                  <Route
+                    path="/admin/goingout"
+                    component={GoingOutContainer}
+                    exact
+                  />
+                  <Redirect to="/admin/login" />
+                </Switch>
+>>>>>>> 4b456f03143306e743ba3ab8b6f07c0a4748173b
               </CommonDesign>
             )}
           />

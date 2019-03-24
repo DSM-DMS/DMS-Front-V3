@@ -13,7 +13,7 @@ const initialState = {
   badPoint: 19,
   penaltyLevel: '2',
   penaltyStatus: true,
-  comment: '긴장타세요 퇴사가 코앞입니다.',
+  advice: '긴장타세요 퇴사가 코앞입니다.',
   pointHistory: [],
 };
 
@@ -32,6 +32,7 @@ function studentData(state = initialState, action) {
         number: parseInt((studentNum % 1000) % 100),
         penaltyLevel: basicData.penaltyLevel,
         penaltyStatus: basicData.penaltyStatus,
+        advice: basicData.advice,
       };
     case SET_STUDENT_POINT_DATA:
       const { pointData } = action;
@@ -46,7 +47,7 @@ function studentData(state = initialState, action) {
         badPoint: 19,
         penaltyLevel: '2',
         penaltyStatus: true,
-        comment: '긴장타세요 퇴사가 코앞입니다.',
+        advice: '긴장타세요 퇴사가 코앞입니다.',
         pointHistory: [],
       };
     default:

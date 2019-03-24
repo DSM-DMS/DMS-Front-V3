@@ -1,8 +1,8 @@
 import React, { Component, Fragment } from 'react';
-import axios from 'axios';
 import { connect } from 'react-redux';
 import { setModal, isLogin, autoLogin } from '../../../actions';
 import { removeCookie, getCookie } from '../../../lib/cookie';
+import { getBasicDatas } from '../../../lib/studentInfoAPI';
 import { setStudentBasicData, resetStudentData } from '../../../actions';
 
 import MyPage from '../../component/MyPage/MyPage';
@@ -40,15 +40,11 @@ class MyPageContainer extends Component {
   }
 
   getBasicData = token => {
-    axios
-      .get('https://dms-api.istruly.sexy/info/basic', {
-        headers: { Authorization: `Bearer ${token}` },
-      })
-      .then(response => {
-        if (response.status === 200) {
-          this.props.setStudentBasicData(response.data);
-        }
-      });
+    getBasicDatas(`Bearer ${token}`).then(response => {
+      if (response.status === 200) {
+        this.props.setStudentBasicData(response.data);
+      }
+    });
   };
 
   onLogOutBtn = () => {
@@ -77,7 +73,7 @@ class MyPageContainer extends Component {
       name,
       goodPoint,
       badPoint,
-      comment,
+      advice,
     } = this.props.studentData;
     const MyPageCardList = cardList.map(data => (
       <MyPageCard
@@ -98,7 +94,7 @@ class MyPageContainer extends Component {
           name={name}
           goodPoint={goodPoint}
           badPoint={badPoint}
-          comment={comment}
+          advice={advice}
           myPageCardList={MyPageCardList}
         />
       </Fragment>

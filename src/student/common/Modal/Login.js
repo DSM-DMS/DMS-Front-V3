@@ -1,5 +1,9 @@
 import React, { Component } from 'react';
-import axios from 'axios';
+import {
+  postLogin,
+  getPointCardList,
+  getBasicDatas,
+} from '../../../lib/studentInfoAPI';
 import { connect } from 'react-redux';
 import { setCookie } from '../../../lib/cookie';
 import {
@@ -39,35 +43,27 @@ class Login extends Component {
   loginBtn = () => {
     const { id, pw, checkbox } = this.state;
     if (id && pw) {
-      axios
-        .post('https://dms-api.istruly.sexy/account/auth', {
-          id: id,
-          password: pw,
-        })
-        .then(response => {
-          if (response.status === 200) {
-            alert('로그인에 성공하셨습니다.');
-            setCookie('JWT', response.data.accessToken);
-            setCookie('ID', id);
-            if (checkbox) this.props.autoLogin({ id: id, pw: pw });
-            this.getPointCards(response.data.accessToken);
-            this.getBasicData(response.data.accessToken);
-            this.props.isLogin(true);
-            this.props.setModal('');
-          } else if (response.status === 204) {
-            alert('비밀번호가 틀렸습니다.');
-          }
-        });
+      postLogin(id, pw).then(response => {
+        if (response.status === 200) {
+          alert('로그인에 성공하셨습니다.');
+          setCookie('JWT', response.data.accessToken);
+          setCookie('ID', id);
+          if (checkbox) this.props.autoLogin({ id: id, pw: pw });
+          this.getPointCards(response.data.accessToken);
+          this.getBasicData(response.data.accessToken);
+          this.props.isLogin(true);
+          this.props.setModal('');
+        } else if (response.status === 204) {
+          alert('비밀번호가 틀렸습니다.');
+        }
+      });
     } else {
       alert('공란이 존재합니다.');
     }
   };
 
   getPointCards = token => {
-    axios
-      .get('https://dms-api.istruly.sexy/info/point', {
-        headers: { Authorization: `Bearer ${token}` },
-      })
+    getPointCardList(`Bearer ${token}`)
       .then(response => {
         if (response.status === 200) {
           this.props.setStudentPointData(response.data.point_history);
@@ -79,15 +75,11 @@ class Login extends Component {
   };
 
   getBasicData = token => {
-    axios
-      .get('https://dms-api.istruly.sexy/info/basic', {
-        headers: { Authorization: `Bearer ${token}` },
-      })
-      .then(response => {
-        if (response.status === 200) {
-          this.props.setStudentBasicData(response.data);
-        }
-      });
+    getBasicDatas(`Bearer ${token}`).then(response => {
+      if (response.status === 200) {
+        this.props.setStudentBasicData(response.data);
+      }
+    });
   };
 
   enterKeyPress = e => {
