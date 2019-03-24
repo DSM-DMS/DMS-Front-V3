@@ -87,7 +87,7 @@ export default class ApplyContentContainer extends Component {
     extensionInfo: ['', ''],
     stayInfo: '',
     musicInfo: {},
-    isOnGoingoutApply: false
+    isOnGoingoutApply: false,
   };
 
   setExtensionInfo = async () => {
@@ -350,9 +350,9 @@ export default class ApplyContentContainer extends Component {
 
   onAddGoingoutApply = () => {
     this.setState({
-      isOnGoingoutApply: true
+      isOnGoingoutApply: true,
     });
-  }
+  };
 
   componentDidMount() {
     this.setExtensionInfo();
@@ -378,11 +378,14 @@ export default class ApplyContentContainer extends Component {
   }
 
   componentDidUpdate(prevProps, PrevState) {
-    const {type} = this.props;
-    const {contentInfo} = this.state;
-    if(PrevState.contentInfo[type].menuList.length !== contentInfo[type].menuList.length) {
+    const { type } = this.props;
+    const { contentInfo } = this.state;
+    if (
+      PrevState.contentInfo[type].menuList.length !==
+      contentInfo[type].menuList.length
+    ) {
       this.setState({
-        isOnGoingoutApply: contentInfo[type].menuList.length > 0
+        isOnGoingoutApply: contentInfo[type].menuList.length > 0,
       });
     }
   }
@@ -406,7 +409,7 @@ export default class ApplyContentContainer extends Component {
       musicInfo,
       goingoutApplication,
       selectedSeat,
-      isOnGoingoutApply
+      isOnGoingoutApply,
     } = this.state;
     const applyTag = {
       extension: (
