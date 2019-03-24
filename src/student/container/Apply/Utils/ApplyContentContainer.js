@@ -87,6 +87,7 @@ export default class ApplyContentContainer extends Component {
     extensionInfo: ['', ''],
     stayInfo: '',
     musicInfo: {},
+    isOnGoingoutApply: false
   };
 
   setExtensionInfo = async () => {
@@ -264,9 +265,7 @@ export default class ApplyContentContainer extends Component {
   };
 
   convertGoingoutInfotoContent = info => {
-    return `${this.convertDemical(info.go_out_date.substr(5, 2))}일 \
-    ${info.go_out_date.substr(11)} \
-    ~ ${info.return_date.substr(11)}`;
+    return `${info.date.replace('-', '월').replace(' ', '일 ')}`;
   };
 
   convertDemical = numStr => {
@@ -349,6 +348,12 @@ export default class ApplyContentContainer extends Component {
     return date.getFullYear();
   };
 
+  onAddGoingoutApply = () => {
+    this.setState({
+      isOnGoingoutApply: true
+    });
+  }
+
   componentDidMount() {
     this.setExtensionInfo();
     this.setStayInfo();
@@ -372,6 +377,16 @@ export default class ApplyContentContainer extends Component {
     }
   }
 
+  componentDidUpdate(prevProps, PrevState) {
+    const {type} = this.props;
+    const {contentInfo} = this.state;
+    if(PrevState.contentInfo[type].menuList.length !== contentInfo[type].menuList.length) {
+      this.setState({
+        isOnGoingoutApply: contentInfo[type].menuList.length > 0
+      });
+    }
+  }
+
   render() {
     const {
       type,
@@ -391,6 +406,7 @@ export default class ApplyContentContainer extends Component {
       musicInfo,
       goingoutApplication,
       selectedSeat,
+      isOnGoingoutApply
     } = this.state;
     const applyTag = {
       extension: (
@@ -442,6 +458,7 @@ export default class ApplyContentContainer extends Component {
               menuList={contentInfo[type].menuList}
               selectedMenu={selectedMenu}
               onSelectMenu={this.onSelectMenu}
+              onAddGoingoutApply={this.onAddGoingoutApply}
             />
           </div>
           <div className="apply--content--right">
@@ -463,6 +480,7 @@ export default class ApplyContentContainer extends Component {
               onChangeGoingoutApplication={this.onChangeGoingoutApplication}
               goingoutApplication={goingoutApplication}
               refreshFlag={refreshFlag}
+              isOnGoingoutApply={isOnGoingoutApply}
             />
           </div>
         </div>
