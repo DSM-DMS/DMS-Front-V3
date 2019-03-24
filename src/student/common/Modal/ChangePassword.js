@@ -33,7 +33,7 @@ class ChangePassword extends Component {
       patchPassword(currentPassword, newPassword, `Bearer ${jwtToken}`)
         .then(response => {
           if (response.status === 201) {
-            alert('비밀번호 변경에 성공하셨습니다. \n 다시 로그인하세요.');
+            alert('비밀번호 변경에 성공하셨습니다. \n다시 로그인하세요.');
             removeCookie('JWT');
             removeCookie('RFT');
             this.props.isLogin(false);
