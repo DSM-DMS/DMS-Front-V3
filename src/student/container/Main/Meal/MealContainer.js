@@ -56,6 +56,7 @@ class MealContainer extends Component {
 
   render() {
     const { selectedDate, breakfast, lunch, dinner } = this.props;
+
     return (
       <Fragment>
         <Meal
