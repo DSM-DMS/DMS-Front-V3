@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import './MusicApplyContainer.scss';
 
 import ApplyContentContainer from '../Utils/ApplyContentContainer';
-import { submitMusic } from '../../../../lib/applyAPI';
+import { submitMusic, deleteMusic } from '../../../../lib/applyAPI';
 import { getCookie } from '../../../../lib/cookie';
 
 export default class MusicApplyContainer extends Component {
@@ -19,7 +19,31 @@ export default class MusicApplyContainer extends Component {
     refreshFlag: false,
   };
 
-  onCancel = () => {};
+  onCancel = ({myMusicId}) => {
+    deleteMusic(getCookie('JWT'), myMusicId)
+      .then(response => {
+        switch (response.status) {
+          case 200:
+            alert('기상음악 신청 취소가 완료되었습니다.');
+            this.setState({
+              refreshFlag: true,
+            });
+            break;
+          case 204:
+            alert('없는 기상음악 입니다.');
+            break;
+          default:
+        }
+      })
+      .catch(e => {
+        switch (e.response.status) {
+          case 403:
+            alert('기상음악 신청 취소 권한이 없습니다.');
+            break;
+          default:
+        }
+      });
+  };
 
   onApply = ({ day, singer, title }) => {
     if (singer === '' || title === '') {
