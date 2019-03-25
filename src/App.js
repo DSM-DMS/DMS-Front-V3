@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component, Suspense } from 'react';
 import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
 import './App.scss';
 import axios from 'axios';
@@ -13,7 +13,6 @@ import ApplyMainContainer from './student/container/Apply/ApplyMainContainer';
 import StudentDefaultLayout from './student/common/DefaultLayout/DefaultLayout';
 import MyPageContainer from './student/container/MyPage/MyPageContainer';
 import GuideMainContainer from './student/container/Guide/GuideMainContainer';
-import DevelopersContainer from './student/container/Developers/DevelopersContainer';
 import FixContainer from './admin/container/Fix/FixContainer';
 import FixDetailContainer from './admin/container/Fix/FixDetailContainer';
 import SurveyContainer from './admin/container/Survey/SurveyContainer';
@@ -32,6 +31,10 @@ import NoticeEditContainer from './admin/container/Notice/NoticeEditContainer';
 import AdminMainContainer from './admin/container/Main/AdminMainContainer';
 
 import setHeader from './lib/setHeader';
+
+const DevelopersContainer = React.lazy(() =>
+  import('./student/container/Developers/DevelopersContainer'),
+);
 
 axios.interceptors.request.use(
   conf => {
@@ -143,80 +146,88 @@ class App extends Component {
     }
     return (
       <BrowserRouter>
-        <Switch>
-          <Route path="/admin" component={AdminMainContainer} exact />
-          <Route path="/apply/extension" component={ApplyMainContainer} exact />
-          <Route path="/apply/goingout" component={ApplyMainContainer} exact />
-          <Route path="/apply/stay" component={ApplyMainContainer} exact />
-          <Route path="/apply/music" component={ApplyMainContainer} exact />
-          <Route path="/guide/faq" component={GuideMainContainer} exact />
-          <Route path="/guide/notice" component={GuideMainContainer} exact />
-          <Route path="/guide/rule" component={GuideMainContainer} exact />
-          <Route path="/developers" component={DevelopersContainer} exact />
-          <Route path="/admin/login" component={LoginConatiner} exact />
-          <Route
-            path="/admin/:uri?"
-            render={() => (
-              <CommonDesign>
-                <Switch>
-                  <Route
-                    path="/admin/domitoryrule"
-                    component={DomitoryRuleContainer}
-                    exact
-                  />
-                  <Route
-                    path="/admin/domitoryrule/write"
-                    component={DomitoryRuleWriteContainer}
-                    exact
-                  />
-                  <Route
-                    path="/admin/domitoryrule/edit/:postId"
-                    component={DomitoryRuleEditContainer}
-                    exact
-                  />
-                  <Route
-                    path="/admin/domitoryrule/:postId"
-                    component={ShowDomitoryRuleContainer}
-                  />
-                  <Route
-                    path="/admin/notice"
-                    component={NoticeContainer}
-                    exact
-                  />
-                  <Route
-                    path="/admin/notice/write"
-                    component={NoticeWriteContainer}
-                    exact
-                  />
-                  <Route
-                    path="/admin/notice/edit/:postId"
-                    component={NoticeEditContainer}
-                    exact
-                  />
-                  <Route
-                    path="/admin/notice/:postId"
-                    component={ShowNoticeContainer}
-                  />
-                  <Route path="/admin/fix" component={FixContainer} exact />
-                  <Route
-                    path="/admin/fix/:uri"
-                    component={FixDetailContainer}
-                    exact
-                  />
-                  <Route
-                    path="/admin/goingout"
-                    component={GoingOutContainer}
-                    exact
-                  />
-                  <Redirect to="/admin/login" />
-                </Switch>
-              </CommonDesign>
-            )}
-          />
-          <Route
-            path="/:uri?"
-            render={() => (
-              <Fragment>
+        <Suspense fallback={<div>Loading..</div>}>
+          <Switch>
+            <Route path="/admin" component={AdminMainContainer} exact />
+            <Route
+              path="/apply/extension"
+              component={ApplyMainContainer}
+              exact
+            />
+            <Route
+              path="/apply/goingout"
+              component={ApplyMainContainer}
+              exact
+            />
+            <Route path="/apply/stay" component={ApplyMainContainer} exact />
+            <Route path="/apply/music" component={ApplyMainContainer} exact />
+            <Route path="/guide/faq" component={GuideMainContainer} exact />
+            <Route path="/guide/notice" component={GuideMainContainer} exact />
+            <Route path="/guide/rule" component={GuideMainContainer} exact />
+            <Route path="/developers" component={DevelopersContainer} exact />
+            <Route path="/admin/login" component={LoginConatiner} exact />
+            <Route
+              path="/admin/:uri?"
+              render={() => (
+                <CommonDesign>
+                  <Switch>
+                    <Route
+                      path="/admin/domitoryrule"
+                      component={DomitoryRuleContainer}
+                      exact
+                    />
+                    <Route
+                      path="/admin/domitoryrule/write"
+                      component={DomitoryRuleWriteContainer}
+                      exact
+                    />
+                    <Route
+                      path="/admin/domitoryrule/edit/:postId"
+                      component={DomitoryRuleEditContainer}
+                      exact
+                    />
+                    <Route
+                      path="/admin/domitoryrule/:postId"
+                      component={ShowDomitoryRuleContainer}
+                    />
+                    <Route
+                      path="/admin/notice"
+                      component={NoticeContainer}
+                      exact
+                    />
+                    <Route
+                      path="/admin/notice/write"
+                      component={NoticeWriteContainer}
+                      exact
+                    />
+                    <Route
+                      path="/admin/notice/edit/:postId"
+                      component={NoticeEditContainer}
+                      exact
+                    />
+                    <Route
+                      path="/admin/notice/:postId"
+                      component={ShowNoticeContainer}
+                    />
+                    <Route path="/admin/fix" component={FixContainer} exact />
+                    <Route
+                      path="/admin/fix/:uri"
+                      component={FixDetailContainer}
+                      exact
+                    />
+                    <Route
+                      path="/admin/goingout"
+                      component={GoingOutContainer}
+                      exact
+                    />
+                    <Redirect to="/admin/login" />
+                  </Switch>
+                </CommonDesign>
+              )}
+            />
+            <Route
+              path="/:uri?"
+              render={() => (
                 <StudentDefaultLayout>
                   <Switch>
                     <Route path="/" component={MainContainer} exact />
@@ -226,12 +237,12 @@ class App extends Component {
                     <Route path="/mypage" component={MyPageContainer} exact />
                   </Switch>
                 </StudentDefaultLayout>
-              </Fragment>
-            )}
-          />
-          }/>
-          <Redirect to="/" />
-        </Switch>
+              )}
+            />
+            }/>
+            <Redirect to="/" />
+          </Switch>
+        </Suspense>
       </BrowserRouter>
     );
   }
