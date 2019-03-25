@@ -39,11 +39,40 @@ class FixContainer extends Component {
         }
     }
 
+    HandleRemove = async (id) => {
+        const token = getCookie('JWT')
+        axios.delete("https://admin-api.dms.istruly.sexy/facility_report", 
+            {
+                reportId : id,
+                headers : {
+                    Authorization: `Bearer ${token}`
+            }
+        })
+        .then(async res => {
+            const response = await axios
+            .get("https://admin-api.dms.istruly.sexy/facility_report", 
+            {
+                headers : {
+                    Authorization: `Bearer ${token}`
+                }
+            })
+            if (response.data !== "") {
+                this.props.facilityRequest(
+                    response.data
+                )
+                this.setState({
+                    loading : false
+                })
+            }
+        })
+}
+
+
     render() {
         const { facilityReportList } = this.props;
         const { loading } = this.state;
         const fixList = facilityReportList.map(data =>
-            <FixList data = {data} key = {data.reportId} />
+            <FixList onDelete = {this.HandleRemove} data = {data} key = {data.reportId} />
         )
         return (
             <Fragment>

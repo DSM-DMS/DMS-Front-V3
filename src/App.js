@@ -159,23 +159,6 @@ class App extends Component {
             path="/admin/:uri?"
             render={() => (
               <CommonDesign>
-<<<<<<< HEAD
-                  <Switch>
-                    <Route path="/admin/domitoryrule" component={DomitoryRuleContainer} exact/>
-                    <Route path="/admin/domitoryrule/write" component={DomitoryRuleWriteContainer} exact />
-                    <Route path="/admin/domitoryrule/edit/:postId" component={DomitoryRuleEditContainer} exact />
-                    <Route path="/admin/domitoryrule/:postId" component={ShowDomitoryRuleContainer}/>
-                    <Route path="/admin/notice" component={NoticeContainer} exact/>
-                    <Route path="/admin/notice/write" component={NoticeWriteContainer} exact/>
-                    <Route path="/admin/notice/edit/:postId" component={NoticeEditContainer} exact />
-                    <Route path="/admin/notice/:postId" component={ShowNoticeContainer}/>
-                    <Route path="/admin/fix" component={FixContainer} exact/>
-                    <Route path="/admin/fix/:uri" component={FixDetailContainer} exact/>
-                    <Route path="/admin/goingout" component={GoingOutContainer} exact/>
-                    <Route path="/admin/music" component={MusicContainer} exact/>
-                    <Redirect to="/admin/login" />
-                   </Switch>
-=======
                 <Switch>
                   <Route
                     path="/admin/domitoryrule"
@@ -228,7 +211,6 @@ class App extends Component {
                   />
                   <Redirect to="/admin/login" />
                 </Switch>
->>>>>>> 4b456f03143306e743ba3ab8b6f07c0a4748173b
               </CommonDesign>
             )}
           />
