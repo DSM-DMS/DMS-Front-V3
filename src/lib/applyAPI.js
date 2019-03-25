@@ -110,6 +110,19 @@ export const submitMusic = (token, day, singer, musicName) => {
   );
 };
 
+export const deleteMusic = (token, id) => {
+  return axios({
+    method: 'DELETE',
+    url: `${rootUrl}/music`,
+    data: {
+      applyId: id,
+    },
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+};
+
 export const getStayInform = token => {
   return axios.get(`${rootUrl}/stay`, {
     headers: {
