@@ -46,18 +46,6 @@ axios.interceptors.request.use(
   },
 );
 
-axios.interceptors.response.use(
-  res => {
-    if (!!res.headers['new-access-token']) {
-      setCookie('JWT', res.headers['new-access-token']);
-    }
-    return res;
-  },
-  err => {
-    return Promise.reject(err);
-  },
-);
-
 class App extends Component {
   componentWillMount() {
     if (
