@@ -46,7 +46,7 @@ export default class StayApplyContainer extends Component {
       .catch(e => {
         switch(e.response.status) {
           case 409:
-            alert('연장신청 시간이 아닙니다.');
+            alert('잔류신청 시간이 아닙니다.');
             break;
           default:
         }
