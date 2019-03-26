@@ -1,10 +1,10 @@
 import React from 'react';
 
-import './GoingoutContent.scss';
+import './GoingoutModifyContent.scss';
 
-const GoingoutContent = ({
+const GoingoutModifyContent = ({
   onChangeGoingoutApplication,
-  goingoutApplication
+  modifyGoingoutApplication
 }) => {
   return (
     <div className='apply--content--goingout'>
@@ -12,18 +12,18 @@ const GoingoutContent = ({
       <div className='apply--content--goingout--input--wrapper'>
         <input
           name='month'
-          value={goingoutApplication.month}
+          value={modifyGoingoutApplication.month}
           onChange={onChangeGoingoutApplication}
           className='apply--content--goingout--input'
-          autoComplete='off'
+          autocomplete='off'
         />
         <span>월</span>
         <input
           name='day'
-          value={goingoutApplication.day}
+          value={modifyGoingoutApplication.day}
           onChange={onChangeGoingoutApplication}
           className='apply--content--goingout--input'
-          autoComplete='off'
+          autocomplete='off'
         />
         <span>일</span>
       </div>
@@ -31,47 +31,47 @@ const GoingoutContent = ({
       <div className='apply--content--goingout--input--wrapper'>
         <input
           name='outHour'
-          value={goingoutApplication.outHour}
+          value={modifyGoingoutApplication.outHour}
           onChange={onChangeGoingoutApplication}
           className='apply--content--goingout--input'
-          autoComplete='off'
+          autocomplete='off'
         />
         <span>시</span>
         <input
           name='outMin'
-          value={goingoutApplication.outMin}
+          value={modifyGoingoutApplication.outMin}
           onChange={onChangeGoingoutApplication}
           className='apply--content--goingout--input'
-          autoComplete='off'
+          autocomplete='off'
         />
         <span>분</span>
         <span> ~ </span>
         <input
           name='returnHour'
-          value={goingoutApplication.returnHour}
+          value={modifyGoingoutApplication.returnHour}
           onChange={onChangeGoingoutApplication}
           className='apply--content--goingout--input'
-          autoComplete='off'
+          autocomplete='off'
         />
         <span>시</span>
         <input
           name='returnMin'
-          value={goingoutApplication.returnMin}
+          value={modifyGoingoutApplication.returnMin}
           onChange={onChangeGoingoutApplication}
           className='apply--content--goingout--input'
-          autoComplete='off'
+          autocomplete='off'
         />
         <span>분</span>
       </div>
       <p>외출 사유</p>
       <textarea
         name='reason'
-        value={goingoutApplication.reason}
+        value={modifyGoingoutApplication.reason}
         onChange={onChangeGoingoutApplication}
-        autoComplete='off'
+        autocomplete='off'
       />
     </div>
   );
 };
 
-export default GoingoutContent;
+export default GoingoutModifyContent;
