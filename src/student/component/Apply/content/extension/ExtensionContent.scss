@@ -37,6 +37,7 @@
 .apply--content--extension--map {
   display: flex;
   height: 100%;
+  padding: 0 1rem;
   flex-direction: column;
   justify-content: space-between;
   text-align: center;
@@ -49,7 +50,7 @@
     }
   }
   &--wrapper {
-    width: 21.875rem;
+    width: 24rem;
     height: 80%;
     overflow: auto;
     &.big--class {

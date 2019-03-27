@@ -1,0 +1,52 @@
+.apply--content--goingout {
+  display: flex;
+  height: 100%;
+  flex-direction: column;
+  padding: 1.875rem;
+  box-sizing: border-box;
+  & > p,
+  & > textarea,
+  & > input {
+    font-family: NanumSquareB;
+    color: #233539;
+    font-size: 1rem;
+  }
+  & > textarea {
+    border: 1px solid #e9eff4;
+    border-radius: 8px;
+    overflow: auto;
+    outline: none;
+    box-shadow: none;
+    resize: none;
+    flex-grow: 1;
+    padding: 1rem;
+  }
+  &--input {
+    border: none;
+    text-align: center;
+    outline: none;
+    box-shadow: none;
+    width: 1.875rem;
+    &::-webkit-outer-spin-button,
+    &::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+  }
+
+  &--input--wrapper {
+    &:focus-within {
+      border: 1px solid #19b6b6;
+    }
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 3.125rem;
+    border-radius: 8px;
+    border: 1px solid #e9eff4;
+    & > span {
+      font-family: NanumSquareEB;
+      margin: 0 0.5rem;
+    }
+  }
+}

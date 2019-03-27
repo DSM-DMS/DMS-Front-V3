@@ -17,7 +17,8 @@ export default class ExtensionApplyContainer extends Component {
     '3층 학교측 독서실',
     '4층 계단측 독서실',
     '4층 학교측 독서실',
-    '5층 열린 교실'
+    '5층 열린 교실',
+    '3층 소파'
   ];
   typeList = [{ content: '11시', val: '11' }, { content: '12시', val: '12' }];
   state = {
@@ -70,6 +71,7 @@ export default class ExtensionApplyContainer extends Component {
             break;
           case 205:
             alert('이미 신청된 좌석입니다.');
+            break;
           default:
         }
       })
