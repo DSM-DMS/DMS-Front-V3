@@ -4,7 +4,7 @@ import Woman from '../../../assets/illust/admin-1.png'
 
 import './Music.scss'
 
-const Music = ({list, dateIndex, onIndexChange}) => {
+const Music = ({day, list, dateIndex, onIndexChange}) => {
     return (
         <React.Fragment>
             <div className = "music--button--wrapper">
@@ -14,8 +14,8 @@ const Music = ({list, dateIndex, onIndexChange}) => {
                 </div>
             </div>
             <div className = "music--detail--wrapper">
-                <div className = "music--detail--header--wrapper" key = {0}>
-                    {list[dateIndex].day}
+                <div className = "music--detail--header--wrapper">
+                    {day}
                 </div>
                 <div className = "music--detail--content--wrapper">
                     {
@@ -29,24 +29,24 @@ const Music = ({list, dateIndex, onIndexChange}) => {
                                     </div>
                                     <div className = "music--detail--content--main--content--wrapper">
                                         <div className = "music--detail--content--main--content musicName">
-                                            { list[dateIndex].list[0].musicName }
+                                            { list[0].musicName }
                                         </div>
                                         <div className = "music--detail--content--main--content artist">
-                                            { list[dateIndex].list[0].singer }
+                                            { list[0].singer }
                                         </div>
                                         <div className = "music--detail--content--main--content studentname">
-                                            { list[dateIndex].list[0].studentName }
+                                            { list[0].studentName }
                                         </div>
                                     </div>
                                     <div className = "music--detail--content--main--content--wrapper">
                                         <div className = "music--detail--content--main--content musicName">
-                                        { list[dateIndex].list[1].musicName }
+                                        { list[1].musicName }
                                         </div>
                                         <div className = "music--detail--content--main--content artist">
-                                        { list[dateIndex].list[1].singer }
+                                        { list[1].singer }
                                         </div>
                                         <div className = "music--detail--content--main--content studentname">
-                                        { list[dateIndex].list[1].studentName }
+                                        { list[1].studentName }
                                         </div>
                                     </div>
                                 </div>
@@ -56,35 +56,35 @@ const Music = ({list, dateIndex, onIndexChange}) => {
                                     </div>
                                     <div className = "music--detail--content--main--content--wrapper">
                                         <div className = "music--detail--content--main--content musicName">
-                                        { list[dateIndex].list[2].musicName }
+                                        { list[2].musicName }
                                         </div>
                                         <div className = "music--detail--content--main--content artist">
-                                        { list[dateIndex].list[2].singer }
+                                        { list[2].singer }
                                         </div>
                                         <div className = "music--detail--content--main--content studentname">
-                                        { list[dateIndex].list[2].studentName }
+                                        { list[2].studentName }
                                         </div>
                                     </div>
                                     <div className = "music--detail--content--main--content--wrapper">
                                         <div className = "music--detail--content--main--content musicName">
-                                        { list[dateIndex].list[3].musicName }
+                                        { list[3].musicName }
                                         </div>
                                         <div className = "music--detail--content--main--content artist">
-                                        { list[dateIndex].list[3].singer }
+                                        { list[3].singer }
                                         </div>
                                         <div className = "music--detail--content--main--content studentname">
-                                        { list[dateIndex].list[3].studentName }
+                                        { list[3].studentName }
                                         </div>
                                     </div>
                                     <div className = "music--detail--content--main--content--wrapper">
                                         <div className = "music--detail--content--main--content musicName">
-                                        { list[dateIndex].list[4].musicName }
+                                        { list[4].musicName }
                                         </div>
                                         <div className = "music--detail--content--main--content artist">
-                                        { list[dateIndex].list[4].singer }
+                                        { list[4].singer }
                                         </div>
                                         <div className = "music--detail--content--main--content studentname">
-                                        { list[dateIndex].list[4].studentName }
+                                        { list[4].studentName }
                                         </div>
                                     </div>
                                 </div>
