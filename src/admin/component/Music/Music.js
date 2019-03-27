@@ -28,25 +28,25 @@ const Music = ({list, dateIndex, onIndexChange}) => {
                                         신청
                                     </div>
                                     <div className = "music--detail--content--main--content--wrapper">
-                                        <div className = "music--detail--content--main--content title">
-                                        
+                                        <div className = "music--detail--content--main--content musicName">
+                                            { list[dateIndex].list[0].musicName }
                                         </div>
                                         <div className = "music--detail--content--main--content artist">
-                                        
+                                            { list[dateIndex].list[0].singer }
                                         </div>
                                         <div className = "music--detail--content--main--content studentname">
-                                        
+                                            { list[dateIndex].list[0].studentName }
                                         </div>
                                     </div>
                                     <div className = "music--detail--content--main--content--wrapper">
-                                        <div className = "music--detail--content--main--content title">
-                                        
+                                        <div className = "music--detail--content--main--content musicName">
+                                        { list[dateIndex].list[1].musicName }
                                         </div>
                                         <div className = "music--detail--content--main--content artist">
-                                        
+                                        { list[dateIndex].list[1].singer }
                                         </div>
                                         <div className = "music--detail--content--main--content studentname">
-                                        
+                                        { list[dateIndex].list[1].studentName }
                                         </div>
                                     </div>
                                 </div>
@@ -55,36 +55,36 @@ const Music = ({list, dateIndex, onIndexChange}) => {
                                         후보
                                     </div>
                                     <div className = "music--detail--content--main--content--wrapper">
-                                        <div className = "music--detail--content--main--content title">
-                                        
+                                        <div className = "music--detail--content--main--content musicName">
+                                        { list[dateIndex].list[2].musicName }
                                         </div>
                                         <div className = "music--detail--content--main--content artist">
-                                        
+                                        { list[dateIndex].list[2].singer }
                                         </div>
                                         <div className = "music--detail--content--main--content studentname">
-                                        
+                                        { list[dateIndex].list[2].studentName }
                                         </div>
                                     </div>
                                     <div className = "music--detail--content--main--content--wrapper">
-                                        <div className = "music--detail--content--main--content title">
-                                        
+                                        <div className = "music--detail--content--main--content musicName">
+                                        { list[dateIndex].list[3].musicName }
                                         </div>
                                         <div className = "music--detail--content--main--content artist">
-                                        
+                                        { list[dateIndex].list[3].singer }
                                         </div>
                                         <div className = "music--detail--content--main--content studentname">
-                                        
+                                        { list[dateIndex].list[3].studentName }
                                         </div>
                                     </div>
                                     <div className = "music--detail--content--main--content--wrapper">
-                                        <div className = "music--detail--content--main--content title">
-                                        
+                                        <div className = "music--detail--content--main--content musicName">
+                                        { list[dateIndex].list[4].musicName }
                                         </div>
                                         <div className = "music--detail--content--main--content artist">
-                                        
+                                        { list[dateIndex].list[4].singer }
                                         </div>
                                         <div className = "music--detail--content--main--content studentname">
-                                        
+                                        { list[dateIndex].list[4].studentName }
                                         </div>
                                     </div>
                                 </div>

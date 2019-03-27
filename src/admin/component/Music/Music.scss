@@ -89,7 +89,6 @@
                 position: relative;
                 display: flex;
                 justify-content: center;
-                margin-top: 3.375rem;
                 height: calc(100% - 3.375rem);
             }
 
@@ -111,7 +110,7 @@
                     padding-right: 0.25rem;
                     padding-left: 0.25rem;
 
-                    &.title {
+                    &.musicName {
                         width: 16.6875rem;
                     }
 
@@ -139,8 +138,8 @@
                     height: calc(100%);
                     color: #000000;
                     text-decoration: none;
-                    padding-top: 1rem;
-                    padding-bottom: 1rem;
+                    padding-top: 2rem;
+                    padding-bottom: 2rem;
                 }
                 
                 &--header {
@@ -166,7 +165,7 @@
                         }
 
                         &.apply {
-                            height: 6.5rem;
+                            height: 7rem;
                             display: flex;
                             flex-direction: column;
                             justify-content: space-between;

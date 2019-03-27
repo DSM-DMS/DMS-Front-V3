@@ -205,6 +205,11 @@ class App extends Component {
                     exact
                   />
                   <Route
+                    path = "/admin/music"
+                    component={MusicContainer}
+                    exact
+                  />
+                  <Route
                     path="/admin/goingout"
                     component={GoingOutContainer}
                     exact
