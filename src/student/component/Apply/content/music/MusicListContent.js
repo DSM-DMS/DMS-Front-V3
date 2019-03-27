@@ -31,6 +31,9 @@ const MusicContent = ({ musicInfo }) => {
             {music.musicName}
           </div>
           <div className="apply--content--music--list--author">
+            {music.singer}
+          </div>
+          <div className="apply--content--music--list--author">
             {music.studentName}
           </div>
         </div>
@@ -43,6 +46,7 @@ const MusicContent = ({ musicInfo }) => {
       <div className="apply--content--music--list--header">
         <div className="apply--content--music--list--day">요일</div>
         <div className="apply--content--music--list--title">노래 제목</div>
+        <div className="apply--content--music--list--author">가수</div>
         <div className="apply--content--music--list--author">작성자</div>
       </div>
       {musicContent}
