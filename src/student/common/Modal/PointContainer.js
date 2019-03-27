@@ -33,6 +33,9 @@ class PointContainer extends Component {
         point={data.point}
         pointType={data.pointType ? 'point--card--good' : 'point--card--bad'}
         reason={data.reason}
+        key={`point-card-${data.date}+${data.point}+${data.pointType}+${
+          data.reason
+        }`}
       />
     ));
 

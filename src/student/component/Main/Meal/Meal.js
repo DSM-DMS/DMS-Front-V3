@@ -15,7 +15,6 @@ const Meal = ({
   prevDate,
   nextDate,
 }) => {
-  console.log(dinner);
   return (
     <div className="meal--wrapper" id="meal">
       <div className="inner--wrapper">
