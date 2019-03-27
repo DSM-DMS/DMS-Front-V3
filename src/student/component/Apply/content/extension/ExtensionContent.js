@@ -65,6 +65,12 @@ const mapInfoList = [
     bottom: '벽',
     left: '창문',
     right: '복도'
+  },
+  {
+    top: '칠판',
+    bottom: '벽',
+    left: '창문',
+    right: '복도'
   }
 ];
 

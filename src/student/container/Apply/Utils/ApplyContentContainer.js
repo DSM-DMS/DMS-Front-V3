@@ -31,6 +31,7 @@ export default class ApplyContentContainer extends Component {
           { content: '4층', detail: '4층 학교측 독서실', val: 7 },
           { content: '4층', detail: '4층 기숙사측 독서실', val: 8 },
           { content: '5층', detail: '5층 열린 교실', val: 9 },
+          { content: '3층', detail: '3층 소파', val: 10 }
         ],
         typeList: [{ content: '11시', val: 11 }, { content: '12시', val: 12 }],
       },
