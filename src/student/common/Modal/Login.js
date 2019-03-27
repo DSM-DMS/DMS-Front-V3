@@ -46,10 +46,16 @@ class Login extends Component {
       postLogin(id, pw).then(response => {
         if (response.status === 200) {
           alert('로그인에 성공하셨습니다.');
-          setCookie('JWT', response.data.accessToken);
-          setCookie('RFT', response.data.refreshToken);
-          setCookie('ID', id);
-          if (checkbox) this.props.autoLogin({ id: id, pw: pw });
+          if (checkbox) {
+            setCookie('JWT', response.data.accessToken, 180);
+            setCookie('RFT', response.data.refreshToken, 180);
+            setCookie('ID', id, 180);
+          } else {
+            setCookie('JWT', response.data.accessToken);
+            setCookie('RFT', response.data.refreshToken);
+            setCookie('ID', id);
+          }
+
           this.getPointCards(response.data.accessToken);
           this.getBasicData(response.data.accessToken);
           this.props.isLogin(true);
