@@ -42,9 +42,8 @@ class FixContainer extends Component {
 
     HandleRemove = async (id) => {
         const token = getCookie('JWT')
-        axios.delete("https://admin-api.dms.istruly.sexy/facility_report", 
+        axios.delete(`https://admin-api.dms.istruly.sexy/facility_report/${id}`, 
             {
-                reportId : id,
                 headers : {
                     Authorization: `Bearer ${token}`
             }

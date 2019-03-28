@@ -75,6 +75,10 @@ class MusicContainer extends Component {
                     if(list[i].singer.length > 8) {
                         list[i].singer = list[i].singer.slice(0, 8) + "..."
                     }
+                    console.log(list[i].musicName.length)
+                    if(list[i].musicName.length > 16) {
+                        list[i].musicName = list[i].musicName.slice(0, 16) + "..."
+                    }
                 }
                 for(let i = index; i <= 4; i++) {
                     list.push({musicName : '', singer : '', studentName : ''})
@@ -87,6 +91,9 @@ class MusicContainer extends Component {
                     list.push({...this.response.tue[i]})
                     if(list[i].singer.length > 8) {
                         list[i].singer = list[i].singer.slice(0, 8) + "..."
+                    }
+                    if(list[i].musicName.length > 12) {
+                        list[i].musicName = list[i].musicName.slice(0, 12) + "..."
                     }
                 }
                 for(let i = index; i <= 4; i++) {
@@ -101,6 +108,9 @@ class MusicContainer extends Component {
                     if(list[i].singer.length > 8) {
                         list[i].singer = list[i].singer.slice(0, 8) + "..."
                     }
+                    if(list[i].musicName.length > 12) {
+                        list[i].musicName = list[i].musicName.slice(0, 12) + "..."
+                    }
                 }
                 for(let i = index; i <= 4; i++) {
                     list.push({musicName : '', singer : '', studentName : ''})
@@ -114,6 +124,9 @@ class MusicContainer extends Component {
                     if(list[i].singer.length > 8) {
                         list[i].singer = list[i].singer.slice(0, 8) + "..."
                     }
+                    if(list[i].musicName.length > 12) {
+                        list[i].musicName = list[i].musicName.slice(0, 12) + "..."
+                    }
                 }
                 for(let i = index; i <= 4; i++) {
                     list.push({musicName : '', singer : '', studentName : ''})
@@ -126,6 +139,9 @@ class MusicContainer extends Component {
                     list.push({...this.response.fri[i]})
                     if(list[i].singer.length > 8) {
                         list[i].singer = list[i].singer.slice(0, 8) + "..."
+                    }
+                    if(list[i].musicName.length > 16) {
+                        list[i].musicName = list[i].musicName.slice(0, 16) + "..."
                     }
                 }
                 for(let i = index; i <= 4; i++) {

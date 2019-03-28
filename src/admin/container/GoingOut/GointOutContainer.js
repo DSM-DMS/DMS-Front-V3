@@ -72,12 +72,20 @@ class GointOutContainer extends Component {
             }  
         })
         .then(res => {
+            console.log(res)
             this.setState({
-                modalData : [...res.data]
+                modalData : {...res.data},
+                modal : true
             })
         })
         .catch(err => {
             console.log(err)
+        })
+    }
+
+    HandleModalToggle = () => {
+        this.setState({
+            modal: false
         })
     }
 
@@ -102,6 +110,7 @@ class GointOutContainer extends Component {
             }
         })
         .then(res => {
+            console.log(res)
             this.setState({
                 goingOutList: [...res.data].reverse()
             })
@@ -188,7 +197,7 @@ class GointOutContainer extends Component {
 
     render() {
         const { checkList, pageSize, curPage, modalData } = this.state;
-        const { selectList, selectState, selected, allcheck, goingOutList, modal } = this.state;
+        const { selectList, selectState, selected, allcheck, goingOutList, modal, HandleModalToggle } = this.state;
         const selectData = selectList.map(data => {
             return <GoingOutClassList HandleSelect = {this.HandleSelect} key = {data.kind} data = {data}>{data.kind}</GoingOutClassList>
         })
@@ -210,7 +219,7 @@ class GointOutContainer extends Component {
         }
         return (
             <Fragment>
-                <GoingOut modalData = {modalData} modal = {modal} PageList = {PageList} goingOutData = {goingOutData} HandleAllToggle = {this.HandleAllToggle} AllCheck = {allcheck} HandleSelectToggle = {this.HandleSelectToggle} selected = {selected} selectState = {selectState} selectData = {selectData} data = {data}/>
+                <GoingOut onModalToggle = {this.HandleModalToggle} modalData = {modalData} modal = {modal} PageList = {PageList} goingOutData = {goingOutData} HandleAllToggle = {this.HandleAllToggle} AllCheck = {allcheck} HandleSelectToggle = {this.HandleSelectToggle} selected = {selected} selectState = {selectState} selectData = {selectData} data = {data}/>
             </Fragment>
         );
     }
