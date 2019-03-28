@@ -5,15 +5,15 @@ import {
 } from '../actions/ActionTypes';
 
 const initialState = {
-  grade: 2,
-  classroom: 1,
-  number: 4,
-  name: '조민규 바보',
-  goodPoint: 15,
-  badPoint: 19,
-  penaltyLevel: '2',
+  grade: 0,
+  classroom: 0,
+  number: 0,
+  name: '',
+  goodPoint: 0,
+  badPoint: 0,
+  penaltyLevel: '',
   penaltyStatus: true,
-  advice: '긴장타세요 퇴사가 코앞입니다.',
+  advice: '',
   pointHistory: [],
 };
 

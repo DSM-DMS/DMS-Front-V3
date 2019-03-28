@@ -8,7 +8,8 @@ const ExtraCard = ({ type, src, title, linkToSurvey, onClickModal }) => {
       className="extra--card--wrapper"
       onClick={
         type === 'survey'
-          ? () => linkToSurvey(`/extra/${type}`)
+          ? //() => linkToSurvey(`/extra/${type}`)
+            () => alert('설문 조사는 추후에 추가될 예정입니다.')
           : e => {
               onClickModal(e, title);
             }

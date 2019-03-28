@@ -31,6 +31,14 @@ class ForgotPassword extends Component {
           alert('잘못된 아이디 혹은 이메일입니다.');
         }
       });
+    } else {
+      alert('공백이 존재합니다.');
+    }
+  };
+
+  enterKeyPress = e => {
+    if (e.key === 'Enter') {
+      this.forgotBtn();
     }
   };
 
@@ -50,6 +58,7 @@ class ForgotPassword extends Component {
           className="modal--input"
           onChange={this.emailHandler}
           value={this.state.email}
+          onKeyPress={this.enterKeyPress}
         />
         <button className="modal--submit" onClick={this.forgotBtn}>
           비밀번호 찾기

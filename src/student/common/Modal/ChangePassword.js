@@ -68,6 +68,12 @@ class ChangePassword extends Component {
     }
   };
 
+  enterKeyPress = e => {
+    if (e.key === 'Enter') {
+      this.onSubmitBtn();
+    }
+  };
+
   render() {
     return (
       <div className="changepassword--wrapper">
@@ -94,6 +100,7 @@ class ChangePassword extends Component {
           className="modal--input"
           onChange={this.onChangeHandler}
           value={this.state.newPasswordChk}
+          onKeyPress={this.enterKeyPress}
         />
         <button className="modal--submit" onClick={this.onSubmitBtn}>
           비밀번호 변경
