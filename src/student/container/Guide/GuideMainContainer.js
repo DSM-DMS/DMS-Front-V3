@@ -47,7 +47,10 @@ class GuideMainContainer extends Component {
     };
     const content = containerType[type];
     return (
-      <div className="apply--main--wrapper">
+      <div 
+        className="apply--main--wrapper"
+        style={{ width: window.screen.width }}
+      >
         <GuideMenuContainer selectedMenu="guide" />
         {content}
       </div>
