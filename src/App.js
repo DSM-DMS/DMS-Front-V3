@@ -5,8 +5,8 @@ import axios from 'axios';
 
 import { connect } from 'react-redux';
 import { autoLogin, isLogin } from './actions';
-import { getCookie, setCookie, removeCookie } from './lib/cookie';
-import { postAuth } from './lib/studentInfoAPI';
+import { getCookie } from './lib/cookie';
+import { getBasicDatas } from './lib/studentInfoAPI';
 
 import MainContainer from './student/container/Main/MainContainer';
 import ApplyMainContainer from './student/container/Apply/ApplyMainContainer';
@@ -59,53 +59,17 @@ class App extends Component {
     }
 
     this.loginApi();
-
-    // window.addEventListener('load', this.loginApi);
-    window.addEventListener('beforeunload', this.setAutoLogin);
   }
 
   loginApi = () => {
-    const id = getCookie('id');
-    const pw = getCookie('pw');
-    if (id && pw) {
-      postAuth(id, pw)
-        .then(response => {
-          if (response.status === 200) {
-            setCookie('JWT', response.data.accessToken);
-            setCookie('ID', id);
-            removeCookie('id');
-            removeCookie('pw');
-            this.props.autoLogin({ id: id, pw: pw });
-            this.props.isLogin(true);
-          } else if (response.status === 204) {
-            alert('비밀번호가 틀렸습니다.');
-          }
-        })
-        .catch(err => {
-          removeCookie('id');
-          removeCookie('pw');
-        });
+    const accessToken = getCookie('JWT');
+    const refreshToken = getCookie('RFT');
 
-      // if (response.status === 200) {
-      //   setCookie('JWT', response.data.accessToken);
-      //   setCookie('ID', id);
-      //   removeCookie('id');
-      //   removeCookie('pw');
-      //   this.props.autoLogin({ id: id, pw: pw });
-      //   this.props.isLogin(true);
-      // }
+    if (accessToken || refreshToken) {
+      getBasicDatas(`Bearer ${accessToken}`, `Bearer ${refreshToken}`).then(
+        res => {},
+      );
     }
-  };
-
-  setAutoLogin = () => {
-    const { id, pw, autoLogin } = this.props;
-    if (id && pw) {
-      autoLogin({ id: '', pw: '' });
-      setCookie('id', id, 150);
-      setCookie('pw', pw, 150);
-    }
-    removeCookie('JWT');
-    removeCookie('ID');
   };
 
   render() {

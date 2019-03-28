@@ -5,7 +5,7 @@ import {
   getBasicDatas,
 } from '../../../lib/studentInfoAPI';
 import { connect } from 'react-redux';
-import { setCookie } from '../../../lib/cookie';
+import { setCookie, getCookie } from '../../../lib/cookie';
 import {
   isLogin,
   autoLogin,
@@ -70,7 +70,7 @@ class Login extends Component {
   };
 
   getPointCards = token => {
-    getPointCardList(`Bearer ${token}`)
+    getPointCardList(`Bearer ${token}`, `Bearer ${getCookie('RFT')}`)
       .then(response => {
         if (response.status === 200) {
           this.props.setStudentPointData(response.data.point_history);
@@ -82,11 +82,13 @@ class Login extends Component {
   };
 
   getBasicData = token => {
-    getBasicDatas(`Bearer ${token}`).then(response => {
-      if (response.status === 200) {
-        this.props.setStudentBasicData(response.data);
-      }
-    });
+    getBasicDatas(`Bearer ${token}`, `Bearer ${getCookie('RFT')}`).then(
+      response => {
+        if (response.status === 200) {
+          this.props.setStudentBasicData(response.data);
+        }
+      },
+    );
   };
 
   enterKeyPress = e => {

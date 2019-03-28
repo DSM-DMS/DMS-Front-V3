@@ -22,7 +22,7 @@ function checkValidation(status, refresh, method, path, data) {
         return reRequest;
       })
       .catch(err => {
-        return false;
+        return 'expired token';
       });
   } else {
     return false;
@@ -42,7 +42,9 @@ const axiosWrapper = {
       path,
       null,
     );
-    if (reRequest) {
+    if (reRequest === 'expired token') {
+      return 'expired token';
+    } else if (reRequest) {
       return reRequest;
     }
     return response;
@@ -59,7 +61,9 @@ const axiosWrapper = {
       path,
       data,
     );
-    if (reRequest) {
+    if (reRequest === 'expired token') {
+      return 'expired token';
+    } else if (reRequest) {
       return reRequest;
     }
     return response;
@@ -76,7 +80,9 @@ const axiosWrapper = {
       path,
       data,
     );
-    if (reRequest) {
+    if (reRequest === 'expired token') {
+      return 'expired token';
+    } else if (reRequest) {
       return reRequest;
     }
     return response;
@@ -93,7 +99,9 @@ const axiosWrapper = {
       path,
       data,
     );
-    if (reRequest) {
+    if (reRequest === 'expired token') {
+      return 'expired token';
+    } else if (reRequest) {
       return reRequest;
     }
     return response;
