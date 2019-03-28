@@ -34,6 +34,8 @@ class BrokenReport extends Component {
         .catch(err => {
           if (err.response.status === 403) {
             alert('권한이 없습니다.');
+          } else if (err.response.status === 400) {
+            alert('존재하지 않는 호실 번호입니다');
           }
         });
   };
