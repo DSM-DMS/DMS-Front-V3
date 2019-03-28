@@ -4,9 +4,18 @@ import './App.scss';
 import axios from 'axios';
 
 import { connect } from 'react-redux';
-import { autoLogin, isLogin } from './actions';
+import {
+  autoLogin,
+  isLogin,
+  setStudentBasicData,
+  setStudentPointData,
+} from './actions';
 import { getCookie, setCookie, removeCookie } from './lib/cookie';
-import { postAuth } from './lib/studentInfoAPI';
+import {
+  postAuth,
+  getPointCardList,
+  getBasicDatas,
+} from './lib/studentInfoAPI';
 
 import MainContainer from './student/container/Main/MainContainer';
 import ApplyMainContainer from './student/container/Apply/ApplyMainContainer';
@@ -90,6 +99,8 @@ class App extends Component {
             setCookie('ID', id);
             removeCookie('id');
             removeCookie('pw');
+            this.getPointCards(response.data.accessToken);
+            this.getBasicData(response.data.accessToken);
             this.props.autoLogin({ id: id, pw: pw });
             this.props.isLogin(true);
           } else if (response.status === 204) {
@@ -100,15 +111,6 @@ class App extends Component {
           removeCookie('id');
           removeCookie('pw');
         });
-
-      // if (response.status === 200) {
-      //   setCookie('JWT', response.data.accessToken);
-      //   setCookie('ID', id);
-      //   removeCookie('id');
-      //   removeCookie('pw');
-      //   this.props.autoLogin({ id: id, pw: pw });
-      //   this.props.isLogin(true);
-      // }
     }
   };
 
@@ -121,6 +123,26 @@ class App extends Component {
     }
     removeCookie('JWT');
     removeCookie('ID');
+  };
+
+  getPointCards = token => {
+    getPointCardList(`Bearer ${token}`)
+      .then(response => {
+        if (response.status === 200) {
+          this.props.setStudentPointData(response.data.point_history);
+        }
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  };
+
+  getBasicData = token => {
+    getBasicDatas(`Bearer ${token}`).then(response => {
+      if (response.status === 200) {
+        this.props.setStudentBasicData(response.data);
+      }
+    });
   };
 
   render() {
@@ -256,6 +278,8 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
   autoLogin: val => dispatch(autoLogin(val)),
   isLogin: bool => dispatch(isLogin(bool)),
+  setStudentBasicData: basicData => dispatch(setStudentBasicData(basicData)),
+  setStudentPointData: pointData => dispatch(setStudentPointData(pointData)),
 });
 
 export default connect(
