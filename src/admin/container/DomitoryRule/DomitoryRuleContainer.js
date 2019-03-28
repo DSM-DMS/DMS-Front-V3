@@ -31,7 +31,6 @@ class DomitoryRuleContainer extends Component {
     }
 
     HandleDelete = async (id) => {
-        console.log('실행됨')
         await noticeDelete('rule', id)
         this.TaskData()
     }

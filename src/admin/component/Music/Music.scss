@@ -1,0 +1,185 @@
+.music {
+        &--button {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 12.5rem;
+            height: 100%;
+            background-color: #ffffff;
+            border-radius: 2.5rem;
+            color: #10a3a4;
+    
+            &--detail {
+                position: relative;
+                width: 100%;
+                height: 100%;
+            }
+    
+            font: {
+                size: 1.25rem;
+                family: 'NanumSquareB';
+            }
+    
+            &--illust {
+                position: absolute;
+                width: 9.1875rem;
+                bottom: 2.7rem;
+                left: 2rem;
+            }
+        }
+    
+        &--button--wrapper {
+            z-index: 3;
+            width: 100%;
+            height: 3.4375rem;
+            margin-bottom: 1.25rem;
+        }
+    
+    &--detail {
+        &--wrapper {
+            z-index: 3;
+            width: calc(100% - 10.4875rem);
+            height: 21.6125rem;
+            padding: 5.75rem 5.24375rem 9.2875rem;
+            background-color: #ffffff;
+            border-radius: 1.124rem;
+        }
+
+        &--header--wrapper {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font : {
+                family: "NanumSquareB";
+                size: 1.2rem;
+            }
+            width: 7.53125rem;
+            height: 3.3125rem;
+            background-color: #10a3a4;
+            color: #ffffff;
+            border-radius: 2rem;
+            position: relative;
+            left: 9.7rem;
+        }
+
+        &--content {
+            &--prev {
+                position: absolute;
+                background-image: url("../../../assets/icon/ic_left.png");
+                background-size: cover;
+                width: 2.41875rem;
+                height: 4.4375rem;
+                left: 0;
+                top: 50%;
+                transform: translateY(-50%);
+            }
+
+            &--next {
+                position: absolute;
+                background-image: url("../../../assets/icon/ic_right.png");
+                background-size: cover;
+                width: 2.41875rem;
+                height: 4.4375rem;
+                right: 0;
+                top: 50%;
+                transform: translateY(-50%);
+            }
+
+            &--wrapper {
+                position: relative;
+                display: flex;
+                justify-content: center;
+                height: calc(100% - 3.375rem);
+            }
+
+            &--main {
+                &--content {
+                    &--wrapper {
+                        width: 100%;
+                        display: flex;
+                        justify-content: space-between;
+                    }
+
+                    border-radius: 0.5rem;
+                    box-shadow: 0 0.1875rem 0.375rem 0 rgba(0, 0, 0, 0.16);
+                    background-color: #ffffff;
+                    height: 2.125rem;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    padding-right: 0.25rem;
+                    padding-left: 0.25rem;
+
+                    &.musicName {
+                        width: 16.6875rem;
+                    }
+
+                    &.artist {
+                        width: 10.5rem;
+                    }
+
+                    &.studentname {
+                        width: 7.5rem;
+                    }
+                }
+
+                &--wrapper {
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: space-between;
+                    box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
+                    border-radius: 1.125rem;
+            
+                    font : {
+                        size: 1.25rem;
+                        family: 'NanumSquareB';
+                    }       
+                    width: 49rem;
+                    height: calc(100%);
+                    color: #000000;
+                    text-decoration: none;
+                    padding-top: 2rem;
+                    padding-bottom: 2rem;
+                }
+                
+                &--header {
+                    &--wrapper {
+                        margin-top: 2rem;
+                        margin-bottom: 2rem;
+                        padding: 0rem 4rem;
+                        display: flex;
+                        justify-content: space-between;
+                        font : {
+                            size: 2.5rem;
+                            family: 'NanumSquareB';
+                        }
+                    }
+                }
+
+                &--detail {
+                    &--wrapper {
+                        padding: 0rem 4.15625rem;
+                        width: calc(100% - 8.3125rem);
+                        font: {
+                            size: 1.3rem;
+                        }
+
+                        &.apply {
+                            height: 7rem;
+                            display: flex;
+                            flex-direction: column;
+                            justify-content: space-between;
+                        }
+
+                        &.second {
+                            height: 9.5rem;
+                            display: flex;
+                            flex-direction: column;
+                            justify-content: space-between;  
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
