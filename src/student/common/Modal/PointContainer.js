@@ -27,17 +27,24 @@ class PointContainer extends Component {
 
   render() {
     const { pointHistory } = this.props;
-    const historyCards = pointHistory.map(data => (
-      <PointCard
-        date={data.date}
-        point={data.point}
-        pointType={data.pointType ? 'point--card--good' : 'point--card--bad'}
-        reason={data.reason}
-        key={`point-card-${data.date}+${data.point}+${data.pointType}+${
-          data.reason
-        }`}
-      />
-    ));
+    const historyCards =
+      pointHistory.length === 0 ? (
+        <div className="point--card--empty">상벌점 내역이 없습니다.</div>
+      ) : (
+        pointHistory.map(data => (
+          <PointCard
+            date={data.date}
+            point={data.point}
+            pointType={
+              data.pointType ? 'point--card--good' : 'point--card--bad'
+            }
+            reason={data.reason}
+            key={`point-card-${data.date}+${data.point}+${data.pointType}+${
+              data.reason
+            }`}
+          />
+        ))
+      );
 
     return (
       <Fragment>
