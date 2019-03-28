@@ -29,7 +29,8 @@ export default class GuideContentContainer extends Component {
           typeList: [
             { content: '공지사항', val: 'notice' },
             { content: '기숙사규정', val: 'rule' }
-          ]
+          ],
+          haveEmptyMenuContent: false
         },
         rule: {
           title: '기숙사 규정',
@@ -43,7 +44,8 @@ export default class GuideContentContainer extends Component {
           typeList: [
             { content: '공지사항', val: 'notice' },
             { content: '기숙사규정', val: 'rule' }
-          ]
+          ],
+          haveEmptyMenuContent: false
         }
       },
       selectedType: this.props.type,
@@ -213,6 +215,7 @@ export default class GuideContentContainer extends Component {
               menuList={guidePostList}
               selectedMenu={selectedMenu[type]}
               onSelectMenu={this.onSelectMenu}
+              haveEmptyMenuContent={contentInfo[type].haveEmptyMenuContent}
             />
           </div>
           <div className='apply--content--right'>
