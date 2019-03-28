@@ -28,6 +28,11 @@
     flex-grow: 1;
   }
 
+  &--singer {
+    width: 16rem;
+    text-align: end;
+  }
+
   &--author {
     width: 6.25rem;
     text-align: end;
