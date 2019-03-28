@@ -1,0 +1,93 @@
+.music {
+    &--list {
+        &--wrapper {
+            width: 100%;
+            height: 4.675rem;
+            display: flex;
+            
+            &:first-child {
+                margin-top: 1.2rem;
+            }
+        }
+
+        &--day--wrapper {
+            width: 6.125rem;
+            height: 2.071875rem;
+            margin-left: 1rem;
+            margin-right: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #10a3a4;
+            font : {
+                size: 1.0625rem;
+                family: 'NanumSquareB';
+            }
+            border-radius: 0.5rem;
+            color: #ffffff;
+        }
+
+        &--info {
+            &--wrapper {
+                width : 26.25rem;
+                height: 4.675rem;
+                display: flex;
+            }
+
+            &--title {
+                &--wrapper {
+                    width: 18.125rem;
+                    height: 100%;
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: space-between;
+                }
+
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                width: 16.125rem;
+                height: 2.071875rem;
+                border-radius: 0.5rem;
+                box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
+                background-color: #ffffff;
+                margin-left: 1rem;
+                margin-right: 1rem;
+                color: #000000;
+
+                font : {
+                    family: 'NanumSquareB';
+                    size: 1.0625rem;
+                }
+            }
+
+            &--artist {
+                &--wrapper {
+                    width: 8.125rem;
+                    height: 100%;
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: space-between;
+                }
+
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                width: 6.125rem;
+                height: 2.071875rem;
+                border-radius: 0.5rem;
+                box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
+                background-color: #ffffff;
+                margin-left: 1rem;
+                margin-right: 1rem;
+
+                color: #000000;
+
+                font : {
+                    family: 'NanumSquareB';
+                    size: 1.0625rem;
+                }
+            }
+        }
+    }
+}
