@@ -1,0 +1,101 @@
+.music {
+    &--button {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 12.5rem;
+        height: 100%;
+        background-color: #ffffff;
+        border-radius: 2.5rem;
+        color: #10a3a4;
+        text-decoration: none;
+
+        & + & {
+            margin-left: 0.75rem;
+        }
+
+        &--detail {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            display: flex;
+        }
+
+        font: {
+            size: 1.25rem;
+            family: 'NanumSquareB';
+        }
+
+        &--illust {
+            position: absolute;
+            width: 9.1875rem;
+            bottom: 2.7rem;
+            left: 2rem;
+        }
+    }
+
+    &--button--wrapper {
+        z-index: 5;
+        width: 100%;
+        height: 3.4375rem;
+        margin-bottom: 1.25rem;
+    }
+
+    &--wrapper {
+        z-index: 3;
+        width: calc(100% - 42.875rem);
+        height: 31.1525rem;
+        padding-top: 2.74875rem;
+        padding-bottom: 2.74875rem;
+        padding-left: 21.4375rem;
+        padding-right: 21.4375rem;
+        background-color: #ffffff;
+        border-radius: 1.124rem;
+    }
+
+    &--header {
+        &--wrapper {
+            display: flex;
+            width: 100%;
+            height: 2.6875rem;
+            border-bottom: 0.125rem solid #0a9395;
+        }
+        
+        &--content {
+            color: #0a9395;
+
+            font : {
+                size: 1.5rem;
+                family: 'NanumSquareB';
+            }
+
+            display: flex;
+            justify-content: center;
+        }
+    }
+
+    &--content {
+        &--wrapper {
+            width: 100%;
+            height: 28.465rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+    }
+}
+
+.music--header--content.content {
+    &--day {
+        width: 8.125rem;
+    }
+
+    &--title {
+        width: 18.125rem;
+    }
+
+    &--artist {
+        width: 8.125rem;
+    }
+
+}

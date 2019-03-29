@@ -1,6 +1,6 @@
 .apply--content--empty--goingout {
   display: flex;
-  height: 100%;
+  flex-grow: 1;
   flex-direction: column;
   padding: 1.875rem;
   box-sizing: border-box;

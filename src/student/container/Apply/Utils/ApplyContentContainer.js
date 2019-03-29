@@ -34,12 +34,14 @@ export default class ApplyContentContainer extends Component {
           { content: '3층', detail: '3층 소파', val: 10 }
         ],
         typeList: [{ content: '11시', val: 11 }, { content: '12시', val: 12 }],
+        haveEmptyMenuContent: false
       },
       goingout: {
         title: '외출신청',
         menuTitle: '외출목록',
         menuList: [],
         typeList: [],
+        haveEmptyMenuContent: true
       },
       music: {
         title: '기상음악',
@@ -53,6 +55,7 @@ export default class ApplyContentContainer extends Component {
           { content: '리', detail: '기상음악 리스트', val: 5 },
         ],
         typeList: [],
+        haveEmptyMenuContent: false
       },
       stay: {
         title: '잔류신청',
@@ -64,6 +67,7 @@ export default class ApplyContentContainer extends Component {
           { content: '잔류', detail: '잔류', val: 3 },
         ],
         typeList: [],
+        haveEmptyMenuContent: false
       },
     },
     selectedMenu: 0,
@@ -542,6 +546,7 @@ export default class ApplyContentContainer extends Component {
               selectedMenu={selectedMenu}
               onSelectMenu={this.onSelectMenu}
               onAddGoingoutApply={this.onAddGoingoutApply}
+              haveEmptyMenuContent={contentInfo[type].haveEmptyMenuContent}
             />
           </div>
           <div className="apply--content--right">

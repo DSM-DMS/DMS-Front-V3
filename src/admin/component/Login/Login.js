@@ -27,8 +27,14 @@ const Login = ({handleLogin, handleChange}) => {
                         </span>
                     </div>
                     <div className = "admin-login--content--card--input--wrapper">
-                        <input onChange = {handleChange} name = "id" className = "admin-login--content--card--input" placeholder = "아이디"/>
-                        <input onChange = {handleChange} name = "password" className = "admin-login--content--card--input" type = "password" placeholder = "비밀번호" />
+                        <input onKeyPress = {(e) => {
+                            if(e.key === 'Enter')
+                            handleLogin()
+                        }} onChange = {handleChange} name = "id" className = "admin-login--content--card--input" placeholder = "아이디"/>
+                        <input onKeyPress = {(e) => {
+                            if(e.key === 'Enter')
+                            handleLogin()
+                        }} onChange = {handleChange} name = "password" className = "admin-login--content--card--input" type = "password" placeholder = "비밀번호" />
                         <button onClick = {handleLogin} className = "admin-login--content--card--button">로그인</button>
                     </div>
                     <div className = "admin-login--content--card--footer--wrapper">

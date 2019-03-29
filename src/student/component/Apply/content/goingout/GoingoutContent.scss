@@ -1,6 +1,6 @@
 .apply--content--goingout {
   display: flex;
-  height: 100%;
+  flex-grow: 1;
   flex-direction: column;
   padding: 1.875rem;
   box-sizing: border-box;
@@ -17,7 +17,6 @@
     overflow: auto;
     outline: none;
     box-shadow: none;
-    resize: none;
     flex-grow: 1;
     padding: 1rem;
   }
