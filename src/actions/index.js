@@ -19,9 +19,10 @@ export const mealNextDate = () => ({
   type: types.SET_MEAL_NEXT_DATE,
 });
 
-export const setMeal = meal => ({
+export const setMeal = ({ mealObj, when }) => ({
   type: types.SET_MEAL,
-  meal: meal,
+  mealObj: mealObj,
+  when: when,
 });
 
 export const setStudentBasicData = basicData => ({

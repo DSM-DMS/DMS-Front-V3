@@ -17,34 +17,40 @@ class MealContainer extends Component {
   ];
 
   componentDidMount() {
-    this.getMeal();
+    this.getMeal('currentMeal', 0);
+    this.getMeal('nextMeal', 1);
+    this.getMeal('prevMeal', -1);
   }
 
   prevDate = () => {
     this.props.prevDate();
-    this.getMeal();
+    this.getMeal('prevMeal', -1);
   };
 
   nextDate = () => {
     this.props.nextDate();
-    this.getMeal();
+    this.getMeal('nextMeal', 1);
   };
 
-  getMeal = () => {
+  getMeal = (when, addDate) => {
     const { selectedDate } = this.props;
-    const getFormDate = `${selectedDate.getFullYear()}-${
-      selectedDate.getMonth() + 1 < 10
-        ? '0' + (selectedDate.getMonth() + 1)
-        : selectedDate.getMonth() + 1
+    const needDate = new Date(
+      selectedDate.setDate(selectedDate.getDate() + addDate),
+    );
+    const getFormDate = `${needDate.getFullYear()}-${
+      needDate.getMonth() + 1 < 10
+        ? `0${needDate.getMonth() + 1}`
+        : needDate.getMonth() + 1
     }-${
-      selectedDate.getDate() < 10
-        ? '0' + selectedDate.getDate()
-        : selectedDate.getDate()
+      needDate.getDate() < 10 ? `0${needDate.getDate()}` : needDate.getDate()
     }`;
     getMealDate(getFormDate)
       .then(response => {
         if (response.status === 200) {
-          this.props.setMeal(response.data[getFormDate]);
+          this.props.setMeal({
+            mealObj: response.data[getFormDate],
+            when: when,
+          });
         } else if (response.status === 205) {
           return;
         }
@@ -77,9 +83,9 @@ class MealContainer extends Component {
 
 const mapStateToProps = state => ({
   selectedDate: state.meal.selectedDate,
-  breakfast: state.meal.breakfast,
-  lunch: state.meal.lunch,
-  dinner: state.meal.dinner,
+  breakfast: state.meal.currentMeal.breakfast,
+  lunch: state.meal.currentMeal.lunch,
+  dinner: state.meal.currentMeal.dinner,
 });
 
 const mapDispatchToProps = dispatch => ({
