@@ -22,7 +22,9 @@ function checkValidation(status, refresh, method, path, data) {
         return reRequest;
       })
       .catch(err => {
-        return 'expired token';
+        return new Promise((resolve, reject) => {
+          reject("expired Token")
+        })
       });
   } else {
     return false;
