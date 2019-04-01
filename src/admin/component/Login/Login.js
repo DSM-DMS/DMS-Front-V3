@@ -18,7 +18,6 @@ const Login = ({handleLogin, handleChange}) => {
                 </div>
             </div>
             <div className = "admin-login--content--wrapper">
-                <img src = {mobile} className = "admin-login--content--image" alt = "awesome mobile ver."/>
                 <div className = "admin-login--content--card--wrapper">
                     <div className = "admin-login--content--card--logo--wrapper">
                         <img src = {logo} alt = "logo" className = "admin-login--content--card--logo--image"/>
