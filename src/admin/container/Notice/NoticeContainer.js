@@ -42,6 +42,7 @@ class NoticeContainer extends Component {
     }
 
     componentDidMount() {
+        console.log('componentdidmount')
         this.TaskData()
     }
 

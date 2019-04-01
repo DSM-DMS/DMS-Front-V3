@@ -7,6 +7,29 @@
             display: flex;
             align-items: center;
             justify-content: center;
+            top: 0;
+            left: 0;
+            z-index: 5;
+        }
+
+        &--close {
+            width: 1.4rem;
+            height: 1.4rem;
+        }
+
+        &--background {
+            position: inherit;
+            width: inherit;
+            height: inherit;
+            background-color: rgba(0, 0, 0, 0.16);
+            opacity: .3;
+        }
+
+        &--header {
+            &--wrapper {
+                display: flex;
+                justify-content: space-between;
+            }
         }
 
         width: 38.8875rem;
@@ -14,6 +37,108 @@
         border-radius: 1rem;
         background-color: #ffffff;
         box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
+        z-index: 9999;
+        padding: 2rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+
+        &--studentinfo {
+            &--wrapper {
+                display: flex;
+                width: 11.28125rem;
+                justify-content: space-between;
+                color: #707070;
+                font : {
+                    size: 2rem;
+                    family: 'NanumSquareB';
+                }
+            }
+        }
+
+        &--reason {
+            &--wrapper {
+                display: flex;
+                width: 100%;
+                justify-content: space-between;
+                height: 2.8125rem;
+                align-items: center;
+                color: #10a3a4;
+
+                font : {
+                    size: 1rem;
+                    family : 'NanumSquareB'
+                }
+            }
+
+            height: 2.8125rem;
+            display: flex;
+            align-items: center;
+            width: 33.75rem - 0.16rem;
+            border: solid 0.0625rem #10a3a4;
+            border-radius: 0.5rem;
+            padding-left : 0.5rem;
+        }
+
+        &--time {
+            &--wrapper {
+                display: flex;
+                width: 24.25rem;
+                justify-content: space-between;
+                height: 2.8125rem;
+                align-items: center;
+                color: #10a3a4;
+
+                font : {
+                    size: 1rem;
+                    family : 'NanumSquareB'
+                }
+            }
+
+            height: 2.8125rem;
+            display: flex;
+            align-items: center;
+            width: 19rem - 0.16rem;
+            border: solid 0.0625rem #10a3a4;
+            border-radius: 0.5rem;
+            padding-left : 0.5rem;
+        }
+
+        &--button {
+            &--wrapper {
+                height: 2.875rem;
+                display: flex;
+                justify-content: center;
+            }
+
+            & + & {
+                margin-left: 1rem;
+            }
+
+            width: 7.5rem;
+            height: 2rem;
+            padding: 0.4375rem;
+            border-radius: 2rem;
+            box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            font : {
+                family: 'NanumSquareB';
+                size: 1.1rem;
+            }
+
+            &.accept {
+                background: #0a9395;
+                color: #ffffff;
+            }
+
+            &.refuse {
+                background: #ffffff;
+                color: #0a9395;
+            }
+        }
     }
 
     &--pagelist {
@@ -162,9 +287,9 @@
     &--content {
         &--wrapper {
             width: 100%;
-            height: 14rem;
+            height: 16rem;
             margin-top: 1rem;
-            margin-bottom: 5.5rem;
+            margin-bottom: 3.5rem;
             display: flex;
             flex-direction: column;
         }
@@ -206,4 +331,9 @@
         width: 8.125rem;
     }
 
+}
+
+.goingout.delete_icon {
+    width: 2rem;
+    height: 2rem;
 }
