@@ -23,8 +23,8 @@ function checkValidation(status, refresh, method, path, data) {
       })
       .catch(err => {
         return new Promise((resolve, reject) => {
-          reject("expired Token")
-        })
+          reject('expired Token');
+        });
       });
   } else {
     return false;
@@ -44,9 +44,7 @@ const axiosWrapper = {
       path,
       null,
     );
-    if (reRequest === 'expired token') {
-      return 'expired token';
-    } else if (reRequest) {
+    if (reRequest) {
       return reRequest;
     }
     return response;
