@@ -30,43 +30,43 @@ const mapInfoList = [
     left: '창문',
     right: '복도'
   },
-  {
-    top: '칠판',
-    bottom: '벽',
-    left: '창문',
-    right: '복도'
+  {//2층 여자 학습실
+    top: '창문',
+    bottom: '문',
+    left: '벽',
+    right: '벽'
   },
-  {
-    top: '칠판',
-    bottom: '벽',
-    left: '창문',
-    right: '복도'
+  {//3층 학교측 독서실
+    top: '창문',
+    bottom: '복도',
+    left: '학교',
+    right: '옆방'
   },
-  {
-    top: '칠판',
-    bottom: '벽',
-    left: '창문',
-    right: '복도'
+  {//3측 기숙사측 독서실
+    top: '창문',
+    bottom: '복도',
+    left: '옆방',
+    right: '계단'
   },
-  {
-    top: '칠판',
-    bottom: '벽',
-    left: '창문',
-    right: '복도'
+  {//4층 학교측 독서실
+    top: '창문',
+    bottom: '복도',
+    left: '옆방',
+    right: '계단'
   },
-  {
-    top: '칠판',
-    bottom: '벽',
-    left: '창문',
-    right: '복도'
+  {//4층 기숙사측 독서실
+    top: '창문',
+    bottom: '복도',
+    left: '옆방',
+    right: '계단'
   },
-  {
-    top: '칠판',
-    bottom: '벽',
-    left: '창문',
-    right: '복도'
+  {//5층 열린 교실
+    top: '창문',
+    bottom: '',
+    left: '옆방',
+    right: '계단'
   },
-  {
+  {//소파
     top: '칠판',
     bottom: '벽',
     left: '창문',
