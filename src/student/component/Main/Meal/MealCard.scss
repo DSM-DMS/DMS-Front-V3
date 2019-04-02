@@ -1,7 +1,7 @@
 .meal--card {
   &--wrapper {
     position: relative;
-    transition: 1s;
+    transition: 0.45s;
     width: 13.7rem;
     height: 19.75rem;
     border-radius: 10px;
@@ -14,17 +14,17 @@
 
       & p {
         opacity: 1;
-        transition: 1s;
+        transition: 0.45s;
         font-size: 1.5rem;
       }
 
       & .meal--card--content {
         font-size: 1.375rem;
-        transition: 1s;
+        transition: 0.45s;
 
         &--wrapper {
-          bottom: 40%;
-          transition: 1s;
+          bottom: 45%;
+          transition: 0.45s;
         }
       }
     }
@@ -33,7 +33,7 @@
   &--header {
     font-size: 1.5rem;
     opacity: 0;
-    transition: 1s;
+    transition: 0.45s;
     top: 10%;
     color: white;
     font-family: 'NanumSquareB';
@@ -56,7 +56,7 @@
       bottom: 50%;
       transform: translate(-50%, 50%);
       width: 100%;
-      transition: 1s;
+      transition: 0.45s;
       height: 14.3125rem;
       flex-direction: column;
       justify-content: space-between;
