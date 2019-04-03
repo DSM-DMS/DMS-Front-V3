@@ -6,23 +6,14 @@ import App from './App';
 import './index.scss';
 import * as serviceWorker from './serviceWorker';
 import { Provider } from 'react-redux';
-import { createStore, applyMiddleware, compose } from 'redux';
-import dmsApp from './reducers';
-import { routerMiddleware, ConnectedRouter } from 'connected-react-router';
-import { createBrowserHistory } from 'history';
+import { createStore } from 'redux';
+import reducers from './reducers';
 
-const history = createBrowserHistory();
-const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
-const store = createStore(
-  dmsApp(history),
-  composeEnhancer(applyMiddleware(routerMiddleware(history))),
-);
+const store = createStore(reducers);
 
 ReactDOM.render(
   <Provider store={store}>
-    <ConnectedRouter history={history}>
-      <App />
-    </ConnectedRouter>
+    <App />
   </Provider>,
   document.getElementById('root'),
 );
