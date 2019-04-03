@@ -1,5 +1,4 @@
 import { combineReducers } from 'redux';
-import { connectRouter } from 'connected-react-router';
 
 import ApplyTypeSwitch from './student/apply/ApplyTypeSwitch';
 import ApplyCardSwitch from './student/apply/ApplyCardSwitch';
