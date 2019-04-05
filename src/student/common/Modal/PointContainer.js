@@ -10,11 +10,12 @@ import PointCard from './PointCard';
 class PointContainer extends Component {
   componentWillMount() {
     const jwtToken = getCookie('JWT');
-    this.getPointCards(jwtToken);
+    const refreshToken = getCookie('RFT');
+    this.getPointCards(jwtToken, refreshToken);
   }
 
-  getPointCards = token => {
-    getPointCardList(`Bearer ${token}`)
+  getPointCards = (token, refreshToken) => {
+    getPointCardList(`Bearer ${token}`, `Bearer ${refreshToken}`)
       .then(response => {
         if (response.status === 200) {
           this.props.setStudentPointData(response.data.point_history);

@@ -6,7 +6,8 @@ import axios from 'axios';
 import { connect } from 'react-redux';
 import { autoLogin, isLogin } from './actions';
 import { getCookie } from './lib/cookie';
-import { getBasicDatas } from './lib/studentInfoAPI';
+import { getBasicDatas, getPointCardList } from './lib/studentInfoAPI';
+import { setStudentBasicData, setStudentPointData } from './actions';
 
 import MainContainer from './student/container/Main/MainContainer';
 import ApplyMainContainer from './student/container/Apply/ApplyMainContainer';
@@ -66,9 +67,26 @@ class App extends Component {
     const refreshToken = getCookie('RFT');
 
     if (accessToken || refreshToken) {
-      getBasicDatas(`Bearer ${accessToken}`, `Bearer ${refreshToken}`).then(
-        res => {},
-      );
+      getBasicDatas(`Bearer ${accessToken}`, `Bearer ${refreshToken}`)
+        .then(res => {
+          if (res.status === 200) {
+            this.props.setStudentBasicData(res.data);
+
+            getPointCardList(
+              `Bearer ${getCookie('JWT')}`,
+              `Bearer ${refreshToken}`,
+            ).then(response => {
+              if (response.status === 200) {
+                this.props.setStudentPointData(response.data.point_history);
+              }
+            });
+          }
+        })
+        .catch(err => {
+          if (err === 'expired') {
+            // hmm...
+          }
+        });
     }
   };
 
@@ -197,6 +215,8 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
   autoLogin: val => dispatch(autoLogin(val)),
   isLogin: bool => dispatch(isLogin(bool)),
+  setStudentBasicData: basicData => dispatch(setStudentBasicData(basicData)),
+  setStudentPointData: pointData => dispatch(setStudentPointData(pointData)),
 });
 
 export default connect(

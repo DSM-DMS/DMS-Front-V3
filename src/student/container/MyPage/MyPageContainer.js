@@ -32,19 +32,22 @@ class MyPageContainer extends Component {
 
   componentWillMount() {
     const jwtToken = getCookie('JWT');
+    const refreshToken = getCookie('RFT');
     if (jwtToken) {
-      this.getBasicData(jwtToken);
+      this.getBasicData(jwtToken, refreshToken);
     } else {
       this.props.history.push('/');
     }
   }
 
-  getBasicData = token => {
-    getBasicDatas(`Bearer ${token}`).then(response => {
-      if (response.status === 200) {
-        this.props.setStudentBasicData(response.data);
-      }
-    });
+  getBasicData = (token, refreshToken) => {
+    getBasicDatas(`Bearer ${token}`, `Bearer ${refreshToken}`).then(
+      response => {
+        if (response.status === 200) {
+          this.props.setStudentBasicData(response.data);
+        }
+      },
+    );
   };
 
   onLogOutBtn = () => {
