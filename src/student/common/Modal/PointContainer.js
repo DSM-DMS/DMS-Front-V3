@@ -9,21 +9,22 @@ import PointCard from './PointCard';
 
 class PointContainer extends Component {
   componentWillMount() {
-    const jwtToken = getCookie('JWT');
-    const refreshToken = getCookie('RFT');
-    this.getPointCards(jwtToken, refreshToken);
+    this.getPointCards();
   }
 
-  getPointCards = (token, refreshToken) => {
-    getPointCardList(`Bearer ${token}`, `Bearer ${refreshToken}`)
-      .then(response => {
-        if (response.status === 200) {
-          this.props.setStudentPointData(response.data.point_history);
-        }
-      })
-      .catch(err => {
-        console.log(err);
-      });
+  getPointCards = () => {
+    const accessToken = getCookie('JWT');
+    const refreshToken = getCookie('RFT');
+    if (accessToken || refreshToken)
+      getPointCardList(`Bearer ${accessToken}`, `Bearer ${refreshToken}`)
+        .then(response => {
+          if (response.status === 200) {
+            this.props.setStudentPointData(response.data.point_history);
+          }
+        })
+        .catch(err => {
+          console.log(err);
+        });
   };
 
   render() {

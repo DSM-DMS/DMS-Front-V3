@@ -41,13 +41,17 @@ class MyPageContainer extends Component {
   }
 
   getBasicData = (token, refreshToken) => {
-    getBasicDatas(`Bearer ${token}`, `Bearer ${refreshToken}`).then(
-      response => {
+    getBasicDatas(`Bearer ${token}`, `Bearer ${refreshToken}`)
+      .then(response => {
         if (response.status === 200) {
           this.props.setStudentBasicData(response.data);
         }
-      },
-    );
+      })
+      .catch(err => {
+        if (err === 'expired Token') {
+          // hmm...
+        }
+      });
   };
 
   onLogOutBtn = () => {

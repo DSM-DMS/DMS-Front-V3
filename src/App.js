@@ -5,7 +5,7 @@ import axios from 'axios';
 
 import { connect } from 'react-redux';
 import { autoLogin, isLogin } from './actions';
-import { getCookie } from './lib/cookie';
+import { getCookie, removeCookie } from './lib/cookie';
 import { getBasicDatas, getPointCardList } from './lib/studentInfoAPI';
 import { setStudentBasicData, setStudentPointData } from './actions';
 
@@ -83,7 +83,7 @@ class App extends Component {
           }
         })
         .catch(err => {
-          if (err === 'expired') {
+          if (err === 'expired Token') {
             // hmm...
           }
         });

@@ -18,8 +18,14 @@ class BugReport extends Component {
   };
 
   onSubmitHandler = () => {
-    if (this.state.description)
-      postBugReport(this.state.description, `Bearer ${getCookie('JWT')}`)
+    const accessToken = getCookie('JWT');
+    const refreshToken = getCookie('RFT');
+    if (this.state.description && (accessToken || refreshToken))
+      postBugReport(
+        this.state.description,
+        `Bearer ${accessToken}`,
+        `Bearer ${refreshToken}`,
+      )
         .then(res => {
           if (res.status === 201) {
             alert('버그 신고에 성공하셨습니다.');
@@ -32,6 +38,7 @@ class BugReport extends Component {
             alert('옳지 않은 입력이 있습니다.');
           }
         });
+    else if (this.state.description) alert('입력을 해주세요.');
   };
 
   render() {

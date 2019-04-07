@@ -1,11 +1,6 @@
 import axiosWrapper from './axiosWrapper';
+import axios from 'axios';
 const rootURL = 'https://api.dms.istruly.sexy';
-
-export const postAuth = (id, pw) =>
-  axiosWrapper.post(`${rootURL}/account/auth`, null, null, {
-    id: id,
-    password: pw,
-  });
 
 export const patchPassword = (
   currentPassword,
@@ -18,20 +13,23 @@ export const patchPassword = (
     newPassword: newPassword,
   });
 
+// forgot password의 경우 토큰을 사용하지 않으므로 wrapper를 사용하지 않음.
 export const postForgotPassword = (id, email) =>
-  axiosWrapper.post(`${rootURL}/account/pw`, null, null, {
+  axios.post(`${rootURL}/account/pw`, {
     id: id,
     email: email,
   });
 
+// 위와 같음
 export const postLogin = (id, pw) =>
-  axiosWrapper.post(`${rootURL}/account/auth`, null, null, {
+  axios.post(`${rootURL}/account/auth`, {
     id: id,
     password: pw,
   });
 
+// 위와 같음
 export const postRegister = (uuid, id, pw) =>
-  axiosWrapper.post(`${rootURL}/account/signup`, null, null, {
+  axios.post(`${rootURL}/account/signup`, {
     uuid: uuid,
     id: id,
     password: pw,

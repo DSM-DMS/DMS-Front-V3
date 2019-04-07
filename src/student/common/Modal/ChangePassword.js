@@ -22,7 +22,8 @@ class ChangePassword extends Component {
   };
 
   onSubmitBtn = e => {
-    const jwtToken = getCookie('JWT');
+    const accessToken = getCookie('JWT');
+    const refreshToken = getCookie('RFT');
     const { currentPassword, newPassword, newPasswordChk } = this.state;
     if (
       currentPassword &&
@@ -30,7 +31,12 @@ class ChangePassword extends Component {
       newPasswordChk &&
       newPassword === newPasswordChk
     ) {
-      patchPassword(currentPassword, newPassword, `Bearer ${jwtToken}`)
+      patchPassword(
+        currentPassword,
+        newPassword,
+        `Bearer ${accessToken}`,
+        `Bearer ${refreshToken}`,
+      )
         .then(response => {
           if (response.status === 201) {
             alert('비밀번호 변경에 성공하셨습니다. \n 다시 로그인하세요.');

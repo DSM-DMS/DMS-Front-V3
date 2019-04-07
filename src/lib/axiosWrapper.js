@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { setCookie } from './cookie';
+import { setCookie, removeCookie } from './cookie';
 
 const getRefreshTokenURI = '';
 
@@ -22,6 +22,8 @@ function checkValidation(status, refresh, method, path, data) {
         return reRequest;
       })
       .catch(err => {
+        removeCookie('JWT');
+        removeCookie('RFT');
         return new Promise((resolve, reject) => {
           reject('expired Token');
         });
