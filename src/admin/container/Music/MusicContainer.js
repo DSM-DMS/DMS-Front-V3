@@ -29,7 +29,7 @@ class MusicContainer extends Component {
     }
 
     state = {
-        loading: false,
+        loading: true,
         dateIndex : 0,
     }
 
@@ -53,7 +53,7 @@ class MusicContainer extends Component {
         .catch(err => {
             alert('로그인이 필요합니다')
             console.log(err)
-            //this.props.history.push('/admin/login')
+            this.props.history.push('/admin/login')
         })
     }
 
