@@ -1,7 +1,4 @@
 import React, { Component, Fragment } from 'react';
-
-import MusicList from '../../component/Music/MusicList'
-
 import Loading from '../../common/Loading/Loading'
 import Music from '../../component/Music/Music'
 import axios from 'axios';
@@ -32,13 +29,12 @@ class MusicContainer extends Component {
     }
 
     state = {
-        loading: true,
+        loading: false,
         dateIndex : 0,
     }
 
     componentDidMount = () => {
         const cookie = getCookie('JWT')
-        const { dayList } = this.state
         console.log(cookie)
         axios.get('https://admin-api.dms.istruly.sexy/music',
         {
@@ -57,12 +53,12 @@ class MusicContainer extends Component {
         .catch(err => {
             alert('로그인이 필요합니다')
             console.log(err)
-            this.props.history.push('/admin/login')
+            //this.props.history.push('/admin/login')
         })
     }
 
     render() {
-        const { dayList, dateIndex, loading } = this.state
+        const { dateIndex, loading } = this.state
         let day;
         let list = [];
         let index;
