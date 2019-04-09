@@ -27,6 +27,7 @@ class PointContainer extends Component {
 
   render() {
     const { pointHistory } = this.props;
+    pointHistory.reverse();
     const historyCards =
       pointHistory.length === 0 ? (
         <div className="point--card--empty">상벌점 내역이 없습니다.</div>
@@ -35,9 +36,7 @@ class PointContainer extends Component {
           <PointCard
             date={data.date}
             point={data.point}
-            pointType={
-              data.pointType ? 'point--card--good' : 'point--card--bad'
-            }
+            pointType={data.pointType}
             reason={data.reason}
             key={`point-card-${data.date}+${data.point}+${data.pointType}+${
               data.reason
