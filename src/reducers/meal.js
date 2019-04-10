@@ -31,7 +31,7 @@ function meal(state = initialState, action) {
         selectedDate: new Date(
           state.selectedDate.setDate(state.selectedDate.getDate() - 1),
         ),
-        prevMeal: {},
+        prevMeal: action.meal,
         currentMeal: { ...state.prevMeal },
         nextMeal: { ...state.currentMeal },
       };
@@ -43,7 +43,7 @@ function meal(state = initialState, action) {
         ),
         prevMeal: { ...state.currentMeal },
         currentMeal: { ...state.nextMeal },
-        nextMeal: {},
+        nextMeal: action.meal,
       };
     case SET_MEAL:
       return {

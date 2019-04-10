@@ -11,12 +11,14 @@ export const autoLogin = data => ({
   pw: data.pw,
 });
 
-export const mealPrevDate = () => ({
+export const mealPrevDate = meal => ({
   type: types.SET_MEAL_PREV_DATE,
+  meal: meal,
 });
 
-export const mealNextDate = () => ({
+export const mealNextDate = meal => ({
   type: types.SET_MEAL_NEXT_DATE,
+  meal: meal,
 });
 
 export const setMeal = ({ mealObj, when }) => ({
