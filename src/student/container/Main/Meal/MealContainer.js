@@ -35,7 +35,7 @@ class MealContainer extends Component {
   getMeal = (when, addDate) => {
     const { selectedDate } = this.props;
     const needDate = new Date(
-      selectedDate.setDate(selectedDate.getDate() + addDate),
+      new Date().setDate(selectedDate.getDate() + addDate),
     );
     const getFormDate = `${needDate.getFullYear()}-${
       needDate.getMonth() + 1 < 10
