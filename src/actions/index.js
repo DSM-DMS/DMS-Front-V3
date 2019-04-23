@@ -11,20 +11,18 @@ export const autoLogin = data => ({
   pw: data.pw,
 });
 
-export const mealPrevDate = meal => ({
+export const mealPrevDate = mealObj => ({
   type: types.SET_MEAL_PREV_DATE,
-  meal: meal,
+  mealObj: mealObj,
 });
 
-export const mealNextDate = meal => ({
+export const mealNextDate = mealObj => ({
   type: types.SET_MEAL_NEXT_DATE,
-  meal: meal,
-});
+  mealObj: mealObj,
 
-export const setMeal = ({ mealObj, when }) => ({
+export const setMeal = mealObj => ({
   type: types.SET_MEAL,
   mealObj: mealObj,
-  when: when,
 });
 
 export const setStudentBasicData = basicData => ({

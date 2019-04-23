@@ -16,38 +16,29 @@ class MealContainer extends Component {
     '토요일',
   ];
 
+  bool = true;
+
   componentDidMount() {
-    // this.getMeal('currentMeal', 0);
-    // this.getMeal('nextMeal', 1);
-    // this.getMeal('prevMeal', -1);
-    this.settingMeal();
+    this.getMeal(0, this.props.setMeal);
   }
 
-  settingMeal = async () => {
-    const currentMeal = await this.getMeal(0);
-    this.props.setMeal({ mealObj: currentMeal, when: 'currentMeal' });
-    const nextMeal = await this.getMeal(1);
-    this.props.setMeal({ mealObj: nextMeal, when: 'nextMeal' });
-    const prevMeal = await this.getMeal(-1);
-    this.props.setMeal({ mealObj: prevMeal, when: 'prevMeal' });
+  prevDate = () => {
+    if (this.bool) {
+      this.getMeal(-1, this.props.prevDate);
+    }
   };
 
-  prevDate = async () => {
-    this.props.prevDate(await this.getMeal(-2));
-    // this.getMeal('prevMeal', -1);
+  nextDate = () => {
+    if (this.bool) {
+      this.getMeal(1, this.props.nextDate);
+    }
   };
 
-  nextDate = async () => {
-    this.props.nextDate(await this.getMeal(2));
-    // this.getMeal('nextMeal', 1);
-  };
-
-  getMeal = async (/*when, */ addDate) => {
+  getMeal = async (addDate, callback) => {
+    this.bool = false;
     const { selectedDate } = this.props;
-    let mealObj;
-    const needDate = new Date(
-      new Date().setDate(selectedDate.getDate() + addDate),
-    );
+    const needDate = new Date(selectedDate);
+    needDate.setDate(selectedDate.getDate() + addDate);
     const getFormDate = `${needDate.getFullYear()}-${
       needDate.getMonth() + 1 < 10
         ? `0${needDate.getMonth() + 1}`
@@ -55,25 +46,17 @@ class MealContainer extends Component {
     }-${
       needDate.getDate() < 10 ? `0${needDate.getDate()}` : needDate.getDate()
     }`;
-    let response = await getMealDate(getFormDate);
-    if (response.status === 200) {
-      mealObj = response.data[getFormDate];
+    try {
+      const response = await getMealDate(getFormDate);
+      if (response.status === 200) {
+        callback(response.data[getFormDate]);
+      }
+      this.bool = true;
+    } catch (e) {
+      console.log(e);
+      callback({ breakfast: [], lunch: [], dinner: [] });
+      this.bool = true;
     }
-    return mealObj;
-    // .then(response => {
-    //   if (response.status === 200) {
-    //     this.props.setMeal({
-    //       mealObj: response.data[getFormDate],
-    //       when: when,
-    //     });
-    //     return response.data[getFormDate];
-    //   } else if (response.status === 205) {
-    //     return;
-    //   }
-    // })
-    // .catch(err => {
-    //   console.warn(err);
-    // });
   };
 
   render() {
@@ -99,9 +82,9 @@ class MealContainer extends Component {
 
 const mapStateToProps = state => ({
   selectedDate: state.meal.selectedDate,
-  breakfast: state.meal.currentMeal.breakfast,
-  lunch: state.meal.currentMeal.lunch,
-  dinner: state.meal.currentMeal.dinner,
+  breakfast: state.meal.meal.breakfast,
+  lunch: state.meal.meal.lunch,
+  dinner: state.meal.meal.dinner,
 });
 
 const mapDispatchToProps = dispatch => ({

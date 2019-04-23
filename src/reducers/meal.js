@@ -6,17 +6,7 @@ import {
 
 const initialState = {
   selectedDate: new Date(),
-  prevMeal: {
-    breakfast: [],
-    lunch: [],
-    dinner: [],
-  },
-  currentMeal: {
-    breakfast: [],
-    lunch: [],
-    dinner: [],
-  },
-  nextMeal: {
+  meal: {
     breakfast: [],
     lunch: [],
     dinner: [],
@@ -31,9 +21,7 @@ function meal(state = initialState, action) {
         selectedDate: new Date(
           state.selectedDate.setDate(state.selectedDate.getDate() - 1),
         ),
-        prevMeal: action.meal,
-        currentMeal: { ...state.prevMeal },
-        nextMeal: { ...state.currentMeal },
+        meal: action.mealObj,
       };
     case SET_MEAL_NEXT_DATE:
       return {
@@ -41,14 +29,12 @@ function meal(state = initialState, action) {
         selectedDate: new Date(
           state.selectedDate.setDate(state.selectedDate.getDate() + 1),
         ),
-        prevMeal: { ...state.currentMeal },
-        currentMeal: { ...state.nextMeal },
-        nextMeal: action.meal,
+        meal: action.mealObj,
       };
     case SET_MEAL:
       return {
         ...state,
-        [action.when]: action.mealObj,
+        meal: action.mealObj,
       };
     default:
       return state;
