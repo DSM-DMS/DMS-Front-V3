@@ -52,9 +52,6 @@ class MealContainer extends Component {
         callback(response.data[getFormDate]);
       }
       this.bool = true;
-      // .catch(err => {
-      //   console.warn(err);
-      // });
     } catch (e) {
       console.log(e);
       callback({ breakfast: [], lunch: [], dinner: [] });
