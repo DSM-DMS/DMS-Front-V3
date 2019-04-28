@@ -26,6 +26,10 @@ class MainContainer extends Component {
                 kind: 'extension_12',
                 title: '12시 연장'
             },
+            {
+                kind: 'goingout',
+                title: '외출자 관리'
+            }
         ],
         selectOff: false
     };
