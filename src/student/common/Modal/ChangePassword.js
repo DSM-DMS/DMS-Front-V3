@@ -39,7 +39,7 @@ class ChangePassword extends Component {
       )
         .then(response => {
           if (response.status === 201) {
-            alert('비밀번호 변경에 성공하셨습니다. \n 다시 로그인하세요.');
+            alert('비밀번호 변경에 성공하셨습니다. \n다시 로그인하세요.');
             removeCookie('JWT');
             removeCookie('RFT');
             this.props.isLogin(false);
@@ -74,6 +74,12 @@ class ChangePassword extends Component {
     }
   };
 
+  enterKeyPress = e => {
+    if (e.key === 'Enter') {
+      this.onSubmitBtn();
+    }
+  };
+
   render() {
     return (
       <div className="changepassword--wrapper">
@@ -100,6 +106,7 @@ class ChangePassword extends Component {
           className="modal--input"
           onChange={this.onChangeHandler}
           value={this.state.newPasswordChk}
+          onKeyPress={this.enterKeyPress}
         />
         <button className="modal--submit" onClick={this.onSubmitBtn}>
           비밀번호 변경

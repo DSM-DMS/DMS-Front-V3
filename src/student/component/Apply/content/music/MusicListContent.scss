@@ -1,6 +1,6 @@
 .apply--content--music--list {
   padding: 2rem 1.875rem;
-  height: 100%;
+  flex-grow: 1;
   overflow: auto;
   text-align: start;
   box-sizing: border-box;
@@ -26,6 +26,11 @@
 
   &--title {
     flex-grow: 1;
+  }
+
+  &--singer {
+    width: 16rem;
+    text-align: end;
   }
 
   &--author {

@@ -4,14 +4,50 @@ import './GoingOut.scss'
 
 import Woman from '../../../assets/illust/admin-1.png'
 import arrow from '../../../assets/icon/ic_arrow.png'
+import xicon from '../../../assets/icon/ic_x.png'
 
-const GoingOut = ({PageList, AllCheck, HandleAllToggle, HandleSelectToggle, selected, goingOutData, data, selectData, selectState}) => {
+const GoingOut = ({onModalToggle, modal, modalData, PageList, AllCheck, HandleAllToggle, HandleSelectToggle, selected, goingOutData, data, selectData, selectState}) => {
     return (
         <React.Fragment>
-            <div className = "goingout--modal--wrapper">
-                <div className = "goingout--modal">
+            {
+                modal && 
+                <div className = "goingout--modal--wrapper">
+                    <div onClick = {onModalToggle} className = "goingout--modal--background"/>
+                    <div className = "goingout--modal">
+                        <div className = "goingout--modal--header--wrapper">
+                            <div className = "goingout--modal--studentinfo--wrapper">
+                                <span className = "goingout--modal--studentinfo--studentnumber">
+                                    {modalData.studentNumber}
+                                </span>
+                                <div className = "goingout--modal--studentinfo--studentname">
+                                    <span>
+                                        {modalData.studentName}
+                                    </span>
+                                </div>
+                            </div>
+                            <div onClick = {onModalToggle} className = "goingout--modal--close--wrapper">
+                                <img className = "goingout--modal--close" src = {xicon} alt = "x"/>
+                            </div>
+                        </div>
+                        <div className = "goingout--modal--reason--wrapper">
+                            <span>외출사유 : </span>
+                            <div className = "goingout--modal--reason">
+                                {modalData.reason}
+                            </div>
+                        </div>
+                        <div className = "goingout--modal--time--wrapper">
+                            <span>외출시간 : </span>
+                            <div className = "goingout--modal--time">
+                                {modalData.goOutDate} ~ {modalData.returnDate}
+                            </div>
+                        </div>
+                        <div className = "goingout--modal--button--wrapper">
+                            <div className = "goingout--modal--button accept">외출허가</div>
+                            <div className = "goingout--modal--button refuse">외출거절</div>
+                        </div>
+                    </div>
                 </div>
-            </div>
+            }
             <div className = "goingout--button--wrapper">
                 <div className = "goingout--button--detail goingout">
                     <div className = "goingout--button">외출자관리</div>

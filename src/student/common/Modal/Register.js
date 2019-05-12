@@ -58,6 +58,12 @@ class Register extends Component {
     }
   };
 
+  enterKeyPress = e => {
+    if (e.key === 'Enter') {
+      this.registerBtn();
+    }
+  };
+
   render() {
     return (
       <div className="register--wrapper">
@@ -87,6 +93,7 @@ class Register extends Component {
           placeholder="비밀번호 확인"
           onChange={this.pwCheckHandler}
           id="register--password--check"
+          onKeyPress={this.enterKeyPress}
         />
         <button className="modal--submit" onClick={this.registerBtn}>
           회원가입

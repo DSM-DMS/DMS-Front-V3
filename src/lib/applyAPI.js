@@ -11,7 +11,11 @@ export const getMyExtensionInfo = (token, time, refreshToken) => {
 };
 
 export const deleteExtension = (token, time, refreshToken) => {
-  return axios.delete(`${rootUrl}/extension/${time}`, token, refreshToken);
+  return axiosWrapper.delete(
+    `${rootUrl}/extension/${time}`,
+    token,
+    refreshToken
+  );
 };
 
 export const applyExtension = (token, param, refreshToken) => {
@@ -44,7 +48,7 @@ export const postGoingoutInform = (token, dateForm, reason, refreshToken) => {
 };
 
 export const getMusicList = (token, refreshToken) => {
-  return axios.get(`${rootUrl}/music`, token, refreshToken);
+  return axiosWrapper.get(`${rootUrl}/music`, token, refreshToken);
 };
 
 export const submitMusic = (token, day, singer, musicName, refreshToken) => {
@@ -55,12 +59,32 @@ export const submitMusic = (token, day, singer, musicName, refreshToken) => {
   });
 };
 
+export const patchGoingoutInform = (
+  token,
+  applyId,
+  date,
+  reason,
+  refreshToken
+) => {
+  return axiosWrapper.post(`${rootUrl}/goingout`, token, refreshToken, {
+    applyId,
+    date,
+    reason
+  });
+};
+
 export const getStayInform = (token, refreshToken) => {
   return axiosWrapper.get(`${rootUrl}/stay`, token, refreshToken);
 };
 
 export const submitStayInform = (token, value, refreshToken) => {
-  return axios.post(`${rootUrl}/stay`, token, refreshToken, {
+  return axiosWrapper.post(`${rootUrl}/stay`, token, refreshToken, {
     value
+  });
+};
+
+export const deleteMusic = (token, id, refreshToken) => {
+  return axiosWrapper.delete(`${rootUrl}/music`, token, refreshToken, {
+    applyId: id
   });
 };

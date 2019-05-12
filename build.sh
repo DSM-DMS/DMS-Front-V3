@@ -1,4 +1,4 @@
-react-scripts build
+node scripts/build.js
 
 
 javascript-obfuscator ./build

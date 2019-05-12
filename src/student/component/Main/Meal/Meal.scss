@@ -1,73 +1,72 @@
 .meal {
+  &--wrapper {
+    display: flex;
+    width: 100%;
+    height: 100vh;
+    justify-content: center;
+    background-image: linear-gradient(to bottom, #078f91, #19b6b6);
+  }
+
+  &--menu {
     &--wrapper {
+      display: flex;
+      width: 100%;
+      height: calc(100vh - 9.375rem);
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    &--left--wrapper {
+      display: flex;
+      width: 45.75rem;
+      height: 35.0625rem;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    &--title {
+      color: white;
+
+      font: {
+        size: 3rem;
+        family: 'NanumSquareEB';
+      }
+
+      &--wrapper {
         display: flex;
+        height: 6.125rem;
         width: 100%;
-        height: 100vh;
-        justify-content: center;
-        background-image: linear-gradient(to bottom, #078f91, #19b6b6);
+        flex-direction: column;
+        justify-content: space-between;
+      }
+
+      &--date {
+        color: rgba(255, 255, 255, 0.7);
+
+        font: {
+          size: 1.5rem;
+          family: 'NanumSquareB';
+        }
+      }
     }
-    
-    &--menu {
-        &--wrapper {
-            display: flex;
-            width: 100%;
-            height: calc(100vh - 9.375rem);
-            justify-content: space-between;
-            align-items: center;
-        }
 
-        &--left--wrapper {
-            display: flex;
-            width: 43.75rem;
-            height: 35.0625rem;
-            flex-direction: column;
-            justify-content: space-between;
-        }
-
-        &--title {
-            color: white;
-
-            font: {
-                size: 3rem;
-                family: 'NanumSquareEB';
-            }
-
-            &--wrapper {
-                display: flex;
-                height: 6.125rem;
-                width: 100%;
-                flex-direction: column;
-                justify-content: space-between;
-            }
-
-            &--date {
-                color: rgba(255, 255, 255, 0.7);
-
-                font: {
-                    size: 1.5rem;
-                    family: 'NanumSquareB';
-                }
-            }
-        }
-
-        &--content {
-            display: flex;
-            width: 100%;
-            height: 21.875rem;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-
-        &--right--img {
-            width: 29.375rem;
-            height: auto;   
-        }
-
-        &--button--list {
-            height: 3.5rem;
-            display:flex;
-            align-items: center;
-        }
+    &--content {
+      display: flex;
+      width: 100%;
+      height: 23.875rem;
+      justify-content: space-between;
+      align-items: center;
     }
+
+    &--right--img {
+      width: 27.375rem;
+      height: auto;
+    }
+
+    &--button--list {
+      height: 3.5rem;
+      display: flex;
+      align-items: center;
+    }
+  }
 }
