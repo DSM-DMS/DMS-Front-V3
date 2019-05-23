@@ -150,7 +150,7 @@ const mapDispatchToProps = dispatch => ({
   isLogin: bool => dispatch(isLogin(bool)),
   autoLogin: data => dispatch(autoLogin(data)),
   setStudentPointData: pointData => dispatch(setStudentPointData(pointData)),
-  setStudentBasicData: pointData => dispatch(setStudentBasicData(pointData)),
+  setStudentBasicData: basicData => dispatch(setStudentBasicData(basicData)),
 });
 
 export default connect(

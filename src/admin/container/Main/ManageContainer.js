@@ -27,6 +27,11 @@ class ManagerContainer extends Component {
                 description: '설문조사를 작성할 수 있습니다.'
             },
             {
+                kind: 'music',
+                title: '기상 음악 신청',
+                description: '기상 음악 신청 현황을 확인합니다.'
+            },
+            {
                 kind: 'goingout',
                 title: '외출자관리',
                 description: '외출명단을 관리할 수 있습니다.'

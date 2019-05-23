@@ -12,6 +12,8 @@
 }
 
 .apply--content--inner--content {
+  display: flex;
+  justify-content: stretch;
   margin-top: 3.125rem;
   overflow: auto;
   flex-grow: 1;

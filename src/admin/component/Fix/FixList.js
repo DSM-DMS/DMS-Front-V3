@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 
 import './FixList.scss'
 
-const FixList = ({data}) => {
+const FixList = ({data, onDelete}) => {
     return (
         <div className = "fix--list--wrapper">
             <div className = "fix--list--header--wrapper">
@@ -15,7 +15,7 @@ const FixList = ({data}) => {
                     <Link className = "fix--list" to = {'/admin/fix/' + data.reportId}>
                         <div className = "icon--preview" />   
                     </Link>
-                    <div className = "fix--list">
+                    <div onClick = {() => {onDelete(data.reportId)}} className = "fix--list">
                         <div className = "icon--delete" />   
                     </div>
                 </div>

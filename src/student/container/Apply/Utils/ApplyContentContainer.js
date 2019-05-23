@@ -9,9 +9,10 @@ import {
   getMyExtensionInfo,
   getStayInform,
   getMusicList,
-  getGoingoutInform,
+  getGoingoutInform
 } from '../../../../lib/applyAPI';
 import { getCookie } from '../../../../lib/cookie';
+import GoingoutModifyContent from '../../../component/Apply/content/goingout/GoingoutModifyContent';
 
 export default class ApplyContentContainer extends Component {
   state = {
@@ -30,14 +31,17 @@ export default class ApplyContentContainer extends Component {
           { content: '4층', detail: '4층 학교측 독서실', val: 7 },
           { content: '4층', detail: '4층 기숙사측 독서실', val: 8 },
           { content: '5층', detail: '5층 열린 교실', val: 9 },
+          { content: '3층', detail: '3층 소파', val: 10 }
         ],
         typeList: [{ content: '11시', val: 11 }, { content: '12시', val: 12 }],
+        haveEmptyMenuContent: false
       },
       goingout: {
         title: '외출신청',
         menuTitle: '외출목록',
         menuList: [],
         typeList: [],
+        haveEmptyMenuContent: true
       },
       music: {
         title: '기상음악',
@@ -48,9 +52,10 @@ export default class ApplyContentContainer extends Component {
           { content: '수', detail: '신청가능', val: 'wed', available: true },
           { content: '목', detail: '신청가능', val: 'thu', available: true },
           { content: '금', detail: '신청가능', val: 'fri', available: true },
-          { content: '리', detail: '기상음악 리스트', val: 5 },
+          { content: '리', detail: '기상음악 리스트', val: 5 }
         ],
         typeList: [],
+        haveEmptyMenuContent: false
       },
       stay: {
         title: '잔류신청',
@@ -59,35 +64,46 @@ export default class ApplyContentContainer extends Component {
           { content: '금', detail: '금요귀가', val: 0 },
           { content: '토', detail: '토요귀가', val: 1 },
           { content: '토', detail: '토요귀사', val: 2 },
-          { content: '잔류', detail: '잔류', val: 3 },
+          { content: '잔류', detail: '잔류', val: 3 }
         ],
         typeList: [],
-      },
+        haveEmptyMenuContent: false
+      }
     },
     selectedMenu: 0,
     selectedType: {
       extension: 11,
-      goingout: 'sat',
+      goingout: 'sat'
     },
     selectedSeat: '',
     musicApplication: {
       singer: '',
-      title: '',
+      title: ''
     },
     goingoutApplication: {
-      year: '',
       month: '',
       day: '',
       outHour: '',
       outMin: '',
       returnHour: '',
       returnMin: '',
-      reason: '',
+      reason: ''
+    },
+    modifyGoingoutApplication: {
+      month: '',
+      day: '',
+      outHour: '',
+      outMin: '',
+      returnHour: '',
+      returnMin: '',
+      reason: ''
     },
     extensionInfo: ['', ''],
     stayInfo: '',
     musicInfo: {},
     isOnGoingoutApply: false,
+    isOnGoingoutModify: false,
+    myMusicId: ''
   };
 
   setExtensionInfo = async () => {
@@ -97,12 +113,12 @@ export default class ApplyContentContainer extends Component {
       this.setState({
         extensionInfo: [
           this.getRoomName(response1.data.classNum),
-          this.getRoomName(response2.data.classNum),
-        ],
+          this.getRoomName(response2.data.classNum)
+        ]
       });
     } catch (e) {
       this.setState({
-        extensionInfo: ['-', '-'],
+        extensionInfo: ['-', '-']
       });
     }
   };
@@ -111,7 +127,7 @@ export default class ApplyContentContainer extends Component {
     try {
       const response = await getStayInform(getCookie('JWT'));
       this.setState({
-        stayInfo: this.getStayType(response.data.value),
+        stayInfo: this.getStayType(response.data.value)
       });
     } catch (e) {
       console.log(e);
@@ -119,13 +135,48 @@ export default class ApplyContentContainer extends Component {
   };
 
   setMusicInfo = async () => {
+    this.setState({
+      contentInfo: {
+        ...this.state.contentInfo,
+        music: {
+          ...this.state.contentInfo.music,
+          menuList: [
+            { content: '월', detail: '신청가능', val: 'mon', available: true },
+            { content: '화', detail: '신청가능', val: 'tue', available: true },
+            { content: '수', detail: '신청가능', val: 'wed', available: true },
+            { content: '목', detail: '신청가능', val: 'thu', available: true },
+            { content: '금', detail: '신청가능', val: 'fri', available: true },
+            { content: '리', detail: '기상음악 리스트', val: 5 }
+          ]
+        }
+      }
+    });
+
     try {
       const response = await getMusicList(getCookie('JWT'));
-      this.setState({
-        musicInfo: response.data,
-      });
+      console.log(response);
+      switch (response.status) {
+        case 200:
+          this.setState({
+            musicInfo: response.data
+          });
+          break;
+        case 204:
+          this.setState({
+            musicInfo: {}
+          });
+          break;
+        default:
+      }
       let i = 0;
+      const id = getCookie('ID');
       for (let day in response.data) {
+        response.data[day].forEach(val => {
+          if (val.studentId === id)
+            this.setState({
+              myMusicId: val.id
+            });
+        });
         let isFull = response.data[day].length === 5;
         if (isFull) {
           const menuList = [...this.state.contentInfo.music.menuList];
@@ -134,8 +185,9 @@ export default class ApplyContentContainer extends Component {
         }
 
         let isApplied = response.data[day].some(musicInfo => {
-          return musicInfo.studentId === getCookie('ID');
+          return musicInfo.studentId === id;
         });
+        console.log(isApplied);
 
         if (isApplied) {
           const menuList = [...this.state.contentInfo.music.menuList];
@@ -145,9 +197,9 @@ export default class ApplyContentContainer extends Component {
               ...this.state.contentInfo,
               music: {
                 ...this.state.contentInfo.music,
-                menuList: [...menuList],
-              },
-            },
+                menuList: [...menuList]
+              }
+            }
           });
         }
         i++;
@@ -166,7 +218,8 @@ export default class ApplyContentContainer extends Component {
           return {
             content: this.getDayType(day),
             detail: this.convertGoingoutInfotoContent(content),
-            val: content.id,
+            reason: content.reason,
+            val: content.id
           };
         });
         content = [...content, ...contentList];
@@ -176,9 +229,9 @@ export default class ApplyContentContainer extends Component {
           ...this.state.contentInfo,
           goingout: {
             ...this.state.contentInfo.goingout,
-            menuList: content,
-          },
-        },
+            menuList: content
+          }
+        }
       });
     } catch (e) {
       console.log(e);
@@ -268,6 +321,18 @@ export default class ApplyContentContainer extends Component {
     return `${info.date.replace('-', '월').replace(' ', '일 ')}`;
   };
 
+  convertGoingoutInfoToData = (date, reason) => {
+    return {
+      month: date.slice(0, 2),
+      day: date.slice(3, 5),
+      outHour: date.slice(7, 9),
+      outMin: date.slice(10, 12),
+      returnHour: date.slice(15, 17),
+      returnMin: date.slice(18, 20),
+      reason: reason
+    };
+  };
+
   convertDemical = numStr => {
     if (numStr[0] === '0') {
       return numStr[1];
@@ -277,7 +342,7 @@ export default class ApplyContentContainer extends Component {
 
   onSelectMenu = menuVal => {
     this.setState({
-      selectedMenu: menuVal,
+      selectedMenu: menuVal
     });
   };
 
@@ -286,28 +351,28 @@ export default class ApplyContentContainer extends Component {
     this.setState({
       selectedType: {
         ...this.state.selectedType,
-        [type]: typeVal,
-      },
+        [type]: typeVal
+      }
     });
   };
   onChangeMusicApplication = e => {
     this.setState({
       musicApplication: {
         ...this.state.musicApplication,
-        [e.target.name]: e.target.value,
-      },
+        [e.target.name]: e.target.value
+      }
     });
   };
 
   onSelectSeat = seat => {
     this.setState({
-      selectedSeat: seat,
+      selectedSeat: seat
     });
   };
 
   clearSeat = () => {
     this.setState({
-      selectedSeat: '',
+      selectedSeat: ''
     });
   };
 
@@ -338,8 +403,8 @@ export default class ApplyContentContainer extends Component {
     this.setState({
       goingoutApplication: {
         ...this.state.goingoutApplication,
-        [e.target.name]: value,
-      },
+        [e.target.name]: value
+      }
     });
   };
 
@@ -350,9 +415,17 @@ export default class ApplyContentContainer extends Component {
 
   onAddGoingoutApply = () => {
     this.setState({
-      isOnGoingoutApply: true,
+      isOnGoingoutApply: true
     });
   };
+
+  onModifyGoingout = id => {
+    this.setState({
+      isOnGoingoutModify: true
+    });
+  };
+
+  onChange;
 
   componentDidMount() {
     this.setExtensionInfo();
@@ -362,8 +435,8 @@ export default class ApplyContentContainer extends Component {
     this.setState({
       goingoutApplication: {
         ...this.state.goingoutApplication,
-        year: this.getYear(),
-      },
+        year: this.getYear()
+      }
     });
   }
 
@@ -379,15 +452,26 @@ export default class ApplyContentContainer extends Component {
 
   componentDidUpdate(prevProps, PrevState) {
     const { type } = this.props;
-    const { contentInfo } = this.state;
+    const { contentInfo, selectedMenu } = this.state;
     if (
       PrevState.contentInfo[type].menuList.length !==
       contentInfo[type].menuList.length
     ) {
       this.setState({
-        isOnGoingoutApply: contentInfo[type].menuList.length > 0,
+        isOnGoingoutApply: contentInfo[type].menuList.length > 0
       });
     }
+    // if(type === 'goingout') {
+    //   if(PrevState.selectedMenu !== this.state.selectedMenu) {
+    //     const {reason, detail} = contentInfo[type].menuList.filter(
+    //       data => data.val === selectedMenu
+    //     )[0];
+    //     this.onModifyGoingout(this.state.selectedMenu);
+    //     this.setState({
+    //       modifyGoingoutApplication: this.convertGoingoutInfoToData(detail, reason)
+    //     })
+    //   }
+    // }
   }
 
   render() {
@@ -397,7 +481,7 @@ export default class ApplyContentContainer extends Component {
       typeList,
       onCancel,
       onApply,
-      refreshFlag,
+      refreshFlag
     } = this.props;
     const {
       contentInfo,
@@ -408,8 +492,10 @@ export default class ApplyContentContainer extends Component {
       musicApplication,
       musicInfo,
       goingoutApplication,
+      modifyGoingoutApplication,
       selectedSeat,
       isOnGoingoutApply,
+      myMusicId
     } = this.state;
     const applyTag = {
       extension: (
@@ -422,29 +508,29 @@ export default class ApplyContentContainer extends Component {
         <div className="apply--content--tag--wrapper">
           <div className="apply--content--tag">{stayInfo}</div>
         </div>
-      ),
+      )
     };
     const params = {
       extension: {
         apply: {
           time: selectedType.extension,
           class: selectedMenu,
-          seat: selectedSeat,
+          seat: selectedSeat
         },
-        cancel: selectedType,
+        cancel: selectedType
       },
       goingout: {
         apply: '',
-        cancel: selectedMenu,
+        cancel: selectedMenu
       },
       stay: {
         apply: selectedMenu,
-        cancel: selectedMenu,
+        cancel: selectedMenu
       },
       music: {
         apply: this.getDayIndex(selectedMenu),
-        cancel: selectedMenu,
-      },
+        cancel: selectedMenu
+      }
     };
     return (
       <div className="apply--content--outer--wrapper">
@@ -462,6 +548,7 @@ export default class ApplyContentContainer extends Component {
               selectedMenu={selectedMenu}
               onSelectMenu={this.onSelectMenu}
               onAddGoingoutApply={this.onAddGoingoutApply}
+              haveEmptyMenuContent={contentInfo[type].haveEmptyMenuContent}
             />
           </div>
           <div className="apply--content--right">
@@ -484,6 +571,7 @@ export default class ApplyContentContainer extends Component {
               goingoutApplication={goingoutApplication}
               refreshFlag={refreshFlag}
               isOnGoingoutApply={isOnGoingoutApply}
+              myMusicId={myMusicId}
             />
           </div>
         </div>

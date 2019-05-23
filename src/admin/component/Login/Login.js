@@ -18,7 +18,6 @@ const Login = ({handleLogin, handleChange}) => {
                 </div>
             </div>
             <div className = "admin-login--content--wrapper">
-                <img src = {mobile} className = "admin-login--content--image" alt = "awesome mobile ver."/>
                 <div className = "admin-login--content--card--wrapper">
                     <div className = "admin-login--content--card--logo--wrapper">
                         <img src = {logo} alt = "logo" className = "admin-login--content--card--logo--image"/>
@@ -27,8 +26,14 @@ const Login = ({handleLogin, handleChange}) => {
                         </span>
                     </div>
                     <div className = "admin-login--content--card--input--wrapper">
-                        <input onChange = {handleChange} name = "id" className = "admin-login--content--card--input" placeholder = "아이디"/>
-                        <input onChange = {handleChange} name = "password" className = "admin-login--content--card--input" type = "password" placeholder = "비밀번호" />
+                        <input onKeyPress = {(e) => {
+                            if(e.key === 'Enter')
+                            handleLogin()
+                        }} onChange = {handleChange} name = "id" className = "admin-login--content--card--input" placeholder = "아이디"/>
+                        <input onKeyPress = {(e) => {
+                            if(e.key === 'Enter')
+                            handleLogin()
+                        }} onChange = {handleChange} name = "password" className = "admin-login--content--card--input" type = "password" placeholder = "비밀번호" />
                         <button onClick = {handleLogin} className = "admin-login--content--card--button">로그인</button>
                     </div>
                     <div className = "admin-login--content--card--footer--wrapper">

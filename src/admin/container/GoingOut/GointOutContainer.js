@@ -66,18 +66,26 @@ class GointOutContainer extends Component {
     HandleModal = (id) => {
         console.log(id)
         const cookie = getCookie('JWT');
-        axios.get(`https://dms-admin.strtuly.sexy/goingout/${id}`, {
+        axios.get(`https://admin-api.dms.istruly.sexy/goingout/${id}`, {
             headers : {
                 Authorization : `Bearer ${cookie}`
             }  
         })
         .then(res => {
+            console.log(res)
             this.setState({
-                modalData : [...res.data]
+                modalData : {...res.data},
+                modal : true
             })
         })
         .catch(err => {
             console.log(err)
+        })
+    }
+
+    HandleModalToggle = () => {
+        this.setState({
+            modal: false
         })
     }
 
@@ -96,14 +104,15 @@ class GointOutContainer extends Component {
     componentDidMount = async () => {
         const cookie = getCookie('JWT');
         console.log(cookie)
-        axios.get(`https://dms-admin.istruly.sexy/goingout/0/0`, {
+        axios.get(`https://admin-api.dms.istruly.sexy/goingout/0/0`, {
             headers : {
                 Authorization : `Bearer ${cookie}`
             }
         })
         .then(res => {
+            console.log(res)
             this.setState({
-                goingOutList: [...res.data.reverse()]
+                goingOutList: [...res.data].reverse()
             })
         })
     }
@@ -116,7 +125,7 @@ class GointOutContainer extends Component {
             else return {...data, check : true}
         })
         console.log()
-        const response = await axios.get(`https://dms-admin.istruly.sexy/goingout/${id}/${classNumber}`, {
+        const response = await axios.get(`https://admin-api.dms.istruly.sexy/goingout/${id}/${classNumber}`, {
             headers : {
                 Authorization : `Bearer ${cookie}`
             }
@@ -126,7 +135,7 @@ class GointOutContainer extends Component {
                 ...data
             ],
             allcheck : false,
-            goingOutList : [...response.data.reverse()]
+            goingOutList : [...response.data].reverse()
         })
     }
 
@@ -144,7 +153,7 @@ class GointOutContainer extends Component {
         if(classNumber === -1) classNumber = 0;
         let gradeNumber = 0;
         if(allcheck === false) gradeNumber = this.FindCurrentGrade();
-        const response = await axios.get(`https://dms-admin.istruly.sexy/goingout/${gradeNumber}/${classNumber}`, {
+        const response = await axios.get(`https://admin-api.dms.istruly.sexy/goingout/${gradeNumber}/${classNumber}`, {
             headers : {
                 Authorization : `Bearer ${cookie}`
             }
@@ -152,7 +161,7 @@ class GointOutContainer extends Component {
         this.setState({
             selectState : kind,
             selected : false,
-            goingOutList : [...response.data.reverse()]
+            goingOutList : [...response.data].reverse()
         })
     }
 
@@ -162,15 +171,14 @@ class GointOutContainer extends Component {
             return { ...data, check : false}
         })
         const classNumber = this.FindCurrentClass(); 
-        axios.get(`https://dms-admin.istruly.sexy/goingout/0/${classNumber}`, {
-            responseType : 'arraybuffer',
+        axios.get(`https://admin-api.dms.istruly.sexy/goingout/0/${classNumber}`, {
             headers : {
                 Authorization : `Bearer ${cookie}`
             }
         })
         .then(res => {
             this.setState({
-                goingOutList: [...res.data.reverse()]
+                goingOutList: [...res.data].reverse()
             })
         })
         this.setState({
@@ -189,7 +197,7 @@ class GointOutContainer extends Component {
 
     render() {
         const { checkList, pageSize, curPage, modalData } = this.state;
-        const { selectList, selectState, selected, allcheck, goingOutList, modal } = this.state;
+        const { selectList, selectState, selected, allcheck, goingOutList, modal, HandleModalToggle } = this.state;
         const selectData = selectList.map(data => {
             return <GoingOutClassList HandleSelect = {this.HandleSelect} key = {data.kind} data = {data}>{data.kind}</GoingOutClassList>
         })
@@ -201,16 +209,17 @@ class GointOutContainer extends Component {
         const goingOutData = goingOutList.slice((curPage-1)*6, curPage * 6).map(data => {
             return <GoingOutList onModal = {this.HandleModal} key = {data.applyId} data = {data}/>
         })
-        let PageList = []
-        for(let i = curPage; i <= page; i++) {
-            if(i >= curPage + 9) {
+        let PageList = [], startIndex = 1;
+        if(curPage > 10) startIndex = (page - curPage) + 1
+        for(let i = startIndex; i <= page; i++) {
+            if(startIndex + 9 === i) {
                 break;
             }
             PageList.push(<GoingOutPageList onPageMove = {this.HandlePageSelect} key = {i} numbering = {i}>{i}</GoingOutPageList>)
         }
         return (
             <Fragment>
-                <GoingOut modalData = {modalData} modal = {modal} PageList = {PageList} goingOutData = {goingOutData} HandleAllToggle = {this.HandleAllToggle} AllCheck = {allcheck} HandleSelectToggle = {this.HandleSelectToggle} selected = {selected} selectState = {selectState} selectData = {selectData} data = {data}/>
+                <GoingOut onModalToggle = {this.HandleModalToggle} modalData = {modalData} modal = {modal} PageList = {PageList} goingOutData = {goingOutData} HandleAllToggle = {this.HandleAllToggle} AllCheck = {allcheck} HandleSelectToggle = {this.HandleSelectToggle} selected = {selected} selectState = {selectState} selectData = {selectData} data = {data}/>
             </Fragment>
         );
     }

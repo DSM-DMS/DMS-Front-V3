@@ -25,9 +25,9 @@ class NoticeWriteContainer extends Component {
         })
     }
 
-    HandleAJAX = () => {
+    HandleAJAX = async () => {
         const { title, content } = this.state;
-        noticePost('notice', title, content)
+        await noticePost('notice', title, content)
         alert('글 작성에 성공했습니다!')
         this.props.history.push('/admin/notice')
     }

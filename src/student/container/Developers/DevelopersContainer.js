@@ -40,6 +40,10 @@ class DevelopersContainer extends Component {
     }
   }
 
+  shouldComponentUpdate() {
+    return false;
+  }
+
   render() {
     const { developers } = this.state;
     const devCards = developers.map((data, index) => (
