@@ -25,22 +25,6 @@ function meal(state = initialState, action) {
           ),
         ),
       };
-    case SET_MEAL_PREV_DATE:
-      return {
-        ...state,
-        selectedDate: new Date(
-          state.selectedDate.setDate(state.selectedDate.getDate() - 1),
-        ),
-        meal: action.mealObj,
-      };
-    case SET_MEAL_NEXT_DATE:
-      return {
-        ...state,
-        selectedDate: new Date(
-          state.selectedDate.setDate(state.selectedDate.getDate() + 1),
-        ),
-        meal: action.mealObj,
-      };
     case SET_MEAL:
       return {
         ...state,

@@ -1,11 +1,6 @@
 import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
-import {
-  mealPrevDate,
-  mealNextDate,
-  setMeal,
-  setMealDate,
-} from '../../../../actions';
+import { setMeal, setMealDate } from '../../../../actions';
 import { getMealDate } from '../../../../lib/mealAPI';
 
 import Meal from '../../../component/Main/Meal/Meal';
@@ -75,8 +70,6 @@ class MealContainer extends Component {
         breakfast={breakfast}
         lunch={lunch}
         dinner={dinner}
-        // prevDate={this.prevDate}
-        // nextDate={this.nextDate}
         changeDate={this.changeDate}
       />
     );
@@ -91,8 +84,6 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  prevDate: meal => dispatch(mealPrevDate(meal)),
-  nextDate: meal => dispatch(mealNextDate(meal)),
   setMealDate: date => dispatch(setMealDate(date)),
   setMeal: meal => dispatch(setMeal(meal)),
 });

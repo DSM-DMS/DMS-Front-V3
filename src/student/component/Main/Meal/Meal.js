@@ -7,15 +7,7 @@ import MealCard from './MealCard';
 
 import mealMan from '../../../../assets/illust/meal-man.png';
 
-const Meal = ({
-  selectedDate,
-  breakfast,
-  lunch,
-  dinner,
-  // prevDate,
-  // nextDate,
-  changeDate,
-}) => {
+const Meal = ({ selectedDate, breakfast, lunch, dinner, changeDate }) => {
   return (
     <div className="meal--wrapper" id="meal">
       <div className="inner--wrapper">
