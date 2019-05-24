@@ -63,46 +63,6 @@ class MealContainer extends Component {
       });
   };
 
-  prevDate = () => {
-    if (this.bool) {
-      this.getMeal(-1, this.props.prevDate);
-    }
-  };
-
-  nextDate = () => {
-    if (this.bool) {
-      this.getMeal(1, this.props.nextDate);
-    }
-  };
-
-  // getMeal = async (addDate, callback) => {
-  //   this.bool = false;
-  //   const { selectedDate } = this.props;
-  //   const needDate = new Date(selectedDate);
-  //   needDate.setDate(selectedDate.getDate() + addDate);
-  //   const getFormDate = `${needDate.getFullYear()}-${
-  //     needDate.getMonth() + 1 < 10
-  //       ? `0${needDate.getMonth() + 1}`
-  //       : needDate.getMonth() + 1
-  //   }-${
-  //     needDate.getDate() < 10 ? `0${needDate.getDate()}` : needDate.getDate()
-  //   }`;
-  //   try {
-  //     const response = await getMealDate(getFormDate);
-  //     if (response.status === 200) {
-  //       callback(response.data[getFormDate]);
-  //     }
-  //     this.bool = true;
-  //     // .catch(err => {
-  //     //   console.warn(err);
-  //     // });
-  //   } catch (e) {
-  //     console.log(e);
-  //     callback({ breakfast: [], lunch: [], dinner: [] });
-  //     this.bool = true;
-  //   }
-  // };
-
   render() {
     const { selectedDate, breakfast, lunch, dinner } = this.props;
 
