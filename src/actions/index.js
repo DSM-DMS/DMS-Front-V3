@@ -21,6 +21,11 @@ export const mealNextDate = mealObj => ({
   mealObj: mealObj,
 });
 
+export const setMealDate = date => ({
+  type: types.SET_MEAL_DATE,
+  date,
+});
+
 export const setMeal = mealObj => ({
   type: types.SET_MEAL,
   mealObj: mealObj,

@@ -1,6 +1,11 @@
 import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
-import { mealPrevDate, mealNextDate, setMeal } from '../../../../actions';
+import {
+  mealPrevDate,
+  mealNextDate,
+  setMeal,
+  setMealDate,
+} from '../../../../actions';
 import { getMealDate } from '../../../../lib/mealAPI';
 
 import Meal from '../../../component/Main/Meal/Meal';
@@ -18,9 +23,45 @@ class MealContainer extends Component {
 
   bool = true;
 
+  debounceCheck = null;
+
   componentDidMount() {
     this.getMeal(0, this.props.setMeal);
   }
+
+  debounce = (callback, milliseconds) => {
+    return () => {
+      clearTimeout(this.debounceCheck);
+      this.debounceCheck = setTimeout(() => {
+        callback();
+      }, milliseconds);
+    };
+  };
+
+  changeDate = date => {
+    this.props.setMealDate(date);
+    this.debounce(this.getMeal, 200)();
+  };
+
+  getMeal = () => {
+    const { selectedDate, setMeal } = this.props;
+    const getFormDate = `${selectedDate.getFullYear()}-${
+      selectedDate.getMonth() + 1 < 10
+        ? `0${selectedDate.getMonth() + 1}`
+        : selectedDate.getMonth() + 1
+    }-${
+      selectedDate.getDate() < 10
+        ? `0${selectedDate.getDate()}`
+        : selectedDate.getDate()
+    }`;
+    getMealDate(getFormDate)
+      .then(res => {
+        setMeal(res.data[getFormDate]);
+      })
+      .catch(err => {
+        setMeal({ breakfast: [], lunch: [], dinner: [] });
+      });
+  };
 
   prevDate = () => {
     if (this.bool) {
@@ -34,51 +75,50 @@ class MealContainer extends Component {
     }
   };
 
-  getMeal = async (addDate, callback) => {
-    this.bool = false;
-    const { selectedDate } = this.props;
-    const needDate = new Date(selectedDate);
-    needDate.setDate(selectedDate.getDate() + addDate);
-    const getFormDate = `${needDate.getFullYear()}-${
-      needDate.getMonth() + 1 < 10
-        ? `0${needDate.getMonth() + 1}`
-        : needDate.getMonth() + 1
-    }-${
-      needDate.getDate() < 10 ? `0${needDate.getDate()}` : needDate.getDate()
-    }`;
-    try {
-      const response = await getMealDate(getFormDate);
-      if (response.status === 200) {
-        callback(response.data[getFormDate]);
-      }
-      this.bool = true;
-      // .catch(err => {
-      //   console.warn(err);
-      // });
-    } catch (e) {
-      console.log(e);
-      callback({ breakfast: [], lunch: [], dinner: [] });
-      this.bool = true;
-    }
-  };
+  // getMeal = async (addDate, callback) => {
+  //   this.bool = false;
+  //   const { selectedDate } = this.props;
+  //   const needDate = new Date(selectedDate);
+  //   needDate.setDate(selectedDate.getDate() + addDate);
+  //   const getFormDate = `${needDate.getFullYear()}-${
+  //     needDate.getMonth() + 1 < 10
+  //       ? `0${needDate.getMonth() + 1}`
+  //       : needDate.getMonth() + 1
+  //   }-${
+  //     needDate.getDate() < 10 ? `0${needDate.getDate()}` : needDate.getDate()
+  //   }`;
+  //   try {
+  //     const response = await getMealDate(getFormDate);
+  //     if (response.status === 200) {
+  //       callback(response.data[getFormDate]);
+  //     }
+  //     this.bool = true;
+  //     // .catch(err => {
+  //     //   console.warn(err);
+  //     // });
+  //   } catch (e) {
+  //     console.log(e);
+  //     callback({ breakfast: [], lunch: [], dinner: [] });
+  //     this.bool = true;
+  //   }
+  // };
 
   render() {
     const { selectedDate, breakfast, lunch, dinner } = this.props;
 
     return (
-      <Fragment>
-        <Meal
-          selectedDate={`${selectedDate.getFullYear()}년
+      <Meal
+        selectedDate={`${selectedDate.getFullYear()}년
             ${selectedDate.getMonth() + 1}월
             ${selectedDate.getDate()}일
             ${this.dateList[selectedDate.getDay()]}`}
-          breakfast={breakfast}
-          lunch={lunch}
-          dinner={dinner}
-          prevDate={this.prevDate}
-          nextDate={this.nextDate}
-        />
-      </Fragment>
+        breakfast={breakfast}
+        lunch={lunch}
+        dinner={dinner}
+        // prevDate={this.prevDate}
+        // nextDate={this.nextDate}
+        changeDate={this.changeDate}
+      />
     );
   }
 }
@@ -93,6 +133,7 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
   prevDate: meal => dispatch(mealPrevDate(meal)),
   nextDate: meal => dispatch(mealNextDate(meal)),
+  setMealDate: date => dispatch(setMealDate(date)),
   setMeal: meal => dispatch(setMeal(meal)),
 });
 
