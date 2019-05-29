@@ -35,7 +35,7 @@ class MealContainer extends Component {
 
   changeDate = date => {
     this.props.setMealDate(date);
-    this.debounce(this.getMeal, 200)();
+    this.debounce(this.getMeal, 150)();
   };
 
   getMeal = () => {
