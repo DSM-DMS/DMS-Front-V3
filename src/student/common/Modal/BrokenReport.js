@@ -29,8 +29,8 @@ class BrokenReport extends Component {
       postFacilityReport(
         parseInt(this.state.room),
         this.state.description,
-        `Bearer ${accessToken}`,
-        `Bearer ${refreshToken}`,
+        accessToken,
+        refreshToken,
       )
         .then(res => {
           if (res.status === 201) {

@@ -21,11 +21,7 @@ class BugReport extends Component {
     const accessToken = getCookie('JWT');
     const refreshToken = getCookie('RFT');
     if (this.state.description && (accessToken || refreshToken))
-      postBugReport(
-        this.state.description,
-        `Bearer ${accessToken}`,
-        `Bearer ${refreshToken}`,
-      )
+      postBugReport(this.state.description, accessToken, refreshToken)
         .then(res => {
           if (res.status === 201) {
             alert('버그 신고에 성공하셨습니다.');

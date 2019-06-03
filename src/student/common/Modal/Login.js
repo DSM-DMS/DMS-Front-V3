@@ -45,19 +45,20 @@ class Login extends Component {
     if (id && pw) {
       postLogin(id, pw).then(response => {
         if (response.status === 200) {
+          const { accessToken, refreshToken } = response.data;
           alert('로그인에 성공하셨습니다.');
           if (checkbox) {
-            setCookie('JWT', response.data.accessToken, 180);
-            setCookie('RFT', response.data.refreshToken, 180);
+            setCookie('JWT', accessToken, 180);
+            setCookie('RFT', refreshToken, 180);
             setCookie('ID', id, 180);
           } else {
-            setCookie('JWT', response.data.accessToken);
-            setCookie('RFT', response.data.refreshToken);
+            setCookie('JWT', accessToken);
+            setCookie('RFT', refreshToken);
             setCookie('ID', id);
           }
 
-          this.getPointCards(response.data.accessToken);
-          this.getBasicData(response.data.accessToken);
+          this.getPointCards(accessToken, refreshToken);
+          this.getBasicData(accessToken, refreshToken);
           this.props.isLogin(true);
           this.props.setModal('');
         } else if (response.status === 204) {
@@ -69,8 +70,8 @@ class Login extends Component {
     }
   };
 
-  getPointCards = token => {
-    getPointCardList(`Bearer ${token}`, `Bearer ${getCookie('RFT')}`)
+  getPointCards = (token, refreshToken) => {
+    getPointCardList(token, refreshToken)
       .then(response => {
         if (response.status === 200) {
           this.props.setStudentPointData(response.data.point_history);
@@ -81,14 +82,12 @@ class Login extends Component {
       });
   };
 
-  getBasicData = token => {
-    getBasicDatas(`Bearer ${token}`, `Bearer ${getCookie('RFT')}`).then(
-      response => {
-        if (response.status === 200) {
-          this.props.setStudentBasicData(response.data);
-        }
-      },
-    );
+  getBasicData = (token, refreshToken) => {
+    getBasicDatas(token, refreshToken).then(response => {
+      if (response.status === 200) {
+        this.props.setStudentBasicData(response.data);
+      }
+    });
   };
 
   enterKeyPress = e => {

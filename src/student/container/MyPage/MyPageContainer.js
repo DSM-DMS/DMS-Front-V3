@@ -41,7 +41,7 @@ class MyPageContainer extends Component {
   }
 
   getBasicData = (token, refreshToken) => {
-    getBasicDatas(`Bearer ${token}`, `Bearer ${refreshToken}`)
+    getBasicDatas(token, refreshToken)
       .then(response => {
         if (response.status === 200) {
           this.props.setStudentBasicData(response.data);

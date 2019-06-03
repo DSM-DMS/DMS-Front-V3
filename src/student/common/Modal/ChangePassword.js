@@ -31,12 +31,7 @@ class ChangePassword extends Component {
       newPasswordChk &&
       newPassword === newPasswordChk
     ) {
-      patchPassword(
-        currentPassword,
-        newPassword,
-        `Bearer ${accessToken}`,
-        `Bearer ${refreshToken}`,
-      )
+      patchPassword(currentPassword, newPassword, accessToken, refreshToken)
         .then(response => {
           if (response.status === 201) {
             alert('비밀번호 변경에 성공하셨습니다. \n다시 로그인하세요.');

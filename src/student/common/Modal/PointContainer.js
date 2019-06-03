@@ -16,7 +16,7 @@ class PointContainer extends Component {
     const accessToken = getCookie('JWT');
     const refreshToken = getCookie('RFT');
     if (accessToken || refreshToken)
-      getPointCardList(`Bearer ${accessToken}`, `Bearer ${refreshToken}`)
+      getPointCardList(accessToken, refreshToken)
         .then(response => {
           if (response.status === 200) {
             this.props.setStudentPointData(response.data.point_history);
