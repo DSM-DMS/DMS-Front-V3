@@ -33,7 +33,7 @@ class MyPageContainer extends Component {
   componentDidMount() {
     const jwtToken = getCookie('JWT');
     const refreshToken = getCookie('RFT');
-    if (jwtToken) {
+    if (jwtToken || refreshToken) {
       this.getBasicData(jwtToken, refreshToken);
     } else {
       this.props.history.push('/');
