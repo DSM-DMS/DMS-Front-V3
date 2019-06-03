@@ -7,16 +7,16 @@ async function checkValidation(status, refresh, method, path, data) {
   let returnVal = false;
   if (status === 403) {
     try {
-      const newTokenRequest = await axios.get(getRefreshTokenURI, {
+      const newTokenRequest = await axios.post(getRefreshTokenURI, null, {
         headers: { Authorization: refresh },
       });
       setCookie('JWT', newTokenRequest.data.accessToken);
-      setCookie('RFT', newTokenRequest.data.refreshToken);
+      // setCookie('RFT', newTokenRequest.data.refreshToken);
       returnVal = await axios({
         method: method,
         url: path,
         headers: {
-          Authorization: `bearer ${newTokenRequest.data.accessToken}`,
+          Authorization: `Bearer ${newTokenRequest.data.accessToken}`,
         },
         data: data,
       });
