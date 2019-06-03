@@ -36,7 +36,15 @@ export const postRegister = (uuid, id, pw) =>
   });
 
 export const getPointCardList = (token, refreshToken) =>
-  axiosWrapper.get(`${rootURL}/info/point`, token, refreshToken);
+  axiosWrapper.get(
+    `${rootURL}/info/point`,
+    `Bearer ${token}`,
+    `Bearer ${refreshToken}`,
+  );
 
 export const getBasicDatas = (token, refreshToken) =>
-  axiosWrapper.get(`${rootURL}/info/basic`, token, refreshToken);
+  axiosWrapper.get(
+    `${rootURL}/info/basic`,
+    `Bearer ${token}`,
+    `Bearer ${refreshToken}`,
+  );

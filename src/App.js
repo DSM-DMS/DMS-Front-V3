@@ -71,15 +71,12 @@ class App extends Component {
     const refreshToken = getCookie('RFT');
 
     if (accessToken || refreshToken) {
-      getBasicDatas(`Bearer ${accessToken}`, `Bearer ${refreshToken}`)
+      getBasicDatas(accessToken, refreshToken)
         .then(res => {
           if (res.status === 200) {
             this.props.setStudentBasicData(res.data);
 
-            getPointCardList(
-              `Bearer ${getCookie('JWT')}`,
-              `Bearer ${refreshToken}`,
-            ).then(response => {
+            getPointCardList(accessToken, refreshToken).then(response => {
               if (response.status === 200) {
                 this.props.setStudentPointData(response.data.point_history);
               }
@@ -92,26 +89,6 @@ class App extends Component {
           }
         });
     }
-  };
-
-  getPointCards = token => {
-    getPointCardList(`Bearer ${token}`)
-      .then(response => {
-        if (response.status === 200) {
-          this.props.setStudentPointData(response.data.point_history);
-        }
-      })
-      .catch(err => {
-        console.log(err);
-      });
-  };
-
-  getBasicData = token => {
-    getBasicDatas(`Bearer ${token}`).then(response => {
-      if (response.status === 200) {
-        this.props.setStudentBasicData(response.data);
-      }
-    });
   };
 
   render() {
