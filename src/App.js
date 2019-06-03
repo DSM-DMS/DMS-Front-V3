@@ -52,7 +52,7 @@ axios.interceptors.request.use(
 );
 
 class App extends Component {
-  componentWillMount() {
+  componentDidMount() {
     if (
       (navigator.appName === 'Netscape' &&
         navigator.userAgent.search('Trident') !== -1) ||
@@ -75,8 +75,9 @@ class App extends Component {
         .then(res => {
           if (res.status === 200) {
             this.props.setStudentBasicData(res.data);
+            this.props.isLogin(true);
 
-            getPointCardList(accessToken, refreshToken).then(response => {
+            getPointCardList(getCookie('JWT'), refreshToken).then(response => {
               if (response.status === 200) {
                 this.props.setStudentPointData(response.data.point_history);
               }

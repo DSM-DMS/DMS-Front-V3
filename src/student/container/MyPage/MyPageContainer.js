@@ -30,7 +30,7 @@ class MyPageContainer extends Component {
     ],
   };
 
-  componentWillMount() {
+  componentDidMount() {
     const jwtToken = getCookie('JWT');
     const refreshToken = getCookie('RFT');
     if (jwtToken) {

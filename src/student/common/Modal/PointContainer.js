@@ -8,7 +8,7 @@ import Point from './Point';
 import PointCard from './PointCard';
 
 class PointContainer extends Component {
-  componentWillMount() {
+  componentDidMount() {
     this.getPointCards();
   }
 

@@ -32,7 +32,7 @@ class DevelopersContainer extends Component {
     ],
   };
 
-  componentWillMount() {
+  componentDidMount() {
     const jwtCookie = getCookie('JWT');
 
     if (!jwtCookie) {
