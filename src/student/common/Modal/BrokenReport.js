@@ -19,11 +19,18 @@ class BrokenReport extends Component {
   };
 
   onSubmitHandler = () => {
-    if (this.state.room && this.state.description)
+    const accessToken = getCookie('JWT');
+    const refreshToken = getCookie('RFT');
+    if (
+      this.state.room &&
+      this.state.description &&
+      (accessToken || refreshToken)
+    )
       postFacilityReport(
         parseInt(this.state.room),
         this.state.description,
-        `Bearer ${getCookie('JWT')}`,
+        accessToken,
+        refreshToken,
       )
         .then(res => {
           if (res.status === 201) {
@@ -32,12 +39,15 @@ class BrokenReport extends Component {
           }
         })
         .catch(err => {
-          if (err.response.status === 403) {
+          if (err === 'expired Token') {
             alert('권한이 없습니다.');
           } else if (err.response.status === 400) {
             alert('존재하지 않는 호실 번호입니다');
           }
         });
+    else if (this.state.room && this.state.description) {
+      alert('공란이 존재합니다.');
+    }
   };
 
   render() {

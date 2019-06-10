@@ -1,29 +1,23 @@
-import axios from 'axios';
+import axiosWrapper from './axiosWrapper';
 const rootURL = 'https://api.dms.istruly.sexy/report';
 
-export const postFacilityReport = (room, content, token) =>
-  axios.post(
+export const postFacilityReport = (room, content, token, refreshToken) =>
+  axiosWrapper.post(
     `${rootURL}/facility`,
+    `Bearer ${token}`,
+    `Bearer ${refreshToken}`,
     {
       room: room,
       content: content,
     },
-    {
-      headers: {
-        Authorization: token,
-      },
-    },
   );
 
-export const postBugReport = (content, token) =>
-  axios.post(
+export const postBugReport = (content, token, refreshToken) =>
+  axiosWrapper.post(
     `${rootURL}/bug/1`,
+    `Bearer ${token}`,
+    `Bearer ${refreshToken}`,
     {
       content: content,
-    },
-    {
-      headers: {
-        Authorization: token,
-      },
     },
   );

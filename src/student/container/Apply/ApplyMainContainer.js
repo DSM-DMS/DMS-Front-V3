@@ -31,7 +31,7 @@ class ApplyMainContainer extends Component {
   componentDidMount() {
     const { history, setModal } = this.props;
 
-    if (!getCookie('JWT')) {
+    if (!getCookie('RFT') || !getCookie('JWT')) {
       alert('로그인이 필요합니다.');
       setModal('로그인');
       history.push('');
