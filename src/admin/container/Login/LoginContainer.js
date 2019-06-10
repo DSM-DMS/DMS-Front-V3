@@ -41,9 +41,12 @@ class LoginContainer extends Component {
         })
         .then(response => {
             const { data } = response;
-            const token = data.accessToken
+            const jwttoken = data.accessToken
+            const reftoken = data.refreshToken
+            console.log(data)
             alert('로그인에 성공했습니다')
-            setCookie('JWT', token)
+            setCookie('JWT', jwttoken)
+            setCookie('REF', reftoken)
             this.setState({
                 loading : false
             })

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Main from '../../component/Main/Main';
 import MainSelectList from '../../component/Main/MainSelectList'
 import axios from 'axios';
+import axiosWrapper from '../../../lib/axiosWrapper'
 
 import fileSaver from 'file-saver'
 import { getCookie } from '../../../lib/cookie'
@@ -64,11 +65,10 @@ class MainContainer extends Component {
 
     onDownload = () => {
         const cookie = getCookie('JWT')
-        axios
-            .get(`https://admin-api.dms.istruly.sexy/excel/${this.state.selectKind}`, {
-        headers: { Authorization: `Bearer ${cookie}`},
-        responseType: 'arraybuffer'
-      })
+        axiosWrapper
+            .get(`https://admin-api.dms.istruly.sexy/excel/${this.state.selectKind}`,
+        `Bearer ${cookie}`
+      )
       .then(res => {
         let blob = new Blob([res.data], {type: res.headers['content-type']})
         fileSaver.saveAs(blob, `${this.state.select}명단.xlsx`)
