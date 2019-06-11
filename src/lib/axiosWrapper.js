@@ -8,21 +8,19 @@ async function checkValidation(status, refresh, method, path, data) {
   if (status === 403) {
     try {
       const newTokenRequest = await axios.post(getRefreshTokenURI, null, {
-        headers: { Authorization: refresh },
+        headers: { Authorization: refresh }
       });
       setCookie('JWT', newTokenRequest.data.accessToken);
       // setCookie('RFT', newTokenRequest.data.refreshToken);
-      returnVal = await axios({
+      returnVal = axios({
         method: method,
         url: path,
         headers: {
-          Authorization: `Bearer ${newTokenRequest.data.accessToken}`,
+          Authorization: `Bearer ${newTokenRequest.data.accessToken}`
         },
-        data: data,
+        data: data
       });
     } catch (e) {
-      removeCookie('JWT');
-      removeCookie('RFT');
       returnVal = new Promise((resolve, reject) => {
         reject('expired Token');
       });
@@ -36,7 +34,7 @@ const axiosWrapper = {
     let response;
     try {
       response = await axios.get(path, {
-        headers: { Authorization: token },
+        headers: { Authorization: token }
       });
     } catch (e) {
       const reRequest = checkValidation(
@@ -44,7 +42,7 @@ const axiosWrapper = {
         refresh,
         'get',
         path,
-        null,
+        null
       );
       if (reRequest) {
         response = reRequest;
@@ -56,7 +54,7 @@ const axiosWrapper = {
     let response;
     try {
       response = await axios.post(path, data, {
-        headers: { Authorization: token },
+        headers: { Authorization: token }
       });
     } catch (e) {
       const reRequest = checkValidation(
@@ -64,7 +62,7 @@ const axiosWrapper = {
         refresh,
         'post',
         path,
-        data,
+        data
       );
       if (reRequest) {
         response = reRequest;
@@ -76,7 +74,7 @@ const axiosWrapper = {
     let response;
     try {
       response = await axios.patch(path, data, {
-        headers: { Authorization: token },
+        headers: { Authorization: token }
       });
     } catch (e) {
       const reRequest = checkValidation(
@@ -84,7 +82,7 @@ const axiosWrapper = {
         refresh,
         'patch',
         path,
-        data,
+        data
       );
       if (reRequest) {
         response = reRequest;
@@ -96,7 +94,7 @@ const axiosWrapper = {
     let response;
     try {
       response = await axios.delete(path, data, {
-        headers: { Authorization: token },
+        headers: { Authorization: token }
       });
     } catch (e) {
       const reRequest = checkValidation(
@@ -104,14 +102,14 @@ const axiosWrapper = {
         refresh,
         'delete',
         path,
-        data,
+        data
       );
       if (reRequest) {
         response = reRequest;
       }
     }
     return response;
-  },
+  }
 };
 
 export default axiosWrapper;

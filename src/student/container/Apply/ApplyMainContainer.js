@@ -18,12 +18,12 @@ class ApplyMainContainer extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      path: this.props.location.pathname,
+      path: this.props.location.pathname
     };
 
     this.props.history.listen((location, action) => {
       this.setState({
-        path: location.pathname,
+        path: location.pathname
       });
     });
   }
@@ -31,7 +31,7 @@ class ApplyMainContainer extends Component {
   componentDidMount() {
     const { history, setModal } = this.props;
 
-    if (!getCookie('RFT') || !getCookie('JWT')) {
+    if (!getCookie('RFT')) {
       alert('로그인이 필요합니다.');
       setModal('로그인');
       history.push('');
@@ -45,7 +45,7 @@ class ApplyMainContainer extends Component {
       extension: <ExtensionApplyContainer />,
       goingout: <GoingoutApplyContainer />,
       music: <MusicApplyContainer />,
-      stay: <StayApplyContainer />,
+      stay: <StayApplyContainer />
     };
     const content = containerType[type];
 
@@ -62,10 +62,10 @@ class ApplyMainContainer extends Component {
 }
 
 const mapDispatchToProps = dispatch => ({
-  setModal: val => dispatch(setModal(val)),
+  setModal: val => dispatch(setModal(val))
 });
 
 export default connect(
   null,
-  mapDispatchToProps,
+  mapDispatchToProps
 )(withRouter(ApplyMainContainer));

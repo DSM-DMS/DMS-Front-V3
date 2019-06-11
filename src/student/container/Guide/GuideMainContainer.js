@@ -16,12 +16,12 @@ class GuideMainContainer extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      path: this.props.location.pathname,
+      path: this.props.location.pathname
     };
 
     this.props.history.listen((location, action) => {
       this.setState({
-        path: location.pathname,
+        path: location.pathname
       });
     });
   }
@@ -29,7 +29,7 @@ class GuideMainContainer extends Component {
   componentDidMount() {
     const { history, setModal } = this.props;
 
-    if (!getCookie('JWT')) {
+    if (!getCookie('RFT')) {
       alert('로그인이 필요합니다.');
       setModal('로그인');
       history.push('');
@@ -43,11 +43,11 @@ class GuideMainContainer extends Component {
     const containerType = {
       faq: <GuideFaqContainer history={history} />,
       notice: <GuideNoticeContainer history={history} />,
-      rule: <GuideRuleContainer history={history} />,
+      rule: <GuideRuleContainer history={history} />
     };
     const content = containerType[type];
     return (
-      <div 
+      <div
         className="apply--main--wrapper"
         style={{ width: window.screen.width }}
       >
@@ -59,10 +59,10 @@ class GuideMainContainer extends Component {
 }
 
 const mapDispatchToProps = dispatch => ({
-  setModal: val => dispatch(setModal(val)),
+  setModal: val => dispatch(setModal(val))
 });
 
 export default connect(
   null,
-  mapDispatchToProps,
+  mapDispatchToProps
 )(GuideMainContainer);

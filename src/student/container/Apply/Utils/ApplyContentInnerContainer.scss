@@ -15,7 +15,8 @@
   display: flex;
   justify-content: stretch;
   margin-top: 3.125rem;
-  overflow: auto;
+  overflow-y: auto;
+  overflow-x: hidden;
   flex-grow: 1;
   background: #fff;
   border-radius: 8px;
