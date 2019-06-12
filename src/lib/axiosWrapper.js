@@ -3,12 +3,12 @@ import { setCookie, removeCookie } from './cookie';
 
 const getRefreshTokenURI = 'https://api.dms.istruly.sexy/account/refresh';
 
-async function checkValidation(status, refresh, method, path, data) {
+async function checkValidation(status, refresh, method, path, data, domain) {
   let returnVal = false;
   if (status === 403) {
     try {
-      const newTokenRequest = await axios.post(getRefreshTokenURI, null, {
-        headers: { Authorization: refresh }
+      const newTokenRequest = await axios.post(domain, null, {
+        headers: { Authorization: refresh },
       });
       setCookie('JWT', newTokenRequest.data.accessToken);
       // setCookie('RFT', newTokenRequest.data.refreshToken);
@@ -16,9 +16,9 @@ async function checkValidation(status, refresh, method, path, data) {
         method: method,
         url: path,
         headers: {
-          Authorization: `Bearer ${newTokenRequest.data.accessToken}`
+          Authorization: `Bearer ${newTokenRequest.data.accessToken}`,
         },
-        data: data
+        data: data,
       });
     } catch (e) {
       returnVal = new Promise((resolve, reject) => {
@@ -30,11 +30,11 @@ async function checkValidation(status, refresh, method, path, data) {
 }
 
 const axiosWrapper = {
-  async get(path, token, refresh) {
+  async get(path, token, refresh, domain = getRefreshTokenURI) {
     let response;
     try {
       response = await axios.get(path, {
-        headers: { Authorization: token }
+        headers: { Authorization: token },
       });
     } catch (e) {
       const reRequest = checkValidation(
@@ -42,7 +42,8 @@ const axiosWrapper = {
         refresh,
         'get',
         path,
-        null
+        null,
+        domain,
       );
       if (reRequest) {
         response = reRequest;
@@ -50,11 +51,11 @@ const axiosWrapper = {
     }
     return response;
   },
-  async post(path, token, refresh, data) {
+  async post(path, token, refresh, data, domain = getRefreshTokenURI) {
     let response;
     try {
       response = await axios.post(path, data, {
-        headers: { Authorization: token }
+        headers: { Authorization: token },
       });
     } catch (e) {
       const reRequest = checkValidation(
@@ -62,7 +63,8 @@ const axiosWrapper = {
         refresh,
         'post',
         path,
-        data
+        data,
+        domain,
       );
       if (reRequest) {
         response = reRequest;
@@ -70,11 +72,11 @@ const axiosWrapper = {
     }
     return response;
   },
-  async patch(path, token, refresh, data) {
+  async patch(path, token, refresh, data, domain = getRefreshTokenURI) {
     let response;
     try {
       response = await axios.patch(path, data, {
-        headers: { Authorization: token }
+        headers: { Authorization: token },
       });
     } catch (e) {
       const reRequest = checkValidation(
@@ -82,7 +84,8 @@ const axiosWrapper = {
         refresh,
         'patch',
         path,
-        data
+        data,
+        domain,
       );
       if (reRequest) {
         response = reRequest;
@@ -90,11 +93,11 @@ const axiosWrapper = {
     }
     return response;
   },
-  async delete(path, token, refresh, data) {
+  async delete(path, token, refresh, data, domain = getRefreshTokenURI) {
     let response;
     try {
       response = await axios.delete(path, data, {
-        headers: { Authorization: token }
+        headers: { Authorization: token },
       });
     } catch (e) {
       const reRequest = checkValidation(
@@ -102,14 +105,15 @@ const axiosWrapper = {
         refresh,
         'delete',
         path,
-        data
+        data,
+        domain,
       );
       if (reRequest) {
         response = reRequest;
       }
     }
     return response;
-  }
+  },
 };
 
 export default axiosWrapper;
