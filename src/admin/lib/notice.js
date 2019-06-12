@@ -27,7 +27,7 @@ export function noticePost (type, title, content) {
 export function noticeGet (type) {
     const jwt = getCookie('JWT');
     const ref = getCookie('RFT');
-    return axios
+    return axiosWrapper
         .get(`${url}/${type}`, `Bearer ${jwt}`, `Bearer ${ref}`)
 }
 
