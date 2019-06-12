@@ -17,7 +17,7 @@ export default class GoingoutApplyContainer extends Component {
 
   onCancel = id => {
     console.log(id);
-    deleteGoingoutInform(getCookie('JWT'), id).then(response => {
+    deleteGoingoutInform(getCookie('JWT'), id, getCookie('RFT')).then(response => {
       switch (response.status) {
         case 200:
           alert('외출신청 취소 성공');
@@ -72,7 +72,7 @@ export default class GoingoutApplyContainer extends Component {
       returnHour,
     )}:${this.addZero(returnMin)}`;
     
-    postGoingoutInform(getCookie("JWT"), dateForm, reason)
+    postGoingoutInform(getCookie("JWT"), dateForm, reason, getCookie('RFT'))
       .then(response => {
         switch (response.status) {
           case 201:

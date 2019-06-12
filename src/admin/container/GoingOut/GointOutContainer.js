@@ -11,6 +11,7 @@ import GoingOutList from '../../component/GoingOut/GoingOutList'
 import GoingOutPageList from '../../component/GoingOut/GoingOutPageList'
 
 class GointOutContainer extends Component {
+    startIndex = 1;
     state = {
         goingOutList : [
 
@@ -204,15 +205,16 @@ class GointOutContainer extends Component {
         const data = checkList.map(data => {
             return <GoingOutButton onToggle = {this.HandleGradeButton} key = {data.kind} data = {data}>{data.kind}</GoingOutButton>
         })
-        let page = (goingOutList.length / pageSize);
+        let page = (Math.floor(goingOutList.length / pageSize));
         if(goingOutList.length % pageSize > 0) page++;
         const goingOutData = goingOutList.slice((curPage-1)*6, curPage * 6).map(data => {
             return <GoingOutList onModal = {this.HandleModal} key = {data.applyId} data = {data}/>
         })
-        let PageList = [], startIndex = 1;
-        if(curPage > 10) startIndex = (page - curPage) + 1
-        for(let i = startIndex; i <= page; i++) {
-            if(startIndex + 9 === i) {
+        let PageList = [];
+        if(curPage % 9 ===  0) this.startIndex = curPage - 1
+        if(Math.floor(curPage / 9) < Math.floor(page / 9)) this.startIndex = Math.floor(curPage / 9) * 9+ 1
+        for(let i = this.startIndex; i <= page; i++) {
+            if(this.startIndex + 9 === i) {
                 break;
             }
             PageList.push(<GoingOutPageList onPageMove = {this.HandlePageSelect} key = {i} numbering = {i}>{i}</GoingOutPageList>)

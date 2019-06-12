@@ -32,7 +32,8 @@ class NoticeContainer extends Component {
 
     HandleDelete = async (id) => {
         console.log('실행됨')
-        await noticeDelete('notice', id)
+        const response = await noticeDelete('notice', id)
+        console.log(response)
         this.TaskData()
     }
 
