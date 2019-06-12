@@ -1,18 +1,18 @@
 import axios from 'axios';
 import { setCookie, removeCookie } from './cookie';
 
-const getRefreshTokenURI = '';
+const getRefreshTokenURI = 'https://api.dms.istruly.sexy/account/refresh';
 
 async function checkValidation(status, refresh, method, path, data, domain) {
   let returnVal = false;
   if (status === 403) {
     try {
-      const newTokenRequest = await axios.get(getRefreshTokenURI, {
+      const newTokenRequest = await axios.post(domain, null, {
         headers: { Authorization: refresh },
       });
       setCookie('JWT', newTokenRequest.data.accessToken);
-      setCookie('RFT', newTokenRequest.data.refreshToken);
-      returnVal = await axios({
+      // setCookie('RFT', newTokenRequest.data.refreshToken);
+      returnVal = axios({
         method: method,
         url: path,
         headers: {
