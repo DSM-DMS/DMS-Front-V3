@@ -96,7 +96,8 @@ const axiosWrapper = {
   async delete(path, token, refresh, data, domain = getRefreshTokenURI) {
     let response;
     try {
-      response = await axios.delete(path, data, {
+      response = await axios.delete(path, {
+        data: { data },
         headers: { Authorization: token },
       });
     } catch (e) {
