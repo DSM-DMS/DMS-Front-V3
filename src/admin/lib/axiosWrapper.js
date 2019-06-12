@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { setCookie, removeCookie } from './cookie';
+import { setCookie, removeCookie } from '../../lib/cookie';
 
 const getRefreshTokenURI = '';
 
@@ -15,7 +15,7 @@ async function checkValidation(status, refresh, method, path, data) {
         method: method,
         url: path,
         headers: {
-          Authorization: `bearer ${newTokenRequest.data.accessToken}`,
+          Authorization: `Bearer ${newTokenRequest.data.accessToken}`,
         },
         data: data,
       });

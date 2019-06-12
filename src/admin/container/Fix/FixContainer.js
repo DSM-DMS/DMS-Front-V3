@@ -18,9 +18,10 @@ class FixContainer extends Component {
 
     componentDidMount = async () => {
         try {
-        const token = getCookie('JWT')
+        const jwttoken = getCookie('JWT')
+        const reftoken = getCookie('RFT')
         const response = await axiosWrapper
-            .get("https://admin-api.dms.istruly.sexy/facility_report", `Bearer ${token}`)
+            .get("https://admin-api.dms.istruly.sexy/facility_report", `Bearer ${jwttoken}`, `Bearer ${reftoken}`)
             console.log(response)
             this.props.facilityRequest(
                 response.data

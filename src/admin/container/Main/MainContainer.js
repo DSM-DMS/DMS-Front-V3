@@ -65,9 +65,10 @@ class MainContainer extends Component {
 
     onDownload = () => {
         const cookie = getCookie('JWT')
+        const refcookie = getCookie('RFT')
         axiosWrapper
             .get(`https://admin-api.dms.istruly.sexy/excel/${this.state.selectKind}`,
-        `Bearer ${cookie}`
+        `Bearer ${cookie}`, `Bearer ${refcookie}`
       )
       .then(res => {
         let blob = new Blob([res.data], {type: res.headers['content-type']})

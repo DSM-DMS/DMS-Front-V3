@@ -36,9 +36,9 @@ class MusicContainer extends Component {
 
     componentDidMount = () => {
         const jwtcookie = getCookie('JWT')
-        const refcookie = getCookie('REF')
+        const refcookie = getCookie('RFT')
         axios.get('https://admin-api.dms.istruly.sexy/music',
-            `Bearer ${jwtcookie}`
+            `Bearer ${jwtcookie}`, `Bearer ${refcookie}`
         )
         .then(res => {
             console.log(res)
