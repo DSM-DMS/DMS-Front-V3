@@ -11,6 +11,7 @@ async function checkValidation(status, refresh, method, path, data) {
         headers: { Authorization: refresh },
       });
       setCookie('JWT', newTokenRequest.data.accessToken);
+      setCookie('RFT', newTokenRequest.data.refreshToken);
       returnVal = await axios({
         method: method,
         url: path,
