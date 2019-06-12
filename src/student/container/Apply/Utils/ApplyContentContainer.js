@@ -108,8 +108,8 @@ export default class ApplyContentContainer extends Component {
 
   setExtensionInfo = async () => {
     try {
-      const response1 = await getMyExtensionInfo(getCookie('JWT'), 11);
-      const response2 = await getMyExtensionInfo(getCookie('JWT'), 12);
+      const response1 = await getMyExtensionInfo(getCookie('JWT'), 11, getCookie('RFT'));
+      const response2 = await getMyExtensionInfo(getCookie('JWT'), 12, getCookie('RFT'));
       this.setState({
         extensionInfo: [
           this.getRoomName(response1.data.classNum),
@@ -125,7 +125,7 @@ export default class ApplyContentContainer extends Component {
 
   setStayInfo = async () => {
     try {
-      const response = await getStayInform(getCookie('JWT'));
+      const response = await getStayInform(getCookie('JWT'), getCookie('RFT'));
       this.setState({
         stayInfo: this.getStayType(response.data.value)
       });
@@ -153,8 +153,7 @@ export default class ApplyContentContainer extends Component {
     });
 
     try {
-      const response = await getMusicList(getCookie('JWT'));
-      console.log(response);
+      const response = await getMusicList(getCookie('JWT'), getCookie('RFT'));
       switch (response.status) {
         case 200:
           this.setState({
@@ -187,7 +186,6 @@ export default class ApplyContentContainer extends Component {
         let isApplied = response.data[day].some(musicInfo => {
           return musicInfo.studentId === id;
         });
-        console.log(isApplied);
 
         if (isApplied) {
           const menuList = [...this.state.contentInfo.music.menuList];
@@ -211,7 +209,7 @@ export default class ApplyContentContainer extends Component {
 
   setGoingoutInfo = async () => {
     try {
-      const response = await getGoingoutInform(getCookie('JWT'));
+      const response = await getGoingoutInform(getCookie('JWT'), getCookie('RFT'));
       let content = [];
       for (let day in response.data) {
         const contentList = response.data[day].map(content => {

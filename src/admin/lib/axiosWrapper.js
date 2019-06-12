@@ -3,7 +3,7 @@ import { setCookie, removeCookie } from '../../lib/cookie';
 
 const getRefreshTokenURI = '';
 
-async function checkValidation(status, refresh, method, path, data) {
+async function checkValidation(status, refresh, method, path, data, domain) {
   let returnVal = false;
   if (status === 403) {
     try {
@@ -21,8 +21,6 @@ async function checkValidation(status, refresh, method, path, data) {
         data: data,
       });
     } catch (e) {
-      removeCookie('JWT');
-      removeCookie('RFT');
       returnVal = new Promise((resolve, reject) => {
         reject('expired Token');
       });
@@ -32,7 +30,7 @@ async function checkValidation(status, refresh, method, path, data) {
 }
 
 const axiosWrapper = {
-  async get(path, token, refresh) {
+  async get(path, token, refresh, domain = getRefreshTokenURI) {
     let response;
     try {
       response = await axios.get(path, {
@@ -45,6 +43,7 @@ const axiosWrapper = {
         'get',
         path,
         null,
+        domain,
       );
       if (reRequest) {
         response = reRequest;
@@ -52,7 +51,7 @@ const axiosWrapper = {
     }
     return response;
   },
-  async post(path, token, refresh, data) {
+  async post(path, token, refresh, data, domain = getRefreshTokenURI) {
     let response;
     try {
       response = await axios.post(path, data, {
@@ -65,6 +64,7 @@ const axiosWrapper = {
         'post',
         path,
         data,
+        domain,
       );
       if (reRequest) {
         response = reRequest;
@@ -72,7 +72,7 @@ const axiosWrapper = {
     }
     return response;
   },
-  async patch(path, token, refresh, data) {
+  async patch(path, token, refresh, data, domain = getRefreshTokenURI) {
     let response;
     try {
       response = await axios.patch(path, data, {
@@ -85,6 +85,7 @@ const axiosWrapper = {
         'patch',
         path,
         data,
+        domain,
       );
       if (reRequest) {
         response = reRequest;
@@ -92,7 +93,7 @@ const axiosWrapper = {
     }
     return response;
   },
-  async delete(path, token, refresh, data) {
+  async delete(path, token, refresh, data, domain = getRefreshTokenURI) {
     let response;
     try {
       response = await axios.delete(path, data, {
@@ -105,6 +106,7 @@ const axiosWrapper = {
         'delete',
         path,
         data,
+        domain,
       );
       if (reRequest) {
         response = reRequest;
