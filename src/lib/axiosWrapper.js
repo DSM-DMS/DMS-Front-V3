@@ -97,7 +97,7 @@ const axiosWrapper = {
     let response;
     try {
       response = await axios.delete(path, {
-        data: { data },
+        data,
         headers: { Authorization: token },
       });
     } catch (e) {
