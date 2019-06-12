@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Main from '../../component/Main/Main';
 import MainSelectList from '../../component/Main/MainSelectList'
 import axios from 'axios';
-import axiosWrapper from '../../../lib/axiosWrapper'
+import axiosWrapper from '../../lib/axiosWrapper'
 
 import fileSaver from 'file-saver'
 import { getCookie } from '../../../lib/cookie'

@@ -9,7 +9,7 @@ import Loading from '../../common/Loading/Loading'
 import { connect } from 'react-redux'
 import { facilityRequest } from '../../../actions/index'
 import { getCookie } from '../../../lib/cookie'
-import axiosWrapper from '../../../lib/axiosWrapper'
+import axiosWrapper from '../../lib/axiosWrapper'
 
 class FixContainer extends Component {
     state = {

@@ -3,7 +3,7 @@ import Loading from '../../common/Loading/Loading'
 import Music from '../../component/Music/Music'
 import axios from 'axios';
 import { getCookie } from '../../../lib/cookie'
-import axiosWrapper from '../../../lib/axiosWrapper'
+import axiosWrapper from '../../lib/axiosWrapper'
 
 class MusicContainer extends Component {
     handleIndex = (state) => {
@@ -37,7 +37,7 @@ class MusicContainer extends Component {
     componentDidMount = () => {
         const jwtcookie = getCookie('JWT')
         const refcookie = getCookie('RFT')
-        axios.get('https://admin-api.dms.istruly.sexy/music',
+        axiosWrapper.get('https://admin-api.dms.istruly.sexy/music',
             `Bearer ${jwtcookie}`, `Bearer ${refcookie}`
         )
         .then(res => {
