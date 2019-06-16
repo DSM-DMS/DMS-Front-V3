@@ -34,7 +34,7 @@ class ExtraContainer extends Component {
   };
 
   onClickModal = (e, val) => {
-    if (getCookie('JWT')) {
+    if (getCookie('RFT')) {
       e.preventDefault();
       this.props.setModal(val);
     } else {

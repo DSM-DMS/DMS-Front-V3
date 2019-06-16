@@ -11,13 +11,20 @@ import { withRouter } from 'react-router-dom'
 class DomitoryRuleContainer extends Component {
     TaskData = async () => {
         try {
-        const response = await noticeGet('rule')
-        console.log(response.data)
-        this.HandleAfterRequest(response)
+            const response = await noticeGet('rule')
+            console.log(response.data)
+            this.HandleAfterRequest(response)
         }
         catch (err) {
-            alert('로그인이 필요합니다')
-            this.props.history.push('/admin/login')
+            try {
+                const response = await noticeGet('rule')
+                console.log(response.data)
+                this.HandleAfterRequest(response)                
+            }
+            catch (err) {
+                alert('로그인이 필요합니다')
+                this.props.history.push('/admin/login')
+            }
         }
     }
 

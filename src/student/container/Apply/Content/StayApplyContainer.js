@@ -31,7 +31,7 @@ export default class StayApplyContainer extends Component {
   };
 
   onApply = ({apply}) => {
-    submitStayInform(getCookie('JWT'), apply + 1)
+    submitStayInform(getCookie('JWT'), apply + 1, getCookie('RFT'))
       .then(res => {
         switch (res.status) {
           case 201:

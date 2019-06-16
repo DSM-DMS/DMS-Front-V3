@@ -25,10 +25,8 @@ export default class ExtensionApplyContainer extends Component {
     refreshFlag: false
   };
   onCancel = param => {
-    console.log(param);
-    deleteExtension(getCookie('JWT'), param.extension)
+    deleteExtension(getCookie('JWT'), param.extension, getCookie('RFT'))
       .then(response => {
-        console.log(response);
         switch (response.status) {
           case 200:
             alert('연장신청 취소 성공!');
@@ -59,8 +57,7 @@ export default class ExtensionApplyContainer extends Component {
   };
 
   onApply = param => {
-    console.log(param);
-    applyExtension(getCookie('JWT'), param)
+    applyExtension(getCookie('JWT'), param, getCookie('RFT'))
       .then(res => {
         switch (res.status) {
           case 201:
@@ -76,12 +73,14 @@ export default class ExtensionApplyContainer extends Component {
         }
       })
       .catch(e => {
+        console.log(1);
         switch (e.response.status) {
           case 403:
             alert('권한이 없습니다.');
             break;
           case 409:
             alert('연장신청을 할 수 있는 시간이 아닙니다.');
+            console.log(11)
             break;
           default:
         }

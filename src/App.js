@@ -4,18 +4,10 @@ import './App.scss';
 import axios from 'axios';
 
 import { connect } from 'react-redux';
-import {
-  autoLogin,
-  isLogin,
-  setStudentBasicData,
-  setStudentPointData,
-} from './actions';
-import { getCookie, setCookie, removeCookie } from './lib/cookie';
-import {
-  postAuth,
-  getPointCardList,
-  getBasicDatas,
-} from './lib/studentInfoAPI';
+import { autoLogin, isLogin } from './actions';
+import { getCookie } from './lib/cookie';
+import { getBasicDatas, getPointCardList } from './lib/studentInfoAPI';
+import { setStudentBasicData, setStudentPointData } from './actions';
 
 import MainContainer from './student/container/Main/MainContainer';
 import ApplyMainContainer from './student/container/Apply/ApplyMainContainer';
@@ -59,20 +51,8 @@ axios.interceptors.request.use(
   },
 );
 
-axios.interceptors.response.use(
-  res => {
-    if (!!res.headers['new-access-token']) {
-      setCookie('JWT', res.headers['new-access-token']);
-    }
-    return res;
-  },
-  err => {
-    return Promise.reject(err);
-  },
-);
-
 class App extends Component {
-  componentWillMount() {
+  componentDidMount() {
     if (
       (navigator.appName === 'Netscape' &&
         navigator.userAgent.search('Trident') !== -1) ||
@@ -84,66 +64,32 @@ class App extends Component {
     }
 
     this.loginApi();
-
-    // window.addEventListener('load', this.loginApi);
-    window.addEventListener('beforeunload', this.setAutoLogin);
   }
 
   loginApi = () => {
-    const id = getCookie('id');
-    const pw = getCookie('pw');
-    if (id && pw) {
-      postAuth(id, pw)
-        .then(response => {
-          if (response.status === 200) {
-            setCookie('JWT', response.data.accessToken);
-            setCookie('ID', id);
-            removeCookie('id');
-            removeCookie('pw');
-            this.getPointCards(response.data.accessToken);
-            this.getBasicData(response.data.accessToken);
-            this.props.autoLogin({ id: id, pw: pw });
+    const accessToken = getCookie('JWT');
+    const refreshToken = getCookie('RFT');
+
+    if (accessToken || refreshToken) {
+      getBasicDatas(accessToken, refreshToken)
+        .then(res => {
+          if (res.status === 200) {
+            this.props.setStudentBasicData(res.data);
             this.props.isLogin(true);
-          } else if (response.status === 204) {
-            alert('비밀번호가 틀렸습니다.');
+
+            getPointCardList(getCookie('JWT'), refreshToken).then(response => {
+              if (response.status === 200) {
+                this.props.setStudentPointData(response.data.point_history);
+              }
+            });
           }
         })
         .catch(err => {
-          removeCookie('id');
-          removeCookie('pw');
+          if (err === 'expired Token') {
+            // hmm...
+          }
         });
     }
-  };
-
-  setAutoLogin = () => {
-    const { id, pw, autoLogin } = this.props;
-    if (id && pw) {
-      autoLogin({ id: '', pw: '' });
-      setCookie('id', id, 150);
-      setCookie('pw', pw, 150);
-    }
-    removeCookie('JWT');
-    removeCookie('ID');
-  };
-
-  getPointCards = token => {
-    getPointCardList(`Bearer ${token}`)
-      .then(response => {
-        if (response.status === 200) {
-          this.props.setStudentPointData(response.data.point_history);
-        }
-      })
-      .catch(err => {
-        console.log(err);
-      });
-  };
-
-  getBasicData = token => {
-    getBasicDatas(`Bearer ${token}`).then(response => {
-      if (response.status === 200) {
-        this.props.setStudentBasicData(response.data);
-      }
-    });
   };
 
   render() {
