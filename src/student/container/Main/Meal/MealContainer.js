@@ -20,6 +20,8 @@ class MealContainer extends Component {
 
   debounceCheck = null;
 
+  cnt = 0;
+
   componentDidMount() {
     this.getMeal(0, this.props.setMeal);
   }
@@ -28,6 +30,7 @@ class MealContainer extends Component {
     return () => {
       clearTimeout(this.debounceCheck);
       this.debounceCheck = setTimeout(() => {
+        this.cnt = 0;
         callback();
       }, milliseconds);
     };
@@ -35,11 +38,13 @@ class MealContainer extends Component {
 
   changeDate = date => {
     this.props.setMealDate(date);
-    this.debounce(this.getMeal, 150)();
+    if (this.cnt === 0) this.getMeal();
+    else this.debounce(this.getMeal, 150)();
   };
 
   getMeal = () => {
     const { selectedDate, setMeal } = this.props;
+    this.cnt++;
     const getFormDate = `${selectedDate.getFullYear()}-${
       selectedDate.getMonth() + 1 < 10
         ? `0${selectedDate.getMonth() + 1}`
