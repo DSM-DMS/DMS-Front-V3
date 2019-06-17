@@ -1,146 +1,136 @@
 import axios from 'axios';
+import axiosWrapper from './axiosWrapper';
 const rootUrl = 'https://api.dms.istruly.sexy/apply';
 
 export const getExtensionMap = (time, classNum) => {
   return axios.get(`${rootUrl}/extension/map/${time}/${classNum}`);
 };
 
-export const getMyExtensionInfo = (token, time) => {
-  return axios.get(`${rootUrl}/extension/${time}`, {
-    headers: {
-      Authorization: `Bearer ${token}`,
-    },
-  });
+export const getMyExtensionInfo = (token, time, refreshToken) => {
+  return axiosWrapper.get(
+    `${rootUrl}/extension/${time}`,
+    `Bearer ${token}`,
+    `Bearer ${refreshToken}`
+  );
 };
 
-export const deleteExtension = (token, time) => {
-  return axios.delete(`${rootUrl}/extension/${time}`, {
-    headers: {
-      Authorization: `Bearer ${token}`,
-    },
-  });
+export const deleteExtension = (token, time, refreshToken) => {
+  return axiosWrapper.delete(
+    `${rootUrl}/extension/${time}`,
+    `Bearer ${token}`,
+    `Bearer ${refreshToken}`,
+  );
 };
 
-export const applyExtension = (token, param) => {
-  return axios.post(
+export const applyExtension = (token, param, refreshToken) => {
+  return axiosWrapper.post(
     `${rootUrl}/extension/${param.time}`,
+    `Bearer ${token}`,
+    `Bearer ${refreshToken}`,
     {
       classNum: param.class + 1,
-      seatNum: param.seat,
-    },
-    {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    },
+      seatNum: param.seat
+    }
   );
 };
 
-export const getGoingoutInform = token => {
-  return axios.get(`${rootUrl}/goingout `, {
-    headers: {
-      Authorization: `Bearer ${token}`,
-    },
-  });
-};
-
-export const deleteGoingoutInform = (token, id) => {
-  return axios({
-    method: 'DELETE',
-    url: `${rootUrl}/goingout`,
-    data: {
-      applyId: id,
-    },
-    headers: {
-      Authorization: `Bearer ${token}`,
-    },
-  });
-};
-
-export const postGoingoutInform = (token, dateForm, reason) => {
-  return axios.post(
+export const getGoingoutInform = (token, refreshToken) => {
+  return axiosWrapper.get(
     `${rootUrl}/goingout `,
+    `Bearer ${token}`,
+    `Bearer ${refreshToken}`
+  );
+};
+
+export const deleteGoingoutInform = (token, id, refreshToken) => {
+  return axiosWrapper.delete(
+    `${rootUrl}/goingout`,
+    `Bearer ${token}`,
+    `Bearer ${refreshToken}`,
+    {
+      applyId: id
+    }
+  );
+};
+
+export const postGoingoutInform = (token, dateForm, reason, refreshToken) => {
+  return axiosWrapper.post(
+    `${rootUrl}/goingout `,
+    `Bearer ${token}`,
+    `Bearer ${refreshToken}`,
     {
       date: dateForm,
-      reason: reason,
-    },
-    {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    },
+      reason: reason
+    }
   );
 };
 
-export const patchGoingoutInform = (token, applyId, date, reason) => {
-  return axios.post(
-    `${rootUrl}/goingout`,
-    {
-      applyId,
-      date,
-      reason,
-    }, {
-      headers: {
-        Authorization: `Bearer ${token}`
-      }
-    });
-};
-
-export const getMusicList = token => {
-  return axios.get(`${rootUrl}/music`, {
-    headers: {
-      Authorization: `Bearer ${token}`,
-    },
-  });
-};
-
-export const submitMusic = (token, day, singer, musicName) => {
-  return axios.post(
+export const getMusicList = (token, refreshToken) => {
+  return axiosWrapper.get(
     `${rootUrl}/music`,
+    `Bearer ${token}`,
+    `Bearer ${refreshToken}`
+  );
+};
+
+export const submitMusic = (token, day, singer, musicName, refreshToken) => {
+  return axiosWrapper.post(
+    `${rootUrl}/music`,
+    `Bearer ${token}`,
+    `Bearer ${refreshToken}`,
     {
       day,
       singer,
-      musicName,
-    },
-    {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    },
+      musicName
+    }
   );
 };
 
-export const deleteMusic = (token, id) => {
-  return axios({
-    method: 'DELETE',
-    url: `${rootUrl}/music`,
-    data: {
-      applyId: id,
-    },
-    headers: {
-      Authorization: `Bearer ${token}`,
-    },
-  });
+export const patchGoingoutInform = (
+  token,
+  applyId,
+  date,
+  reason,
+  refreshToken
+) => {
+  return axiosWrapper.post(
+    `${rootUrl}/goingout`,
+    `Bearer ${token}`,
+    `Bearer ${refreshToken}`,
+    {
+      applyId,
+      date,
+      reason
+    }
+  );
 };
 
-export const getStayInform = token => {
-  return axios.get(`${rootUrl}/stay`, {
-    headers: {
-      Authorization: `Bearer ${token}`,
-    },
-  });
-};
-
-export const submitStayInform = (token, value) => {
-  return axios.post(
+export const getStayInform = (token, refreshToken) => {
+  return axiosWrapper.get(
     `${rootUrl}/stay`,
+    `Bearer ${token}`,
+    `Bearer ${refreshToken}`
+  );
+};
+
+export const submitStayInform = (token, value, refreshToken) => {
+  return axiosWrapper.post(
+    `${rootUrl}/stay`,
+    `Bearer ${token}`,
+    `Bearer ${refreshToken}`,
     {
-      value,
-    },
+      value
+    }
+  );
+};
+
+export const deleteMusic = (token, id, refreshToken) => {
+  return axiosWrapper.delete(
+    `${rootUrl}/music`,
+    `Bearer ${token}`,
+    `Bearer ${refreshToken}`,
     {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    },
+      applyId: id
+    }
   );
 };

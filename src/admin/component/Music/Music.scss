@@ -39,10 +39,13 @@
         &--wrapper {
             z-index: 3;
             width: calc(100% - 10.4875rem);
-            height: 21.6125rem;
-            padding: 5.75rem 5.24375rem 9.2875rem;
+            height: 27.6125rem;
+            padding: 2.75rem 5.24375rem 6.2875rem;
             background-color: #ffffff;
             border-radius: 1.124rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
         }
 
         &--header--wrapper {
@@ -89,7 +92,7 @@
                 position: relative;
                 display: flex;
                 justify-content: center;
-                height: calc(100% - 3.375rem);
+                height: 22.2373125rem;
             }
 
             &--main {
@@ -135,7 +138,7 @@
                         family: 'NanumSquareB';
                     }       
                     width: 49rem;
-                    height: calc(100%);
+                    height: 18.2373125rem;
                     color: #000000;
                     text-decoration: none;
                     padding-top: 2rem;

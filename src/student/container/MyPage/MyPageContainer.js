@@ -30,21 +30,28 @@ class MyPageContainer extends Component {
     ],
   };
 
-  componentWillMount() {
+  componentDidMount() {
     const jwtToken = getCookie('JWT');
-    if (jwtToken) {
-      this.getBasicData(jwtToken);
+    const refreshToken = getCookie('RFT');
+    if (jwtToken || refreshToken) {
+      this.getBasicData(jwtToken, refreshToken);
     } else {
       this.props.history.push('/');
     }
   }
 
-  getBasicData = token => {
-    getBasicDatas(`Bearer ${token}`).then(response => {
-      if (response.status === 200) {
-        this.props.setStudentBasicData(response.data);
-      }
-    });
+  getBasicData = (token, refreshToken) => {
+    getBasicDatas(token, refreshToken)
+      .then(response => {
+        if (response.status === 200) {
+          this.props.setStudentBasicData(response.data);
+        }
+      })
+      .catch(err => {
+        if (err === 'expired Token') {
+          // hmm...
+        }
+      });
   };
 
   onLogOutBtn = () => {

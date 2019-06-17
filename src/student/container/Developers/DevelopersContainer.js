@@ -32,10 +32,10 @@ class DevelopersContainer extends Component {
     ],
   };
 
-  componentWillMount() {
-    const jwtCookie = getCookie('JWT');
+  componentDidMount() {
+    const refreshToken = getCookie('RFT');
 
-    if (!jwtCookie) {
+    if (!refreshToken) {
       this.props.history.push('/');
     }
   }

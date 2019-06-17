@@ -19,7 +19,7 @@ const Footer = ({cardList}) => {
                     <div className="footer--bottom--copyright--wrapper">
                         <img src={logo} alt="" className="footer--bottom--copyright--logo"/>
                         <span className="footer--bottom--copyright">
-                        &#9400;2018 Team DMS</span>
+                        &#9400;2019 Team DMS</span>
                     </div>
                     <div className="footer--bottom--link--wrapper">
                         <a href="https://www.facebook.com/DMSforDSM">

@@ -20,7 +20,7 @@ export default class MusicApplyContainer extends Component {
   };
 
   onCancel = ({myMusicId}) => {
-    deleteMusic(getCookie('JWT'), myMusicId)
+    deleteMusic(getCookie('JWT'), myMusicId, getCookie('RFT'))
       .then(response => {
         switch (response.status) {
           case 200:
@@ -50,7 +50,7 @@ export default class MusicApplyContainer extends Component {
       alert('노래 제목 혹은 아티스트를 입력하지 않으셨습니다.');
       return;
     }
-    submitMusic(getCookie('JWT'), day, singer, title)
+    submitMusic(getCookie('JWT'), day, singer, title, getCookie('RFT'))
       .then(response => {
         switch (response.status) {
           case 201:

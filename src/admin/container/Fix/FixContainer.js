@@ -9,6 +9,7 @@ import Loading from '../../common/Loading/Loading'
 import { connect } from 'react-redux'
 import { facilityRequest } from '../../../actions/index'
 import { getCookie } from '../../../lib/cookie'
+import axiosWrapper from '../../lib/axiosWrapper'
 
 class FixContainer extends Component {
     state = {
@@ -17,25 +18,19 @@ class FixContainer extends Component {
 
     componentDidMount = async () => {
         try {
-        const token = getCookie('JWT')
-        const response = await axios
-            .get("https://admin-api.dms.istruly.sexy/facility_report", 
-            {
-                headers : {
-                    Authorization: `Bearer ${token}`
-                }
+        const jwttoken = getCookie('JWT')
+        const reftoken = getCookie('RFT')
+        const response = await axiosWrapper
+            .get("https://admin-api.dms.istruly.sexy/facility_report", `Bearer ${jwttoken}`, `Bearer ${reftoken}`)
+            console.log(response)
+            this.props.facilityRequest(
+                response.data
+            )
+            this.setState({
+                loading : false
             })
-            if (response.data !== "") {
-                this.props.facilityRequest(
-                    response.data
-                )
-                this.setState({
-                    loading : false
-                })
-            }
         } catch(err) {
             alert('로그인이 필요합니다')
-            console.log(err)
             this.props.history.push('/admin/login')
         }
     }

@@ -7,10 +7,11 @@ import { getCookie } from '../../../lib/cookie';
 import Modal from '../../common/Modal/ModalContainer';
 
 class DefaultLayout extends Component {
-  componentWillMount() {
-    const cookie = getCookie('JWT');
+  componentDidMount() {
+    const accessToken = getCookie('JWT');
+    const refreshToken = getCookie('RFT');
 
-    if (cookie) {
+    if (accessToken || refreshToken) {
       this.props.isLogin(true);
     } else {
       this.props.isLogin(false);
