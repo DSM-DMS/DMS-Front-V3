@@ -2,6 +2,7 @@ import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
 import { setMeal, setMealDate } from '../../../../actions';
 import { getMealDate } from '../../../../lib/mealAPI';
+import { dateSetter } from '../../../../lib/utils';
 
 import Meal from '../../../component/Main/Meal/Meal';
 
@@ -20,8 +21,6 @@ class MealContainer extends Component {
 
   debounceCheck = null;
 
-  cnt = 0;
-
   componentDidMount() {
     this.getMeal(0, this.props.setMeal);
   }
@@ -38,22 +37,12 @@ class MealContainer extends Component {
 
   changeDate = date => {
     this.props.setMealDate(date);
-    if (this.cnt === 0) this.getMeal();
-    else this.debounce(this.getMeal, 150)();
+    this.debounce(this.getMeal, 180)();
   };
 
   getMeal = () => {
     const { selectedDate, setMeal } = this.props;
-    this.cnt++;
-    const getFormDate = `${selectedDate.getFullYear()}-${
-      selectedDate.getMonth() + 1 < 10
-        ? `0${selectedDate.getMonth() + 1}`
-        : selectedDate.getMonth() + 1
-    }-${
-      selectedDate.getDate() < 10
-        ? `0${selectedDate.getDate()}`
-        : selectedDate.getDate()
-    }`;
+    const getFormDate = dateSetter(selectedDate);
     getMealDate(getFormDate)
       .then(res => {
         setMeal(res.data[getFormDate]);
