@@ -4,7 +4,7 @@ import {
   getNoticeList,
   getRuleList,
   getNoticeDetailPost,
-  getRuleDetailPost
+  getRuleDetailPost,
 } from '../../../../../lib/guideAPI';
 
 import GuideContentPostListContainer from './GuideContentPostListContainer';
@@ -24,13 +24,13 @@ export default class GuideContentContainer extends Component {
             { content: '금', detail: '금요귀가', val: 0 },
             { content: '토', detail: '토요귀가', val: 1 },
             { content: '토', detail: '토요귀사', val: 2 },
-            { content: '잔류', detail: '잔류', val: 3 }
+            { content: '잔류', detail: '잔류', val: 3 },
           ],
           typeList: [
             { content: '공지사항', val: 'notice' },
-            { content: '기숙사규정', val: 'rule' }
+            { content: '기숙사규정', val: 'rule' },
           ],
-          haveEmptyMenuContent: false
+          haveEmptyMenuContent: false,
         },
         rule: {
           title: '기숙사 규정',
@@ -39,14 +39,14 @@ export default class GuideContentContainer extends Component {
             { content: '금', detail: '금요귀가', val: 0 },
             { content: '토', detail: '토요귀가', val: 1 },
             { content: '토', detail: '토요귀사', val: 2 },
-            { content: '잔류', detail: '잔류', val: 3 }
+            { content: '잔류', detail: '잔류', val: 3 },
           ],
           typeList: [
             { content: '공지사항', val: 'notice' },
-            { content: '기숙사규정', val: 'rule' }
+            { content: '기숙사규정', val: 'rule' },
           ],
-          haveEmptyMenuContent: false
-        }
+          haveEmptyMenuContent: false,
+        },
       },
       selectedType: this.props.type,
       selectedMenu: {
@@ -58,15 +58,15 @@ export default class GuideContentContainer extends Component {
       guidePostList: [],
       detailPost: {
         content: '',
-        title: ''
-      }
+        title: '',
+      },
     };
   }
 
   setPostList = () => {
     if (this.state.loading) return;
     this.setState({
-      loading: true
+      loading: true,
     });
 
     try {
@@ -84,14 +84,14 @@ export default class GuideContentContainer extends Component {
       console.error(e);
     }
     this.setState({
-      loading: false
+      loading: false,
     });
   };
 
   setDetailPost = async id => {
     if (this.state.loading) return;
     this.setState({
-      loading: true
+      loading: true,
     });
     try {
       let response = null;
@@ -105,7 +105,7 @@ export default class GuideContentContainer extends Component {
         default:
       }
       this.setState({
-        detailPost: response.data
+        detailPost: response.data,
       });
     } catch (e) {
       alert('error');
@@ -113,7 +113,7 @@ export default class GuideContentContainer extends Component {
     }
     this.setState({
       isOnDetail: true,
-      loading: false
+      loading: false,
     });
   };
 
@@ -127,16 +127,16 @@ export default class GuideContentContainer extends Component {
           this.setState({
             selectedMenu: {
               ...this.state.selectedMenu,
-              notice: post.id
-            }
+              notice: post.id,
+            },
           });
         }
         return {
           content: i,
           detail: post.title,
-          val: post.id
+          val: post.id,
         };
-      })
+      }),
     });
     if (noticeList.length > 0) {
       this.setDetailPost(noticeList[0].id);
@@ -153,16 +153,16 @@ export default class GuideContentContainer extends Component {
           this.setState({
             selectedMenu: {
               ...this.state.selectedMenu,
-              rule: post.id
-            }
+              rule: post.id,
+            },
           });
         }
         return {
           content: i,
           detail: post.title,
-          val: post.id
+          val: post.id,
         };
-      })
+      }),
     });
     if (ruleList.length > 0) {
       this.setDetailPost(ruleList[0].id);
@@ -173,22 +173,21 @@ export default class GuideContentContainer extends Component {
     this.setState({
       selectedMenu: {
         ...this.state.selectedMenu,
-        [this.props.type]: menuVal
-      }
+        [this.props.type]: menuVal,
+      },
     });
     this.setDetailPost(menuVal);
   };
 
   onSelectType = typeVal => {
     this.setState({
-      selectedType: typeVal
+      selectedType: typeVal,
     });
     this.props.history.push('/guide/' + typeVal);
   };
 
   componentDidMount() {
     this.setPostList();
-    console.log(this.state.selectedMenu);
   }
 
   render() {
@@ -198,15 +197,15 @@ export default class GuideContentContainer extends Component {
       selectedType,
       selectedMenu,
       guidePostList,
-      detailPost
+      detailPost,
     } = this.state;
 
     return (
-      <div className='apply--content--outer--wrapper'>
-        <div className='apply--content--wrapper'>
-          <div className='apply--content--left'>
-            <div className='apply--content--title--wrapper'>
-              <span className='apply--content--title'>
+      <div className="apply--content--outer--wrapper">
+        <div className="apply--content--wrapper">
+          <div className="apply--content--left">
+            <div className="apply--content--title--wrapper">
+              <span className="apply--content--title">
                 {contentInfo[type].title}
               </span>
             </div>
@@ -218,7 +217,7 @@ export default class GuideContentContainer extends Component {
               haveEmptyMenuContent={contentInfo[type].haveEmptyMenuContent}
             />
           </div>
-          <div className='apply--content--right'>
+          <div className="apply--content--right">
             <GuideContentPostContainer
               typeList={contentInfo[type].typeList}
               selectedType={selectedType}

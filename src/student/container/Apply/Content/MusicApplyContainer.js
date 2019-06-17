@@ -19,7 +19,7 @@ export default class MusicApplyContainer extends Component {
     refreshFlag: false,
   };
 
-  onCancel = ({myMusicId}) => {
+  onCancel = ({ myMusicId }) => {
     deleteMusic(getCookie('JWT'), myMusicId, getCookie('RFT'))
       .then(response => {
         switch (response.status) {
@@ -70,7 +70,6 @@ export default class MusicApplyContainer extends Component {
       })
       .catch(e => {
         alert('기상음악 신청 실패');
-        console.log(e);
       });
   };
 

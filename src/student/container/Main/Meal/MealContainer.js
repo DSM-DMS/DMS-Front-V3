@@ -53,7 +53,6 @@ class MealContainer extends Component {
       }
       this.bool = true;
     } catch (e) {
-      console.log(e);
       callback({ breakfast: [], lunch: [], dinner: [] });
       this.bool = true;
     }

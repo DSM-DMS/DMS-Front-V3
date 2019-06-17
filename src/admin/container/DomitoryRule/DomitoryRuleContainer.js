@@ -12,13 +12,11 @@ class DomitoryRuleContainer extends Component {
     TaskData = async () => {
         try {
             const response = await noticeGet('rule')
-            console.log(response.data)
             this.HandleAfterRequest(response)
         }
         catch (err) {
             try {
                 const response = await noticeGet('rule')
-                console.log(response.data)
                 this.HandleAfterRequest(response)                
             }
             catch (err) {
@@ -29,7 +27,6 @@ class DomitoryRuleContainer extends Component {
     }
 
     HandleAfterRequest = (response) => {
-        console.log(response.data)
         const { ruleList } = response.data
         this.setState({
             ruleList,
@@ -53,7 +50,6 @@ class DomitoryRuleContainer extends Component {
 
     render() {
         const { ruleList, loading } = this.state
-        console.log(ruleList)
         const List = ruleList.reverse().map(data => (
             <DomitoryRuleList HandleDelete = {this.HandleDelete} data = {data} key = {data.ruleId}/>
         ))
