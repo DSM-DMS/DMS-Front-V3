@@ -1,6 +1,4 @@
 import {
-  SET_MEAL_PREV_DATE,
-  SET_MEAL_NEXT_DATE,
   SET_MEAL,
   SET_MEAL_DATE,
 } from '../actions/ActionTypes';

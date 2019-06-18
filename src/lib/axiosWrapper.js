@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { setCookie, removeCookie } from './cookie';
+import { setCookie } from './cookie';
 
 const getRefreshTokenURI = 'https://api.dms.istruly.sexy/account/refresh';
 
