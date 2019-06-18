@@ -7,14 +7,7 @@ import MealCard from './MealCard';
 
 import mealMan from '../../../../assets/illust/meal-man.png';
 
-const Meal = ({
-  selectedDate,
-  breakfast,
-  lunch,
-  dinner,
-  prevDate,
-  nextDate,
-}) => {
+const Meal = ({ selectedDate, breakfast, lunch, dinner, changeDate }) => {
   return (
     <div className="meal--wrapper" id="meal">
       <div className="inner--wrapper">
@@ -31,8 +24,8 @@ const Meal = ({
               <MealCard time="저녁" list={dinner} />
             </div>
             <div className="meal--menu--button--list">
-              <MealButton clickFun={prevDate} text="이전" />
-              <MealButton clickFun={nextDate} text="다음" />
+              <MealButton clickFun={() => changeDate(-1)} text="이전" />
+              <MealButton clickFun={() => changeDate(1)} text="다음" />
             </div>
           </div>
           <img

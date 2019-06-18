@@ -1,7 +1,8 @@
 import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
-import { mealPrevDate, mealNextDate, setMeal } from '../../../../actions';
+import { setMeal, setMealDate } from '../../../../actions';
 import { getMealDate } from '../../../../lib/mealAPI';
+import { dateSetter } from '../../../../lib/utils';
 
 import Meal from '../../../component/Main/Meal/Meal';
 
@@ -18,63 +19,53 @@ class MealContainer extends Component {
 
   bool = true;
 
+  debounceCheck = null;
+
   componentDidMount() {
     this.getMeal(0, this.props.setMeal);
   }
 
-  prevDate = () => {
-    if (this.bool) {
-      this.getMeal(-1, this.props.prevDate);
-    }
+  debounce = (callback, milliseconds) => {
+    return () => {
+      clearTimeout(this.debounceCheck);
+      this.debounceCheck = setTimeout(() => {
+        this.cnt = 0;
+        callback();
+      }, milliseconds);
+    };
   };
 
-  nextDate = () => {
-    if (this.bool) {
-      this.getMeal(1, this.props.nextDate);
-    }
+  changeDate = date => {
+    this.props.setMealDate(date);
+    this.debounce(this.getMeal, 180)();
   };
 
-  getMeal = async (addDate, callback) => {
-    this.bool = false;
-    const { selectedDate } = this.props;
-    const needDate = new Date(selectedDate);
-    needDate.setDate(selectedDate.getDate() + addDate);
-    const getFormDate = `${needDate.getFullYear()}-${
-      needDate.getMonth() + 1 < 10
-        ? `0${needDate.getMonth() + 1}`
-        : needDate.getMonth() + 1
-    }-${
-      needDate.getDate() < 10 ? `0${needDate.getDate()}` : needDate.getDate()
-    }`;
-    try {
-      const response = await getMealDate(getFormDate);
-      if (response.status === 200) {
-        callback(response.data[getFormDate]);
-      }
-      this.bool = true;
-    } catch (e) {
-      callback({ breakfast: [], lunch: [], dinner: [] });
-      this.bool = true;
-    }
+  getMeal = () => {
+    const { selectedDate, setMeal } = this.props;
+    const getFormDate = dateSetter(selectedDate);
+    getMealDate(getFormDate)
+      .then(res => {
+        setMeal(res.data[getFormDate]);
+      })
+      .catch(err => {
+        setMeal({ breakfast: [], lunch: [], dinner: [] });
+      });
   };
 
   render() {
     const { selectedDate, breakfast, lunch, dinner } = this.props;
 
     return (
-      <Fragment>
-        <Meal
-          selectedDate={`${selectedDate.getFullYear()}년
+      <Meal
+        selectedDate={`${selectedDate.getFullYear()}년
             ${selectedDate.getMonth() + 1}월
             ${selectedDate.getDate()}일
             ${this.dateList[selectedDate.getDay()]}`}
-          breakfast={breakfast}
-          lunch={lunch}
-          dinner={dinner}
-          prevDate={this.prevDate}
-          nextDate={this.nextDate}
-        />
-      </Fragment>
+        breakfast={breakfast}
+        lunch={lunch}
+        dinner={dinner}
+        changeDate={this.changeDate}
+      />
     );
   }
 }
@@ -87,8 +78,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  prevDate: meal => dispatch(mealPrevDate(meal)),
-  nextDate: meal => dispatch(mealNextDate(meal)),
+  setMealDate: date => dispatch(setMealDate(date)),
   setMeal: meal => dispatch(setMeal(meal)),
 });
 

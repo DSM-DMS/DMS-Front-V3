@@ -2,6 +2,7 @@ import {
   SET_MEAL_PREV_DATE,
   SET_MEAL_NEXT_DATE,
   SET_MEAL,
+  SET_MEAL_DATE,
 } from '../actions/ActionTypes';
 
 const initialState = {
@@ -15,21 +16,14 @@ const initialState = {
 
 function meal(state = initialState, action) {
   switch (action.type) {
-    case SET_MEAL_PREV_DATE:
+    case SET_MEAL_DATE:
       return {
         ...state,
         selectedDate: new Date(
-          state.selectedDate.setDate(state.selectedDate.getDate() - 1),
+          state.selectedDate.setDate(
+            state.selectedDate.getDate() + action.date,
+          ),
         ),
-        meal: action.mealObj,
-      };
-    case SET_MEAL_NEXT_DATE:
-      return {
-        ...state,
-        selectedDate: new Date(
-          state.selectedDate.setDate(state.selectedDate.getDate() + 1),
-        ),
-        meal: action.mealObj,
       };
     case SET_MEAL:
       return {
