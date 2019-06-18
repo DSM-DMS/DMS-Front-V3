@@ -22,9 +22,7 @@ class PointContainer extends Component {
             this.props.setStudentPointData(response.data.point_history);
           }
         })
-        .catch(err => {
-          console.log(err);
-        });
+        .catch(err => {});
   };
 
   render() {

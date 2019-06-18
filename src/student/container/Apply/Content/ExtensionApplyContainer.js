@@ -18,11 +18,11 @@ export default class ExtensionApplyContainer extends Component {
     '4층 계단측 독서실',
     '4층 학교측 독서실',
     '5층 열린 교실',
-    '3층 소파'
+    '3층 소파',
   ];
   typeList = [{ content: '11시', val: '11' }, { content: '12시', val: '12' }];
   state = {
-    refreshFlag: false
+    refreshFlag: false,
   };
   onCancel = param => {
     deleteExtension(getCookie('JWT'), param.extension, getCookie('RFT'))
@@ -31,7 +31,7 @@ export default class ExtensionApplyContainer extends Component {
           case 200:
             alert('연장신청 취소 성공!');
             this.setState({
-              refreshFlag: true
+              refreshFlag: true,
             });
             break;
           default:
@@ -52,7 +52,7 @@ export default class ExtensionApplyContainer extends Component {
 
   afterRefresh = () => {
     this.setState({
-      refreshFlag: false
+      refreshFlag: false,
     });
   };
 
@@ -63,7 +63,7 @@ export default class ExtensionApplyContainer extends Component {
           case 201:
             alert('연장신청에 성공했습니다.');
             this.setState({
-              refreshFlag: true
+              refreshFlag: true,
             });
             break;
           case 205:
@@ -73,14 +73,12 @@ export default class ExtensionApplyContainer extends Component {
         }
       })
       .catch(e => {
-        console.log(1);
         switch (e.response.status) {
           case 403:
             alert('권한이 없습니다.');
             break;
           case 409:
             alert('연장신청을 할 수 있는 시간이 아닙니다.');
-            console.log(11)
             break;
           default:
         }
@@ -90,7 +88,7 @@ export default class ExtensionApplyContainer extends Component {
   render() {
     return (
       <ApplyContentContainer
-        type='extension'
+        type="extension"
         menuList={this.menuList}
         typeList={this.typeList}
         refreshFlag={this.state.refreshFlag}

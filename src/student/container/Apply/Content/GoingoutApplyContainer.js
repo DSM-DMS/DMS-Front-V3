@@ -6,7 +6,7 @@ import ApplyContentContainer from '../Utils/ApplyContentContainer';
 import {
   postGoingoutInform,
   deleteGoingoutInform,
-  patchGoingoutInform
+  patchGoingoutInform,
 } from '../../../../lib/applyAPI';
 import { getCookie } from '../../../../lib/cookie';
 
@@ -16,28 +16,29 @@ export default class GoingoutApplyContainer extends Component {
   };
 
   onCancel = id => {
-    console.log(id);
-    deleteGoingoutInform(getCookie('JWT'), id, getCookie('RFT')).then(response => {
-      switch (response.status) {
-        case 200:
-          alert('외출신청 취소 성공');
-          this.setState({
-            refreshFlag: true,
-          });
-          break;
-        default:
-      }
-    }).catch(e => {
-      switch (e.response.status) {
-        case 403:
-          alert('권한이 없습니다.');
-          break;
-        case 409:
-          alert('외출신청 취소가 가능한 시간이 아닙니다.');
-          break;
-        default:
-      }
-    });
+    deleteGoingoutInform(getCookie('JWT'), id, getCookie('RFT'))
+      .then(response => {
+        switch (response.status) {
+          case 200:
+            alert('외출신청 취소 성공');
+            this.setState({
+              refreshFlag: true,
+            });
+            break;
+          default:
+        }
+      })
+      .catch(e => {
+        switch (e.response.status) {
+          case 403:
+            alert('권한이 없습니다.');
+            break;
+          case 409:
+            alert('외출신청 취소가 가능한 시간이 아닙니다.');
+            break;
+          default:
+        }
+      });
   };
   onApply = ({
     month,
@@ -48,19 +49,13 @@ export default class GoingoutApplyContainer extends Component {
     returnMin,
     reason,
   }) => {
-    console.log(month,
-      day,
-      outHour,
-      outMin,
-      returnHour,
-      returnMin,
-      reason);
-    if(month === '' || 
-      day === '' || 
-      outHour === '' || 
-      outMin === '' || 
-      returnHour === '' || 
-      returnMin === '' || 
+    if (
+      month === '' ||
+      day === '' ||
+      outHour === '' ||
+      outMin === '' ||
+      returnHour === '' ||
+      returnMin === '' ||
       reason === ''
     ) {
       alert('내용을 모두 입력하지 않았습니다.');
@@ -71,14 +66,14 @@ export default class GoingoutApplyContainer extends Component {
     )} ${this.addZero(outHour)}:${this.addZero(outMin)} ~ ${this.addZero(
       returnHour,
     )}:${this.addZero(returnMin)}`;
-    
-    postGoingoutInform(getCookie("JWT"), dateForm, reason, getCookie('RFT'))
+
+    postGoingoutInform(getCookie('JWT'), dateForm, reason, getCookie('RFT'))
       .then(response => {
         switch (response.status) {
           case 201:
             alert('외출신청 성공');
             this.setState({
-              refreshFlag: true
+              refreshFlag: true,
             });
             break;
           default:

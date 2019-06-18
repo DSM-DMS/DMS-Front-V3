@@ -22,7 +22,6 @@ class FixContainer extends Component {
         const reftoken = getCookie('RFT')
         const response = await axiosWrapper
             .get("https://admin-api.dms.istruly.sexy/facility_report", `Bearer ${jwttoken}`, `Bearer ${reftoken}`)
-            console.log(response)
             this.props.facilityRequest(
                 response.data
             )

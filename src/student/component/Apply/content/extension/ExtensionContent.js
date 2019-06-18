@@ -10,90 +10,95 @@ const mapInfoList = [
     top: '칠판',
     bottom: '벽',
     left: '창문',
-    right: '복도'
+    right: '복도',
   },
   {
     top: '칠판',
     bottom: '벽',
     left: '창문',
-    right: '복도'
+    right: '복도',
   },
   {
     top: '칠판',
     bottom: '벽',
     left: '창문',
-    right: '복도'
+    right: '복도',
   },
   {
     top: '칠판',
     bottom: '벽',
     left: '창문',
-    right: '복도'
+    right: '복도',
   },
-  {//2층 여자 학습실
+  {
+    //2층 여자 학습실
     top: '창문',
     bottom: '문',
     left: '벽',
-    right: '벽'
+    right: '벽',
   },
-  {//3층 학교측 독서실
+  {
+    //3층 학교측 독서실
     top: '창문',
     bottom: '복도',
     left: '학교',
-    right: '옆방'
+    right: '옆방',
   },
-  {//3측 기숙사측 독서실
+  {
+    //3측 기숙사측 독서실
     top: '창문',
     bottom: '복도',
     left: '옆방',
-    right: '계단'
+    right: '계단',
   },
-  {//4층 학교측 독서실
+  {
+    //4층 학교측 독서실
     top: '창문',
     bottom: '복도',
     left: '옆방',
-    right: '계단'
+    right: '계단',
   },
-  {//4층 기숙사측 독서실
+  {
+    //4층 기숙사측 독서실
     top: '창문',
     bottom: '복도',
     left: '옆방',
-    right: '계단'
+    right: '계단',
   },
-  {//5층 열린 교실
+  {
+    //5층 열린 교실
     top: '창문',
     bottom: '',
     left: '옆방',
-    right: '계단'
+    right: '계단',
   },
-  {//소파
+  {
+    //소파
     top: '칠판',
     bottom: '벽',
     left: '창문',
-    right: '복도'
-  }
+    right: '복도',
+  },
 ];
 
 export default class ExtensionContent extends Component {
   state = {
     loading: false,
-    mapData: []
+    mapData: [],
   };
   setMapInfo = async (time, classNum) => {
     if (this.state.loading) return;
     this.setState({
-      loading: true
+      loading: true,
     });
     try {
       const response = await getExtensionMap(time, classNum);
       this.setState({
-        mapData: response.data.map
+        mapData: response.data.map,
       });
-    } catch (e) {
-      console.log(e);
-    }
+    } catch (e) {}
     this.setState({
-      loading: false
+      loading: false,
     });
   };
 
@@ -104,12 +109,11 @@ export default class ExtensionContent extends Component {
 
   componentWillReceiveProps(nextProps) {
     const { time, classNum, refreshFlag } = nextProps;
-    console.log(time, classNum);
-    if(time !== this.props.time || classNum !== this.props.classNum) {
+    if (time !== this.props.time || classNum !== this.props.classNum) {
       this.props.clearSeat();
       this.setMapInfo(time, classNum + 1);
     }
-    if(refreshFlag) {
+    if (refreshFlag) {
       this.props.clearSeat();
       this.setMapInfo(time, classNum + 1);
     }
@@ -118,16 +122,16 @@ export default class ExtensionContent extends Component {
   render() {
     const { time, classNum, selectedSeat, onSelectSeat } = this.props;
     const { mapData } = this.state;
-    const isBigClass = classNum==9;
+    const isBigClass = classNum == 9;
     const map = mapData.map((seatCol, i) => {
       const row = seatCol.map((seat, i) => {
         if (seat === 0)
-          return <ExtensionMapseat key={i} invisibleClass='invisible' />;
+          return <ExtensionMapseat key={i} invisibleClass="invisible" />;
         if (seat === selectedSeat) {
           return (
             <ExtensionMapseat
               key={i}
-              selectedClass='selected'
+              selectedClass="selected"
               content={seat}
               onClick={onSelectSeat}
             />
@@ -137,34 +141,42 @@ export default class ExtensionContent extends Component {
           return (
             <ExtensionMapseat
               key={i}
-              selectedClass='unselected'
+              selectedClass="unselected"
               content={seat}
               onClick={onSelectSeat}
             />
           );
         }
-        return (
-          <ExtensionMapseat key={i} content={seat} />
-        );
+        return <ExtensionMapseat key={i} content={seat} />;
       });
       return <tr key={i}>{row}</tr>;
     });
     return (
-      <div className='apply--content--extension'>
-        <span className='apply--content--extension--mark top'>
+      <div className="apply--content--extension">
+        <span className="apply--content--extension--mark top">
           {mapInfoList[classNum].top}
         </span>
-        <span className='apply--content--extension--mark bottom'>
+        <span className="apply--content--extension--mark bottom">
           {mapInfoList[classNum].bottom}
         </span>
-        <span className='apply--content--extension--mark left'>
+        <span className="apply--content--extension--mark left">
           {mapInfoList[classNum].left}
         </span>
-        <span className='apply--content--extension--mark right'>
+        <span className="apply--content--extension--mark right">
           {mapInfoList[classNum].right}
         </span>
-        <div className={`apply--content--extension--map--wrapper ${isBigClass ? 'big--class' : ''}`}>
-          <table className={`apply--content--extension--map ${isBigClass ? 'big--class' : ''}`}>{map}</table>
+        <div
+          className={`apply--content--extension--map--wrapper ${
+            isBigClass ? 'big--class' : ''
+          }`}
+        >
+          <table
+            className={`apply--content--extension--map ${
+              isBigClass ? 'big--class' : ''
+            }`}
+          >
+            {map}
+          </table>
         </div>
       </div>
     );

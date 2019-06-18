@@ -26,7 +26,6 @@ class DomitoryRuleEditContainer extends Component {
             alert('로그인이 필요합니다')
             this.props.history.push('/admin/login')
         }
-        console.log(this.state)
     }
 
     componentDidMount() {
