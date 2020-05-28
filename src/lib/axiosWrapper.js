@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { setCookie } from './cookie';
 
-const getRefreshTokenURI = 'https://api.dms.istruly.sexy/account/refresh';
+const getRefreshTokenURI = 'https://api.dsm-dms.com/account/refresh';
 
 async function checkValidation(status, refresh, method, path, data, domain) {
   let returnVal = false;

@@ -1,7 +1,7 @@
 node scripts/build.js
 
 
-javascript-obfuscator ./build
+yarn javascript-obfuscator ./build
 
 
 python ./rewrite.py

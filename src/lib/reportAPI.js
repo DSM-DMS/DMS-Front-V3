@@ -1,5 +1,5 @@
 import axiosWrapper from './axiosWrapper';
-const rootURL = 'https://api.dms.istruly.sexy/report';
+const rootURL = 'https://api.dsm-dms.com/report';
 
 export const postFacilityReport = (room, content, token, refreshToken) =>
   axiosWrapper.post(

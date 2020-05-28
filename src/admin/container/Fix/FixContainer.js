@@ -21,7 +21,7 @@ class FixContainer extends Component {
         const jwttoken = getCookie('JWT')
         const reftoken = getCookie('RFT')
         const response = await axiosWrapper
-            .get("https://admin-api.dms.istruly.sexy/facility_report", `Bearer ${jwttoken}`, `Bearer ${reftoken}`)
+            .get("https://admin.dsm-dms.com/facility_report", `Bearer ${jwttoken}`, `Bearer ${reftoken}`)
             this.props.facilityRequest(
                 response.data
             )
@@ -36,7 +36,7 @@ class FixContainer extends Component {
 
     HandleRemove = async (id) => {
         const token = getCookie('JWT')
-        axios.delete(`https://admin-api.dms.istruly.sexy/facility_report/${id}`, 
+        axios.delete(`https://admin.dsm-dms.com/facility_report/${id}`, 
             {
                 headers : {
                     Authorization: `Bearer ${token}`
@@ -44,7 +44,7 @@ class FixContainer extends Component {
         })
         .then(async res => {
             const response = await axios
-            .get("https://admin-api.dms.istruly.sexy/facility_report", 
+            .get("https://admin.dsm-dms.com/facility_report", 
             {
                 headers : {
                     Authorization: `Bearer ${token}`

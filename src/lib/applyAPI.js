@@ -1,6 +1,6 @@
 import axios from 'axios';
 import axiosWrapper from './axiosWrapper';
-const rootUrl = 'https://api.dms.istruly.sexy/apply';
+const rootUrl = 'https://api.dsm-dms.com/apply';
 
 export const getExtensionMap = (time, classNum) => {
   return axios.get(`${rootUrl}/extension/map/${time}/${classNum}`);

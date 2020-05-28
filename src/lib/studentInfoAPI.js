@@ -1,6 +1,6 @@
 import axiosWrapper from './axiosWrapper';
 import axios from 'axios';
-const rootURL = 'https://api.dms.istruly.sexy';
+const rootURL = 'https://api.dsm-dms.com';
 
 export const patchPassword = (
   currentPassword,

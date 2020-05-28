@@ -2,7 +2,7 @@ import axios from 'axios';
 import { getCookie } from '../../lib/cookie';
 import axiosWrapper from './axiosWrapper';
 
-const url = 'https://admin-api.dms.istruly.sexy/notice';
+const url = 'https://admin.dsm-dms.com/notice';
 
 export function noticePost(type, title, content) {
   const jwt = getCookie('JWT');

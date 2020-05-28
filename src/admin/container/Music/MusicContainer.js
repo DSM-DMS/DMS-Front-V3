@@ -38,7 +38,7 @@ class MusicContainer extends Component {
     const refcookie = getCookie('RFT');
     axiosWrapper
       .get(
-        'https://admin-api.dms.istruly.sexy/music',
+        'https://admin.dsm-dms.com/music',
         `Bearer ${jwtcookie}`,
         `Bearer ${refcookie}`,
       )
