@@ -67,7 +67,7 @@ class MainContainer extends Component {
     const refcookie = getCookie('RFT');
     axiosWrapper
       .get(
-        `https://admin-api.dms.istruly.sexy/excel/${this.state.selectKind}`,
+        `https://admin.dsm-dms.com/excel/${this.state.selectKind}`,
         `Bearer ${cookie}`,
         `Bearer ${refcookie}`,
       )
