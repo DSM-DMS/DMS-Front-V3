@@ -70,9 +70,14 @@ class MainContainer extends Component {
         `https://admin.dsm-dms.com/excel/${this.state.selectKind}`,
         `Bearer ${cookie}`,
         `Bearer ${refcookie}`,
+        {
+          responseType: 'arraybuffer'
+        }
       )
       .then(res => {
+        console.log(res)
         let blob = new Blob([res.data], { type: res.headers['content-type'] });
+        console.log(blob)
         fileSaver.saveAs(blob, `${this.state.select}명단.xlsx`);
       })
       .catch(err => {});

@@ -23,6 +23,7 @@ class ChangePassword extends Component {
 
   onSubmitBtn = e => {
     const accessToken = getCookie('JWT');
+    console.log(accessToken)
     const refreshToken = getCookie('RFT');
     const { currentPassword, newPassword, newPasswordChk } = this.state;
     if (
@@ -31,6 +32,7 @@ class ChangePassword extends Component {
       newPasswordChk &&
       newPassword === newPasswordChk
     ) {
+      console.log('전송')
       patchPassword(currentPassword, newPassword, accessToken, refreshToken)
         .then(response => {
           if (response.status === 201) {

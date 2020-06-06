@@ -8,7 +8,7 @@ export const patchPassword = (
   token,
   refreshToken,
 ) =>
-  axiosWrapper.patch(`${rootURL}/account/pw`, token, refreshToken, {
+  axiosWrapper.patch(`${rootURL}/account/pw`, `Bearer ${token}`, refreshToken, {
     currentPassword: currentPassword,
     newPassword: newPassword,
   });

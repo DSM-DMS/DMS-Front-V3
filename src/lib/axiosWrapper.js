@@ -4,7 +4,11 @@ import { setCookie } from './cookie';
 const getRefreshTokenURI = 'https://api.dsm-dms.com/account/refresh';
 
 async function checkValidation(status, refresh, method, path, data, domain) {
-  let returnVal = false;
+  let returnVal = {
+    response: {
+      status
+    }
+  };
   if (status === 403) {
     try {
       const newTokenRequest = await axios.post(domain, null, {
@@ -25,6 +29,9 @@ async function checkValidation(status, refresh, method, path, data, domain) {
         reject('expired Token');
       });
     }
+  }
+  else {
+    returnVal = Promise.reject(returnVal);
   }
   return returnVal;
 }
@@ -70,6 +77,7 @@ const axiosWrapper = {
         response = reRequest;
       }
     }
+    //console.dir(response)
     return response;
   },
   async patch(path, token, refresh, data, domain = getRefreshTokenURI) {
