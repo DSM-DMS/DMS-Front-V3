@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 
 import { getCookie } from '../../../lib/cookie';
 
@@ -59,9 +59,7 @@ class DevelopersContainer extends Component {
     ));
 
     return (
-      <Fragment>
-        <Developers devCards={devCards} />
-      </Fragment>
+      <Developers devCards={devCards} />
     );
   }
 }
