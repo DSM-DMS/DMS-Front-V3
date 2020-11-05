@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { setCookie, removeCookie } from '../../lib/cookie';
 
-const getRefreshTokenURI = 'https://admin-api.dms.istruly.sexy/refresh';
+const getRefreshTokenURI = 'https://admin.dsm-dms.com/account/refresh';
 
 async function checkValidation(status, refresh, method, path, data, domain) {
   let returnVal = false;
@@ -30,11 +30,13 @@ async function checkValidation(status, refresh, method, path, data, domain) {
 }
 
 const axiosWrapper = {
-  async get(path, token, refresh, domain = getRefreshTokenURI) {
+  async get(path, token, refresh, params, domain = getRefreshTokenURI) {
+    console.log(params)
     let response;
     try {
       response = await axios.get(path, {
         headers: { Authorization: token },
+        ...params
       });
     } catch (e) {
       const reRequest = checkValidation(

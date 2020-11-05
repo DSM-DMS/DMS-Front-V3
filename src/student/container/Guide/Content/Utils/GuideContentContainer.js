@@ -1,16 +1,16 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 
 import {
   getNoticeList,
   getRuleList,
   getNoticeDetailPost,
   getRuleDetailPost,
-} from '../../../../../lib/guideAPI';
+} from "../../../../../lib/guideAPI";
 
-import GuideContentPostListContainer from './GuideContentPostListContainer';
-import GuideContentPostContainer from './GuideContentPostContainer';
-import ApplyContentMenuContainer from '../../../Apply/Utils/ApplyContentMenuContainer';
-import GuideInnerContentContainer from './GuideInnerContentContainer';
+import GuideContentPostListContainer from "./GuideContentPostListContainer";
+import GuideContentPostContainer from "./GuideContentPostContainer";
+import ApplyContentMenuContainer from "../../../Apply/Utils/ApplyContentMenuContainer";
+import GuideInnerContentContainer from "./GuideInnerContentContainer";
 
 export default class GuideContentContainer extends Component {
   constructor(props) {
@@ -18,47 +18,47 @@ export default class GuideContentContainer extends Component {
     this.state = {
       contentInfo: {
         notice: {
-          title: '공지사항',
-          menuTitle: '공지목록',
+          title: "공지사항",
+          menuTitle: "공지목록",
           menuList: [
-            { content: '금', detail: '금요귀가', val: 0 },
-            { content: '토', detail: '토요귀가', val: 1 },
-            { content: '토', detail: '토요귀사', val: 2 },
-            { content: '잔류', detail: '잔류', val: 3 },
+            { content: "금", detail: "금요귀가", val: 0 },
+            { content: "토", detail: "토요귀가", val: 1 },
+            { content: "토", detail: "토요귀사", val: 2 },
+            { content: "잔류", detail: "잔류", val: 3 },
           ],
           typeList: [
-            { content: '공지사항', val: 'notice' },
-            { content: '기숙사규정', val: 'rule' },
+            { content: "공지사항", val: "notice" },
+            { content: "기숙사규정", val: "rule" },
           ],
           haveEmptyMenuContent: false,
         },
         rule: {
-          title: '기숙사 규정',
-          menuTitle: '공지목록',
+          title: "기숙사 규정",
+          menuTitle: "공지목록",
           menuList: [
-            { content: '금', detail: '금요귀가', val: 0 },
-            { content: '토', detail: '토요귀가', val: 1 },
-            { content: '토', detail: '토요귀사', val: 2 },
-            { content: '잔류', detail: '잔류', val: 3 },
+            { content: "금", detail: "금요귀가", val: 0 },
+            { content: "토", detail: "토요귀가", val: 1 },
+            { content: "토", detail: "토요귀사", val: 2 },
+            { content: "잔류", detail: "잔류", val: 3 },
           ],
           typeList: [
-            { content: '공지사항', val: 'notice' },
-            { content: '기숙사규정', val: 'rule' },
+            { content: "공지사항", val: "notice" },
+            { content: "기숙사규정", val: "rule" },
           ],
           haveEmptyMenuContent: false,
         },
       },
       selectedType: this.props.type,
       selectedMenu: {
-        notice: '',
-        guide: '',
+        notice: "",
+        guide: "",
       },
       isOnDetail: false,
       loading: false,
       guidePostList: [],
       detailPost: {
-        content: '',
-        title: '',
+        content: "",
+        title: "",
       },
     };
   }
@@ -71,16 +71,16 @@ export default class GuideContentContainer extends Component {
 
     try {
       switch (this.props.type) {
-        case 'notice':
+        case "notice":
           this.getNoticeList();
           break;
-        case 'rule':
+        case "rule":
           this.getRuleList();
           break;
         default:
       }
     } catch (e) {
-      alert('error');
+      alert("error");
       console.error(e);
     }
     this.setState({
@@ -88,7 +88,7 @@ export default class GuideContentContainer extends Component {
     });
   };
 
-  setDetailPost = async id => {
+  setDetailPost = async (id) => {
     if (this.state.loading) return;
     this.setState({
       loading: true,
@@ -96,10 +96,10 @@ export default class GuideContentContainer extends Component {
     try {
       let response = null;
       switch (this.props.type) {
-        case 'notice':
+        case "notice":
           response = await getNoticeDetailPost(id);
           break;
-        case 'rule':
+        case "rule":
           response = await getRuleDetailPost(id);
           break;
         default:
@@ -108,7 +108,7 @@ export default class GuideContentContainer extends Component {
         detailPost: response.data,
       });
     } catch (e) {
-      alert('error');
+      alert("error");
       console.error(e);
     }
     this.setState({
@@ -169,7 +169,7 @@ export default class GuideContentContainer extends Component {
     }
   };
 
-  onSelectMenu = menuVal => {
+  onSelectMenu = (menuVal) => {
     this.setState({
       selectedMenu: {
         ...this.state.selectedMenu,
@@ -179,11 +179,11 @@ export default class GuideContentContainer extends Component {
     this.setDetailPost(menuVal);
   };
 
-  onSelectType = typeVal => {
+  onSelectType = (typeVal) => {
     this.setState({
       selectedType: typeVal,
     });
-    this.props.history.push('/guide/' + typeVal);
+    this.props.history.push("/guide/" + typeVal);
   };
 
   componentDidMount() {

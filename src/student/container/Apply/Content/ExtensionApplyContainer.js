@@ -73,6 +73,7 @@ export default class ExtensionApplyContainer extends Component {
         }
       })
       .catch(e => {
+        console.log(e)
         switch (e.response.status) {
           case 403:
             alert('권한이 없습니다.');

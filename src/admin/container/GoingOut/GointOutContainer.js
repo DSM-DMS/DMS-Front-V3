@@ -65,7 +65,7 @@ class GointOutContainer extends Component {
   HandleModal = id => {
     const cookie = getCookie('JWT');
     axios
-      .get(`https://admin-api.dms.istruly.sexy/goingout/${id}`, {
+      .get(`https://admin.dsm-dms.com/goingout/${id}`, {
         headers: {
           Authorization: `Bearer ${cookie}`,
         },
@@ -100,7 +100,7 @@ class GointOutContainer extends Component {
   componentDidMount = async () => {
     const cookie = getCookie('JWT');
     axios
-      .get(`https://admin-api.dms.istruly.sexy/goingout/0/0`, {
+      .get(`https://admin.dsm-dms.com/goingout/0/0`, {
         headers: {
           Authorization: `Bearer ${cookie}`,
         },
@@ -120,7 +120,7 @@ class GointOutContainer extends Component {
       else return { ...data, check: true };
     });
     const response = await axios.get(
-      `https://admin-api.dms.istruly.sexy/goingout/${id}/${classNumber}`,
+      `https://admin.dsm-dms.com/goingout/${id}/${classNumber}`,
       {
         headers: {
           Authorization: `Bearer ${cookie}`,
@@ -149,7 +149,7 @@ class GointOutContainer extends Component {
     let gradeNumber = 0;
     if (allcheck === false) gradeNumber = this.FindCurrentGrade();
     const response = await axios.get(
-      `https://admin-api.dms.istruly.sexy/goingout/${gradeNumber}/${classNumber}`,
+      `https://admin.dsm-dms.com/goingout/${gradeNumber}/${classNumber}`,
       {
         headers: {
           Authorization: `Bearer ${cookie}`,
@@ -170,7 +170,7 @@ class GointOutContainer extends Component {
     });
     const classNumber = this.FindCurrentClass();
     axios
-      .get(`https://admin-api.dms.istruly.sexy/goingout/0/${classNumber}`, {
+      .get(`https://admin.dsm-dms.com/goingout/0/${classNumber}`, {
         headers: {
           Authorization: `Bearer ${cookie}`,
         },

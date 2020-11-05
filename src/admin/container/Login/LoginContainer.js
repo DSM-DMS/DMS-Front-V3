@@ -36,7 +36,7 @@ class LoginContainer extends Component {
       loading: true,
     });
     axios
-      .post('https://admin-api.dms.istruly.sexy/auth', {
+      .post('https://admin.dsm-dms.com/auth', {
         id: id,
         password: password,
       })

@@ -24,13 +24,13 @@
 }
 
 .apply--content--left {
-  width: 19.375rem;
+  width: 20rem;
   display: flex;
   flex-direction: column;
 }
 
 .apply--content--right {
-  flex-grow: 1;
+  flex: 1;
   margin-left: 10%;
 }
 .apply--content--tag {
@@ -45,7 +45,7 @@
     &::before {
       position: absolute;
       left: 0;
-      content: '';
+      content: "";
       width: 1px;
       height: 1rem;
       display: inline-block;

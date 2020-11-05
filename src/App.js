@@ -32,12 +32,13 @@ import NoticeEditContainer from './admin/container/Notice/NoticeEditContainer';
 import AdminMainContainer from './admin/container/Main/AdminMainContainer';
 import MusicContainer from './admin/container/Music/MusicContainer';
 
-import setHeader from './lib/setHeader';
+// import setHeader from './lib/setHeader';
 
 const DevelopersContainer = React.lazy(() =>
   import('./student/container/Developers/DevelopersContainer'),
 );
 
+/*
 axios.interceptors.request.use(
   conf => {
     if (window.location.href.includes('admin') === true) {
@@ -50,6 +51,7 @@ axios.interceptors.request.use(
     return Promise.reject(err);
   },
 );
+*/
 
 class App extends Component {
   componentDidMount() {

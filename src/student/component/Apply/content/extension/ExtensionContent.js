@@ -127,6 +127,9 @@ export default class ExtensionContent extends Component {
       const row = seatCol.map((seat, i) => {
         if (seat === 0)
           return <ExtensionMapseat key={i} invisibleClass="invisible" />;
+        if (seat === -1){
+          return <ExtensionMapseat key={i} preventClass="prevented" />;
+        }
         if (seat === selectedSeat) {
           return (
             <ExtensionMapseat

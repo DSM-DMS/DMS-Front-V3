@@ -6,17 +6,18 @@ const ExtensionMapSeat = ({
   content,
   invisibleClass,
   selectedClass,
+  preventClass,
   onClick
 }) => {
   return onClick === undefined ? (
     <td
-      className={`apply--content--extension--seat ${invisibleClass} ${selectedClass}`}
+      className={`apply--content--extension--seat ${invisibleClass} ${selectedClass} ${preventClass}`}
     >
-      {content}
+      {preventClass === undefined ? content : '불가'}
     </td>
   ) : (
     <td
-      className={`apply--content--extension--seat ${invisibleClass} ${selectedClass}`}
+      className={`apply--content--extension--seat ${invisibleClass} ${selectedClass} ${preventClass}`}
       onClick={() => onClick(content)}
     >
       {content}

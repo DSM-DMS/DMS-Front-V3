@@ -18,4 +18,7 @@
     background: #19b6b6;
     box-shadow: 0 6px 12px 0 rgba($color: #19b6b6, $alpha: 0.16);
   }
+  &.prevented {
+    background: #b9b9b9;
+  }
 }
