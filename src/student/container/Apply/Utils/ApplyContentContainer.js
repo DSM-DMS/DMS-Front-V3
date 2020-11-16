@@ -33,7 +33,7 @@ export default class ApplyContentContainer extends Component {
           { content: "5층", detail: "5층 열린 교실", val: 9 },
           { content: "3층", detail: "3층 소파", val: 10 },
         ],
-        typeList: [{ content: "11시", val: 11 }, { content: "12시", val: 12 }],
+        typeList: [],
         haveEmptyMenuContent: false,
       },
       goingout: {
@@ -72,7 +72,7 @@ export default class ApplyContentContainer extends Component {
     },
     selectedMenu: 0,
     selectedType: {
-      extension: 11,
+      extension: 12,
       goingout: "sat",
     },
     selectedSeat: "",
