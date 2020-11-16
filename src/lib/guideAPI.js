@@ -1,5 +1,5 @@
 import axios from 'axios';
-const rootUrl = 'https://api.dsm-dms.com/';
+const rootUrl = 'https://api.dsm-dms.com';
 
 export const getNoticeList = () => {
   return axios.get(`${rootUrl}/notice`);
