@@ -1,9 +1,9 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 
-import './ApplyContentMenuContainer.scss';
+import "./ApplyContentMenuContainer.scss";
 
-import ApplyContentMenuItem from '../../../component/Apply/Utils/ApplyContentMenuItem';
-import addIcon from '../../../../assets/icon/ic_goingout_add.png';
+import ApplyContentMenuItem from "../../../component/Apply/Utils/ApplyContentMenuItem";
+import addIcon from "../../../../assets/icon/ic_goingout_add.png";
 
 export default class ApplyContentMenuContainer extends Component {
   render() {
@@ -13,8 +13,9 @@ export default class ApplyContentMenuContainer extends Component {
       onSelectMenu,
       selectedMenu,
       onAddGoingoutApply,
-      haveEmptyMenuContent
+      haveEmptyMenuContent,
     } = this.props;
+
     let menuItems;
     if (menuList.length === 0 && haveEmptyMenuContent) {
       menuItems = (
@@ -33,7 +34,7 @@ export default class ApplyContentMenuContainer extends Component {
             content={item}
             val={item.val}
             onClickMenu={onSelectMenu}
-            available={item.available === false ? 'disable' : undefined}
+            available={item.available === false ? "disable" : undefined}
             key={i}
           />
         ) : (
@@ -41,7 +42,7 @@ export default class ApplyContentMenuContainer extends Component {
             content={item}
             val={item.val}
             onClickMenu={onSelectMenu}
-            available={item.available === false ? 'disable' : undefined}
+            available={item.available === false ? "disable" : undefined}
             key={i}
           />
         )
