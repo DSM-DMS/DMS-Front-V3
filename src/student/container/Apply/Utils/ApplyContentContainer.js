@@ -33,7 +33,7 @@ export default class ApplyContentContainer extends Component {
           { content: "5층", detail: "5층 열린 교실", val: 9 },
           { content: "3층", detail: "3층 소파", val: 10 },
         ],
-        typeList: [{ content: "11시", val: 11 }, { content: "12시", val: 12 }],
+        typeList: [],
         haveEmptyMenuContent: false,
       },
       goingout: {
@@ -72,8 +72,8 @@ export default class ApplyContentContainer extends Component {
     },
     selectedMenu: 0,
     selectedType: {
-      extension: 11,
-      goingout: "sat",
+      extension: 12,
+      goingout: 'sat',
     },
     selectedSeat: "",
     musicApplication: {
@@ -108,25 +108,19 @@ export default class ApplyContentContainer extends Component {
 
   setExtensionInfo = async () => {
     try {
-      const response1 = await getMyExtensionInfo(
-        getCookie("JWT"),
-        11,
-        getCookie("RFT")
-      );
-      const response2 = await getMyExtensionInfo(
-        getCookie("JWT"),
+      const response = await getMyExtensionInfo(
+        getCookie('JWT'),
         12,
         getCookie("RFT")
       );
       this.setState({
         extensionInfo: [
-          this.getRoomName(response1.data.classNum),
-          this.getRoomName(response2.data.classNum),
+          this.getRoomName(response.data.classNum),
         ],
       });
     } catch (e) {
       this.setState({
-        extensionInfo: ["-", "-"],
+        extensionInfo: ['-'],
       });
     }
   };
@@ -504,7 +498,6 @@ export default class ApplyContentContainer extends Component {
       extension: (
         <div className="apply--content--tag--wrapper">
           <div className="apply--content--tag">{extensionInfo[0]}</div>
-          <div className="apply--content--tag second">{extensionInfo[1]}</div>
         </div>
       ),
       stay: (
