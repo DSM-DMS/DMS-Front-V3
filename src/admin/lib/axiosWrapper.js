@@ -1,7 +1,7 @@
-import axios from 'axios';
-import { setCookie, removeCookie } from '../../lib/cookie';
+import axios from "axios";
+import { setCookie } from "../../lib/cookie";
 
-const getRefreshTokenURI = 'https://admin.dsm-dms.com/account/refresh';
+const getRefreshTokenURI = "https://admin.dsm-dms.com/account/refresh";
 
 async function checkValidation(status, refresh, method, path, data, domain) {
   let returnVal = false;
@@ -10,8 +10,8 @@ async function checkValidation(status, refresh, method, path, data, domain) {
       const newTokenRequest = await axios.get(getRefreshTokenURI, {
         headers: { Authorization: refresh },
       });
-      setCookie('JWT', newTokenRequest.data.accessToken);
-      setCookie('RFT', newTokenRequest.data.refreshToken);
+      setCookie("JWT", newTokenRequest.data.accessToken);
+      setCookie("RFT", newTokenRequest.data.refreshToken);
       returnVal = await axios({
         method: method,
         url: path,
@@ -21,8 +21,8 @@ async function checkValidation(status, refresh, method, path, data, domain) {
         data: data,
       });
     } catch (e) {
-      returnVal = new Promise((resolve, reject) => {
-        reject('expired Token');
+      returnVal = new Promise((_, reject) => {
+        reject("expired Token");
       });
     }
   }
@@ -31,21 +31,20 @@ async function checkValidation(status, refresh, method, path, data, domain) {
 
 const axiosWrapper = {
   async get(path, token, refresh, params, domain = getRefreshTokenURI) {
-    console.log(params)
     let response;
     try {
       response = await axios.get(path, {
         headers: { Authorization: token },
-        ...params
+        ...params,
       });
     } catch (e) {
       const reRequest = checkValidation(
         e.response.status,
         refresh,
-        'get',
+        "get",
         path,
         null,
-        domain,
+        domain
       );
       if (reRequest) {
         response = reRequest;
@@ -63,10 +62,10 @@ const axiosWrapper = {
       const reRequest = checkValidation(
         e.response.status,
         refresh,
-        'post',
+        "post",
         path,
         data,
-        domain,
+        domain
       );
       if (reRequest) {
         response = reRequest;
@@ -84,10 +83,10 @@ const axiosWrapper = {
       const reRequest = checkValidation(
         e.response.status,
         refresh,
-        'patch',
+        "patch",
         path,
         data,
-        domain,
+        domain
       );
       if (reRequest) {
         response = reRequest;
@@ -105,10 +104,10 @@ const axiosWrapper = {
       const reRequest = checkValidation(
         e.response.status,
         refresh,
-        'delete',
+        "delete",
         path,
         data,
-        domain,
+        domain
       );
       if (reRequest) {
         response = reRequest;

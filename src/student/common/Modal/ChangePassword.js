@@ -1,30 +1,29 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { withRouter } from 'react-router-dom';
-import { getCookie, removeCookie } from '../../../lib/cookie';
-import { patchPassword } from '../../../lib/studentInfoAPI';
+import React, { Component } from "react";
+import { connect } from "react-redux";
+import { withRouter } from "react-router-dom";
+import { getCookie, removeCookie } from "../../../lib/cookie";
+import { patchPassword } from "../../../lib/studentInfoAPI";
 
-import { isLogin, setModal } from '../../../actions';
+import { isLogin, setModal } from "../../../actions";
 
-import './ChangePassword.scss';
+import "./ChangePassword.scss";
 
 class ChangePassword extends Component {
   state = {
-    currentPassword: '',
-    newPassword: '',
-    newPasswordChk: '',
+    currentPassword: "",
+    newPassword: "",
+    newPasswordChk: "",
   };
 
-  onChangeHandler = e => {
+  onChangeHandler = (e) => {
     this.setState({
       [e.target.name]: e.target.value,
     });
   };
 
-  onSubmitBtn = e => {
-    const accessToken = getCookie('JWT');
-    console.log(accessToken)
-    const refreshToken = getCookie('RFT');
+  onSubmitBtn = (e) => {
+    const accessToken = getCookie("JWT");
+    const refreshToken = getCookie("RFT");
     const { currentPassword, newPassword, newPasswordChk } = this.state;
     if (
       currentPassword &&
@@ -32,34 +31,33 @@ class ChangePassword extends Component {
       newPasswordChk &&
       newPassword === newPasswordChk
     ) {
-      console.log('전송')
       patchPassword(currentPassword, newPassword, accessToken, refreshToken)
-        .then(response => {
+        .then((response) => {
           if (response.status === 201) {
-            alert('비밀번호 변경에 성공하셨습니다. \n다시 로그인하세요.');
-            removeCookie('JWT');
-            removeCookie('RFT');
+            alert("비밀번호 변경에 성공하셨습니다. \n다시 로그인하세요.");
+            removeCookie("JWT");
+            removeCookie("RFT");
             this.props.isLogin(false);
-            this.props.history.push('/');
-            this.props.setModal('');
+            this.props.history.push("/");
+            this.props.setModal("");
           } else if (response.status === 205) {
-            alert('현재 비밀번호와 바꾸시려는 비밀번호가 같습니다.');
+            alert("현재 비밀번호와 바꾸시려는 비밀번호가 같습니다.");
           }
         })
-        .catch(err => {
+        .catch((err) => {
           if (err.response.status === 403) {
-            alert('비밀번호가 틀렸습니다.');
+            alert("비밀번호가 틀렸습니다.");
           }
         });
     } else if (!(currentPassword && newPassword && newPasswordChk)) {
-      alert('공란이 있습니다.');
+      alert("공란이 있습니다.");
     } else if (
       currentPassword &&
       newPassword &&
       newPasswordChk &&
       newPassword.length < 8
     ) {
-      alert('비밀번호는 8자리 이상입니다.');
+      alert("비밀번호는 8자리 이상입니다.");
     } else if (
       currentPassword &&
       newPassword &&
@@ -67,12 +65,12 @@ class ChangePassword extends Component {
       newPassword &&
       newPassword !== newPasswordChk
     ) {
-      alert('새 비밀번호가 다릅니다.');
+      alert("새 비밀번호가 다릅니다.");
     }
   };
 
-  enterKeyPress = e => {
-    if (e.key === 'Enter') {
+  enterKeyPress = (e) => {
+    if (e.key === "Enter") {
       this.onSubmitBtn();
     }
   };
@@ -113,12 +111,12 @@ class ChangePassword extends Component {
   }
 }
 
-const mapDispatchToProps = dispatch => ({
-  setModal: value => dispatch(setModal(value)),
-  isLogin: bool => dispatch(isLogin(bool)),
+const mapDispatchToProps = (dispatch) => ({
+  setModal: (value) => dispatch(setModal(value)),
+  isLogin: (bool) => dispatch(isLogin(bool)),
 });
 
 export default connect(
   null,
-  mapDispatchToProps,
+  mapDispatchToProps
 )(withRouter(ChangePassword));

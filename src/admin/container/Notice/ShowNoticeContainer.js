@@ -1,23 +1,21 @@
-import React, { Component, Fragment } from 'react';
-import ShowNotice from '../../component/Notice/ShowNotice';
-import Loading from '../../common/Loading/Loading';
+import React, { Component, Fragment } from "react";
 
-import { noticeContentGet } from '../../lib/notice';
+import ShowNotice from "../../component/Notice/ShowNotice";
+import Loading from "../../common/Loading/Loading";
+import { noticeContentGet } from "../../lib/notice";
 
 class ShowNoticeContainer extends Component {
   state = {
-    content: '',
-    title: '',
+    content: "",
+    title: "",
     loading: true,
   };
 
   TaskData = async () => {
-    const { match } = this.props(parseInt(match.params.postId));
+    const postId = +this.props.match.params.postId;
+
     try {
-      const response = await noticeContentGet(
-        'notice',
-        parseInt(match.params.postId),
-      );
+      const response = await noticeContentGet("notice", postId);
       const { content, title } = response.data;
       this.setState({
         content: content,
@@ -25,8 +23,8 @@ class ShowNoticeContainer extends Component {
         loading: false,
       });
     } catch (err) {
-      alert('로그인이 필요합니다');
-      this.props.history.push('/admin/login');
+      alert("로그인이 필요합니다");
+      this.props.history.push("/admin/login");
     }
   };
 

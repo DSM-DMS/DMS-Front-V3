@@ -1,54 +1,52 @@
-import axios from 'axios';
-import { getCookie } from '../../lib/cookie';
-import axiosWrapper from './axiosWrapper';
+import axiosWrapper from "./axiosWrapper";
 
-const url = 'https://admin.dsm-dms.com/notice';
+import { getCookie } from "../../lib/cookie";
+
+const url = "https://admin.dsm-dms.com/notice";
 
 export function noticePost(type, title, content) {
-  const jwt = getCookie('JWT');
-  const ref = getCookie('RFT');
+  const jwt = getCookie("JWT");
+  const ref = getCookie("RFT");
   return axiosWrapper
     .post(`${url}/${type}`, `Bearer ${jwt}`, `Bearer ${ref}`, {
       title: title,
       content: content,
     })
-    .then(response => {
+    .then((response) => {
       if (response.status === 200) {
       }
-    })
-
-    .catch(err => {});
+    });
 }
 
 export function noticeGet(type) {
-  const jwt = getCookie('JWT');
-  const ref = getCookie('RFT');
+  const jwt = getCookie("JWT");
+  const ref = getCookie("RFT");
   return axiosWrapper.get(`${url}/${type}`, `Bearer ${jwt}`, `Bearer ${ref}`);
 }
 
 export function noticeDelete(type, id) {
-  const jwt = getCookie('JWT');
-  const ref = getCookie('RFT');
+  const jwt = getCookie("JWT");
+  const ref = getCookie("RFT");
   return axiosWrapper.delete(
     `${url}/${type}/${id}`,
     `Bearer ${jwt}`,
-    `Bearer ${ref}`,
+    `Bearer ${ref}`
   );
 }
 
 export function noticeContentGet(type, id) {
-  const jwt = getCookie('JWT');
-  const ref = getCookie('RFT');
+  const jwt = getCookie("JWT");
+  const ref = getCookie("RFT");
   return axiosWrapper.get(
     `${url}/${type}/${id}`,
     `Bearer ${jwt}`,
-    `Bearer ${ref}`,
+    `Bearer ${ref}`
   );
 }
 
 export function noticePatch(type, id, title, content) {
-  const jwt = getCookie('JWT');
-  const ref = getCookie('RFT');
+  const jwt = getCookie("JWT");
+  const ref = getCookie("RFT");
   return axiosWrapper.patch(
     `${url}/${type}/${id}`,
     `Bearer ${jwt}`,
@@ -56,6 +54,6 @@ export function noticePatch(type, id, title, content) {
     {
       title: title,
       content: content,
-    },
+    }
   );
 }

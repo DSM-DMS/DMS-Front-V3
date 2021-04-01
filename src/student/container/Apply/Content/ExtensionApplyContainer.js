@@ -1,35 +1,35 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 
-import './ExtensionApplyContainer.scss';
+import "./ExtensionApplyContainer.scss";
 
-import ApplyContentContainer from '../Utils/ApplyContentContainer';
-import { deleteExtension, applyExtension } from '../../../../lib/applyAPI';
-import { getCookie } from '../../../../lib/cookie';
+import ApplyContentContainer from "../Utils/ApplyContentContainer";
+import { deleteExtension, applyExtension } from "../../../../lib/applyAPI";
+import { getCookie } from "../../../../lib/cookie";
 
 export default class ExtensionApplyContainer extends Component {
   menuList = [
-    '가온실',
-    '나온실',
-    '다온실',
-    '라온실',
-    '2층 여자 독서실',
-    '3층 계단측 독서실',
-    '3층 학교측 독서실',
-    '4층 계단측 독서실',
-    '4층 학교측 독서실',
-    '5층 열린 교실',
-    '3층 소파',
+    "가온실",
+    "나온실",
+    "다온실",
+    "라온실",
+    "2층 여자 독서실",
+    "3층 계단측 독서실",
+    "3층 학교측 독서실",
+    "4층 계단측 독서실",
+    "4층 학교측 독서실",
+    "5층 열린 교실",
+    "3층 소파",
   ];
-  typeList = [{ content: '11시', val: '11' }, { content: '12시', val: '12' }];
+  typeList = [{ content: "11시", val: "11" }, { content: "12시", val: "12" }];
   state = {
     refreshFlag: false,
   };
-  onCancel = param => {
-    deleteExtension(getCookie('JWT'), param.extension, getCookie('RFT'))
-      .then(response => {
+  onCancel = (param) => {
+    deleteExtension(getCookie("JWT"), param.extension, getCookie("RFT"))
+      .then((response) => {
         switch (response.status) {
           case 200:
-            alert('연장신청 취소 성공!');
+            alert("연장신청 취소 성공!");
             this.setState({
               refreshFlag: true,
             });
@@ -37,13 +37,13 @@ export default class ExtensionApplyContainer extends Component {
           default:
         }
       })
-      .catch(error => {
+      .catch((error) => {
         switch (error.response.status) {
           case 403:
-            alert('권한 없음');
+            alert("권한 없음");
             break;
           case 409:
-            alert('연장신청 취소 실패!');
+            alert("연장신청 취소 실패!");
             break;
           default:
         }
@@ -56,30 +56,29 @@ export default class ExtensionApplyContainer extends Component {
     });
   };
 
-  onApply = param => {
-    applyExtension(getCookie('JWT'), param, getCookie('RFT'))
-      .then(res => {
+  onApply = (param) => {
+    applyExtension(getCookie("JWT"), param, getCookie("RFT"))
+      .then((res) => {
         switch (res.status) {
           case 201:
-            alert('연장신청에 성공했습니다.');
+            alert("연장신청에 성공했습니다.");
             this.setState({
               refreshFlag: true,
             });
             break;
           case 205:
-            alert('이미 신청된 좌석입니다.');
+            alert("이미 신청된 좌석입니다.");
             break;
           default:
         }
       })
-      .catch(e => {
-        console.log(e)
+      .catch((e) => {
         switch (e.response.status) {
           case 403:
-            alert('권한이 없습니다.');
+            alert("권한이 없습니다.");
             break;
           case 409:
-            alert('연장신청을 할 수 있는 시간이 아닙니다.');
+            alert("연장신청을 할 수 있는 시간이 아닙니다.");
             break;
           default:
         }

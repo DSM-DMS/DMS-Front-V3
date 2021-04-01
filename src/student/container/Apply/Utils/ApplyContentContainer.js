@@ -12,7 +12,6 @@ import {
   getGoingoutInform,
 } from "../../../../lib/applyAPI";
 import { getCookie } from "../../../../lib/cookie";
-import GoingoutModifyContent from "../../../component/Apply/content/goingout/GoingoutModifyContent";
 
 export default class ApplyContentContainer extends Component {
   state = {
@@ -33,7 +32,7 @@ export default class ApplyContentContainer extends Component {
           { content: "5층", detail: "5층 열린 교실", val: 9 },
           { content: "3층", detail: "3층 소파", val: 10 },
         ],
-        typeList: [{ content: "11시", val: 11 }, { content: "12시", val: 12 }],
+        typeList: [],
         haveEmptyMenuContent: false,
       },
       goingout: {
@@ -72,8 +71,8 @@ export default class ApplyContentContainer extends Component {
     },
     selectedMenu: 0,
     selectedType: {
-      extension: 11,
-      goingout: "sat",
+      extension: 12,
+      goingout: 'sat',
     },
     selectedSeat: "",
     musicApplication: {
@@ -108,25 +107,19 @@ export default class ApplyContentContainer extends Component {
 
   setExtensionInfo = async () => {
     try {
-      const response1 = await getMyExtensionInfo(
-        getCookie("JWT"),
-        11,
-        getCookie("RFT")
-      );
-      const response2 = await getMyExtensionInfo(
-        getCookie("JWT"),
+      const response = await getMyExtensionInfo(
+        getCookie('JWT'),
         12,
         getCookie("RFT")
       );
       this.setState({
         extensionInfo: [
-          this.getRoomName(response1.data.classNum),
-          this.getRoomName(response2.data.classNum),
+          this.getRoomName(response.data.classNum),
         ],
       });
     } catch (e) {
       this.setState({
-        extensionInfo: ["-", "-"],
+        extensionInfo: ['-'],
       });
     }
   };
@@ -453,9 +446,9 @@ export default class ApplyContentContainer extends Component {
     }
   }
 
-  componentDidUpdate(prevProps, PrevState) {
+  componentDidUpdate(_, PrevState) {
     const { type } = this.props;
-    const { contentInfo, selectedMenu } = this.state;
+    const { contentInfo } = this.state;
     if (
       PrevState.contentInfo[type].menuList.length !==
       contentInfo[type].menuList.length
@@ -464,28 +457,10 @@ export default class ApplyContentContainer extends Component {
         isOnGoingoutApply: contentInfo[type].menuList.length > 0,
       });
     }
-    // if(type === 'goingout') {
-    //   if(PrevState.selectedMenu !== this.state.selectedMenu) {
-    //     const {reason, detail} = contentInfo[type].menuList.filter(
-    //       data => data.val === selectedMenu
-    //     )[0];
-    //     this.onModifyGoingout(this.state.selectedMenu);
-    //     this.setState({
-    //       modifyGoingoutApplication: this.convertGoingoutInfoToData(detail, reason)
-    //     })
-    //   }
-    // }
   }
 
   render() {
-    const {
-      type,
-      menuList,
-      typeList,
-      onCancel,
-      onApply,
-      refreshFlag,
-    } = this.props;
+    const { type, onCancel, onApply, refreshFlag } = this.props;
     const {
       contentInfo,
       selectedType,
@@ -495,7 +470,6 @@ export default class ApplyContentContainer extends Component {
       musicApplication,
       musicInfo,
       goingoutApplication,
-      modifyGoingoutApplication,
       selectedSeat,
       isOnGoingoutApply,
       myMusicId,
@@ -504,7 +478,6 @@ export default class ApplyContentContainer extends Component {
       extension: (
         <div className="apply--content--tag--wrapper">
           <div className="apply--content--tag">{extensionInfo[0]}</div>
-          <div className="apply--content--tag second">{extensionInfo[1]}</div>
         </div>
       ),
       stay: (

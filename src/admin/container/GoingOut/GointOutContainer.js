@@ -1,14 +1,12 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component, Fragment } from "react";
+import axios from "axios";
 
-import axios from 'axios';
-
-import { getCookie } from '../../../lib/cookie';
-
-import GoingOut from '../../component/GoingOut/GoingOut';
-import GoingOutButton from '../../component/GoingOut/GoingOutButton';
-import GoingOutClassList from '../../component/GoingOut/GoingOutClassList';
-import GoingOutList from '../../component/GoingOut/GoingOutList';
-import GoingOutPageList from '../../component/GoingOut/GoingOutPageList';
+import { getCookie } from "../../../lib/cookie";
+import GoingOut from "../../component/GoingOut/GoingOut";
+import GoingOutButton from "../../component/GoingOut/GoingOutButton";
+import GoingOutClassList from "../../component/GoingOut/GoingOutClassList";
+import GoingOutList from "../../component/GoingOut/GoingOutList";
+import GoingOutPageList from "../../component/GoingOut/GoingOutPageList";
 
 class GointOutContainer extends Component {
   startIndex = 1;
@@ -16,45 +14,45 @@ class GointOutContainer extends Component {
     goingOutList: [],
     checkList: [
       {
-        kind: '1학년',
+        kind: "1학년",
         check: false,
         id: 1,
       },
       {
-        kind: '2학년',
+        kind: "2학년",
         check: false,
         id: 2,
       },
       {
-        kind: '3학년',
+        kind: "3학년",
         check: false,
         id: 3,
       },
     ],
     selectList: [
       {
-        kind: '전체',
+        kind: "전체",
         data: 0,
       },
       {
-        kind: '1반',
+        kind: "1반",
         data: 1,
       },
       {
-        kind: '2반',
+        kind: "2반",
         data: 2,
       },
       {
-        kind: '3반',
+        kind: "3반",
         data: 3,
       },
       {
-        kind: '4반',
+        kind: "4반",
         data: 4,
       },
     ],
     selected: false,
-    selectState: '전체반',
+    selectState: "전체반",
     allcheck: true,
     pageSize: 6,
     curPage: 1,
@@ -62,21 +60,20 @@ class GointOutContainer extends Component {
     modalData: [],
   };
 
-  HandleModal = id => {
-    const cookie = getCookie('JWT');
+  HandleModal = (id) => {
+    const cookie = getCookie("JWT");
     axios
       .get(`https://admin.dsm-dms.com/goingout/${id}`, {
         headers: {
           Authorization: `Bearer ${cookie}`,
         },
       })
-      .then(res => {
+      .then((res) => {
         this.setState({
           modalData: { ...res.data },
           modal: true,
         });
-      })
-      .catch(err => {});
+      });
   };
 
   HandleModalToggle = () => {
@@ -87,35 +84,35 @@ class GointOutContainer extends Component {
 
   FindCurrentClass = () => {
     const { selectList, selectState } = this.state;
-    let classNumber = selectList.findIndex(data => data.kind === selectState);
+    let classNumber = selectList.findIndex((data) => data.kind === selectState);
     if (classNumber === -1) classNumber = 0;
     return classNumber;
   };
 
   FindCurrentGrade = () => {
     const { checkList } = this.state;
-    return checkList.findIndex(data => data.check === true);
+    return checkList.findIndex((data) => data.check === true);
   };
 
   componentDidMount = async () => {
-    const cookie = getCookie('JWT');
+    const cookie = getCookie("JWT");
     axios
       .get(`https://admin.dsm-dms.com/goingout/0/0`, {
         headers: {
           Authorization: `Bearer ${cookie}`,
         },
       })
-      .then(res => {
+      .then((res) => {
         this.setState({
           goingOutList: [...res.data].reverse(),
         });
       });
   };
 
-  HandleGradeButton = async id => {
-    const cookie = getCookie('JWT');
+  HandleGradeButton = async (id) => {
+    const cookie = getCookie("JWT");
     const classNumber = this.FindCurrentClass();
-    const data = this.state.checkList.map(data => {
+    const data = this.state.checkList.map((data) => {
       if (data.id !== id) return { ...data, check: false };
       else return { ...data, check: true };
     });
@@ -125,7 +122,7 @@ class GointOutContainer extends Component {
         headers: {
           Authorization: `Bearer ${cookie}`,
         },
-      },
+      }
     );
     this.setState({
       checkList: [...data],
@@ -140,11 +137,11 @@ class GointOutContainer extends Component {
     });
   };
 
-  HandleSelect = async kind => {
-    const cookie = getCookie('JWT');
+  HandleSelect = async (kind) => {
+    const cookie = getCookie("JWT");
     const { selectList } = this.state;
     const { allcheck } = this.state;
-    let classNumber = selectList.findIndex(data => data.kind === kind);
+    let classNumber = selectList.findIndex((data) => data.kind === kind);
     if (classNumber === -1) classNumber = 0;
     let gradeNumber = 0;
     if (allcheck === false) gradeNumber = this.FindCurrentGrade();
@@ -154,7 +151,7 @@ class GointOutContainer extends Component {
         headers: {
           Authorization: `Bearer ${cookie}`,
         },
-      },
+      }
     );
     this.setState({
       selectState: kind,
@@ -164,8 +161,8 @@ class GointOutContainer extends Component {
   };
 
   HandleAllToggle = () => {
-    const cookie = getCookie('JWT');
-    const data = this.state.checkList.map(data => {
+    const cookie = getCookie("JWT");
+    const data = this.state.checkList.map((data) => {
       return { ...data, check: false };
     });
     const classNumber = this.FindCurrentClass();
@@ -175,7 +172,7 @@ class GointOutContainer extends Component {
           Authorization: `Bearer ${cookie}`,
         },
       })
-      .then(res => {
+      .then((res) => {
         this.setState({
           goingOutList: [...res.data].reverse(),
         });
@@ -186,7 +183,7 @@ class GointOutContainer extends Component {
     });
   };
 
-  HandlePageSelect = page => {
+  HandlePageSelect = (page) => {
     this.setState({
       curPage: page,
     });
@@ -201,9 +198,8 @@ class GointOutContainer extends Component {
       allcheck,
       goingOutList,
       modal,
-      HandleModalToggle,
     } = this.state;
-    const selectData = selectList.map(data => {
+    const selectData = selectList.map((data) => {
       return (
         <GoingOutClassList
           HandleSelect={this.HandleSelect}
@@ -214,7 +210,7 @@ class GointOutContainer extends Component {
         </GoingOutClassList>
       );
     });
-    const data = checkList.map(data => {
+    const data = checkList.map((data) => {
       return (
         <GoingOutButton
           onToggle={this.HandleGradeButton}
@@ -229,7 +225,7 @@ class GointOutContainer extends Component {
     if (goingOutList.length % pageSize > 0) page++;
     const goingOutData = goingOutList
       .slice((curPage - 1) * 6, curPage * 6)
-      .map(data => {
+      .map((data) => {
         return (
           <GoingOutList
             onModal={this.HandleModal}
@@ -253,7 +249,7 @@ class GointOutContainer extends Component {
           numbering={i}
         >
           {i}
-        </GoingOutPageList>,
+        </GoingOutPageList>
       );
     }
     return (
