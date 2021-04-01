@@ -18,12 +18,8 @@ class MainContainer extends Component {
         title: "잔류신청",
       },
       {
-        kind: "extension_12",
-        title: "연장학습",
-      },
-      {
-        kind: "goingout",
-        title: "외출자 관리",
+        kind: 'extension_12',
+        title: '연장학습',
       },
     ],
     selectOff: false,
