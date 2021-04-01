@@ -1,83 +1,83 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 
-import './ExtensionContent.scss';
+import "./ExtensionContent.scss";
 
-import { getExtensionMap } from '../../../../../lib/applyAPI';
-import ExtensionMapseat from './ExtensionMapSeat';
+import { getExtensionMap } from "../../../../../lib/applyAPI";
+import ExtensionMapSeat from "./ExtensionMapSeat";
 
 const mapInfoList = [
   {
-    top: '칠판',
-    bottom: '벽',
-    left: '창문',
-    right: '복도',
+    top: "칠판",
+    bottom: "벽",
+    left: "창문",
+    right: "복도",
   },
   {
-    top: '칠판',
-    bottom: '벽',
-    left: '창문',
-    right: '복도',
+    top: "칠판",
+    bottom: "벽",
+    left: "창문",
+    right: "복도",
   },
   {
-    top: '칠판',
-    bottom: '벽',
-    left: '창문',
-    right: '복도',
+    top: "칠판",
+    bottom: "벽",
+    left: "창문",
+    right: "복도",
   },
   {
-    top: '칠판',
-    bottom: '벽',
-    left: '창문',
-    right: '복도',
+    top: "칠판",
+    bottom: "벽",
+    left: "창문",
+    right: "복도",
   },
   {
     //2층 여자 학습실
-    top: '창문',
-    bottom: '문',
-    left: '벽',
-    right: '벽',
+    top: "창문",
+    bottom: "문",
+    left: "벽",
+    right: "벽",
   },
   {
     //3층 학교측 독서실
-    top: '창문',
-    bottom: '복도',
-    left: '학교',
-    right: '옆방',
+    top: "창문",
+    bottom: "복도",
+    left: "학교",
+    right: "옆방",
   },
   {
     //3측 기숙사측 독서실
-    top: '창문',
-    bottom: '복도',
-    left: '옆방',
-    right: '계단',
+    top: "창문",
+    bottom: "복도",
+    left: "옆방",
+    right: "계단",
   },
   {
     //4층 학교측 독서실
-    top: '창문',
-    bottom: '복도',
-    left: '옆방',
-    right: '계단',
+    top: "창문",
+    bottom: "복도",
+    left: "옆방",
+    right: "계단",
   },
   {
     //4층 기숙사측 독서실
-    top: '창문',
-    bottom: '복도',
-    left: '옆방',
-    right: '계단',
+    top: "창문",
+    bottom: "복도",
+    left: "옆방",
+    right: "계단",
   },
   {
     //5층 열린 교실
-    top: '창문',
-    bottom: '',
-    left: '옆방',
-    right: '계단',
+    top: "창문",
+    bottom: "",
+    left: "옆방",
+    right: "계단",
   },
   {
     //소파
-    top: '칠판',
-    bottom: '벽',
-    left: '창문',
-    right: '복도',
+    top: "칠판",
+    bottom: "벽",
+    left: "창문",
+    right: "복도",
   },
 ];
 
@@ -120,19 +120,19 @@ export default class ExtensionContent extends Component {
   }
 
   render() {
-    const { time, classNum, selectedSeat, onSelectSeat } = this.props;
+    const { classNum, selectedSeat, onSelectSeat } = this.props;
     const { mapData } = this.state;
-    const isBigClass = classNum == 9;
+    const isBigClass = classNum === 9;
     const map = mapData.map((seatCol, i) => {
       const row = seatCol.map((seat, i) => {
         if (seat === 0)
-          return <ExtensionMapseat key={i} invisibleClass="invisible" />;
-        if (seat === -1){
-          return <ExtensionMapseat key={i} preventClass="prevented" />;
+          return <ExtensionMapSeat key={i} invisibleClass="invisible" />;
+        if (seat === -1) {
+          return <ExtensionMapSeat key={i} preventClass="prevented" />;
         }
         if (seat === selectedSeat) {
           return (
-            <ExtensionMapseat
+            <ExtensionMapSeat
               key={i}
               selectedClass="selected"
               content={seat}
@@ -142,7 +142,7 @@ export default class ExtensionContent extends Component {
         }
         if (Number.isInteger(seat)) {
           return (
-            <ExtensionMapseat
+            <ExtensionMapSeat
               key={i}
               selectedClass="unselected"
               content={seat}
@@ -150,7 +150,7 @@ export default class ExtensionContent extends Component {
             />
           );
         }
-        return <ExtensionMapseat key={i} content={seat} />;
+        return <ExtensionMapSeat key={i} content={seat} />;
       });
       return <tr key={i}>{row}</tr>;
     });
@@ -170,15 +170,15 @@ export default class ExtensionContent extends Component {
         </span>
         <div
           className={`apply--content--extension--map--wrapper ${
-            isBigClass ? 'big--class' : ''
+            isBigClass ? "big--class" : ""
           }`}
         >
           <table
             className={`apply--content--extension--map ${
-              isBigClass ? 'big--class' : ''
+              isBigClass ? "big--class" : ""
             }`}
           >
-            {map}
+            <tbody>{map}</tbody>
           </table>
         </div>
       </div>

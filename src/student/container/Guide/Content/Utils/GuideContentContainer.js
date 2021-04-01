@@ -7,10 +7,8 @@ import {
   getRuleDetailPost,
 } from "../../../../../lib/guideAPI";
 
-import GuideContentPostListContainer from "./GuideContentPostListContainer";
 import GuideContentPostContainer from "./GuideContentPostContainer";
 import ApplyContentMenuContainer from "../../../Apply/Utils/ApplyContentMenuContainer";
-import GuideInnerContentContainer from "./GuideInnerContentContainer";
 
 export default class GuideContentContainer extends Component {
   constructor(props) {
@@ -191,7 +189,7 @@ export default class GuideContentContainer extends Component {
   }
 
   render() {
-    const { type, menuList, typeList, onCancel, onApply } = this.props;
+    const { type } = this.props;
     const {
       contentInfo,
       selectedType,

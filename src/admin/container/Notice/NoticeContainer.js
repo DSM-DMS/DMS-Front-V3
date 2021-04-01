@@ -1,25 +1,25 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component, Fragment } from "react";
 
-import { noticeGet, noticeDelete } from '../../lib/notice';
+import { noticeGet, noticeDelete } from "../../lib/notice";
 
-import Notice from '../../component/Notice/Notice';
-import NoticeList from '../../component/Notice/NoticeList';
-import Loading from '../../common/Loading/Loading';
+import Notice from "../../component/Notice/Notice";
+import NoticeList from "../../component/Notice/NoticeList";
+import Loading from "../../common/Loading/Loading";
 
-import { withRouter } from 'react-router-dom';
+import { withRouter } from "react-router-dom";
 
 class NoticeContainer extends Component {
   TaskData = async () => {
     try {
-      const response = await noticeGet('notice');
+      const response = await noticeGet("notice");
       this.HandleAfterRequest(response);
     } catch (err) {
-      alert('로그인이 필요합니다');
-      this.props.history.push('/admin/login');
+      alert("로그인이 필요합니다");
+      this.props.history.push("/admin/login");
     }
   };
 
-  HandleAfterRequest = response => {
+  HandleAfterRequest = (response) => {
     const { noticeList } = response.data;
     this.setState({
       noticeList,
@@ -27,8 +27,8 @@ class NoticeContainer extends Component {
     });
   };
 
-  HandleDelete = async id => {
-    const response = await noticeDelete('notice', id);
+  HandleDelete = async (id) => {
+    await noticeDelete("notice", id);
     this.TaskData();
   };
 
@@ -45,7 +45,7 @@ class NoticeContainer extends Component {
     const { noticeList, loading } = this.state;
     const List = noticeList
       .reverse()
-      .map(data => (
+      .map((data) => (
         <NoticeList
           HandleDelete={this.HandleDelete}
           data={data}

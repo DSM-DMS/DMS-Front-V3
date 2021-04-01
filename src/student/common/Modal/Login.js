@@ -1,40 +1,41 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
+import { connect } from "react-redux";
+
+import "./Login.scss";
+
 import {
   postLogin,
   getPointCardList,
   getBasicDatas,
-} from '../../../lib/studentInfoAPI';
-import { connect } from 'react-redux';
-import { setCookie, getCookie } from '../../../lib/cookie';
+} from "../../../lib/studentInfoAPI";
+import { setCookie } from "../../../lib/cookie";
 import {
   isLogin,
   autoLogin,
   setStudentPointData,
   setStudentBasicData,
-} from '../../../actions';
-
-import './Login.scss';
+} from "../../../actions";
 
 class Login extends Component {
   state = {
-    id: '',
-    pw: '',
+    id: "",
+    pw: "",
     checkbox: false,
   };
 
-  idHandler = e => {
+  idHandler = (e) => {
     this.setState({
       id: e.target.value,
     });
   };
 
-  pwHandler = e => {
+  pwHandler = (e) => {
     this.setState({
       pw: e.target.value,
     });
   };
 
-  checkboxHandler = e => {
+  checkboxHandler = (e) => {
     this.setState({
       checkbox: !this.state.checkbox,
     });
@@ -43,53 +44,53 @@ class Login extends Component {
   loginBtn = () => {
     const { id, pw, checkbox } = this.state;
     if (id && pw) {
-      postLogin(id, pw).then(response => {
+      postLogin(id, pw).then((response) => {
         if (response.status === 200) {
           const { accessToken, refreshToken } = response.data;
-          alert('로그인에 성공하셨습니다.');
+          alert("로그인에 성공하셨습니다.");
           if (checkbox) {
-            setCookie('JWT', accessToken, 180);
-            setCookie('RFT', refreshToken, 180);
-            setCookie('ID', id, 180);
+            setCookie("JWT", accessToken, 180);
+            setCookie("RFT", refreshToken, 180);
+            setCookie("ID", id, 180);
           } else {
-            setCookie('JWT', accessToken);
-            setCookie('RFT', refreshToken);
-            setCookie('ID', id);
+            setCookie("JWT", accessToken);
+            setCookie("RFT", refreshToken);
+            setCookie("ID", id);
           }
 
           this.getPointCards(accessToken, refreshToken);
           this.getBasicData(accessToken, refreshToken);
           this.props.isLogin(true);
-          this.props.setModal('');
+          this.props.setModal("");
         } else if (response.status === 204) {
-          alert('비밀번호가 틀렸습니다.');
+          alert("비밀번호가 틀렸습니다.");
         }
       });
     } else {
-      alert('공란이 존재합니다.');
+      alert("공란이 존재합니다.");
     }
   };
 
   getPointCards = (token, refreshToken) => {
     getPointCardList(token, refreshToken)
-      .then(response => {
+      .then((response) => {
         if (response.status === 200) {
           this.props.setStudentPointData(response.data.point_history);
         }
       })
-      .catch(err => {});
+      .catch((err) => {});
   };
 
   getBasicData = (token, refreshToken) => {
-    getBasicDatas(token, refreshToken).then(response => {
+    getBasicDatas(token, refreshToken).then((response) => {
       if (response.status === 200) {
         this.props.setStudentBasicData(response.data);
       }
     });
   };
 
-  enterKeyPress = e => {
-    if (e.key === 'Enter') {
+  enterKeyPress = (e) => {
+    if (e.key === "Enter") {
       this.loginBtn();
     }
   };
@@ -133,7 +134,7 @@ class Login extends Component {
           </span>
           <span
             className="login--forgot"
-            onClick={() => setModal('비밀번호 찾기')}
+            onClick={() => setModal("비밀번호 찾기")}
           >
             비밀번호를 잊으셨나요 ?
           </span>
@@ -143,14 +144,14 @@ class Login extends Component {
   }
 }
 
-const mapDispatchToProps = dispatch => ({
-  isLogin: bool => dispatch(isLogin(bool)),
-  autoLogin: data => dispatch(autoLogin(data)),
-  setStudentPointData: pointData => dispatch(setStudentPointData(pointData)),
-  setStudentBasicData: basicData => dispatch(setStudentBasicData(basicData)),
+const mapDispatchToProps = (dispatch) => ({
+  isLogin: (bool) => dispatch(isLogin(bool)),
+  autoLogin: (data) => dispatch(autoLogin(data)),
+  setStudentPointData: (pointData) => dispatch(setStudentPointData(pointData)),
+  setStudentBasicData: (basicData) => dispatch(setStudentBasicData(basicData)),
 });
 
 export default connect(
   null,
-  mapDispatchToProps,
+  mapDispatchToProps
 )(Login);
