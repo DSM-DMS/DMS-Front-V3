@@ -81,6 +81,13 @@ const mapInfoList = [
   },
 ];
 
+const classMap = {
+  1: "small--td",
+  3: "medium--td",
+  4: "medium--td",
+  9: "big--class",
+};
+
 export default class ExtensionContent extends Component {
   state = {
     loading: false,
@@ -170,13 +177,12 @@ export default class ExtensionContent extends Component {
         </span>
         <div
           className={`apply--content--extension--map--wrapper ${
-            isBigClass ? "big--class" : ""
+            classMap[classNum || "big--td"]
           }`}
         >
           <table
-            className={`apply--content--extension--map ${
-              isBigClass ? "big--class" : ""
-            }`}
+            className={`apply--content--extension--map ${classMap[classNum] ||
+              "big--td"}`}
           >
             <tbody>{this.state.loading ? "" : map}</tbody>
           </table>
