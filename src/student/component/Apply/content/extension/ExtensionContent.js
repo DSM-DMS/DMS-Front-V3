@@ -178,7 +178,7 @@ export default class ExtensionContent extends Component {
               isBigClass ? "big--class" : ""
             }`}
           >
-            <tbody>{map}</tbody>
+            <tbody>{this.state.loading ? "" : map}</tbody>
           </table>
         </div>
       </div>
