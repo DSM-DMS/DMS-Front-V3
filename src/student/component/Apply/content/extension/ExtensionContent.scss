@@ -57,7 +57,24 @@
       width: 35rem;
     }
   }
+  tbody {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
   &.big--class {
     height: 150%;
+  }
+  &.small--td td {
+    width: 4rem;
+    height: 3rem;
+  }
+  &.big--td td {
+    width: 4rem;
+    height: 4rem;
+  }
+  &.medium--td td {
+    width: 3.5rem;
+    height: 3.5rem;
   }
 }
