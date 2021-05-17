@@ -23,7 +23,7 @@
 
       font: {
         size: 1.875rem;
-        family: 'NanumSquareEB';
+        family: "NanumSquareEB";
       }
     }
   }
@@ -39,7 +39,7 @@
     background-color: #19b6b6;
     font: {
       size: 1rem;
-      family: 'NanumSquareB';
+      family: "NanumSquareB";
     }
 
     &:hover {
@@ -59,7 +59,7 @@
 
       font: {
         size: 1rem;
-        family: 'NanumSquareB';
+        family: "NanumSquareB";
       }
 
       &:hover {
@@ -70,7 +70,7 @@
 
     &--list {
       display: flex;
-      width: 31.375rem;
+      width: 38.375rem;
       justify-content: space-between;
       height: 100%;
       align-items: center;
@@ -79,9 +79,10 @@
     &--link {
       color: white;
       cursor: pointer;
+      text-decoration: none;
       font: {
         size: 1rem;
-        family: 'NanumSquareB';
+        family: "NanumSquareB";
       }
     }
   }
@@ -98,7 +99,7 @@
 
     font: {
       size: 1rem;
-      family: 'NanumSquareB';
+      family: "NanumSquareB";
     }
 
     &:hover {
