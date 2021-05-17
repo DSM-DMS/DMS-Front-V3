@@ -20,7 +20,11 @@ const Header = ({ buttonList, variableButton, developers }) => {
         <span className="header--logo--title">DMS</span>
       </Link>
       <nav className="header--button--list">
-        <a href="https://dsm-sms.com/login" className="header--button--link">
+        <a
+          href="https://dsm-sms.com/login"
+          target="_blank"
+          className="header--button--link"
+        >
           평일 외출 신청
         </a>
         {buttonList}
