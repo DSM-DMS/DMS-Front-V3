@@ -119,23 +119,23 @@ export default class GuideContentContainer extends Component {
     const response = await getNoticeList();
     const noticeList = response.data.noticeList;
 
-    await this.setState({
-      guidePostList: noticeList.map((post, i) => {
-        if (i === 0) {
-          this.setState({
-            selectedMenu: {
-              ...this.state.selectedMenu,
-              notice: post.id,
-            },
-          });
-        }
-        return {
-          content: i,
-          detail: post.title,
-          val: post.id,
-        };
-      }),
+    const notices = noticeList.map((post, i) => {
+      if (i === 0) {
+        this.setState({
+          selectedMenu: {
+            ...this.state.selectedMenu,
+            notice: post.id,
+          },
+        });
+      }
+      return {
+        content: i + 1,
+        detail: post.title,
+        val: post.id,
+      };
     });
+
+    await this.setState({ guidePostList: notices });
     if (noticeList.length > 0) {
       this.setDetailPost(noticeList[0].id);
     }
@@ -156,7 +156,7 @@ export default class GuideContentContainer extends Component {
           });
         }
         return {
-          content: i,
+          content: i + 1,
           detail: post.title,
           val: post.id,
         };
